@@ -10,9 +10,13 @@ import UIKit
 
 class FirstViewController: UIViewController {
 
+  @IBOutlet weak var campaignViewContainer: CampaignViewContainer!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
+    
+    campaignViewContainer.populateCampaignViews(["question1", "question2"])
   }
 
   override func didReceiveMemoryWarning() {
