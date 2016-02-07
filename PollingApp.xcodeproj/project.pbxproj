@@ -42,8 +42,8 @@
 /* Begin PBXFileReference section */
 		76B28C151C66C84A008407EE /* PollingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PollingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76B28C181C66C84A008407EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		76B28C1A1C66C84A008407EE /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		76B28C1C1C66C84A008407EE /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		76B28C1A1C66C84A008407EE /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirstViewController.swift; path = ../FirstViewController.swift; sourceTree = "<group>"; };
+		76B28C1C1C66C84A008407EE /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SecondViewController.swift; path = ../SecondViewController.swift; sourceTree = "<group>"; };
 		76B28C1F1C66C84A008407EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		76B28C211C66C84A008407EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		76B28C241C66C84A008407EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -110,8 +110,6 @@
 			isa = PBXGroup;
 			children = (
 				76B28C181C66C84A008407EE /* AppDelegate.swift */,
-				76B28C1A1C66C84A008407EE /* FirstViewController.swift */,
-				76B28C1C1C66C84A008407EE /* SecondViewController.swift */,
 				76B28C4B1C66CC75008407EE /* Constants.swift */,
 				76B28C4D1C66CF66008407EE /* custom views */,
 				76B28C4A1C66CAB3008407EE /* view controllers */,
@@ -144,9 +142,11 @@
 		76B28C4A1C66CAB3008407EE /* view controllers */ = {
 			isa = PBXGroup;
 			children = (
+				76B28C1A1C66C84A008407EE /* FirstViewController.swift */,
+				76B28C1C1C66C84A008407EE /* SecondViewController.swift */,
 				76B28C481C66CAAA008407EE /* InputNameViewController.swift */,
 			);
-			name = "view controllers";
+			path = "view controllers";
 			sourceTree = "<group>";
 		};
 		76B28C4D1C66CF66008407EE /* custom views */ = {
@@ -156,7 +156,7 @@
 				76B28C501C66CFC8008407EE /* CampaignView.xib */,
 				76B28C521C66D0B0008407EE /* CampaignViewContainer.swift */,
 			);
-			name = "custom views";
+			path = "custom views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
