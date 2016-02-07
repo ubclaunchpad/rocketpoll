@@ -15,11 +15,11 @@ class CampaignView: UIView {
   class func instanceFromNib(frame: CGRect) -> CampaignView {
     let view = UINib(nibName: "CampaignView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! CampaignView
     view.frame = frame
-    
     return view
   }
   
-  func setQuestionText(question: String) {
+  func setQuestionText(question: Question) {
     questionLabel.text = question
   }
+  
 }

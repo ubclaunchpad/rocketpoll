@@ -3,53 +3,29 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--First-->
+        <!--Campaigns-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="FirstViewController" customModule="PollingApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9pv-A4-QxB" customClass="CampaignsViewController" customModule="PollingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
+                    <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="tsR-hK-woN">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bQV-W3-tGH" customClass="CampaignViewContainer" customModule="PollingApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" red="1" green="0.87827663313357007" blue="0.68695206020130017" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="bQV-W3-tGH" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="3MJ-qC-knl"/>
-                            <constraint firstItem="bQV-W3-tGH" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="Ctl-Mf-cPb"/>
-                            <constraint firstItem="bQV-W3-tGH" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="N8I-Cj-Ml7"/>
-                            <constraint firstItem="bQV-W3-tGH" firstAttribute="height" secondItem="tsR-hK-woN" secondAttribute="height" id="ZZA-tY-bZg"/>
-                            <constraint firstItem="bQV-W3-tGH" firstAttribute="width" secondItem="tsR-hK-woN" secondAttribute="width" id="rKf-zd-ZZW"/>
-                            <constraint firstItem="bQV-W3-tGH" firstAttribute="centerY" secondItem="tsR-hK-woN" secondAttribute="centerY" id="xvy-FT-uF8"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="3MJ-qC-knl"/>
-                                <exclude reference="N8I-Cj-Ml7"/>
-                            </mask>
-                        </variation>
+                        <color key="backgroundColor" red="0.90283133140000005" green="1" blue="0.83708174599999996" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
-                    <connections>
-                        <outlet property="campaignViewContainer" destination="bQV-W3-tGH" id="QyX-0d-xeh"/>
-                    </connections>
+                    <tabBarItem key="tabBarItem" title="Campaigns" image="first" id="acW-dT-cKf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="750" y="-320"/>
         </scene>
-        <!--Second-->
+        <!--Settings-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="PollingApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -68,8 +44,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Loaded by SecondViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan">
-                                <rect key="frame" x="192" y="329" width="216" height="17"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by SecondViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan">
+                                <rect key="frame" x="193" y="329" width="215" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -83,7 +59,7 @@
                             <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="second" id="cPa-gy-q4n"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -101,26 +77,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TwO-j1-wh9">
-                                <rect key="frame" x="150" y="285" width="300" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TwO-j1-wh9">
+                                <rect key="frame" x="150" y="235" width="300" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WdX-I1-H6R">
-                                <rect key="frame" x="277" y="365" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                                <rect key="frame" x="276" y="315" width="49" height="30"/>
+                                <state key="normal" title="Submit"/>
                                 <connections>
                                     <action selector="submitButtonPressed:" destination="awl-lu-Pvw" eventType="touchUpInside" id="fs2-JP-bSx"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.90283133140000005" green="1" blue="0.83708174599999996" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="WdX-I1-H6R" firstAttribute="centerX" secondItem="loa-Yt-ywj" secondAttribute="centerX" id="CZS-LD-SOY"/>
                             <constraint firstItem="WdX-I1-H6R" firstAttribute="top" secondItem="TwO-j1-wh9" secondAttribute="bottom" constant="50" id="VFE-3Y-Bh7"/>
                             <constraint firstItem="TwO-j1-wh9" firstAttribute="centerX" secondItem="loa-Yt-ywj" secondAttribute="centerX" id="e6P-Wn-nCv"/>
                             <constraint firstItem="TwO-j1-wh9" firstAttribute="width" secondItem="loa-Yt-ywj" secondAttribute="width" multiplier="0.5" id="xEL-pr-DNn"/>
-                            <constraint firstItem="TwO-j1-wh9" firstAttribute="centerY" secondItem="loa-Yt-ywj" secondAttribute="centerY" id="yyj-8e-7yo"/>
+                            <constraint firstItem="TwO-j1-wh9" firstAttribute="centerY" secondItem="loa-Yt-ywj" secondAttribute="centerY" constant="-50" id="yyj-8e-7yo"/>
                         </constraints>
                     </view>
                     <connections>

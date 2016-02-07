@@ -8,25 +8,28 @@
 
 import UIKit
 
-class CampaignViewContainer: UIScrollView {
+class CampaignViewContainer: DynamicScrollView {
+  
+  init() {
+    super.init(aClass: object_getClass(CampaignView()))
+  }
+
+  required convenience init?(coder aDecoder: NSCoder) {
+    self.init()
+  }
   
   func populateCampaignViews(questions: [Question]) {
-    // TODO:
-    // for Question in database: use CampaignView.instanceFromNib() and add to current view
-    // you'll want to attach a frame to the campaignview and this frame will be incremented in the y position
-    
     let campaignViewHeight: CGFloat = 100
-    let campaignViewFrame = CGRectMake(0, 0, frame.size.width, campaignViewHeight) // 100 is the height of the campaignView
+    var campaignViewFrame = CGRectMake(0, 0, bounds.width, campaignViewHeight)
     
     for question in questions {
-      print(question)
-
       let campaignView = CampaignView.instanceFromNib(campaignViewFrame)
+      campaignView.setQuestionText(question)
       addSubview(campaignView)
       
-      frame.origin.y += campaignViewHeight
+      campaignViewFrame.origin.y += campaignViewHeight
     }
-    
+    updateContentSize(campaignViewFrame.origin.y + campaignViewHeight)
   }
   
 }
