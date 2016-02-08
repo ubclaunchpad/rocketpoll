@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InputNameViewController: UIViewController {
+class InputNameViewController: UIViewController, UITextFieldDelegate {
   @IBOutlet weak var nameTextField: UITextField!
   
   // MARK: - Actions
@@ -26,6 +26,15 @@ class InputNameViewController: UIViewController {
     saveUser()
     performSegueWithIdentifier(Segues.toMainApp, sender: self)
   }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        //TODO: Check for nil and remove code duplication
+        textField.resignFirstResponder()
+        saveUser()
+        performSegueWithIdentifier(Segues.toMainApp, sender: self)
+
+        return false
+    }
   
   // MARK: - Delegate methods
   // TODO: Add delegate method for did end text editing to do an automatic segue to FirstViewController
