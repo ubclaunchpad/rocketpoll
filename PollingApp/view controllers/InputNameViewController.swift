@@ -29,6 +29,7 @@ class InputNameViewController: UIViewController {
   
   func saveUser() {
     let userDefaults = NSUserDefaults.standardUserDefaults()
+    assert(nameTextField.text?.characters.count != 0 , "Name cannot be blank")
     let userName = nameTextField.text
     userDefaults.setValue(userName, forKey: UserDefaultKeys.userName)
     print(userName)
