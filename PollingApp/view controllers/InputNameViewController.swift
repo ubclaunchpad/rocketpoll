@@ -14,7 +14,7 @@ class InputNameViewController: UIViewController {
   // MARK: - Actions
   @IBAction func submitButtonPressed(sender: AnyObject) {
     if(nameTextField.text?.characters.count <= 0) {
-      print("name is nil")
+      print("DEBUG", "nameTextField.text = <empty>")
       let alert = UIAlertController(title: "Please add a name", message:"", preferredStyle: UIAlertControllerStyle.Alert)
       alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
       self.presentViewController(alert, animated: true, completion: nil)
@@ -32,7 +32,7 @@ class InputNameViewController: UIViewController {
     assert(nameTextField.text?.characters.count != 0 , "Name cannot be blank")
     let userName = nameTextField.text
     userDefaults.setValue(userName, forKey: UserDefaultKeys.userName)
-    print(userName)
+    print("DEBUG","userName = ", userName!)
   }
 }
 
@@ -40,7 +40,7 @@ class InputNameViewController: UIViewController {
 extension InputNameViewController: UITextFieldDelegate {
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     if(nameTextField.text?.characters.count <= 0) {
-      print("name is nil")
+      print("DEBUG", "nameTextField.text = <empty>")
       let alert = UIAlertController(title: "Please add a name", message:"", preferredStyle: UIAlertControllerStyle.Alert)
       alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
       self.presentViewController(alert, animated: true, completion: nil)
