@@ -14,6 +14,15 @@ class InputNameViewController: UIViewController {
   // MARK: - Actions
   @IBAction func submitButtonPressed(sender: AnyObject) {
     // TODO: Check for Nil value, if Nil present UIAlertView otherwise continue
+
+    if(nameTextField.text?.characters.count <= 0) {
+        print("name is nil")
+        let alert = UIAlertController(title: "Please add a name", message:"", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+        return
+    }
+    
     saveUser()
     performSegueWithIdentifier(Segues.toMainApp, sender: self)
   }
