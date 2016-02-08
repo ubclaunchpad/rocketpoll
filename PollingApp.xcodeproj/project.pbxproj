@@ -21,6 +21,7 @@
 		76B28C511C66CFC8008407EE /* CampaignView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76B28C501C66CFC8008407EE /* CampaignView.xib */; };
 		76B28C531C66D0B0008407EE /* CampaignViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B28C521C66D0B0008407EE /* CampaignViewContainer.swift */; };
 		76FE0AAC1C676688005DFD2C /* DynamicScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FE0AAB1C676688005DFD2C /* DynamicScrollView.swift */; };
+		C8BF1FF11C685F6400B023A4 /* InputNameViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BF1FF01C685F6400B023A4 /* InputNameViewControllerUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		76B28C501C66CFC8008407EE /* CampaignView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CampaignView.xib; sourceTree = "<group>"; };
 		76B28C521C66D0B0008407EE /* CampaignViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignViewContainer.swift; sourceTree = "<group>"; };
 		76FE0AAB1C676688005DFD2C /* DynamicScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicScrollView.swift; sourceTree = "<group>"; };
+		C8BF1FF01C685F6400B023A4 /* InputNameViewControllerUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputNameViewControllerUITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 			children = (
 				76B28C3A1C66C84B008407EE /* PollingAppUITests.swift */,
 				76B28C3C1C66C84B008407EE /* Info.plist */,
+				C8BF1FF01C685F6400B023A4 /* InputNameViewControllerUITests.swift */,
 			);
 			path = PollingAppUITests;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8BF1FF11C685F6400B023A4 /* InputNameViewControllerUITests.swift in Sources */,
 				76B28C3B1C66C84B008407EE /* PollingAppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
