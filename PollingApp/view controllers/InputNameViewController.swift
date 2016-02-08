@@ -11,6 +11,12 @@ import UIKit
 class InputNameViewController: UIViewController {
   @IBOutlet weak var nameTextField: UITextField!
   
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+    view.addGestureRecognizer(tap)
+  }
+  
   // MARK: - Actions
   @IBAction func submitButtonPressed(sender: AnyObject) {
     if(nameTextField.text?.characters.count <= 0) {
@@ -34,6 +40,11 @@ class InputNameViewController: UIViewController {
     userDefaults.setValue(userName, forKey: UserDefaultKeys.userName)
     print("DEBUG","userName = ", userName!)
   }
+  
+  func dismissKeyboard() {
+    view.endEditing(true)
+  }
+  
 }
 
 // MARK: - UITextFieldDelegate
