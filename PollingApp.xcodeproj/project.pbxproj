@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52B48B691C6FEEED008606F5 /* PollUserViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52B48B681C6FEEED008606F5 /* PollUserViewContainer.xib */; };
+		52B48B6B1C6FEF36008606F5 /* PollUserViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B48B6A1C6FEF36008606F5 /* PollUserViewContainer.swift */; };
 		76B28C191C66C84A008407EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B28C181C66C84A008407EE /* AppDelegate.swift */; };
 		76B28C1B1C66C84A008407EE /* CampaignsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B28C1A1C66C84A008407EE /* CampaignsViewController.swift */; };
 		76B28C1D1C66C84A008407EE /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B28C1C1C66C84A008407EE /* SecondViewController.swift */; };
@@ -49,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		52B48B681C6FEEED008606F5 /* PollUserViewContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PollUserViewContainer.xib; sourceTree = "<group>"; };
+		52B48B6A1C6FEF36008606F5 /* PollUserViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollUserViewContainer.swift; sourceTree = "<group>"; };
 		76B28C151C66C84A008407EE /* PollingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PollingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76B28C181C66C84A008407EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76B28C1A1C66C84A008407EE /* CampaignsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignsViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +108,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		52B48B6C1C6FEF3E008606F5 /* poll user views */ = {
+			isa = PBXGroup;
+			children = (
+				52B48B6A1C6FEF36008606F5 /* PollUserViewContainer.swift */,
+				52B48B681C6FEEED008606F5 /* PollUserViewContainer.xib */,
+			);
+			name = "poll user views";
+			sourceTree = "<group>";
+		};
 		76B28C0C1C66C84A008407EE = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +191,7 @@
 			children = (
 				76C150121C6FE1670066C0FE /* campaign views */,
 				76C150131C6FE17C0066C0FE /* room views */,
+				52B48B6C1C6FEF3E008606F5 /* poll user views */,
 			);
 			path = "custom views";
 			sourceTree = "<group>";
@@ -270,6 +284,7 @@
 				TargetAttributes = {
 					76B28C141C66C84A008407EE = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = AX2D84BZ47;
 					};
 					76B28C2A1C66C84B008407EE = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -310,6 +325,7 @@
 				76B28C251C66C84A008407EE /* LaunchScreen.storyboard in Resources */,
 				76C150111C6FE15F0066C0FE /* RoomViewContainer.xib in Resources */,
 				76B28C221C66C84A008407EE /* Assets.xcassets in Resources */,
+				52B48B691C6FEEED008606F5 /* PollUserViewContainer.xib in Resources */,
 				76B28C201C66C84A008407EE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -345,6 +361,7 @@
 				76B28C1D1C66C84A008407EE /* SecondViewController.swift in Sources */,
 				76C1500F1C6FE14C0066C0FE /* RoomViewContainer.swift in Sources */,
 				76C1500D1C6FE0550066C0FE /* PollResultsViewController.swift in Sources */,
+				52B48B6B1C6FEF36008606F5 /* PollUserViewContainer.swift in Sources */,
 				76C1500B1C6FE0220066C0FE /* PollAdminViewController.swift in Sources */,
 				76B28C191C66C84A008407EE /* AppDelegate.swift in Sources */,
 				76B28C1B1C66C84A008407EE /* CampaignsViewController.swift in Sources */,
@@ -491,6 +508,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = PollingApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Gabriel.PollingApp;
@@ -502,6 +520,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = PollingApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Gabriel.PollingApp;

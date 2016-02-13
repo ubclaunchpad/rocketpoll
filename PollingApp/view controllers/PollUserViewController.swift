@@ -8,14 +8,21 @@
 
 import UIKit
 
-// TODO: Cyros is working here
+// TODO: Cyros and Milton are working here
 
 class PollUserViewController: UIViewController {
-
+    
+    var container: PollUserViewContainer?
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        setup()
+    }
+    
+    func setup() {
+        // add your container class to view
+        container = PollUserViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
+        view.addSubview(container!)
     }
 
     override func didReceiveMemoryWarning() {
