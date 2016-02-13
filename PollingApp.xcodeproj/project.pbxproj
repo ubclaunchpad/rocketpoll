@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		413922621C6FE8780043C38C /* CreatedQuestionsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413922611C6FE8780043C38C /* CreatedQuestionsContainerView.swift */; };
+		413922641C6FE88A0043C38C /* CreatedQuestionsContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 413922631C6FE88A0043C38C /* CreatedQuestionsContainerView.xib */; };
 		76B28C191C66C84A008407EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B28C181C66C84A008407EE /* AppDelegate.swift */; };
 		76B28C1B1C66C84A008407EE /* CampaignsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B28C1A1C66C84A008407EE /* CampaignsViewController.swift */; };
 		76B28C1D1C66C84A008407EE /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B28C1C1C66C84A008407EE /* SecondViewController.swift */; };
@@ -49,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		413922611C6FE8780043C38C /* CreatedQuestionsContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatedQuestionsContainerView.swift; sourceTree = "<group>"; };
+		413922631C6FE88A0043C38C /* CreatedQuestionsContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreatedQuestionsContainerView.xib; sourceTree = "<group>"; };
 		76B28C151C66C84A008407EE /* PollingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PollingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76B28C181C66C84A008407EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76B28C1A1C66C84A008407EE /* CampaignsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignsViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +108,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		413922651C6FE8960043C38C /* created questions views */ = {
+			isa = PBXGroup;
+			children = (
+				413922611C6FE8780043C38C /* CreatedQuestionsContainerView.swift */,
+				413922631C6FE88A0043C38C /* CreatedQuestionsContainerView.xib */,
+			);
+			name = "created questions views";
+			sourceTree = "<group>";
+		};
 		76B28C0C1C66C84A008407EE = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +191,7 @@
 			children = (
 				76C150121C6FE1670066C0FE /* campaign views */,
 				76C150131C6FE17C0066C0FE /* room views */,
+				413922651C6FE8960043C38C /* created questions views */,
 			);
 			path = "custom views";
 			sourceTree = "<group>";
@@ -309,6 +323,7 @@
 				76B28C511C66CFC8008407EE /* CampaignView.xib in Resources */,
 				76B28C251C66C84A008407EE /* LaunchScreen.storyboard in Resources */,
 				76C150111C6FE15F0066C0FE /* RoomViewContainer.xib in Resources */,
+				413922641C6FE88A0043C38C /* CreatedQuestionsContainerView.xib in Resources */,
 				76B28C221C66C84A008407EE /* Assets.xcassets in Resources */,
 				76B28C201C66C84A008407EE /* Main.storyboard in Resources */,
 			);
@@ -342,6 +357,7 @@
 				76C150091C6FDFCC0066C0FE /* CreateQuestionViewController.swift in Sources */,
 				76B28C4C1C66CC75008407EE /* Constants.swift in Sources */,
 				76B28C491C66CAAA008407EE /* InputNameViewController.swift in Sources */,
+				413922621C6FE8780043C38C /* CreatedQuestionsContainerView.swift in Sources */,
 				76B28C1D1C66C84A008407EE /* SecondViewController.swift in Sources */,
 				76C1500F1C6FE14C0066C0FE /* RoomViewContainer.swift in Sources */,
 				76C1500D1C6FE0550066C0FE /* PollResultsViewController.swift in Sources */,
