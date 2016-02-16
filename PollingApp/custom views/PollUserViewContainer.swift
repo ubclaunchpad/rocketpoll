@@ -11,13 +11,13 @@ import UIKit
 class PollUserViewContainer: UIView {
 //    var selectedAnswer: String = "";
 //    
-//    @IBOutlet weak var question: UILabel!
+    @IBOutlet weak var question: UILabel!
 
-//    @IBAction func answerPressed(sender: UIButton) {
-//        if let selectedAnswer = sender.currentTitle {
-//            print(selectedAnswer)
-//        }
-//    }
+    @IBAction func answerPressed(sender: UIButton) {
+        if let selectedAnswer = sender.currentTitle {
+            print(selectedAnswer)
+        }
+    }
     class func instanceFromNib(frame: CGRect) -> PollUserViewContainer {
         let view = UINib(nibName: "PollUserViewContainer", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PollUserViewContainer
         view.frame = frame
