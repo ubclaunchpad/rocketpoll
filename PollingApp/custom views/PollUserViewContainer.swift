@@ -9,9 +9,15 @@
 import UIKit
 
 class PollUserViewContainer: UIView {
-    
-    @IBOutlet weak var question: UILabel!
+//    var selectedAnswer: String = "";
+//    
+//    @IBOutlet weak var question: UILabel!
 
+//    @IBAction func answerPressed(sender: UIButton) {
+//        if let selectedAnswer = sender.currentTitle {
+//            print(selectedAnswer)
+//        }
+//    }
     class func instanceFromNib(frame: CGRect) -> PollUserViewContainer {
         let view = UINib(nibName: "PollUserViewContainer", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PollUserViewContainer
         view.frame = frame
@@ -19,13 +25,13 @@ class PollUserViewContainer: UIView {
         return view
     }
     
-    func setQuestionText(questionText: Question) {
-        question.text = questionText;
-    }
-    
-    func getAnswer() -> String {
-        return "";
-    }
+//    func setQuestionText(questionText: Question) {
+//        question.text = questionText;
+//    }
+//    
+//    func getAnswer() -> String {
+//        return selectedAnswer;
+//    }
     
 //    func setAnswers(answers: [String]) {
 //        for i in 1...answers.count {

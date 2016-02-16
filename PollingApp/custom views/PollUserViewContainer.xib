@@ -24,32 +24,44 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zzU-C8-gjx">
                     <rect key="frame" x="271" y="284" width="58" height="30"/>
                     <state key="normal" title="Answer1"/>
+                    <connections>
+                        <action selector="answerPressed:" destination="-1" eventType="touchUpInside" id="OL4-Ab-wMO"/>
+                    </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wra-Uh-4Qn">
-                    <rect key="frame" x="270" y="330" width="60" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Yz-4Q-S6C">
+                    <rect key="frame" x="270" y="320" width="60" height="30"/>
                     <state key="normal" title="Answer2"/>
+                    <connections>
+                        <action selector="answerPressed:" destination="-1" eventType="touchUpInside" id="JXe-ng-GE6"/>
+                    </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ylz-lS-ogl">
-                    <rect key="frame" x="270" y="422.5" width="60" height="30"/>
-                    <state key="normal" title="Answer4"/>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Bt-oB-d39">
-                    <rect key="frame" x="270" y="376" width="60" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="usG-G7-YcX">
+                    <rect key="frame" x="270" y="356" width="60" height="30"/>
                     <state key="normal" title="Answer3"/>
+                    <connections>
+                        <action selector="answerPressed:" destination="-1" eventType="touchUpInside" id="Uqb-Xl-F79"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JvS-i5-oSp">
+                    <rect key="frame" x="270" y="392" width="60" height="30"/>
+                    <state key="normal" title="Answer4"/>
+                    <connections>
+                        <action selector="answerPressed:" destination="-1" eventType="touchUpInside" id="V0m-ep-Cgi"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="uMY-gA-wC6" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="0tx-Um-IKN"/>
                 <constraint firstItem="uMY-gA-wC6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="173" id="4R1-cd-GYi"/>
-                <constraint firstItem="9Bt-oB-d39" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="5JJ-SU-VVe"/>
-                <constraint firstItem="9Bt-oB-d39" firstAttribute="top" secondItem="wra-Uh-4Qn" secondAttribute="bottom" constant="16" id="9mk-Y4-Yp3"/>
+                <constraint firstItem="9Yz-4Q-S6C" firstAttribute="top" secondItem="zzU-C8-gjx" secondAttribute="bottom" constant="6" id="BIN-T7-JtI"/>
                 <constraint firstItem="zzU-C8-gjx" firstAttribute="top" secondItem="uMY-gA-wC6" secondAttribute="bottom" constant="91" id="O93-hQ-4Kp"/>
-                <constraint firstItem="ylz-lS-ogl" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="SnQ-ji-cN2"/>
-                <constraint firstItem="wra-Uh-4Qn" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="TFV-KD-RcS"/>
-                <constraint firstItem="wra-Uh-4Qn" firstAttribute="top" secondItem="zzU-C8-gjx" secondAttribute="bottom" constant="16" id="lru-lE-TQf"/>
+                <constraint firstItem="JvS-i5-oSp" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="SeD-mg-6Il"/>
+                <constraint firstItem="9Yz-4Q-S6C" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Tgc-1e-ezp"/>
+                <constraint firstItem="usG-G7-YcX" firstAttribute="top" secondItem="9Yz-4Q-S6C" secondAttribute="bottom" constant="6" id="aAd-bx-NqL"/>
+                <constraint firstItem="JvS-i5-oSp" firstAttribute="top" secondItem="usG-G7-YcX" secondAttribute="bottom" constant="6" id="dlY-QW-tFk"/>
+                <constraint firstItem="usG-G7-YcX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hSe-xj-c0r"/>
                 <constraint firstItem="zzU-C8-gjx" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="rLI-EX-Ej6"/>
-                <constraint firstItem="ylz-lS-ogl" firstAttribute="top" secondItem="9Bt-oB-d39" secondAttribute="bottom" constant="16" id="sFP-Io-SMf"/>
             </constraints>
             <connections>
                 <outlet property="question" destination="uMY-gA-wC6" id="Oz1-Gf-jl2"/>
