@@ -5,24 +5,55 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PollUserViewContainer" customModule="PollingApp" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PollUserViewContainer" customModule="PollingApp" customModuleProvider="target">
+            <connections>
+                <outlet property="question" destination="uMY-gA-wC6" id="R6H-gh-fhr"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PollUserViewContainer" customModule="PollingApp" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMY-gA-wC6">
-                    <rect key="frame" x="288" y="289" width="33" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMY-gA-wC6">
+                    <rect key="frame" x="284" y="173" width="33" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zzU-C8-gjx">
+                    <rect key="frame" x="271" y="284" width="58" height="30"/>
+                    <state key="normal" title="Answer1"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wra-Uh-4Qn">
+                    <rect key="frame" x="270" y="330" width="60" height="30"/>
+                    <state key="normal" title="Answer2"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ylz-lS-ogl">
+                    <rect key="frame" x="270" y="422.5" width="60" height="30"/>
+                    <state key="normal" title="Answer4"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Bt-oB-d39">
+                    <rect key="frame" x="270" y="376" width="60" height="30"/>
+                    <state key="normal" title="Answer3"/>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="uMY-gA-wC6" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="0tx-Um-IKN"/>
-                <constraint firstItem="uMY-gA-wC6" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="4qW-KN-MCk"/>
+                <constraint firstItem="uMY-gA-wC6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="173" id="4R1-cd-GYi"/>
+                <constraint firstItem="9Bt-oB-d39" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="5JJ-SU-VVe"/>
+                <constraint firstItem="9Bt-oB-d39" firstAttribute="top" secondItem="wra-Uh-4Qn" secondAttribute="bottom" constant="16" id="9mk-Y4-Yp3"/>
+                <constraint firstItem="zzU-C8-gjx" firstAttribute="top" secondItem="uMY-gA-wC6" secondAttribute="bottom" constant="91" id="O93-hQ-4Kp"/>
+                <constraint firstItem="ylz-lS-ogl" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="SnQ-ji-cN2"/>
+                <constraint firstItem="wra-Uh-4Qn" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="TFV-KD-RcS"/>
+                <constraint firstItem="wra-Uh-4Qn" firstAttribute="top" secondItem="zzU-C8-gjx" secondAttribute="bottom" constant="16" id="lru-lE-TQf"/>
+                <constraint firstItem="zzU-C8-gjx" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="rLI-EX-Ej6"/>
+                <constraint firstItem="ylz-lS-ogl" firstAttribute="top" secondItem="9Bt-oB-d39" secondAttribute="bottom" constant="16" id="sFP-Io-SMf"/>
             </constraints>
+            <connections>
+                <outlet property="question" destination="uMY-gA-wC6" id="Oz1-Gf-jl2"/>
+            </connections>
         </view>
     </objects>
 </document>

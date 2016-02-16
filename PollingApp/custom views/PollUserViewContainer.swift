@@ -10,12 +10,28 @@ import UIKit
 
 class PollUserViewContainer: UIView {
     
+    @IBOutlet weak var question: UILabel!
+
     class func instanceFromNib(frame: CGRect) -> PollUserViewContainer {
         let view = UINib(nibName: "PollUserViewContainer", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PollUserViewContainer
         view.frame = frame
         
         return view
     }
+    
+    func setQuestionText(questionText: Question) {
+        question.text = questionText;
+    }
+    
+    func getAnswer() -> String {
+        return "";
+    }
+    
+//    func setAnswers(answers: [String]) {
+//        for i in 1...answers.count {
+//            
+//        }
+//    }
     
     /*
     // Only override drawRect: if you perform custom drawing.
