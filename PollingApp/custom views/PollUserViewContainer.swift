@@ -25,12 +25,7 @@ class PollUserViewContainer: UIView {
         return view
     }
     
-    func setHeaderText() {
-        
-        let defaults = NSUserDefaults.standardUserDefaults();
-        
-        let questionText:Question = defaults.stringForKey("dummyQuestion")!;
-        
+    func setHeaderText(questionText: Question) {
         question.text = questionText;
         
     }

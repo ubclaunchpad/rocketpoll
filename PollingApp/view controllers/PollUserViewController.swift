@@ -18,6 +18,8 @@ class PollUserViewController: UIViewController {
 
         setup()
         saveDummyQuestion();
+        
+    
     }
     
     func saveDummyQuestion() {
@@ -32,6 +34,12 @@ class PollUserViewController: UIViewController {
         // add your container class to view
         container = PollUserViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
         view.addSubview(container!)
+        
+        //retrieve Question String and store into questionText variable
+        let defaults = NSUserDefaults.standardUserDefaults();
+        let questionText:Question = defaults.stringForKey("dummyQuestion")!;
+        //Run the setHeaderText Function
+        container?.setHeaderText(questionText);
     }
 
     override func didReceiveMemoryWarning() {
