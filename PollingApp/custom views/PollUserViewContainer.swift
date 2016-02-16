@@ -25,9 +25,15 @@ class PollUserViewContainer: UIView {
         return view
     }
     
-//    func setQuestionText(questionText: Question) {
-//        question.text = questionText;
-//    }
+    func setHeaderText() {
+        
+        let defaults = NSUserDefaults.standardUserDefaults();
+        
+        let questionText:Question = defaults.stringForKey("dummyQuestion")!;
+        
+        question.text = questionText;
+        
+    }
 //    
 //    func getAnswer() -> String {
 //        return selectedAnswer;
@@ -39,12 +45,6 @@ class PollUserViewContainer: UIView {
 //        }
 //    }
     
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-    // Drawing code
-    }
-    */
+   
     
 }

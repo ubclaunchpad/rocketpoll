@@ -17,7 +17,16 @@ class PollUserViewController: UIViewController {
         super.viewDidLoad()
 
         setup()
+        saveDummyQuestion();
     }
+    
+    func saveDummyQuestion() {
+        //creates and saves a dummy question string to which is later inserted into the header text field
+        let defaults = NSUserDefaults.standardUserDefaults();
+        let DummyQuestion = "Do you understand?";
+        defaults.setValue(DummyQuestion, forKey: "dummyQuestion");
+    }
+
     
     func setup() {
         // add your container class to view
@@ -31,14 +40,6 @@ class PollUserViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+   
 
 }
