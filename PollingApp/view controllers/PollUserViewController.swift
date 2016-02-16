@@ -23,6 +23,10 @@ class PollUserViewController: UIViewController {
         // add your container class to view
         container = PollUserViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
         view.addSubview(container!)
+        let q: Question = "What is your favourite colour?"
+        let answers = ["Blue", "Red", "Purple", "Pink"]
+        container?.setQuestionText(q)
+        container?.setAnswers(answers)
     }
 
     override func didReceiveMemoryWarning() {

@@ -9,12 +9,18 @@
 import UIKit
 
 class PollUserViewContainer: UIView {
-//    var selectedAnswer: String = "";
-//    
+    var selectedAnswer: String = "";
+    
     @IBOutlet weak var question: UILabel!
 
+    @IBOutlet weak var answer1: UIButton!
+    @IBOutlet weak var answer2: UIButton!
+    @IBOutlet weak var answer3: UIButton!
+    @IBOutlet weak var answer4: UIButton!
+    @IBOutlet weak var selectedAnswerLabel: UILabel!
     @IBAction func answerPressed(sender: UIButton) {
         if let selectedAnswer = sender.currentTitle {
+            selectedAnswerLabel.text = selectedAnswer
             print(selectedAnswer)
         }
     }
@@ -25,19 +31,20 @@ class PollUserViewContainer: UIView {
         return view
     }
     
-//    func setQuestionText(questionText: Question) {
-//        question.text = questionText;
-//    }
-//    
-//    func getAnswer() -> String {
-//        return selectedAnswer;
-//    }
+    func setQuestionText(questionText: Question) {
+        question.text = questionText;
+    }
     
-//    func setAnswers(answers: [String]) {
-//        for i in 1...answers.count {
-//            
-//        }
-//    }
+    func getAnswer() -> String {
+        return selectedAnswer;
+    }
+    
+    func setAnswers(answers: [String]) {
+        var answerButtons = [answer1, answer2, answer3, answer4]
+        for i in 0..<answers.count {
+            answerButtons[i].setTitle(answers[i], forState: UIControlState.Normal)
+        }
+    }
     
     /*
     // Only override drawRect: if you perform custom drawing.
