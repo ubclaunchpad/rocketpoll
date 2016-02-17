@@ -34,16 +34,31 @@ class PollUserViewContainer: UIView {
 //        return selectedAnswer;
 //    }
     
-    func setAnswers(answers: [String]) {
-        for i in 1...answers.count {
+    func setAnswers(answerArray: [String]) {
+        var i = 0;
+        var buttonY: CGFloat = 20  // starting offset
+        for answer in answerArray {
             
-            //TODO: create a new button for each answer in the list
+            i = i+1;
+            let answerButton = UIButton(frame: CGRect(x: 50, y: buttonY, width: 250, height: 30))
+            buttonY = buttonY + 50  // we are going to space these UIButtons 50px apart
             
-            let quest = UIButton();
+            //answerButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+            answerButton.layer.cornerRadius = 10
+            answerButton.backgroundColor = UIColor.blueColor();
+            answerButton.setTitle(answer, forState: UIControlState.Normal) // We are going to use the item name as the Button Title here.
+            answerButton.titleLabel?.text = answer;
+            answerButton.addTarget(self, action: "answerButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
             
-            
+            self.addSubview(answerButton)  // myView in this case is the view you want these buttons added
+            print("this code worked");
         }
-    }
+    
+    
+    
+    }//set answers function
+    
+    
     
    
     

@@ -36,8 +36,9 @@ class PollUserViewController: UIViewController {
         view.addSubview(container!)
         
         //retrieve Question String and store into questionText variable
-        let defaults = NSUserDefaults.standardUserDefaults();
-        let questionText:Question = defaults.stringForKey("dummyQuestion")!;
+       // let defaults = NSUserDefaults.standardUserDefaults();
+        //let questionText:Question = defaults.stringForKey("dummyQuestion")!;
+        let questionText = "do you understand";
         let answers = ["yes","no"];
         
         //Run the setHeaderText Function
