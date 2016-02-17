@@ -13,12 +13,7 @@ class PollUserViewContainer: UIView {
 //    
     @IBOutlet weak var question: UILabel!
 
-    @IBAction func answerPressed(sender: UIButton) {
-        if let selectedAnswer = sender.currentTitle {
-            print(selectedAnswer)
-        }
-    }
-    class func instanceFromNib(frame: CGRect) -> PollUserViewContainer {
+        class func instanceFromNib(frame: CGRect) -> PollUserViewContainer {
         let view = UINib(nibName: "PollUserViewContainer", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PollUserViewContainer
         view.frame = frame
         
@@ -35,12 +30,12 @@ class PollUserViewContainer: UIView {
 //    }
     
     func setAnswers(answerArray: [String]) {
-        var i = 0;
-        var buttonY: CGFloat = 20  // starting offset
+        //var i = 0;
+        var buttonY: CGFloat = self.frame.size.height*0.2  // starting offset
         for answer in answerArray {
             
-            i = i+1;
-            let answerButton = UIButton(frame: CGRect(x: 50, y: buttonY, width: 250, height: 30))
+            //i = i+1;
+            let answerButton = UIButton(frame: CGRect(x: self.frame.size.width*0.1, y: buttonY, width: self.frame.size.width*0.8, height: 30))
             buttonY = buttonY + 50  // we are going to space these UIButtons 50px apart
             
             //answerButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
@@ -50,14 +45,24 @@ class PollUserViewContainer: UIView {
             answerButton.titleLabel?.text = answer;
             answerButton.addTarget(self, action: "answerButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
             
-            self.addSubview(answerButton)  // myView in this case is the view you want these buttons added
-            print("this code worked");
+            self.addSubview(answerButton)
+         
         }
-    
-    
     
     }//set answers function
     
+    
+    func answerButtonPressed(sender:UIButton!) {
+        
+        if sender.titleLabel?.text != nil {
+            print("You have chosen : \(sender.titleLabel?.text)")
+        } else {
+            
+            print("Nowhere to go :/")
+            
+        }
+        
+    }
     
     
    

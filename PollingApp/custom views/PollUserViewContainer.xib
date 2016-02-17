@@ -12,52 +12,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMY-gA-wC6">
-                    <rect key="frame" x="284" y="173" width="33" height="20.5"/>
+                    <rect key="frame" x="284" y="75" width="33" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zzU-C8-gjx">
-                    <rect key="frame" x="271" y="284" width="58" height="30"/>
-                    <state key="normal" title="Answer1"/>
-                    <connections>
-                        <action selector="answerPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="zxx-9D-5Ae"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Yz-4Q-S6C">
-                    <rect key="frame" x="270" y="320" width="60" height="30"/>
-                    <state key="normal" title="Answer2"/>
-                    <connections>
-                        <action selector="answerPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="AwZ-Tj-l2Y"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="usG-G7-YcX">
-                    <rect key="frame" x="270" y="356" width="60" height="30"/>
-                    <state key="normal" title="Answer3"/>
-                    <connections>
-                        <action selector="answerPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="lZa-Vl-At5"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JvS-i5-oSp">
-                    <rect key="frame" x="270" y="392" width="60" height="30"/>
-                    <state key="normal" title="Answer4"/>
-                    <connections>
-                        <action selector="answerPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="Jon-OQ-k2x"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="uMY-gA-wC6" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="0tx-Um-IKN"/>
-                <constraint firstItem="uMY-gA-wC6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="173" id="4R1-cd-GYi"/>
-                <constraint firstItem="9Yz-4Q-S6C" firstAttribute="top" secondItem="zzU-C8-gjx" secondAttribute="bottom" constant="6" id="BIN-T7-JtI"/>
-                <constraint firstItem="zzU-C8-gjx" firstAttribute="top" secondItem="uMY-gA-wC6" secondAttribute="bottom" constant="91" id="O93-hQ-4Kp"/>
-                <constraint firstItem="JvS-i5-oSp" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="SeD-mg-6Il"/>
-                <constraint firstItem="9Yz-4Q-S6C" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Tgc-1e-ezp"/>
-                <constraint firstItem="usG-G7-YcX" firstAttribute="top" secondItem="9Yz-4Q-S6C" secondAttribute="bottom" constant="6" id="aAd-bx-NqL"/>
-                <constraint firstItem="JvS-i5-oSp" firstAttribute="top" secondItem="usG-G7-YcX" secondAttribute="bottom" constant="6" id="dlY-QW-tFk"/>
-                <constraint firstItem="usG-G7-YcX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hSe-xj-c0r"/>
-                <constraint firstItem="zzU-C8-gjx" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="rLI-EX-Ej6"/>
+                <constraint firstItem="uMY-gA-wC6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="75" id="4R1-cd-GYi"/>
             </constraints>
             <connections>
                 <outlet property="question" destination="uMY-gA-wC6" id="pjI-A5-J4r"/>
