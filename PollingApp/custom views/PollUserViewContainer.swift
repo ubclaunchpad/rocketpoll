@@ -34,11 +34,16 @@ class PollUserViewContainer: UIView {
 //        return selectedAnswer;
 //    }
     
-//    func setAnswers(answers: [String]) {
-//        for i in 1...answers.count {
-//            
-//        }
-//    }
+    func setAnswers(answers: [String]) {
+        for i in 1...answers.count {
+            
+            //TODO: create a new button for each answer in the list
+            
+            let quest = UIButton();
+            
+            
+        }
+    }
     
    
     

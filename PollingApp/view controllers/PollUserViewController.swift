@@ -38,8 +38,11 @@ class PollUserViewController: UIViewController {
         //retrieve Question String and store into questionText variable
         let defaults = NSUserDefaults.standardUserDefaults();
         let questionText:Question = defaults.stringForKey("dummyQuestion")!;
+        let answers = ["yes","no"];
+        
         //Run the setHeaderText Function
         container?.setHeaderText(questionText);
+        container?.setAnswers(answers);
     }
 
     override func didReceiveMemoryWarning() {
