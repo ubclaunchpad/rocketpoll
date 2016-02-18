@@ -34,16 +34,21 @@ class PollUserViewContainer: UIView {
         var buttonY: CGFloat = self.frame.size.height*0.2  // starting offset
         for answer in answerArray {
             
-            //i = i+1;
-            let answerButton = UIButton(frame: CGRect(x: self.frame.size.width*0.1, y: buttonY, width: self.frame.size.width*0.8, height: 30))
-            buttonY = buttonY + 50  // we are going to space these UIButtons 50px apart
+            let rectSize = self.frame.size.height*0.6 / CGFloat(answerArray.count)
+            
+            
+            
+            
+            let answerButton = UIButton(frame: CGRect(x: self.frame.size.width*0.1, y: buttonY, width: self.frame.size.width*0.8, height: rectSize))
+            buttonY = buttonY + rectSize+20
             
             //answerButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
             answerButton.layer.cornerRadius = 10
-            answerButton.backgroundColor = UIColor.blueColor();
+            answerButton.backgroundColor = UIColor.blueColor()
             answerButton.setTitle(answer, forState: UIControlState.Normal) // We are going to use the item name as the Button Title here.
             answerButton.titleLabel?.text = answer;
             answerButton.addTarget(self, action: "answerButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+            
             
             self.addSubview(answerButton)
          

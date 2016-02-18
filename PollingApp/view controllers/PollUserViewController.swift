@@ -39,7 +39,7 @@ class PollUserViewController: UIViewController {
        // let defaults = NSUserDefaults.standardUserDefaults();
         //let questionText:Question = defaults.stringForKey("dummyQuestion")!;
         let questionText = "do you understand";
-        let answers = ["yes","no"];
+        let answers = ["yes","no", "somewhat", "definetely", "not at all", "unsure"];
         
         //Run the setHeaderText Function
         container?.setHeaderText(questionText);
