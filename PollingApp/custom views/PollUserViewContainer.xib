@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PollUserViewContainer" customModule="PollingApp" customModuleProvider="target"/>
@@ -17,51 +17,57 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uJ0-yA-aLg">
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uJ0-yA-aLg">
                     <rect key="frame" x="271" y="174" width="58" height="30"/>
                     <state key="normal" title="Answer1"/>
                     <connections>
                         <action selector="answerPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="X8l-CB-ep3"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5sz-zG-KgC">
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5sz-zG-KgC">
                     <rect key="frame" x="270" y="224" width="60" height="30"/>
                     <state key="normal" title="Answer2"/>
                     <connections>
                         <action selector="answerPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="PDL-Ga-bho"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yGz-Xe-0rY">
-                    <rect key="frame" x="270" y="262" width="60" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yGz-Xe-0rY">
+                    <rect key="frame" x="243" y="275" width="114" height="30"/>
                     <state key="normal" title="Answer3"/>
                     <connections>
                         <action selector="answerPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="CyU-NG-kmR"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e42-y5-ApX">
-                    <rect key="frame" x="270" y="323" width="60" height="30"/>
-                    <state key="normal" title="Answer4"/>
-                    <connections>
-                        <action selector="answerPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="qZt-WN-mUZ"/>
-                    </connections>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhs-7q-HPO">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhs-7q-HPO">
                     <rect key="frame" x="279" y="436" width="42" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Selected Answer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xMx-Ay-vY8">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Selected Answer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xMx-Ay-vY8">
                     <rect key="frame" x="236" y="390" width="129" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e42-y5-ApX">
+                    <rect key="frame" x="246" y="321" width="109" height="30"/>
+                    <state key="normal" title="Answer4"/>
+                    <connections>
+                        <action selector="answerPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="qZt-WN-mUZ"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="uMY-gA-wC6" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="0tx-Um-IKN"/>
+                <constraint firstItem="yGz-Xe-0rY" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="1Ft-1L-ZYA"/>
                 <constraint firstItem="uMY-gA-wC6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="75" id="4R1-cd-GYi"/>
+                <constraint firstItem="5sz-zG-KgC" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="GDB-ME-upn"/>
+                <constraint firstItem="uJ0-yA-aLg" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="JMP-2r-2UV"/>
+                <constraint firstItem="xMx-Ay-vY8" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="LSb-y3-j4E"/>
+                <constraint firstItem="e42-y5-ApX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="jiP-Qg-gnb"/>
+                <constraint firstItem="xhs-7q-HPO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ukT-oY-MUH"/>
             </constraints>
             <connections>
                 <outlet property="answer1" destination="uJ0-yA-aLg" id="9Ht-TI-fQM"/>

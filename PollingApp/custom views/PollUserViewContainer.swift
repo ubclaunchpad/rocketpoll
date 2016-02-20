@@ -19,7 +19,7 @@ class PollUserViewContainer: UIView {
   @IBOutlet var answer3: UIButton!
   @IBOutlet var answer4: UIButton!
   @IBOutlet var selectedAnswerLabel: UILabel!
-  @IBAction func answerPressed(sender: AnyObject) {
+  @IBAction func answerPressed(sender: UIButton) {
     if let selectedAnswer = sender.currentTitle {
       selectedAnswerLabel.text = selectedAnswer
       print(selectedAnswer)
@@ -41,51 +41,51 @@ class PollUserViewContainer: UIView {
     return selectedAnswer;
   }
   
-  func setAnswersTemp(answers: [String]) {
+  func setAnswers(answers: [String]) {
     var answerButtons = [answer1, answer2, answer3, answer4]
     for i in 0..<answers.count {
       answerButtons[i].setTitle(answers[i], forState: UIControlState.Normal)
     }
   }
-  func setAnswers(answerArray: [String]) {
-    //var i = 0;
-    var buttonY: CGFloat = self.frame.size.height*0.2  // starting offset
-    for answer in answerArray {
-      
-      let rectSize = self.frame.size.height*0.6 / CGFloat(answerArray.count)
-      
-      
-      
-      
-      let answerButton = UIButton(frame: CGRect(x: self.frame.size.width*0.1, y: buttonY, width: self.frame.size.width*0.8, height: rectSize))
-      buttonY = buttonY + rectSize+20
-      
-      //answerButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-      answerButton.layer.cornerRadius = 10
-      answerButton.backgroundColor = UIColor.blueColor()
-      answerButton.setTitle(answer, forState: UIControlState.Normal) // We are going to use the item name as the Button Title here.
-      answerButton.titleLabel?.text = answer;
-      answerButton.addTarget(self, action: "answerButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
-      
-      
-      self.addSubview(answerButton)
-      
-    }
-    
-  }//set answers function
-  
-  
-  func answerButtonPressed(sender:UIButton!) {
-    
-    if sender.titleLabel?.text != nil {
-      print("You have chosen : \(sender.titleLabel?.text)")
-    } else {
-      
-      print("Nowhere to go :/")
-      
-    }
-    
-  }
+//  func setAnswers(answerArray: [String]) {
+//    //var i = 0;
+//    var buttonY: CGFloat = self.frame.size.height*0.2  // starting offset
+//    for answer in answerArray {
+//      
+//      let rectSize = self.frame.size.height*0.6 / CGFloat(answerArray.count)
+//      
+//      
+//      
+//      
+//      let answerButton = UIButton(frame: CGRect(x: self.frame.size.width*0.1, y: buttonY, width: self.frame.size.width*0.8, height: rectSize))
+//      buttonY = buttonY + rectSize+20
+//      
+//      //answerButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+//      answerButton.layer.cornerRadius = 10
+//      answerButton.backgroundColor = UIColor.blueColor()
+//      answerButton.setTitle(answer, forState: UIControlState.Normal) // We are going to use the item name as the Button Title here.
+//      answerButton.titleLabel?.text = answer;
+//      answerButton.addTarget(self, action: "answerButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+//      
+//      
+//      self.addSubview(answerButton)
+//      
+//    }
+//    
+//  }//set answers function
+//  
+//  
+//  func answerButtonPressed(sender:UIButton!) {
+//    
+//    if sender.titleLabel?.text != nil {
+//      print("You have chosen : \(sender.titleLabel?.text)")
+//    } else {
+//      
+//      print("Nowhere to go :/")
+//      
+//    }
+//    
+//  }
   
   
   
