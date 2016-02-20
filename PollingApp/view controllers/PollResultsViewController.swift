@@ -12,26 +12,17 @@ import UIKit
 
 class PollResultsViewController: UIViewController {
 
+    var container: PollResultsViewsContainer?
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        setup()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func setup() {
+        // add your container class to view
+        container = PollResultsViewsContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
+        view.addSubview(container!)
     }
-    */
-
 }
+
