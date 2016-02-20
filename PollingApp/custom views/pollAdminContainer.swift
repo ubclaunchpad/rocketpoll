@@ -11,7 +11,6 @@ import UIKit
 class pollAdminContainer: UIView {
     
     
-    @IBOutlet weak var answerView: pollAdminAnswers!
     
     class func instanceFromNib(frame: CGRect) -> pollAdminContainer {
         let view = UINib(nibName: "pollAdminView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! pollAdminContainer
@@ -22,12 +21,18 @@ class pollAdminContainer: UIView {
     
     func addAnswerView(){
         
-        answerView = UINib(nibName: "pollAdminAnswers", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! pollAdminAnswers;
+        let answerView:pollAdminAnswers = pollAdminAnswers.init(answersArray: ["dummy answer one","dummy answer two","dummy answer three","all of the above"],percentagesArray:[75,3,2,1]);
         
+        self.addSubview(answerView);
         
     }
     
     override func didMoveToSuperview() {
+        
+        super.didMoveToSuperview()
+        if self.superview == nil {
+            return
+        }
         
         addAnswerView();
     }

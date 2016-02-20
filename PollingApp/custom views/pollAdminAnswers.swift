@@ -13,6 +13,7 @@ class pollAdminAnswers: UIView {
     let screenSize = UIScreen.mainScreen().bounds.size;
     
     var ansArray: NSArray?
+    var prcentArray: [Float]?
     
     class func instanceFromNib(frame: CGRect) -> pollAdminAnswers {
         let view = UINib(nibName: "pollAdminAnswers", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! pollAdminAnswers
@@ -26,9 +27,10 @@ class pollAdminAnswers: UIView {
         fatalError("use init(frame:");
     }
     
-    init(answersArray:NSArray){
+    init(answersArray:NSArray,percentagesArray:[Float]){
         super.init(frame:CGRectMake(0,0,0,0));
         ansArray = answersArray;
+        prcentArray = percentagesArray
     }
     
     
@@ -43,7 +45,7 @@ class pollAdminAnswers: UIView {
         
         for index in 1...ansArray!.count {
             
-            let ansCell:answerCell! = answerCell.init(index: index , text: ansArray!.objectAtIndex(index) as! String, percentage: 4.0)
+            let ansCell:answerCell! = answerCell.init(index: index , text: ansArray!.objectAtIndex(index-1) as! String, percentage: prcentArray![index-1])
             
             ansCell.frame = CGRectMake(0, (screenSize.height/8.0)*((CGFloat)(index-1)), screenSize.width, screenSize.height/8.0);
             

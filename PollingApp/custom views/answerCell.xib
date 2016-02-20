@@ -10,42 +10,7 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="answerCell" customModule="PollingApp" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="a." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSr-XE-rgO">
-                    <rect key="frame" x="0.0" y="0.0" width="134" height="600"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="answer a" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cSb-aL-dbt">
-                    <rect key="frame" x="142" y="0.0" width="314" height="600"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="50%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfa-Aa-VVo">
-                    <rect key="frame" x="464" y="0.0" width="128" height="600"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="cSb-aL-dbt" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="B23-LA-IHC"/>
-                <constraint firstItem="cSb-aL-dbt" firstAttribute="leading" secondItem="TSr-XE-rgO" secondAttribute="trailing" constant="8" id="Chn-Jt-oxp"/>
-                <constraint firstItem="nfa-Aa-VVo" firstAttribute="leading" secondItem="cSb-aL-dbt" secondAttribute="trailing" id="JNs-BI-tCD"/>
-                <constraint firstItem="nfa-Aa-VVo" firstAttribute="leading" secondItem="cSb-aL-dbt" secondAttribute="trailing" constant="8" id="WER-Du-Cpd"/>
-                <constraint firstAttribute="trailing" secondItem="nfa-Aa-VVo" secondAttribute="trailing" id="h5Z-uR-cSW"/>
-                <constraint firstItem="TSr-XE-rgO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="y8V-tI-MDy"/>
-                <constraint firstItem="TSr-XE-rgO" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="yzW-2f-I1a"/>
-                <constraint firstItem="nfa-Aa-VVo" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="zsm-hq-zC3"/>
-            </constraints>
-            <connections>
-                <outlet property="ansPercentLabel" destination="nfa-Aa-VVo" id="aLD-18-6bg"/>
-                <outlet property="ansTextLabel" destination="cSb-aL-dbt" id="A4P-M8-kyT"/>
-                <outlet property="letterLabel" destination="TSr-XE-rgO" id="XIK-En-a1H"/>
-            </connections>
         </view>
     </objects>
 </document>
