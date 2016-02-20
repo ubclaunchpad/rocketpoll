@@ -10,11 +10,26 @@ import UIKit
 
 class pollAdminContainer: UIView {
     
+    
+    @IBOutlet weak var answerView: pollAdminAnswers!
+    
     class func instanceFromNib(frame: CGRect) -> pollAdminContainer {
         let view = UINib(nibName: "pollAdminView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! pollAdminContainer
         view.frame = frame
         
         return view
+    }
+    
+    func addAnswerView(){
+        
+        answerView = UINib(nibName: "pollAdminAnswers", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! pollAdminAnswers;
+        
+        
+    }
+    
+    override func didMoveToSuperview() {
+        
+        addAnswerView();
     }
 
     /*
