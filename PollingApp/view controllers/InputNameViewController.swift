@@ -15,7 +15,8 @@ class InputNameViewController: UIViewController {
   @IBAction func submitButtonPressed(sender: AnyObject) {
     // TODO: Check for Nil value, if Nil present UIAlertView otherwise continue
     saveUser()
-    performSegueWithIdentifier(Segues.toMainApp, sender: self)
+    performSegueWithIdentifier(Segues.toSomeVC, sender: self)
+    
   }
   
   // MARK: - Delegate methods
@@ -29,6 +30,6 @@ class InputNameViewController: UIViewController {
     let userDefaults = NSUserDefaults.standardUserDefaults()
     let userName = nameTextField.text
     userDefaults.setValue(userName, forKey: UserDefaultKeys.userName)
-    print(userName)
+    print(userName) 
   }
 }

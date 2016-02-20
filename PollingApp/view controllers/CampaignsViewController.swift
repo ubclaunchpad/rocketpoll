@@ -10,6 +10,7 @@ import UIKit
 
 class CampaignsViewController: UIViewController {
   
+  @IBOutlet weak var tableView: UITableView!
   let campaignViewContainer: CampaignViewContainer
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -24,7 +25,8 @@ class CampaignsViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+//    tableView.delegate = self
+//    tableView.dataSource = self
     populateCampaigns()
   }
   
@@ -49,3 +51,22 @@ class CampaignsViewController: UIViewController {
   }
   
 }
+
+
+extension CampaignsViewController: UITableViewDataSource {
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+    cell.textLabel?.text = "Question"
+    return cell
+  }
+  
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+    return 5
+  }
+}
+
+extension CampaignsViewController: UITableViewDelegate {
+  
+}
+
