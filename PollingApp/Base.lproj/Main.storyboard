@@ -170,7 +170,7 @@
                         <viewControllerLayoutGuide type="top" id="kSG-NH-JiE"/>
                         <viewControllerLayoutGuide type="bottom" id="X6G-tE-Vnd"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="nlt-He-tTp">
+                    <view key="view" contentMode="scaleToFill" id="nlt-He-tTp" customClass="CreateQuestionContainerView" customModule="PollingApp" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
