@@ -35,7 +35,6 @@
 		D090483B1C6FF70900A497BC /* PollResultsViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = D090483A1C6FF70900A497BC /* PollResultsViewContainer.xib */; };
 		D0E0883A1C6FF3210026CCD9 /* PollResultsViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E088391C6FF3210026CCD9 /* PollResultsViewContainer.swift */; };
 		D0E0883C1C6FF6E20026CCD9 /* Answers.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0E0883B1C6FF6E20026CCD9 /* Answers.xib */; };
->>>>>>> dev
 		FD71F6A91CD7BD3FAFE35176 /* Pods_PollingAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B042C20CCF76252571C15F98 /* Pods_PollingAppUITests.framework */; };
 		D3D4593B1C6FE626000ABD57 /* CreateQuestionContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D4593A1C6FE626000ABD57 /* CreateQuestionContainerView.swift */; };
 		D3D4593D1C6FE646000ABD57 /* CreateQuestionContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3D4593C1C6FE646000ABD57 /* CreateQuestionContainerView.xib */; };
@@ -102,7 +101,6 @@
 		FF6E8EAB4247FC84C96A4998 /* Pods-PollingAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PollingAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PollingAppUITests/Pods-PollingAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D3D4593A1C6FE626000ABD57 /* CreateQuestionContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateQuestionContainerView.swift; sourceTree = "<group>"; };
 		D3D4593C1C6FE646000ABD57 /* CreateQuestionContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateQuestionContainerView.xib; sourceTree = "<group>"; };
->>>>>>> dev
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
