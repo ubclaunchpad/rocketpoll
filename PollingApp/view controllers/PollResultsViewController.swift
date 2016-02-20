@@ -12,7 +12,7 @@ import UIKit
 
 class PollResultsViewController: UIViewController {
 
-    var container: PollResultsViewsContainer?
+    var container: PollResultsViewContainer?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,7 +21,7 @@ class PollResultsViewController: UIViewController {
     
     func setup() {
         // add your container class to view
-        container = PollResultsViewsContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
+        container = PollResultsViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
         view.addSubview(container!)
     }
 }
