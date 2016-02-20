@@ -15,13 +15,5 @@ class JoinRoomViewController: UIViewController {
   var container: RoomViewContainer?
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    setup()
-  }
-  
-  func setup() {
-    // add your container class to view
-    container = RoomViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
-    view.addSubview(container!)
   }
 }

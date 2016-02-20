@@ -7,22 +7,33 @@
 //
 
 import UIKit
+//import Firebase
 
 class RoomViewContainer: UIView {
-  
-  class func instanceFromNib(frame: CGRect) -> RoomViewContainer {
-    let view = UINib(nibName: "RoomViewContainer", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! RoomViewContainer
-    view.frame = frame
     
-    return view
-  }
-  
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
+    @IBOutlet var view: UIView!
+    @IBOutlet weak var roomName: UITextField!
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        UINib(nibName: "RoomViewContainer", bundle: nil).instantiateWithOwner(self, options: nil)
+        addSubview(view)
+        view.frame = self.bounds
     }
-    */
-
+    
+    
+    /* TODO: uncomment after firebase is sorted out
+    @IBAction func submitButton() {
+        // Read data and react to changes
+        let firebaseRef = Firebase(url: "https://polling-app-test.firebaseio.com/")
+        firebaseRef.observeEventType(.Value, withBlock: {
+            snapshot in
+            println("\(snapshot.key) -> \(snapshot.value)")
+        })
+        
+        
+        // TODO: instantiate next xib
+        print("Submit button pressed\n")
+    }*/
+    
 }
