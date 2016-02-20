@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -24,11 +25,32 @@
                     <rect key="frame" x="0.0" y="175" width="600" height="250"/>
                     <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m5I-u2-nOL">
+                    <rect key="frame" x="392" y="483" width="200" height="62"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                    <state key="normal" title="Button"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3HT-K1-emI">
+                    <rect key="frame" x="8" y="483" width="200" height="62"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="62" id="cJx-iw-4Zv"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                    <state key="normal" title="Button"/>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="3HT-K1-emI" firstAttribute="width" secondItem="m5I-u2-nOL" secondAttribute="height" multiplier="100:31" id="7ql-yk-wuX"/>
+                <constraint firstItem="m5I-u2-nOL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3HT-K1-emI" secondAttribute="trailing" constant="20" id="Q1P-dw-ylQ"/>
                 <constraint firstItem="saT-Nn-woq" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="52" id="Svj-ua-ij5"/>
                 <constraint firstAttribute="trailing" secondItem="saT-Nn-woq" secondAttribute="trailing" id="XIh-h2-PUt"/>
+                <constraint firstAttribute="bottom" secondItem="m5I-u2-nOL" secondAttribute="bottom" constant="55" id="Xdi-Qs-7SC"/>
+                <constraint firstAttribute="bottom" secondItem="3HT-K1-emI" secondAttribute="bottom" constant="55" id="Ygn-zj-kiJ"/>
+                <constraint firstItem="3HT-K1-emI" firstAttribute="width" secondItem="m5I-u2-nOL" secondAttribute="width" id="aAr-uk-UmN"/>
+                <constraint firstItem="3HT-K1-emI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="eaT-eA-Stb"/>
+                <constraint firstItem="3HT-K1-emI" firstAttribute="height" secondItem="m5I-u2-nOL" secondAttribute="height" id="ezl-0z-WYi"/>
+                <constraint firstAttribute="trailing" secondItem="m5I-u2-nOL" secondAttribute="trailing" constant="8" id="sFm-JF-qyQ"/>
                 <constraint firstItem="saT-Nn-woq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="yXG-yc-vdZ"/>
             </constraints>
         </view>
