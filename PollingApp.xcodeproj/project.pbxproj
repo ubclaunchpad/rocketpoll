@@ -29,7 +29,9 @@
 		76C1500F1C6FE14C0066C0FE /* RoomViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C1500E1C6FE14C0066C0FE /* RoomViewContainer.swift */; };
 		76C150111C6FE15F0066C0FE /* RoomViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76C150101C6FE15F0066C0FE /* RoomViewContainer.xib */; };
 		76FE0AAC1C676688005DFD2C /* DynamicScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FE0AAB1C676688005DFD2C /* DynamicScrollView.swift */; };
+		D090483B1C6FF70900A497BC /* PollResultsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D090483A1C6FF70900A497BC /* PollResultsView.xib */; };
 		D0E0883A1C6FF3210026CCD9 /* PollResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E088391C6FF3210026CCD9 /* PollResultsView.swift */; };
+		D0E0883C1C6FF6E20026CCD9 /* Answers.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0E0883B1C6FF6E20026CCD9 /* Answers.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,7 +80,9 @@
 		76C1500E1C6FE14C0066C0FE /* RoomViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomViewContainer.swift; sourceTree = "<group>"; };
 		76C150101C6FE15F0066C0FE /* RoomViewContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomViewContainer.xib; sourceTree = "<group>"; };
 		76FE0AAB1C676688005DFD2C /* DynamicScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicScrollView.swift; sourceTree = "<group>"; };
+		D090483A1C6FF70900A497BC /* PollResultsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PollResultsView.xib; sourceTree = "<group>"; };
 		D0E088391C6FF3210026CCD9 /* PollResultsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollResultsView.swift; sourceTree = "<group>"; };
+		D0E0883B1C6FF6E20026CCD9 /* Answers.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Answers.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +213,8 @@
 			isa = PBXGroup;
 			children = (
 				D0E088391C6FF3210026CCD9 /* PollResultsView.swift */,
+				D090483A1C6FF70900A497BC /* PollResultsView.xib */,
+				D0E0883B1C6FF6E20026CCD9 /* Answers.xib */,
 			);
 			name = pollresultsviews;
 			sourceTree = "<group>";
@@ -320,6 +326,8 @@
 				76B28C511C66CFC8008407EE /* CampaignView.xib in Resources */,
 				76B28C251C66C84A008407EE /* LaunchScreen.storyboard in Resources */,
 				76C150111C6FE15F0066C0FE /* RoomViewContainer.xib in Resources */,
+				D0E0883C1C6FF6E20026CCD9 /* Answers.xib in Resources */,
+				D090483B1C6FF70900A497BC /* PollResultsView.xib in Resources */,
 				76B28C221C66C84A008407EE /* Assets.xcassets in Resources */,
 				76B28C201C66C84A008407EE /* Main.storyboard in Resources */,
 			);
