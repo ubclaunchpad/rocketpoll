@@ -10,12 +10,18 @@ import UIKit
 
 // TODO: Ahmed and Omar is working here
 
+
+
 class PollAdminViewController: UIViewController {
+    
+    var container: pollAdminContainer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        setup()
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,6 +29,12 @@ class PollAdminViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+
+func setup() {
+    // add your container class to view
+    container = pollAdminContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
+    view.addSubview(container!)
+}
 
     /*
     // MARK: - Navigation
