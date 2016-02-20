@@ -7,12 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		067E5DF11C780BD800BEAA12 /* pollAdminContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067E5DF01C780BD800BEAA12 /* pollAdminContainer.swift */; };
-		067E5DF31C780BF500BEAA12 /* pollAdminView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 067E5DF21C780BF500BEAA12 /* pollAdminView.xib */; };
-		6F92496E1C7810E100ED0633 /* pollAdminAnswers.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F92496D1C7810E100ED0633 /* pollAdminAnswers.xib */; };
-		6F9249701C7810FF00ED0633 /* pollAdminAnswers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F92496F1C7810FF00ED0633 /* pollAdminAnswers.swift */; };
-		6F9249721C7811B300ED0633 /* answerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F9249711C7811B300ED0633 /* answerCell.xib */; };
-		6F9249741C7811CB00ED0633 /* answerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9249731C7811CB00ED0633 /* answerCell.swift */; };
+		061C3F0A1C79105600A4D99D /* PollAdmin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061C3F091C79105600A4D99D /* PollAdmin.swift */; };
+		061C3F0C1C79107C00A4D99D /* PollAdmin.xib in Resources */ = {isa = PBXBuildFile; fileRef = 061C3F0B1C79107C00A4D99D /* PollAdmin.xib */; };
+		061C3F0E1C791ECE00A4D99D /* PollAdminAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061C3F0D1C791ECE00A4D99D /* PollAdminAnswerView.swift */; };
+		061C3F101C791EDE00A4D99D /* PollAdminAnswerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 061C3F0F1C791EDE00A4D99D /* PollAdminAnswerView.xib */; };
 		76B28C191C66C84A008407EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B28C181C66C84A008407EE /* AppDelegate.swift */; };
 		76B28C1B1C66C84A008407EE /* CampaignsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B28C1A1C66C84A008407EE /* CampaignsViewController.swift */; };
 		76B28C1D1C66C84A008407EE /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B28C1C1C66C84A008407EE /* SecondViewController.swift */; };
@@ -55,12 +53,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		067E5DF01C780BD800BEAA12 /* pollAdminContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pollAdminContainer.swift; sourceTree = "<group>"; };
-		067E5DF21C780BF500BEAA12 /* pollAdminView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pollAdminView.xib; sourceTree = "<group>"; };
-		6F92496D1C7810E100ED0633 /* pollAdminAnswers.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pollAdminAnswers.xib; sourceTree = "<group>"; };
-		6F92496F1C7810FF00ED0633 /* pollAdminAnswers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pollAdminAnswers.swift; sourceTree = "<group>"; };
-		6F9249711C7811B300ED0633 /* answerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = answerCell.xib; sourceTree = "<group>"; };
-		6F9249731C7811CB00ED0633 /* answerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = answerCell.swift; sourceTree = "<group>"; };
+		061C3F091C79105600A4D99D /* PollAdmin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollAdmin.swift; sourceTree = "<group>"; };
+		061C3F0B1C79107C00A4D99D /* PollAdmin.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PollAdmin.xib; sourceTree = "<group>"; };
+		061C3F0D1C791ECE00A4D99D /* PollAdminAnswerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollAdminAnswerView.swift; sourceTree = "<group>"; };
+		061C3F0F1C791EDE00A4D99D /* PollAdminAnswerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PollAdminAnswerView.xib; sourceTree = "<group>"; };
 		76B28C151C66C84A008407EE /* PollingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PollingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76B28C181C66C84A008407EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76B28C1A1C66C84A008407EE /* CampaignsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignsViewController.swift; sourceTree = "<group>"; };
@@ -119,12 +115,10 @@
 		067E5DEF1C780B2600BEAA12 /* pollAdmin views */ = {
 			isa = PBXGroup;
 			children = (
-				067E5DF01C780BD800BEAA12 /* pollAdminContainer.swift */,
-				067E5DF21C780BF500BEAA12 /* pollAdminView.xib */,
-				6F92496F1C7810FF00ED0633 /* pollAdminAnswers.swift */,
-				6F92496D1C7810E100ED0633 /* pollAdminAnswers.xib */,
-				6F9249731C7811CB00ED0633 /* answerCell.swift */,
-				6F9249711C7811B300ED0633 /* answerCell.xib */,
+				061C3F0D1C791ECE00A4D99D /* PollAdminAnswerView.swift */,
+				061C3F0F1C791EDE00A4D99D /* PollAdminAnswerView.xib */,
+				061C3F091C79105600A4D99D /* PollAdmin.swift */,
+				061C3F0B1C79107C00A4D99D /* PollAdmin.xib */,
 			);
 			name = "pollAdmin views";
 			sourceTree = "<group>";
@@ -332,14 +326,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				061C3F0C1C79107C00A4D99D /* PollAdmin.xib in Resources */,
 				76B28C511C66CFC8008407EE /* CampaignView.xib in Resources */,
-				067E5DF31C780BF500BEAA12 /* pollAdminView.xib in Resources */,
 				76B28C251C66C84A008407EE /* LaunchScreen.storyboard in Resources */,
 				76C150111C6FE15F0066C0FE /* RoomViewContainer.xib in Resources */,
 				76B28C221C66C84A008407EE /* Assets.xcassets in Resources */,
-				6F92496E1C7810E100ED0633 /* pollAdminAnswers.xib in Resources */,
+				061C3F101C791EDE00A4D99D /* PollAdminAnswerView.xib in Resources */,
 				76B28C201C66C84A008407EE /* Main.storyboard in Resources */,
-				6F9249721C7811B300ED0633 /* answerCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,14 +358,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				76B28C531C66D0B0008407EE /* CampaignViewContainer.swift in Sources */,
-				6F9249741C7811CB00ED0633 /* answerCell.swift in Sources */,
 				76C150051C6FDF4C0066C0FE /* CreatedQuestionsViewController.swift in Sources */,
 				76FE0AAC1C676688005DFD2C /* DynamicScrollView.swift in Sources */,
 				76B28C4F1C66CF8B008407EE /* CampaignView.swift in Sources */,
 				76C150091C6FDFCC0066C0FE /* CreateQuestionViewController.swift in Sources */,
+				061C3F0A1C79105600A4D99D /* PollAdmin.swift in Sources */,
 				76B28C4C1C66CC75008407EE /* Constants.swift in Sources */,
-				067E5DF11C780BD800BEAA12 /* pollAdminContainer.swift in Sources */,
 				76B28C491C66CAAA008407EE /* InputNameViewController.swift in Sources */,
+				061C3F0E1C791ECE00A4D99D /* PollAdminAnswerView.swift in Sources */,
 				76B28C1D1C66C84A008407EE /* SecondViewController.swift in Sources */,
 				76C1500F1C6FE14C0066C0FE /* RoomViewContainer.swift in Sources */,
 				76C1500D1C6FE0550066C0FE /* PollResultsViewController.swift in Sources */,
@@ -381,7 +374,6 @@
 				76B28C1B1C66C84A008407EE /* CampaignsViewController.swift in Sources */,
 				76C150071C6FDF8E0066C0FE /* PollUserViewController.swift in Sources */,
 				76C150031C6FDE3E0066C0FE /* JoinRoomViewController.swift in Sources */,
-				6F9249701C7810FF00ED0633 /* pollAdminAnswers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

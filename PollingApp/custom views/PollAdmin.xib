@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PollAdmin" customModule="PollingApp" customModuleProvider="target">
+            <connections>
+                <outlet property="questionLabel" destination="Jm0-6G-L1e" id="cVt-Gc-bNj"/>
+                <outlet property="view" destination="iN0-l3-epB" id="gBK-Hd-a08"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jm0-6G-L1e">
+                    <rect key="frame" x="0.0" y="50" width="600" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="KK0-wP-YQb"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rcq-vo-vwM">
+                    <rect key="frame" x="350" y="510" width="242" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="Cqo-tC-O1B"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                    <state key="normal" title="Close"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zK8-vP-wGd">
+                    <rect key="frame" x="8" y="510" width="242" height="50"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                    <state key="normal" title="Publish"/>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GwQ-5O-QSE" customClass="PollAdminAnswerView" customModule="PollingApp" customModuleProvider="target">
+                    <rect key="frame" x="8" y="123" width="584" height="379"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Jm0-6G-L1e" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="4kW-Ds-4TY"/>
+                <constraint firstAttribute="trailing" secondItem="GwQ-5O-QSE" secondAttribute="trailing" constant="8" id="A8h-Ui-mAJ"/>
+                <constraint firstAttribute="trailing" secondItem="Jm0-6G-L1e" secondAttribute="trailing" id="B15-e9-414"/>
+                <constraint firstItem="Jm0-6G-L1e" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="D5f-qD-fJI"/>
+                <constraint firstItem="GwQ-5O-QSE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="EGP-d8-W3p"/>
+                <constraint firstItem="zK8-vP-wGd" firstAttribute="top" secondItem="GwQ-5O-QSE" secondAttribute="bottom" constant="8" id="KTJ-K5-VTa"/>
+                <constraint firstAttribute="trailing" secondItem="rcq-vo-vwM" secondAttribute="trailing" constant="8" id="Kgo-7A-lVz"/>
+                <constraint firstItem="Jm0-6G-L1e" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="50" id="MrU-Wb-CSe"/>
+                <constraint firstAttribute="bottom" secondItem="zK8-vP-wGd" secondAttribute="bottom" constant="40" id="Xr9-La-uLX"/>
+                <constraint firstItem="zK8-vP-wGd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="ceL-X2-Hxy"/>
+                <constraint firstItem="rcq-vo-vwM" firstAttribute="leading" secondItem="zK8-vP-wGd" secondAttribute="trailing" constant="100" id="cxp-bw-wSJ"/>
+                <constraint firstItem="GwQ-5O-QSE" firstAttribute="top" secondItem="Jm0-6G-L1e" secondAttribute="bottom" constant="23" id="h6S-mQ-RYP"/>
+                <constraint firstItem="GwQ-5O-QSE" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="jhK-vD-lCs"/>
+                <constraint firstItem="zK8-vP-wGd" firstAttribute="width" secondItem="rcq-vo-vwM" secondAttribute="width" id="taA-aJ-FHJ"/>
+                <constraint firstAttribute="bottom" secondItem="rcq-vo-vwM" secondAttribute="bottom" constant="40" id="x69-QR-CHn"/>
+                <constraint firstItem="zK8-vP-wGd" firstAttribute="height" secondItem="rcq-vo-vwM" secondAttribute="height" id="xS7-VC-3HZ"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="jhK-vD-lCs"/>
+                </mask>
+            </variation>
+        </view>
+    </objects>
+</document>
