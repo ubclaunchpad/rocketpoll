@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		52B48B691C6FEEED008606F5 /* PollUserViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52B48B681C6FEEED008606F5 /* PollUserViewContainer.xib */; };
 		52B48B6B1C6FEF36008606F5 /* PollUserViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B48B6A1C6FEF36008606F5 /* PollUserViewContainer.swift */; };
+		6E6A80C81C83B6B700623829 /* AnswerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E6A80C71C83B6B700623829 /* AnswerView.xib */; };
+		6E6A80CA1C83B6F400623829 /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6A80C91C83B6F400623829 /* AnswerView.swift */; };
 		76B28C191C66C84A008407EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B28C181C66C84A008407EE /* AppDelegate.swift */; };
 		76B28C1B1C66C84A008407EE /* CampaignsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B28C1A1C66C84A008407EE /* CampaignsViewController.swift */; };
 		76B28C1D1C66C84A008407EE /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B28C1C1C66C84A008407EE /* SecondViewController.swift */; };
@@ -53,6 +55,8 @@
 /* Begin PBXFileReference section */
 		52B48B681C6FEEED008606F5 /* PollUserViewContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PollUserViewContainer.xib; sourceTree = "<group>"; };
 		52B48B6A1C6FEF36008606F5 /* PollUserViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollUserViewContainer.swift; sourceTree = "<group>"; };
+		6E6A80C71C83B6B700623829 /* AnswerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerView.xib; sourceTree = "<group>"; };
+		6E6A80C91C83B6F400623829 /* AnswerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerView.swift; sourceTree = "<group>"; };
 		76B28C151C66C84A008407EE /* PollingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PollingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76B28C181C66C84A008407EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76B28C1A1C66C84A008407EE /* CampaignsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignsViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +117,8 @@
 			children = (
 				52B48B6A1C6FEF36008606F5 /* PollUserViewContainer.swift */,
 				52B48B681C6FEEED008606F5 /* PollUserViewContainer.xib */,
+				6E6A80C71C83B6B700623829 /* AnswerView.xib */,
+				6E6A80C91C83B6F400623829 /* AnswerView.swift */,
 			);
 			name = "poll user views";
 			sourceTree = "<group>";
@@ -326,6 +332,7 @@
 				76C150111C6FE15F0066C0FE /* RoomViewContainer.xib in Resources */,
 				76B28C221C66C84A008407EE /* Assets.xcassets in Resources */,
 				52B48B691C6FEEED008606F5 /* PollUserViewContainer.xib in Resources */,
+				6E6A80C81C83B6B700623829 /* AnswerView.xib in Resources */,
 				76B28C201C66C84A008407EE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,6 +365,7 @@
 				76C150091C6FDFCC0066C0FE /* CreateQuestionViewController.swift in Sources */,
 				76B28C4C1C66CC75008407EE /* Constants.swift in Sources */,
 				76B28C491C66CAAA008407EE /* InputNameViewController.swift in Sources */,
+				6E6A80CA1C83B6F400623829 /* AnswerView.swift in Sources */,
 				76B28C1D1C66C84A008407EE /* SecondViewController.swift in Sources */,
 				76C1500F1C6FE14C0066C0FE /* RoomViewContainer.swift in Sources */,
 				76C1500D1C6FE0550066C0FE /* PollResultsViewController.swift in Sources */,

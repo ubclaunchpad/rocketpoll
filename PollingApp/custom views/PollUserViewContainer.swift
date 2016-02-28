@@ -47,6 +47,15 @@ class PollUserViewContainer: UIView {
       answerButtons[i].setTitle(answers[i], forState: UIControlState.Normal)
     }
   }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 //  func setAnswers(answerArray: [String]) {
 //    //var i = 0;
 //    var buttonY: CGFloat = self.frame.size.height*0.2  // starting offset
