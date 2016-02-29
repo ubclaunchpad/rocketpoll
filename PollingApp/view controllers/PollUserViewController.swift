@@ -12,12 +12,15 @@ import UIKit
 
 class PollUserViewController: UIViewController {
     
+    
     var container: PollUserViewContainer?
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         setup()
         saveDummyQuestion();
+       
         
     
     }
@@ -30,7 +33,14 @@ class PollUserViewController: UIViewController {
     }
 
     
+
+    
+    
+    
     func setup() {
+        
+        
+        
         // add your container class to view
         container = PollUserViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
         view.addSubview(container!)
@@ -44,6 +54,8 @@ class PollUserViewController: UIViewController {
         //Run the setHeaderText Function
         container?.setQuestionText(questionText);
         container?.setAnswers(answers);
+       container?.populateAnswerViews(answers)
+        
     }
 
     override func didReceiveMemoryWarning() {

@@ -49,6 +49,20 @@ class PollUserViewContainer: UIView {
   }
     
     
+    func populateAnswerViews(answers: [String]) {
+        let answerViewHeigh: CGFloat = 100
+        var answerViewFrame = CGRectMake(0, 0, bounds.width, answerViewHeigh)
+        
+        for answer in answers {
+            let answerView = AnswerView.instanceFromNib(answerViewFrame)
+            answerView.setAnswerText(answer)
+            addSubview(answerView)
+            
+            answerViewFrame.origin.y += answerViewHeigh
+        }
+       
+    }
+
     
     
     

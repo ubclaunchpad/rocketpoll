@@ -50,22 +50,6 @@
                         <action selector="answerPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="qZt-WN-mUZ"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yw9-t5-FH3" customClass="AnswerView" customModule="PollingApp" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="113" width="600" height="92"/>
-                    <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="0.087547508445945943" colorSpace="calibratedRGB"/>
-                </view>
-                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T9Q-Zh-Osm" customClass="AnswerView" customModule="PollingApp" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="204" width="600" height="84"/>
-                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                </view>
-                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tfk-4G-gBs" customClass="AnswerView" customModule="PollingApp" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="288" width="600" height="86"/>
-                    <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="0.085675675675675717" colorSpace="calibratedRGB"/>
-                </view>
-                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fnp-9o-EIa" customClass="AnswerView" customModule="PollingApp" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="374" width="600" height="94"/>
-                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                </view>
                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5sz-zG-KgC">
                     <rect key="frame" x="320" y="492" width="60" height="30"/>
                     <state key="normal" title="Answer2"/>
@@ -78,19 +62,12 @@
             <constraints>
                 <constraint firstItem="uMY-gA-wC6" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="0tx-Um-IKN"/>
                 <constraint firstItem="yGz-Xe-0rY" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="1Ft-1L-ZYA"/>
-                <constraint firstItem="Tfk-4G-gBs" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="29g-bk-0U1"/>
                 <constraint firstItem="uMY-gA-wC6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="75" id="4R1-cd-GYi"/>
                 <constraint firstItem="5sz-zG-KgC" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="GDB-ME-upn"/>
                 <constraint firstItem="uJ0-yA-aLg" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="JMP-2r-2UV"/>
                 <constraint firstItem="xMx-Ay-vY8" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="LSb-y3-j4E"/>
-                <constraint firstItem="Tfk-4G-gBs" firstAttribute="top" secondItem="T9Q-Zh-Osm" secondAttribute="bottom" id="MvG-zW-e0u"/>
-                <constraint firstItem="Fnp-9o-EIa" firstAttribute="top" secondItem="Tfk-4G-gBs" secondAttribute="bottom" id="WWV-k5-Fmc"/>
-                <constraint firstItem="T9Q-Zh-Osm" firstAttribute="top" secondItem="Yw9-t5-FH3" secondAttribute="bottom" id="Xez-CC-XWG"/>
-                <constraint firstItem="T9Q-Zh-Osm" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="a6J-rQ-gsP"/>
                 <constraint firstItem="e42-y5-ApX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="jiP-Qg-gnb"/>
-                <constraint firstItem="Yw9-t5-FH3" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="m4n-Zo-Dpn"/>
                 <constraint firstItem="xhs-7q-HPO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ukT-oY-MUH"/>
-                <constraint firstItem="Fnp-9o-EIa" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="zXA-p3-9Rz"/>
             </constraints>
             <connections>
                 <outlet property="answer1" destination="uJ0-yA-aLg" id="9Ht-TI-fQM"/>

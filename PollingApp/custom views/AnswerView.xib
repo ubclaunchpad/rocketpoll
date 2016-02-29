@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AnswerView" customModule="PollingApp" customModuleProvider="target">
             <connections>
-                <outlet property="answerButton" destination="Omb-qp-6aI" id="C8E-2L-rGG"/>
+                <outlet property="answerButton" destination="A1Y-dZ-KrW" id="GRB-FO-Uxp"/>
                 <outlet property="view" destination="iN0-l3-epB" id="7Ih-l9-eAP"/>
             </connections>
         </placeholder>
@@ -16,23 +16,20 @@
             <rect key="frame" x="0.0" y="0.0" width="584" height="106"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Omb-qp-6aI">
-                    <rect key="frame" x="0.0" y="-0.5" width="584" height="106"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                    <state key="normal" title="Answer to the question">
-                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A1Y-dZ-KrW">
+                    <rect key="frame" x="0.0" y="0.0" width="584" height="106"/>
+                    <state key="normal" title="Answer"/>
                     <connections>
-                        <action selector="answerButtonPressed:" destination="-1" eventType="touchUpInside" id="9af-Qt-yK6"/>
+                        <action selector="answerButtonPressed:" destination="-1" eventType="touchUpInside" id="cYQ-hR-utk"/>
                     </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="0.25646642736486486" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="Omb-qp-6aI" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="0HC-Dm-aD9"/>
-                <constraint firstItem="Omb-qp-6aI" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="dnB-Da-l2l"/>
-                <constraint firstItem="Omb-qp-6aI" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="ewh-RZ-G3I"/>
-                <constraint firstItem="Omb-qp-6aI" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="oWE-ra-laD"/>
+                <constraint firstItem="A1Y-dZ-KrW" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="XLF-YP-WBa"/>
+                <constraint firstItem="A1Y-dZ-KrW" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="abo-hW-gxw"/>
+                <constraint firstItem="A1Y-dZ-KrW" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="cby-Bw-jWE"/>
+                <constraint firstItem="A1Y-dZ-KrW" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="dmh-tm-Zoc"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
