@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		08CC4A7B19D95FB3B66C7DA5 /* Pods_PollingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D4F8D97FF9925C47E45E78 /* Pods_PollingApp.framework */; };
 		47851E04F2C8BA1146E72473 /* Pods_PollingAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04AA1F183F106CFD9B91BB19 /* Pods_PollingAppTests.framework */; };
+		521E4FF71C8B9D48004A8F52 /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521E4FF31C8B9D48004A8F52 /* AnswerView.swift */; };
+		521E4FF81C8B9D48004A8F52 /* AnswerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 521E4FF41C8B9D48004A8F52 /* AnswerView.xib */; };
+		521E4FF91C8B9D48004A8F52 /* PollUserViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521E4FF51C8B9D48004A8F52 /* PollUserViewContainer.swift */; };
+		521E4FFA1C8B9D48004A8F52 /* PollUserViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 521E4FF61C8B9D48004A8F52 /* PollUserViewContainer.xib */; };
 		76B28C191C66C84A008407EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B28C181C66C84A008407EE /* AppDelegate.swift */; };
 		76B28C1B1C66C84A008407EE /* CampaignsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B28C1A1C66C84A008407EE /* CampaignsViewController.swift */; };
 		76B28C1D1C66C84A008407EE /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B28C1C1C66C84A008407EE /* SecondViewController.swift */; };
@@ -62,6 +66,10 @@
 		213FC7FBACA06725E90AC910 /* Pods-PollingAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PollingAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PollingAppUITests/Pods-PollingAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		31E02F0609F05A441BB43FE9 /* Pods-PollingApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PollingApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-PollingApp/Pods-PollingApp.release.xcconfig"; sourceTree = "<group>"; };
 		511377F8A051053193FEBA66 /* Pods-PollingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PollingApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PollingApp/Pods-PollingApp.debug.xcconfig"; sourceTree = "<group>"; };
+		521E4FF31C8B9D48004A8F52 /* AnswerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerView.swift; sourceTree = "<group>"; };
+		521E4FF41C8B9D48004A8F52 /* AnswerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerView.xib; sourceTree = "<group>"; };
+		521E4FF51C8B9D48004A8F52 /* PollUserViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollUserViewContainer.swift; sourceTree = "<group>"; };
+		521E4FF61C8B9D48004A8F52 /* PollUserViewContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PollUserViewContainer.xib; sourceTree = "<group>"; };
 		63E509F08582745B345E562A /* Pods-PollingAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PollingAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PollingAppTests/Pods-PollingAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		6AED17E3E5F4D11255D0EA2B /* Pods-PollingAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PollingAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PollingAppTests/Pods-PollingAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		76B28C151C66C84A008407EE /* PollingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PollingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +147,13 @@
 				B042C20CCF76252571C15F98 /* Pods_PollingAppUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		521E4FF21C8B9CFD004A8F52 /* poll user views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "poll user views";
 			sourceTree = "<group>";
 		};
 		6A8CB076EDF11093151FF223 /* Pods */ = {
@@ -229,6 +244,11 @@
 		76B28C4D1C66CF66008407EE /* custom views */ = {
 			isa = PBXGroup;
 			children = (
+				521E4FF21C8B9CFD004A8F52 /* poll user views */,
+				521E4FF31C8B9D48004A8F52 /* AnswerView.swift */,
+				521E4FF41C8B9D48004A8F52 /* AnswerView.xib */,
+				521E4FF51C8B9D48004A8F52 /* PollUserViewContainer.swift */,
+				521E4FF61C8B9D48004A8F52 /* PollUserViewContainer.xib */,
 				D342961C1C792F7900C33920 /* pollresultsviews */,
 				D3D4593E1C6FE64D000ABD57 /* create question */,
 				76C150121C6FE1670066C0FE /* campaign views */,
@@ -400,7 +420,9 @@
 				76B28C251C66C84A008407EE /* LaunchScreen.storyboard in Resources */,
 				D3D4593D1C6FE646000ABD57 /* CreateQuestionContainerView.xib in Resources */,
 				D34296201C792F9C00C33920 /* Answers.xib in Resources */,
+				521E4FFA1C8B9D48004A8F52 /* PollUserViewContainer.xib in Resources */,
 				76C150111C6FE15F0066C0FE /* RoomViewContainer.xib in Resources */,
+				521E4FF81C8B9D48004A8F52 /* AnswerView.xib in Resources */,
 				D34296221C792F9C00C33920 /* PollResultsViewContainer.xib in Resources */,
 				76B28C221C66C84A008407EE /* Assets.xcassets in Resources */,
 				76B28C201C66C84A008407EE /* Main.storyboard in Resources */,
@@ -560,10 +582,12 @@
 				76B28C491C66CAAA008407EE /* InputNameViewController.swift in Sources */,
 				76B28C1D1C66C84A008407EE /* SecondViewController.swift in Sources */,
 				76C1500F1C6FE14C0066C0FE /* RoomViewContainer.swift in Sources */,
+				521E4FF71C8B9D48004A8F52 /* AnswerView.swift in Sources */,
 				76C1500D1C6FE0550066C0FE /* PollResultsViewController.swift in Sources */,
 				D3D4593B1C6FE626000ABD57 /* CreateQuestionContainerView.swift in Sources */,
 				D34296211C792F9C00C33920 /* PollResultsViewContainer.swift in Sources */,
 				76C1500B1C6FE0220066C0FE /* PollAdminViewController.swift in Sources */,
+				521E4FF91C8B9D48004A8F52 /* PollUserViewContainer.swift in Sources */,
 				D34296261C79308900C33920 /* FirebaseData.swift in Sources */,
 				76B28C191C66C84A008407EE /* AppDelegate.swift in Sources */,
 				76B28C1B1C66C84A008407EE /* CampaignsViewController.swift in Sources */,
