@@ -33,14 +33,5 @@ class AnswerView: UIView {
     }
 
     
-    
-    @IBOutlet var view: UIView!
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        UINib(nibName: "AnswerView", bundle: nil).instantiateWithOwner(self, options: nil)
-        
-        addSubview(view)
-        view.frame=self.bounds
-        
-    }
+
 }
