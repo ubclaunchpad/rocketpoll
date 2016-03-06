@@ -16,6 +16,8 @@ class AnswerView: UIView {
         
         if let selectedAnswer = sender.currentTitle {
             print(selectedAnswer)
+//            TODO: call model to set user answer
+//            modelinterface.setUserAnswer(..)
         }
     }
    

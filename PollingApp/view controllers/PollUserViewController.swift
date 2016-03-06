@@ -19,22 +19,7 @@ class PollUserViewController: UIViewController {
         
         
         setup()
-        saveDummyQuestion();
-        
-        
-        
     }
-    
-    func saveDummyQuestion() {
-        //creates and saves a dummy question string to which is later inserted into the header text field
-        let defaults = NSUserDefaults.standardUserDefaults();
-        let DummyQuestion = "Do you understand?";
-        defaults.setValue(DummyQuestion, forKey: "dummyQuestion");
-    }
-    
-    
-    
-    
     
     
     func setup() {
@@ -45,16 +30,13 @@ class PollUserViewController: UIViewController {
         container = PollUserViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
         view.addSubview(container!)
         
-        //retrieve Question String and store into questionText variable
-        // let defaults = NSUserDefaults.standardUserDefaults();
-        //let questionText:Question = defaults.stringForKey("dummyQuestion")!;
-        let questionText: Question = "Do you understand?";
-        let answers = ["Yes","No", "Somewhat", "Definitely"];
+        // TODO: Add model references
+        let questionText: Question = "Do you understand?";      // .getQuestion()
+        let answers = ["Yes","No", "Somewhat", "Definitely"];   // .getListofAnswersIDs
         
         //Run the setHeaderText Function
         container?.setQuestionText(questionText);
-        container?.setAnswers(answers);
-        container?.populateAnswerViews(answers)
+        container?.setAnswers(answers)
         
     }
     
