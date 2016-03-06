@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+var min:Int = 0;
+var sec = 0;
 var seconds = 0;
 var timer = NSTimer();
 // TODO: Cyros and Milton are working here
@@ -41,14 +42,17 @@ class PollUserViewController: UIViewController {
         container?.setAnswers(answers)
         
         //Set arbitrary initial time
-        createTimer(40); //.getCountdownSeconds
+        createTimer(120); //.getCountdownSeconds
         
         
     }
     
     func createTimer (startingTime: Int) {
         seconds = startingTime;
-        container?.updateTimerLabel(seconds)
+        let min_temp:Int = seconds/60;
+        let sec_temp = seconds-60*min;
+        container?.updateTimerLabel(sec_temp, mins: min_temp)
+        
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: ("updateTimer"), userInfo: nil, repeats: true);
         
     }
@@ -59,7 +63,9 @@ class PollUserViewController: UIViewController {
         
         if(seconds>0){
         seconds--
-        container?.updateTimerLabel(seconds)
+            min = seconds/60;
+            sec = seconds - 60*min;
+        container?.updateTimerLabel(sec,mins: min)
         }else{
             timer.invalidate();
             //SEGUE to next view
