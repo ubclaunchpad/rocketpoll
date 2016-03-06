@@ -31,6 +31,17 @@
 		76C1500F1C6FE14C0066C0FE /* RoomViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C1500E1C6FE14C0066C0FE /* RoomViewContainer.swift */; };
 		76C150111C6FE15F0066C0FE /* RoomViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76C150101C6FE15F0066C0FE /* RoomViewContainer.xib */; };
 		76FE0AAC1C676688005DFD2C /* DynamicScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FE0AAB1C676688005DFD2C /* DynamicScrollView.swift */; };
+		C80396001C8CB5FE007C276F /* ModelInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80395FF1C8CB5FE007C276F /* ModelInterface.swift */; };
+		C80396021C8CB73D007C276F /* TimerModelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80396011C8CB73D007C276F /* TimerModelExtension.swift */; };
+		C80396041C8CB743007C276F /* TimerModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80396031C8CB743007C276F /* TimerModelProtocol.swift */; };
+		C80396061C8CC790007C276F /* NameModelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80396051C8CC790007C276F /* NameModelExtension.swift */; };
+		C803960A1C8CC7F0007C276F /* NameModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80396091C8CC7F0007C276F /* NameModelProtocol.swift */; };
+		C803960D1C8CC8F7007C276F /* RoomModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C803960C1C8CC8F7007C276F /* RoomModelProtocol.swift */; };
+		C803960F1C8CC995007C276F /* RoomModelExtentsion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C803960E1C8CC995007C276F /* RoomModelExtentsion.swift */; };
+		C80396141C8CD869007C276F /* QuestionModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80396131C8CD869007C276F /* QuestionModelProtocol.swift */; };
+		C80396161C8CE15E007C276F /* QuestionModelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80396151C8CE15E007C276F /* QuestionModelExtension.swift */; };
+		C80396191C8CE2FE007C276F /* AnswerModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80396181C8CE2FE007C276F /* AnswerModelProtocol.swift */; };
+		C803961B1C8CE6D0007C276F /* AnswerModelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C803961A1C8CE6D0007C276F /* AnswerModelExtension.swift */; };
 		D34296201C792F9C00C33920 /* Answers.xib in Resources */ = {isa = PBXBuildFile; fileRef = D342961D1C792F9C00C33920 /* Answers.xib */; };
 		D34296211C792F9C00C33920 /* PollResultsViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D342961E1C792F9C00C33920 /* PollResultsViewContainer.swift */; };
 		D34296221C792F9C00C33920 /* PollResultsViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = D342961F1C792F9C00C33920 /* PollResultsViewContainer.xib */; };
@@ -94,6 +105,17 @@
 		76FE0AAB1C676688005DFD2C /* DynamicScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicScrollView.swift; sourceTree = "<group>"; };
 		B042C20CCF76252571C15F98 /* Pods_PollingAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PollingAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4D4F8D97FF9925C47E45E78 /* Pods_PollingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PollingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C80395FF1C8CB5FE007C276F /* ModelInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelInterface.swift; sourceTree = "<group>"; };
+		C80396011C8CB73D007C276F /* TimerModelExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerModelExtension.swift; sourceTree = "<group>"; };
+		C80396031C8CB743007C276F /* TimerModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerModelProtocol.swift; sourceTree = "<group>"; };
+		C80396051C8CC790007C276F /* NameModelExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameModelExtension.swift; sourceTree = "<group>"; };
+		C80396091C8CC7F0007C276F /* NameModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameModelProtocol.swift; sourceTree = "<group>"; };
+		C803960C1C8CC8F7007C276F /* RoomModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomModelProtocol.swift; sourceTree = "<group>"; };
+		C803960E1C8CC995007C276F /* RoomModelExtentsion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomModelExtentsion.swift; sourceTree = "<group>"; };
+		C80396131C8CD869007C276F /* QuestionModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionModelProtocol.swift; sourceTree = "<group>"; };
+		C80396151C8CE15E007C276F /* QuestionModelExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionModelExtension.swift; sourceTree = "<group>"; };
+		C80396181C8CE2FE007C276F /* AnswerModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerModelProtocol.swift; sourceTree = "<group>"; };
+		C803961A1C8CE6D0007C276F /* AnswerModelExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerModelExtension.swift; sourceTree = "<group>"; };
 		D342961D1C792F9C00C33920 /* Answers.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Answers.xib; path = pollresultsviews/Answers.xib; sourceTree = "<group>"; };
 		D342961E1C792F9C00C33920 /* PollResultsViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PollResultsViewContainer.swift; path = pollresultsviews/PollResultsViewContainer.swift; sourceTree = "<group>"; };
 		D342961F1C792F9C00C33920 /* PollResultsViewContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PollResultsViewContainer.xib; path = pollresultsviews/PollResultsViewContainer.xib; sourceTree = "<group>"; };
@@ -180,6 +202,7 @@
 		76B28C171C66C84A008407EE /* PollingApp */ = {
 			isa = PBXGroup;
 			children = (
+				C80395FE1C8CB5A8007C276F /* Model */,
 				76B28C181C66C84A008407EE /* AppDelegate.swift */,
 				76B28C4B1C66CC75008407EE /* Constants.swift */,
 				76B28C4A1C66CAB3008407EE /* view controllers */,
@@ -255,6 +278,64 @@
 				76C150101C6FE15F0066C0FE /* RoomViewContainer.xib */,
 			);
 			name = "room views";
+			sourceTree = "<group>";
+		};
+		C80395FE1C8CB5A8007C276F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C80396171C8CE2F1007C276F /* AnswerModel */,
+				C80396121C8CD853007C276F /* QuestionModel */,
+				C803960B1C8CC8E1007C276F /* RoomModel */,
+				C80396081C8CC7CC007C276F /* NameModel */,
+				C80396071C8CC79B007C276F /* TimerModel */,
+				C80395FF1C8CB5FE007C276F /* ModelInterface.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C80396071C8CC79B007C276F /* TimerModel */ = {
+			isa = PBXGroup;
+			children = (
+				C80396031C8CB743007C276F /* TimerModelProtocol.swift */,
+				C80396011C8CB73D007C276F /* TimerModelExtension.swift */,
+			);
+			name = TimerModel;
+			sourceTree = "<group>";
+		};
+		C80396081C8CC7CC007C276F /* NameModel */ = {
+			isa = PBXGroup;
+			children = (
+				C80396091C8CC7F0007C276F /* NameModelProtocol.swift */,
+				C80396051C8CC790007C276F /* NameModelExtension.swift */,
+			);
+			name = NameModel;
+			sourceTree = "<group>";
+		};
+		C803960B1C8CC8E1007C276F /* RoomModel */ = {
+			isa = PBXGroup;
+			children = (
+				C803960C1C8CC8F7007C276F /* RoomModelProtocol.swift */,
+				C803960E1C8CC995007C276F /* RoomModelExtentsion.swift */,
+			);
+			name = RoomModel;
+			sourceTree = "<group>";
+		};
+		C80396121C8CD853007C276F /* QuestionModel */ = {
+			isa = PBXGroup;
+			children = (
+				C80396131C8CD869007C276F /* QuestionModelProtocol.swift */,
+				C80396151C8CE15E007C276F /* QuestionModelExtension.swift */,
+			);
+			name = QuestionModel;
+			sourceTree = "<group>";
+		};
+		C80396171C8CE2F1007C276F /* AnswerModel */ = {
+			isa = PBXGroup;
+			children = (
+				C80396181C8CE2FE007C276F /* AnswerModelProtocol.swift */,
+				C803961A1C8CE6D0007C276F /* AnswerModelExtension.swift */,
+			);
+			name = AnswerModel;
 			sourceTree = "<group>";
 		};
 		D342961C1C792F7900C33920 /* pollresultsviews */ = {
@@ -555,20 +636,31 @@
 				76C150051C6FDF4C0066C0FE /* CreatedQuestionsViewController.swift in Sources */,
 				76FE0AAC1C676688005DFD2C /* DynamicScrollView.swift in Sources */,
 				76B28C4F1C66CF8B008407EE /* CampaignView.swift in Sources */,
+				C80396161C8CE15E007C276F /* QuestionModelExtension.swift in Sources */,
 				76C150091C6FDFCC0066C0FE /* CreateQuestionViewController.swift in Sources */,
+				C80396141C8CD869007C276F /* QuestionModelProtocol.swift in Sources */,
 				76B28C4C1C66CC75008407EE /* Constants.swift in Sources */,
 				76B28C491C66CAAA008407EE /* InputNameViewController.swift in Sources */,
+				C80396041C8CB743007C276F /* TimerModelProtocol.swift in Sources */,
 				76B28C1D1C66C84A008407EE /* SecondViewController.swift in Sources */,
 				76C1500F1C6FE14C0066C0FE /* RoomViewContainer.swift in Sources */,
+				C803960D1C8CC8F7007C276F /* RoomModelProtocol.swift in Sources */,
+				C803961B1C8CE6D0007C276F /* AnswerModelExtension.swift in Sources */,
 				76C1500D1C6FE0550066C0FE /* PollResultsViewController.swift in Sources */,
 				D3D4593B1C6FE626000ABD57 /* CreateQuestionContainerView.swift in Sources */,
+				C80396191C8CE2FE007C276F /* AnswerModelProtocol.swift in Sources */,
 				D34296211C792F9C00C33920 /* PollResultsViewContainer.swift in Sources */,
+				C803960A1C8CC7F0007C276F /* NameModelProtocol.swift in Sources */,
 				76C1500B1C6FE0220066C0FE /* PollAdminViewController.swift in Sources */,
+				C803960F1C8CC995007C276F /* RoomModelExtentsion.swift in Sources */,
 				D34296261C79308900C33920 /* FirebaseData.swift in Sources */,
 				76B28C191C66C84A008407EE /* AppDelegate.swift in Sources */,
+				C80396021C8CB73D007C276F /* TimerModelExtension.swift in Sources */,
 				76B28C1B1C66C84A008407EE /* CampaignsViewController.swift in Sources */,
+				C80396061C8CC790007C276F /* NameModelExtension.swift in Sources */,
 				76C150071C6FDF8E0066C0FE /* PollUserViewController.swift in Sources */,
 				76C150031C6FDE3E0066C0FE /* JoinRoomViewController.swift in Sources */,
+				C80396001C8CB5FE007C276F /* ModelInterface.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
