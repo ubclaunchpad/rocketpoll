@@ -13,7 +13,10 @@ class PollUserViewContainer: UIView {
     
     @IBOutlet weak var question: UILabel!
     
+    @IBOutlet weak var timerLabel: UILabel!
+  
     class func instanceFromNib(frame: CGRect) -> PollUserViewContainer {
+        
         let view = UINib(nibName: "PollUserViewContainer", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PollUserViewContainer
         view.frame = frame
         
@@ -46,11 +49,13 @@ class PollUserViewContainer: UIView {
             answerView.setAnswerText(answer)
             addSubview(answerView)
             
-            answerViewFrame.origin.y += answerViewHeight
+            answerViewFrame.origin.y += answerViewHeight+1
         }
         
     }
     
-    
+    func updateTimerLabel (time: Int){
+        timerLabel.text = "\(time)";
+    }
     
 }
