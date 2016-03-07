@@ -9,6 +9,10 @@
 import Foundation
 
 typealias Question = String
+typealias QuestionID = String
+typealias RoomID = String
+typealias AnswerID = String
+typealias SegueName = String
 
 enum UserDefaultKeys {
   static let userName = "username"
