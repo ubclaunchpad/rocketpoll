@@ -47,7 +47,7 @@ class PollUserViewController: UIViewController {
     func createTimer (startingTime: Int) {
         seconds = startingTime;
         let min_temp:Int = seconds/60;
-        let sec_temp = seconds-60*min;
+        let sec_temp = seconds-60*(min_temp);
         container?.updateTimerLabel(sec_temp, mins: min_temp)
         
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: ("updateTimer"), userInfo: nil, repeats: true);

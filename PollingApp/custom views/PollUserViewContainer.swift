@@ -55,7 +55,7 @@ class PollUserViewContainer: UIView {
     }
     
     func updateTimerLabel (secs: Int, mins: Int){
-        if (min==0){
+        if (mins==0){
         timerLabel.text = "\(secs)";
         }else{
             if secs<10{
