@@ -24,25 +24,22 @@ class PollUserViewController: UIViewController {
         setup()
     }
     
-    
     func setup() {
-        
-        
         
         // add your container class to view
         container = PollUserViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
         view.addSubview(container!)
         
-        // TODO: Add model references
-        let questionText: Question = "Do you understand?";      // .getQuestion()
-        let answers = ["Yes","No", "Somewhat", "Definitely"];   // .getListofAnswersIDs
+        // TODO: Find actual QuestionID
+        let questionText: Question = ModelInterface.sharedInstance.getQuestion("QuestionID")  // .getQuestion()
+        let answers = ModelInterface.sharedInstance.getListOfAnswerIDs("QuestionID")    //with random question ID
         
         //Run the setHeaderText Function
         container?.setQuestionText(questionText);
         container?.setAnswers(answers)
         
-        //Set arbitrary initial time
-        createTimer(120); //.getCountdownSeconds
+        //Set initial time
+        createTimer(ModelInterface.sharedInstance.getCountdownSeconds());
         
         
     }

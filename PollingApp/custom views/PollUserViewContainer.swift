@@ -29,12 +29,12 @@ class PollUserViewContainer: UIView {
     
 
     
-    func setAnswers(answers: [String]) {
-//        TODO: Uncomment to link to model interface.
-//        EFFECTS: Changes the list of answerIDs to list of answers
-//        for answer in listOfAnswers {
-//            answer = modelinterface.getAnswer(answer)
-//        }
+    func setAnswers(answerIDs: [String]) {
+//        Changes the list of answerIDs to list of answers
+        var answers = [String]();
+        for answer in answerIDs {
+            answers.append(ModelInterface.sharedInstance.getAnswer(answer))
+        }
         populateAnswerViews(answers)
     }
     
