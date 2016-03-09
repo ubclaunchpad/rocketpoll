@@ -14,6 +14,9 @@ typealias RoomID = String
 typealias AnswerID = String
 typealias SegueName = String
 
+var okayNameCharacters : Set<Character> =
+Set("abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890".characters)
+
 enum UserDefaultKeys {
   static let userName = "username"
 }
