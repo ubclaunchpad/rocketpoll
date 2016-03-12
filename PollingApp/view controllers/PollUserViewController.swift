@@ -11,12 +11,15 @@ import UIKit
 // TODO: Cyros and Milton are working here
 
 final class PollUserViewController: UIViewController {
-    private var answerIDs = [AnswerID: Answer]()
+    private var answerIDDictionary = [Answer: AnswerID]()
     
-    var min:Int = 0;
-    var sec = 0;
-    var seconds = 0;
-    var timer = NSTimer();
+    private var min:Int = 0;
+    private var sec = 0;
+    private var seconds = 0;
+    private var timer = NSTimer();
+    
+    private var questionID:QuestionID = ""
+    
     var container: PollUserViewContainer?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,14 +34,13 @@ final class PollUserViewController: UIViewController {
         container = PollUserViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
         view.addSubview(container!)
         
-        // TODO: Find actual QuestionID
-        let questionText: Question = ModelInterface.sharedInstance.getQuestion("QuestionID")  // .getQuestion()
-        let answerIDs = ModelInterface.sharedInstance.getListOfAnswerIDs("QuestionID")    //with random question ID
+        questionID = ModelInterface.sharedInstance.getQuestionID()
+        let questionText: Question = ModelInterface.sharedInstance.getQuestion(questionID)
+        let answerIDs = ModelInterface.sharedInstance.getListOfAnswerIDs(questionID)
         
         //Run the setHeaderText Function
         container?.setQuestionText(questionText);
         container?.delegate = self
-        //container?.setAnswers(answers)
         
         let answers = getAnswers(answerIDs)
         container?.populateAnswerViews(answers)
@@ -52,8 +54,12 @@ final class PollUserViewController: UIViewController {
     func getAnswers(answerIDs: [AnswerID]) -> [Answer] {
         //        Changes the list of answerIDs to list of answers
         var answers = [String]();
-        for answer in answerIDs {
-            answers.append(ModelInterface.sharedInstance.getAnswer(answer))
+        var temp_answer:Answer
+        
+        for answerID in answerIDs {
+            temp_answer = ModelInterface.sharedInstance.getAnswer(answerID)
+            answers.append(temp_answer)
+            answerIDDictionary[temp_answer] = answerID
         }
         return answers
     }
@@ -96,7 +102,9 @@ final class PollUserViewController: UIViewController {
 
 extension PollUserViewController: PollUserViewContainerDelegate {
     func answerSelected(answer: Answer) {
-        //
+        if let selectedAnswerID = answerIDDictionary[answer] {
+            ModelInterface.sharedInstance.setUserAnswer(questionID, answerID: selectedAnswerID)
+        }
     }
     
 }
