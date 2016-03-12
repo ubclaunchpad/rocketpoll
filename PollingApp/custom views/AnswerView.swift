@@ -19,28 +19,17 @@ class AnswerView: UIView {
     @IBOutlet weak var answerButton: UIButton!
    
     @IBAction func answerButtonPressed(sender: UIButton) {
-        
         if let selectedAnswer = sender.currentTitle {
             print(selectedAnswer)
             delegate?.answerSelected(selectedAnswer)
-//            TODO: call model to set user answer
-//            modelinterface.setUserAnswer(..)
         }
     }
-   
-    
-    
     class func instanceFromNib(frame: CGRect) -> AnswerView {
         let view = UINib(nibName: "AnswerView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! AnswerView
         view.frame = frame
         return view
     }
-    
-
     func setAnswerText(answer: String) {
         answerButton.setTitle(answer, forState: UIControlState.Normal)
     }
-
-    
-
 }

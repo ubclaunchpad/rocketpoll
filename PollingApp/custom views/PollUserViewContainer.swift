@@ -27,19 +27,12 @@ class PollUserViewContainer: UIView {
         
         let view = UINib(nibName: "PollUserViewContainer", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PollUserViewContainer
         view.frame = frame
-        
+
         return view
     }
-    
     func setQuestionText(questionText: Question) {
         question.text = questionText;
     }
-    
-
-    
-
-    
-    
     func populateAnswerViews(answers: [Answer]) {
         // Proportionate Layout - fits all screens
         let answerViewHeight: CGFloat = 0.15 * bounds.height
@@ -53,23 +46,21 @@ class PollUserViewContainer: UIView {
             
             answerViewFrame.origin.y += answerViewHeight+1
         }
-        
     }
-    
     func updateTimerLabel (secs: Int, mins: Int){
         if (mins==0){
         timerLabel.text = "\(secs)";
-        }else{
+        }
+        else {
             if secs<10{
               timerLabel.text = "\(mins):0\(secs)";
-            }else{
-          timerLabel.text = "\(mins):\(secs)";
+            }
+            else {
+                timerLabel.text = "\(mins):\(secs)";
             }
         }
     }
-    
 }
-
 extension PollUserViewContainer: AnswerViewDelegate {
     func answerSelected(answer: Answer) {
         print(answer)

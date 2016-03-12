@@ -38,21 +38,19 @@ final class PollUserViewController: UIViewController {
         let questionText: Question = ModelInterface.sharedInstance.getQuestion(questionID)
         let answerIDs = ModelInterface.sharedInstance.getListOfAnswerIDs(questionID)
         
-        //Run the setHeaderText Function
+        // Run the setHeaderText Function
         container?.setQuestionText(questionText);
         container?.delegate = self
         
         let answers = getAnswers(answerIDs)
         container?.populateAnswerViews(answers)
         
-        //Set initial time
+        // Set initial time
         createTimer(ModelInterface.sharedInstance.getCountdownSeconds());
-        
-        
     }
     
     func getAnswers(answerIDs: [AnswerID]) -> [Answer] {
-        //        Changes the list of answerIDs to list of answers
+        // Changes the list of answerIDs to list of answers
         var answers = [String]();
         var temp_answer:Answer
         
@@ -85,7 +83,7 @@ final class PollUserViewController: UIViewController {
         container?.updateTimerLabel(sec,mins: min)
         }else{
             timer.invalidate();
-            //SEGUE to next view
+            // TODO: SEGUE to next view
         }
         
     }
@@ -101,6 +99,7 @@ final class PollUserViewController: UIViewController {
 }
 
 extension PollUserViewController: PollUserViewContainerDelegate {
+    // Sets the answer in model
     func answerSelected(answer: Answer) {
         if let selectedAnswerID = answerIDDictionary[answer] {
             ModelInterface.sharedInstance.setUserAnswer(questionID, answerID: selectedAnswerID)
