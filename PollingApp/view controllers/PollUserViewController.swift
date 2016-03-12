@@ -7,15 +7,16 @@
 //
 
 import UIKit
-var min:Int = 0;
-var sec = 0;
-var seconds = 0;
-var timer = NSTimer();
+
 // TODO: Cyros and Milton are working here
 
-class PollUserViewController: UIViewController {
+final class PollUserViewController: UIViewController {
+    private var answerIDs = [AnswerID: Answer]()
     
-    
+    var min:Int = 0;
+    var sec = 0;
+    var seconds = 0;
+    var timer = NSTimer();
     var container: PollUserViewContainer?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,16 +33,29 @@ class PollUserViewController: UIViewController {
         
         // TODO: Find actual QuestionID
         let questionText: Question = ModelInterface.sharedInstance.getQuestion("QuestionID")  // .getQuestion()
-        let answers = ModelInterface.sharedInstance.getListOfAnswerIDs("QuestionID")    //with random question ID
+        let answerIDs = ModelInterface.sharedInstance.getListOfAnswerIDs("QuestionID")    //with random question ID
         
         //Run the setHeaderText Function
         container?.setQuestionText(questionText);
-        container?.setAnswers(answers)
+        container?.delegate = self
+        //container?.setAnswers(answers)
+        
+        let answers = getAnswers(answerIDs)
+        container?.populateAnswerViews(answers)
         
         //Set initial time
         createTimer(ModelInterface.sharedInstance.getCountdownSeconds());
         
         
+    }
+    
+    func getAnswers(answerIDs: [AnswerID]) -> [Answer] {
+        //        Changes the list of answerIDs to list of answers
+        var answers = [String]();
+        for answer in answerIDs {
+            answers.append(ModelInterface.sharedInstance.getAnswer(answer))
+        }
+        return answers
     }
     
     func createTimer (startingTime: Int) {
@@ -78,5 +92,11 @@ class PollUserViewController: UIViewController {
     
     
     
+}
+
+extension PollUserViewController: PollUserViewContainerDelegate {
+    func answerSelected(answer: Answer) {
+        //
+    }
     
 }

@@ -12,6 +12,7 @@ typealias Question = String
 typealias QuestionID = String
 typealias RoomID = String
 typealias AnswerID = String
+typealias Answer = String
 typealias SegueName = String
 
 enum UserDefaultKeys {

@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol AnswerViewDelegate {
+    func answerSelected(answer: Answer)
+}
+
 class AnswerView: UIView {
+    
+    var delegate: AnswerViewDelegate?
 
     @IBOutlet weak var answerButton: UIButton!
    
@@ -16,6 +22,7 @@ class AnswerView: UIView {
         
         if let selectedAnswer = sender.currentTitle {
             print(selectedAnswer)
+            delegate?.answerSelected(selectedAnswer)
 //            TODO: call model to set user answer
 //            modelinterface.setUserAnswer(..)
         }

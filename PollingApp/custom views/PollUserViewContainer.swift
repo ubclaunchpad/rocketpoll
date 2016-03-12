@@ -8,8 +8,16 @@
 
 import UIKit
 
+protocol PollUserViewContainerDelegate {
+    func answerSelected(answer: Answer)
+
+}
+
 class PollUserViewContainer: UIView {
     var selectedAnswer: String = "";
+    
+    var delegate: PollUserViewContainerDelegate?
+    
     
     @IBOutlet weak var question: UILabel!
     
@@ -29,17 +37,10 @@ class PollUserViewContainer: UIView {
     
 
     
-    func setAnswers(answerIDs: [String]) {
-//        Changes the list of answerIDs to list of answers
-        var answers = [String]();
-        for answer in answerIDs {
-            answers.append(ModelInterface.sharedInstance.getAnswer(answer))
-        }
-        populateAnswerViews(answers)
-    }
+
     
     
-    func populateAnswerViews(answers: [String]) {
+    func populateAnswerViews(answers: [Answer]) {
         // Proportionate Layout - fits all screens
         let answerViewHeight: CGFloat = 0.15 * bounds.height
         var answerViewFrame = CGRectMake(0, bounds.height*2/5, bounds.width, answerViewHeight)
@@ -47,6 +48,7 @@ class PollUserViewContainer: UIView {
         for answer in answers {
             let answerView = AnswerView.instanceFromNib(answerViewFrame)
             answerView.setAnswerText(answer)
+            answerView.delegate = self
             addSubview(answerView)
             
             answerViewFrame.origin.y += answerViewHeight+1
@@ -66,4 +68,12 @@ class PollUserViewContainer: UIView {
         }
     }
     
+}
+
+extension PollUserViewContainer: AnswerViewDelegate {
+    func answerSelected(answer: Answer) {
+        print(answer)
+        delegate?.answerSelected(answer)
+               
+    }
 }
