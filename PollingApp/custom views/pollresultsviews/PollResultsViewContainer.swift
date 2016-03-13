@@ -13,16 +13,6 @@ class PollResultsViewContainer: UIView {
     class func instanceFromNib(frame: CGRect) -> PollResultsViewContainer {
         let view = UINib(nibName: "PollResultsViewContainer", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PollResultsViewContainer
         view.frame = frame
-        
         return view
     }
-
 }
-
-
-//class func instanceFromNib(frame: CGRect) -> RoomViewContainer {
-//    let view = UINib(nibName: "RoomViewContainer", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! RoomViewContainer
-//    view.frame = frame
-//    
-//    return view
-
