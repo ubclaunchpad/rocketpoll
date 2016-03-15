@@ -10,13 +10,16 @@ import UIKit
 
 // TODO: Cyros and Milton are working here
 
-final class PollUserViewController: UIViewController {
+final class PollUserViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     private var answerIDDictionary = [Answer: AnswerID]()
+    
+    var tableView: UITableView  =   UITableView()
     
     private var min:Int = 0;
     private var sec = 0;
     private var seconds = 0;
     private var timer = NSTimer();
+     var numAnswers = 0;
     
     private var questionID:QuestionID = ""
     
@@ -24,11 +27,19 @@ final class PollUserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         setup()
+        
+        tableView.frame         =   CGRectMake(0, view.frame.size.height*0.25, view.frame.size.width, view.frame.size.height);
+        tableView.delegate      =   self
+        tableView.dataSource    =   self
+        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.view.addSubview(tableView)
+        
     }
     
     func setup() {
+        
+        
         
         // add your container class to view
         container = PollUserViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
@@ -43,7 +54,7 @@ final class PollUserViewController: UIViewController {
         container?.delegate = self
         
         let answers = getAnswers(answerIDs)
-        container?.populateAnswerViews(answers)
+        //container?.populateAnswerViews(answers) UNCOMMENT
         
         // Set initial time
         createTimer(ModelInterface.sharedInstance.getCountdownSeconds());
@@ -52,7 +63,8 @@ final class PollUserViewController: UIViewController {
     func getAnswers(answerIDs: [AnswerID]) -> [Answer] {
         // Changes the list of answerIDs to list of answers
         var answers = [String]();
-        var temp_answer:Answer
+        numAnswers = answerIDs.count;
+        var temp_answer:Answer;
         
         for answerID in answerIDs {
             temp_answer = ModelInterface.sharedInstance.getAnswer(answerID)
@@ -93,10 +105,29 @@ final class PollUserViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+ 
+
     
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return numAnswers;
+        
+    }
     
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        cell.textLabel?.text = "Answer"
+        return cell
+    }
     
-}
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print("You selected cell #\(indexPath.row)!")
+    }
+
+    
+}//PollUserViewControllerClass
+
+
+
 
 extension PollUserViewController: PollUserViewContainerDelegate {
     // Sets the answer in model
