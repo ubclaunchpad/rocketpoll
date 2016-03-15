@@ -20,6 +20,8 @@ final class PollUserViewController: UIViewController, UITableViewDelegate, UITab
     private var seconds = 0;
     private var timer = NSTimer();
      var numAnswers = 0;
+    var answers:[Answer] = []
+    var answerIDs:[AnswerID] = []
     
     private var questionID:QuestionID = ""
     
@@ -29,11 +31,11 @@ final class PollUserViewController: UIViewController, UITableViewDelegate, UITab
         
         setup()
         
-        tableView.frame         =   CGRectMake(0, view.frame.size.height*0.25, view.frame.size.width, view.frame.size.height);
-        tableView.delegate      =   self
-        tableView.dataSource    =   self
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        self.view.addSubview(tableView)
+        tableView.frame = CGRectMake(0, view.frame.size.height*0.25, view.frame.size.width, view.frame.size.height);
+        tableView.delegate = self;
+        tableView.dataSource = self;
+       tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "myCell");
+        self.view.addSubview(tableView);
         
     }
     
@@ -47,14 +49,15 @@ final class PollUserViewController: UIViewController, UITableViewDelegate, UITab
         
         questionID = ModelInterface.sharedInstance.getQuestionID()
         let questionText: Question = ModelInterface.sharedInstance.getQuestion(questionID)
-        let answerIDs = ModelInterface.sharedInstance.getListOfAnswerIDs(questionID)
+         answerIDs = ModelInterface.sharedInstance.getListOfAnswerIDs(questionID)
         
         // Run the setHeaderText Function
         container?.setQuestionText(questionText);
         container?.delegate = self
         
-        let answers = getAnswers(answerIDs)
+        answers = getAnswers(answerIDs)
         //container?.populateAnswerViews(answers) UNCOMMENT
+        
         
         // Set initial time
         createTimer(ModelInterface.sharedInstance.getCountdownSeconds());
@@ -114,13 +117,18 @@ final class PollUserViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-        cell.textLabel?.text = "Answer"
+        let cell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath)
+        cell.textLabel?.text = answers[indexPath.row];
+        
         return cell
+        
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("You selected cell #\(indexPath.row)!")
+        ModelInterface.sharedInstance.setUserAnswer(questionID, answerID: answerIDs[indexPath.row]);
+        print(answerIDs[indexPath.row])
+        
+        
     }
 
     
