@@ -14,7 +14,6 @@ final class PollUserViewController: UIViewController {
   private var sec = 0;
   private var seconds = 0;
   private var timer = NSTimer();
-  var numAnswers = 0;
   var answers:[Answer] = []
   var answerIDs:[AnswerID] = []
   
@@ -40,13 +39,13 @@ final class PollUserViewController: UIViewController {
     container?.setQuestionText(questionText);
     container?.delegate = self
     answers = getAnswers(answerIDs)
+    container?.setAnswers(answers);
     createTimer(ModelInterface.sharedInstance.getCountdownSeconds());
   }
   
   func getAnswers(answerIDs: [AnswerID]) -> [Answer] {
     // Changes the list of answerIDs to list of answers
     var answers = [String]();
-    numAnswers = answerIDs.count;
     var temp_answer:Answer;
     
     for answerID in answerIDs {

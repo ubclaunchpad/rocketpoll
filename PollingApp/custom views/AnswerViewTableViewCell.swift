@@ -26,11 +26,11 @@ class AnswerViewTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
     }
   
     func setAnswerText(answer: String) {
-         answerButton.setTitle("testing", forState: UIControlState.Normal)
-        //answerButton.setTitle(answer, forState:UIControlState.Normal )
+        answerButton.setTitle(answer, forState:UIControlState.Normal )
     }
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
