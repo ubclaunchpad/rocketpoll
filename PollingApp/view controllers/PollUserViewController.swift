@@ -58,15 +58,9 @@ final class PollUserViewController: UIViewController, UITableViewDelegate, UITab
         let questionText: Question = ModelInterface.sharedInstance.getQuestion(questionID)
          answerIDs = ModelInterface.sharedInstance.getListOfAnswerIDs(questionID)
         
-        // Run the setHeaderText Function
         container?.setQuestionText(questionText);
         container?.delegate = self
-        
         answers = getAnswers(answerIDs)
-       
-        
-        
-        // Set initial time
         createTimer(ModelInterface.sharedInstance.getCountdownSeconds());
     }
     
@@ -129,7 +123,6 @@ final class PollUserViewController: UIViewController, UITableViewDelegate, UITab
         tableView.registerNib(nib_name, forCellReuseIdentifier: "answerCell")
         let cell = tableView.dequeueReusableCellWithIdentifier("answerCell", forIndexPath: indexPath)
        //cell.textLabel?.text = answers[indexPath.row];
-        //TODO : set the title for the NIB using the setter function
         container?.setAnswerLabel(answers[indexPath.row]);
         return cell
         
@@ -137,8 +130,6 @@ final class PollUserViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         ModelInterface.sharedInstance.setUserAnswer(questionID, answerID: answerIDs[indexPath.row]);
-        //print(answerIDs[indexPath.row])
-        
         
     }
 
@@ -149,7 +140,6 @@ final class PollUserViewController: UIViewController, UITableViewDelegate, UITab
 
 
 extension PollUserViewController: PollUserViewContainerDelegate {
-    // Sets the answer in model
     func answerSelected(answer: Answer) {
         if let selectedAnswerID = answerIDDictionary[answer] {
             ModelInterface.sharedInstance.setUserAnswer(questionID, answerID: selectedAnswerID)

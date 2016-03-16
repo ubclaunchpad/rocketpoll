@@ -33,24 +33,10 @@ class PollUserViewContainer: UIView {
     func setQuestionText(questionText: Question) {
         question.text = questionText;
     }
-    /*func populateAnswerViews(answers: [Answer]) {
-        // Proportionate Layout - fits all screens
-        let answerViewHeight: CGFloat = 0.15 * bounds.height
-        var answerViewFrame = CGRectMake(0, bounds.height*2/5, bounds.width, answerViewHeight)
-        
-        for answer in answers {
-            let answerView = AnswerView.instanceFromNib(answerViewFrame)
-            answerView.setAnswerText(answer)
-            answerView.delegate = self
-            addSubview(answerView)
-            
-            answerViewFrame.origin.y += answerViewHeight+1
-        }
-    }
-*/
-    
+   
     func setAnswerLabel(text: Answer){
         AnswerViewTableViewCell().setAnswerText(text);
+       
     }
     
 func updateTimerLabel (secs: Int, mins: Int){

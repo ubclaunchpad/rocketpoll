@@ -13,19 +13,15 @@ protocol AnswerViewTableViewCellDelegate{
 }
 
 class AnswerViewTableViewCell: UITableViewCell {
-
+  @IBOutlet var answerButton: UIButton!
     var delegate: AnswerViewTableViewCellDelegate?
+    
     @IBAction func cellAnswerButtonPressed(sender: AnyObject) {
         if let selectedAnswer = sender.currentTitle {
             print(selectedAnswer)
             delegate?.answerSelected(selectedAnswer!);
         }
     }
-    @IBOutlet weak var cellAnswerButton: UIButton!
-    
-    
-    
-    
     
     
     override func awakeFromNib() {
@@ -35,11 +31,11 @@ class AnswerViewTableViewCell: UITableViewCell {
 
     
     func setAnswerText(answer: String) {
-        //cellAnswerButton.setTitle(answer, forState: UIControlState.Normal)
+         answerButton.setTitle("testing", forState: UIControlState.Normal)
+        //answerButton.setTitle(answer, forState:UIControlState.Normal )
     }
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     
