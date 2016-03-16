@@ -20,9 +20,6 @@
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="0.25646642736486486" colorSpace="calibratedRGB"/>
-            <accessibility key="accessibilityConfiguration" identifier="myCell">
-                <bool key="isElement" value="YES"/>
-            </accessibility>
             <constraints>
                 <constraint firstItem="A1Y-dZ-KrW" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="XLF-YP-WBa"/>
                 <constraint firstItem="A1Y-dZ-KrW" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="abo-hW-gxw"/>
