@@ -22,14 +22,12 @@ class AnswerViewTableViewCell: UITableViewCell {
             delegate?.answerSelected(selectedAnswer!);
         }
     }
-    
-    
+  
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
-    
+  
     func setAnswerText(answer: String) {
          answerButton.setTitle("testing", forState: UIControlState.Normal)
         //answerButton.setTitle(answer, forState:UIControlState.Normal )
