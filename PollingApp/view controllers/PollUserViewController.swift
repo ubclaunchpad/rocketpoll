@@ -9,10 +9,10 @@
 import UIKit
 
 
-final class PollUserViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+final class PollUserViewController: UIViewController {
     private var answerIDDictionary = [Answer: AnswerID]()
     
-    var tableView: UITableView  =   UITableView()
+   
     
     private var min:Int = 0;
     private var sec = 0;
@@ -32,15 +32,7 @@ final class PollUserViewController: UIViewController, UITableViewDelegate, UITab
         
         setup()
       
-        tableView.frame = CGRectMake(0, view.frame.size.height*0.25, view.frame.size.width, view.frame.size.height);
-        tableView.delegate = self;
-        tableView.dataSource = self;
-        tableView.registerClass(AnswerViewTableViewCell.self, forCellReuseIdentifier: "answerCell");
-        self.tableView.rowHeight = 70
-        //TODO: add seperator lines
         
-
-        self.view.addSubview(tableView);
 
     }
     
@@ -112,27 +104,7 @@ final class PollUserViewController: UIViewController, UITableViewDelegate, UITab
  
 
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return numAnswers;
-        
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        let nib_name = UINib(nibName: "AnswerViewTableViewCell", bundle:nil)
-        tableView.registerNib(nib_name, forCellReuseIdentifier: "answerCell")
-        let cell = tableView.dequeueReusableCellWithIdentifier("answerCell", forIndexPath: indexPath)
-       //cell.textLabel?.text = answers[indexPath.row];
-        container?.setAnswerLabel(answers[indexPath.row]);
-        return cell
-        
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        ModelInterface.sharedInstance.setUserAnswer(questionID, answerID: answerIDs[indexPath.row]);
-        
-    }
-
+   
     
 }//PollUserViewControllerClass
 
