@@ -13,6 +13,7 @@
 		521E4FF81C8B9D48004A8F52 /* AnswerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 521E4FF41C8B9D48004A8F52 /* AnswerView.xib */; };
 		521E4FF91C8B9D48004A8F52 /* PollUserViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521E4FF51C8B9D48004A8F52 /* PollUserViewContainer.swift */; };
 		521E4FFA1C8B9D48004A8F52 /* PollUserViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 521E4FF61C8B9D48004A8F52 /* PollUserViewContainer.xib */; };
+		52D0395C1C989D8000367271 /* RoomsNearbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D0395B1C989D8000367271 /* RoomsNearbyViewController.swift */; };
 		76B28C191C66C84A008407EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B28C181C66C84A008407EE /* AppDelegate.swift */; };
 		76B28C1B1C66C84A008407EE /* CampaignsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B28C1A1C66C84A008407EE /* CampaignsViewController.swift */; };
 		76B28C1D1C66C84A008407EE /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B28C1C1C66C84A008407EE /* SecondViewController.swift */; };
@@ -81,6 +82,7 @@
 		521E4FF41C8B9D48004A8F52 /* AnswerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerView.xib; sourceTree = "<group>"; };
 		521E4FF51C8B9D48004A8F52 /* PollUserViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollUserViewContainer.swift; sourceTree = "<group>"; };
 		521E4FF61C8B9D48004A8F52 /* PollUserViewContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PollUserViewContainer.xib; sourceTree = "<group>"; };
+		52D0395B1C989D8000367271 /* RoomsNearbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsNearbyViewController.swift; sourceTree = "<group>"; };
 		63E509F08582745B345E562A /* Pods-PollingAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PollingAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PollingAppTests/Pods-PollingAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		6AED17E3E5F4D11255D0EA2B /* Pods-PollingAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PollingAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PollingAppTests/Pods-PollingAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		76B28C151C66C84A008407EE /* PollingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PollingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -257,6 +259,7 @@
 			children = (
 				76B28C481C66CAAA008407EE /* InputNameViewController.swift */,
 				76C150081C6FDFCC0066C0FE /* CreateQuestionViewController.swift */,
+				52D0395B1C989D8000367271 /* RoomsNearbyViewController.swift */,
 				76C1500A1C6FE0220066C0FE /* PollAdminViewController.swift */,
 				76C1500C1C6FE0550066C0FE /* PollResultsViewController.swift */,
 				76C150061C6FDF8E0066C0FE /* PollUserViewController.swift */,
@@ -665,6 +668,7 @@
 				76B28C4C1C66CC75008407EE /* Constants.swift in Sources */,
 				76B28C491C66CAAA008407EE /* InputNameViewController.swift in Sources */,
 				C80396041C8CB743007C276F /* TimerModelProtocol.swift in Sources */,
+				52D0395C1C989D8000367271 /* RoomsNearbyViewController.swift in Sources */,
 				76B28C1D1C66C84A008407EE /* SecondViewController.swift in Sources */,
 				76C1500F1C6FE14C0066C0FE /* RoomViewContainer.swift in Sources */,
 				521E4FF71C8B9D48004A8F52 /* AnswerView.swift in Sources */,
