@@ -9,6 +9,14 @@
 import Foundation
 
 typealias Question = String
+typealias QuestionID = String
+typealias RoomID = String
+typealias AnswerID = String
+typealias Answer = String
+typealias SegueName = String
+
+var okayNameCharacters : Set<Character> =
+Set("abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890".characters)
 
 enum UserDefaultKeys {
   static let userName = "username"
@@ -16,4 +24,6 @@ enum UserDefaultKeys {
 
 enum Segues {
   static let toMainApp = "showMainApp"
+  static let toSomeVC = "myIdentifier"
 }
+ 

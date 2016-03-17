@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="awl-lu-Pvw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cR5-N0-mBp">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -17,13 +17,168 @@
                     <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="tsR-hK-woN">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qKx-M5-bOw">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="tgc-8o-0q8">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tgc-8o-0q8" id="Plk-PX-PYS">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RpB-98-g8v">
+                                                    <rect key="frame" x="266" y="12" width="69" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="RpB-98-g8v" firstAttribute="centerY" secondItem="Plk-PX-PYS" secondAttribute="centerY" id="d4x-7f-upg"/>
+                                                <constraint firstItem="RpB-98-g8v" firstAttribute="centerX" secondItem="Plk-PX-PYS" secondAttribute="centerX" id="z7f-dX-NEa"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="RpB-98-g8v"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" red="0.90283133140000005" green="1" blue="0.83708174599999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="qKx-M5-bOw" firstAttribute="centerY" secondItem="tsR-hK-woN" secondAttribute="centerY" id="6Xp-NF-rb8"/>
+                            <constraint firstItem="qKx-M5-bOw" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="9kv-nV-pbv"/>
+                            <constraint firstItem="qKx-M5-bOw" firstAttribute="width" secondItem="tsR-hK-woN" secondAttribute="width" id="C3g-jH-X7F"/>
+                            <constraint firstItem="qKx-M5-bOw" firstAttribute="height" secondItem="tsR-hK-woN" secondAttribute="height" id="WSw-1L-Iye"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="qKx-M5-bOw"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Campaigns" image="first" id="acW-dT-cKf"/>
+                    <connections>
+                        <outlet property="tableView" destination="qKx-M5-bOw" id="IK0-Gh-9Gh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="750" y="-320"/>
+        </scene>
+        <!--Join Room View Controller-->
+        <scene sceneID="RXe-fr-KmB">
+            <objects>
+                <viewController id="emf-jF-ooc" customClass="JoinRoomViewController" customModule="PollingApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CMb-b5-iPg"/>
+                        <viewControllerLayoutGuide type="bottom" id="sCH-Qt-jXd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9oq-Ro-ii3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SBl-vP-IiK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1415" y="-411"/>
+        </scene>
+        <!--Poll User View Controller-->
+        <scene sceneID="TjX-8p-7pz">
+            <objects>
+                <viewController id="cR5-N0-mBp" customClass="PollUserViewController" customModule="PollingApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4tn-Bl-wbL"/>
+                        <viewControllerLayoutGuide type="bottom" id="LbJ-fd-Jzq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="46c-q7-RAg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qdz-jp-vsx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1415" y="330"/>
+        </scene>
+        <!--Created Questions View Controller-->
+        <scene sceneID="ANJ-eQ-IZ3">
+            <objects>
+                <viewController id="D0C-ZN-Vng" customClass="CreatedQuestionsViewController" customModule="PollingApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mzl-P4-yiQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="B4l-Aw-tWd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="25F-ZH-Uxt">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e8p-BX-m5I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2153" y="-433"/>
+        </scene>
+        <!--Poll Results View Controller-->
+        <scene sceneID="GTH-3l-8PL">
+            <objects>
+                <viewController id="EKJ-zm-ZFh" customClass="PollResultsViewController" customModule="PollingApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="V7E-oX-Cu7"/>
+                        <viewControllerLayoutGuide type="bottom" id="fdf-E8-1b5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8VI-Gu-d9n">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tjk-8g-2Nb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2995" y="-406"/>
+        </scene>
+        <!--Poll Admin View Controller-->
+        <scene sceneID="kfV-4J-rIL">
+            <objects>
+                <viewController id="2o0-Nz-L7T" customClass="PollAdminViewController" customModule="PollingApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Xto-sG-ae2"/>
+                        <viewControllerLayoutGuide type="bottom" id="0aX-0C-THX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WIE-z6-KSU">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wta-HZ-a9E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2925" y="344"/>
+        </scene>
+        <!--Create Question View Controller-->
+        <scene sceneID="M1E-94-OFn">
+            <objects>
+                <viewController id="AX5-EL-cxe" customClass="CreateQuestionViewController" customModule="PollingApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kSG-NH-JiE"/>
+                        <viewControllerLayoutGuide type="bottom" id="X6G-tE-Vnd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nlt-He-tTp" customClass="CreateQuestionContainerView" customModule="PollingApp" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rfj-tf-LcV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2206" y="197"/>
         </scene>
         <!--Settings-->
         <scene sceneID="wg7-f3-ORb">
@@ -102,6 +257,7 @@
                     <connections>
                         <outlet property="nameTextField" destination="TwO-j1-wh9" id="POz-gk-hMa"/>
                         <segue destination="49e-Tb-3d3" kind="show" identifier="showMainApp" id="vhX-Xt-MiD"/>
+                        <segue destination="9pv-A4-QxB" kind="show" identifier="myIdentifier" id="r35-Ea-4Oc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jZE-dT-07f" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -132,4 +288,7 @@
         <image name="first" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="u7Y-xg-7CH"/>
+    </inferredMetricsTieBreakers>
 </document>
