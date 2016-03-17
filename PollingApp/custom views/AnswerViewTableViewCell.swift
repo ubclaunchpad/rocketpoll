@@ -16,6 +16,9 @@ class AnswerViewTableViewCell: UITableViewCell {
   @IBOutlet var answerButton: UIButton!
     var delegate: AnswerViewTableViewCellDelegate?
     
+    
+    
+    
     @IBAction func cellAnswerButtonPressed(sender: AnyObject) {
         if let selectedAnswer = sender.currentTitle {
             print(selectedAnswer)

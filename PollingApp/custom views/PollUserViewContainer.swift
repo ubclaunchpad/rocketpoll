@@ -31,6 +31,7 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     view.frame = frame
     view.tableView.delegate = view
     view.tableView.dataSource = view
+    
     return view
   }
     
@@ -61,6 +62,7 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     
   }
   
+    
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let nib_name = UINib(nibName: "AnswerViewTableViewCell", bundle:nil)
     tableView.registerNib(nib_name, forCellReuseIdentifier: "answerCell")
@@ -69,6 +71,12 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     return cell
   }
   
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 75;
+        //TODO: set tableView Cell size based on content size
+    }
+    
+    
 }
 
 extension PollUserViewContainer: AnswerViewTableViewCellDelegate {
