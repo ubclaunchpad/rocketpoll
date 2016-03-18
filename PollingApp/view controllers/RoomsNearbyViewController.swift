@@ -10,10 +10,12 @@ import UIKit
 
 class RoomsNearbyViewController: UIViewController {
     
+    var container: RoomsNearbyViewContainer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        setup()
     }
     
     override func didReceiveMemoryWarning() {
@@ -21,4 +23,22 @@ class RoomsNearbyViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func setup() {
+        container = RoomsNearbyViewContainer.instancefromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
+        view.addSubview(container!)
+        
+        let rooms = getRooms(ModelInterface.sharedInstance.getRoomsNeaby())
+        container?.setRooms(rooms)
+        
+    }
+    
+    func getRooms(roomIDs: [String]) -> [String] {
+        var temp_rooms = [String]()
+        var temp_room_name:String
+        for roomID in roomIDs {
+            temp_room_name = ModelInterface.sharedInstance.getRoomName(roomID)
+            temp_rooms.append(temp_room_name)
+        }
+        return temp_rooms
+    }
 }

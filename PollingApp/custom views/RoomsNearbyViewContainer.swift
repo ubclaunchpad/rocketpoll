@@ -2,38 +2,47 @@
 //  RoomsNearbyViewContainer.swift
 //  PollingApp
 //
-//  Created by Milton Leung on 2016-03-16.
+//  Created by Milton Leung on 2016-03-17.
 //  Copyright © 2016 Gabriel Uribe. All rights reserved.
 //
 
 import UIKit
 
-class RoomsNearbyViewContainer: UIView {
-
+class RoomsNearbyViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet var view: UIView!
+//    @IBOutlet weak var tableView: UITableView!
+    
     @IBOutlet weak var tableView: UITableView!
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        UINib(nibName: "RoomsNearbyViewContainer", bundle: nil).instantiateWithOwner(self, options: nil)
-        addSubview(view)
-        view.frame = self.bounds
+    private var rooms:[String] = ["Room 1", "Room2"]
+    
+    class func instancefromNib(frame: CGRect) -> RoomsNearbyViewContainer {
+        let view = UINib(nibName: "RoomsNearbyViewContainer", bundle: nil).instantiateWithOwner(nil, options: nil)[0]
+            as! RoomsNearbyViewContainer
+        view.frame = frame
+        view.tableView.delegate = view
+        view.tableView.dataSource = view
+        return view
     }
     
-    func updateTableView() {
-        tableView.registerNib(UINib(nibName: "RoomTableViewCell", bundle: nil), forCellReuseIdentifier: "RoomTableViewCell")
-        
+    func setRooms(roomNames: [String]) {
+        rooms = roomNames
     }
     
-//    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        <#code#>
-//    }
-
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return rooms.count
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("RoomTableViewCell", forIndexPath: indexPath) as! RoomTableViewCell
-        
-        cell.roomName.text = indexPath.row
+        let nib_name = UINib(nibName: "RoomViewTableViewCell", bundle: nil)
+        tableView.registerNib(nib_name, forCellReuseIdentifier: "roomCell")
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("roomCell", forIndexPath: indexPath) as! RoomViewTableViewCell
+        cell.setRoomNameText(rooms[indexPath.row])
         return cell
     }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 90
+    }
+
 }

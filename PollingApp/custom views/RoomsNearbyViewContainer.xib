@@ -5,29 +5,35 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RoomsNearbyViewContainer" customModule="PollingApp" customModuleProvider="target">
-            <connections>
-                <outlet property="tableView" destination="udD-SO-fIw" id="btV-lh-xcG"/>
-                <outlet property="view" destination="iN0-l3-epB" id="uGV-pi-CAh"/>
-            </connections>
-        </placeholder>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RoomsNearbyViewContainer" customModule="PollingApp" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RoomsNearbyViewContainer" customModule="PollingApp" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="udD-SO-fIw">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Hk-TC-Dfb">
+                    <rect key="frame" x="279" y="34" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bN0-a7-HhO">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="udD-SO-fIw" secondAttribute="trailing" id="218-a1-dWA"/>
-                <constraint firstItem="udD-SO-fIw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="cVY-HH-osG"/>
-                <constraint firstAttribute="bottom" secondItem="udD-SO-fIw" secondAttribute="bottom" id="oLf-3r-cTe"/>
-                <constraint firstItem="udD-SO-fIw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="px6-0g-R9E"/>
+                <constraint firstAttribute="trailing" secondItem="bN0-a7-HhO" secondAttribute="trailing" id="5sg-Hn-B6m"/>
+                <constraint firstItem="bN0-a7-HhO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="BLE-1Q-NPh"/>
+                <constraint firstAttribute="bottom" secondItem="bN0-a7-HhO" secondAttribute="bottom" id="Ddx-qD-8IJ"/>
+                <constraint firstItem="1Hk-TC-Dfb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="34" id="YVS-px-ADb"/>
+                <constraint firstItem="1Hk-TC-Dfb" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ke0-H1-kri"/>
+                <constraint firstItem="bN0-a7-HhO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="z9h-4Q-S8K"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
+            <connections>
+                <outlet property="tableView" destination="bN0-a7-HhO" id="Bmx-cx-CBB"/>
+            </connections>
         </view>
     </objects>
 </document>

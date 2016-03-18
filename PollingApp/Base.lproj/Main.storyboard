@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -287,29 +286,7 @@
         <!--Rooms Nearby View Controller-->
         <scene sceneID="KbA-Ia-DLx">
             <objects>
-                <viewController id="HGg-Fp-XXi" customClass="RoomsNearbyViewController" customModule="PollingApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="3wA-Dg-uho"/>
-                        <viewControllerLayoutGuide type="bottom" id="ayx-lV-5C0"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="gJq-mS-Jnz">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FBX-4M-MXd" customClass="RoomsNearbyViewContainer" customModule="PollingApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="FBX-4M-MXd" secondAttribute="trailing" constant="-20" id="ExC-rq-VzL"/>
-                            <constraint firstItem="FBX-4M-MXd" firstAttribute="leading" secondItem="gJq-mS-Jnz" secondAttribute="leadingMargin" constant="-20" id="hn4-ac-nEW"/>
-                            <constraint firstItem="FBX-4M-MXd" firstAttribute="top" secondItem="gJq-mS-Jnz" secondAttribute="topMargin" id="ih7-d7-iRx"/>
-                            <constraint firstItem="ayx-lV-5C0" firstAttribute="top" secondItem="FBX-4M-MXd" secondAttribute="bottom" id="yeb-P3-zEI"/>
-                        </constraints>
-                    </view>
-                </viewController>
+                <viewController id="HGg-Fp-XXi" customClass="RoomsNearbyViewController" customModule="PollingApp" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J6v-vv-Kdf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="33" y="686"/>
