@@ -35,7 +35,6 @@ class InputNameViewController: UIViewController, UITextFieldDelegate {
     // TODO: Check for Nil value, if Nil present UIAlertView otherwise continue
 
     checkChars()
-    
     saveUser()
     performSegueWithIdentifier(Segues.toMainApp, sender: self)
     
@@ -79,7 +78,7 @@ class InputNameViewController: UIViewController, UITextFieldDelegate {
         if(nameTextField.text?.characters.count == 0) {
             print("DEBUG", "nameTextField.text = <empty>")
             let alert = UIAlertController(title: "Please enter your name", message:"", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Got it", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
 
         }
