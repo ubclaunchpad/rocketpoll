@@ -76,29 +76,22 @@ class InputNameViewController: UIViewController, UITextFieldDelegate {
   }
     
     func checkChars() {
-        
         if(nameTextField.text?.characters.count == 0) {
             print("DEBUG", "nameTextField.text = <empty>")
-            let alert = UIAlertController(title: "Please add a name", message:"", preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title: "Please enter your name", message:"", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
-            noName()
+
         }
-        
     }
-    
     
     func noName() {
         nameTextField.resignFirstResponder()
-        
-        
         let alert = UIAlertController(title: "Please enter your name", message:"", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title:"Ok", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated:true, completion: nil)
 
     }
     
-    
-  
 }
 
