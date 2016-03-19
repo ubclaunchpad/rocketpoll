@@ -8,8 +8,22 @@
 
 import UIKit
 
-class InputNameViewController: UIViewController {
+
+class InputNameViewController: UIViewController, UITextFieldDelegate {
+    
+    override func viewDidLoad(){
+        super.viewDidLoad()
+        nameTextField.delegate = self
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        saveUser()
+        performSegueWithIdentifier(Segues.toMainApp, sender: self)
+        return true
+    }
+
   @IBOutlet weak var nameTextField: UITextField!
+
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -51,8 +65,6 @@ class InputNameViewController: UIViewController {
       NSCharacterSet.whitespaceCharacterSet())
     return trimmedString
   }
-  
-}
 
 // MARK: - UITextFieldDelegate -
 extension InputNameViewController: UITextFieldDelegate {
