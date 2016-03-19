@@ -11,25 +11,34 @@ import UIKit
 
 class InputNameViewController: UIViewController, UITextFieldDelegate {
     
+    
+    // Submit name using Enter key
     override func viewDidLoad(){
         super.viewDidLoad()
         nameTextField.delegate = self
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        checkChars()
         saveUser()
         performSegueWithIdentifier(Segues.toMainApp, sender: self)
+
         return true
     }
+    
+    
 
   @IBOutlet weak var nameTextField: UITextField!
 
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
-      action: "dismissKeyboard")
-    view.addGestureRecognizer(tap)
+  // MARK: - Actions
+  @IBAction func submitButtonPressed(sender: AnyObject) {
+    // TODO: Check for Nil value, if Nil present UIAlertView otherwise continue
+
+    checkChars()
+    
+    saveUser()
+    performSegueWithIdentifier(Segues.toMainApp, sender: self)
+    
   }
   
   @IBAction func submitButtonPressed(sender: AnyObject) {
@@ -65,28 +74,31 @@ class InputNameViewController: UIViewController, UITextFieldDelegate {
       NSCharacterSet.whitespaceCharacterSet())
     return trimmedString
   }
-
-// MARK: - UITextFieldDelegate -
-extension InputNameViewController: UITextFieldDelegate {
-  func textFieldShouldReturn(textField: UITextField) -> Bool {
-    let cleanedName = cleanName(nameTextField.text!)
-    if(cleanedName.characters.count <= 0) {
-      let alert = UIAlertController(title: "Invalid name", message:"",
-        preferredStyle: UIAlertControllerStyle.Alert)
-      alert.addAction(UIAlertAction(title: "Ok",
-        style: UIAlertActionStyle.Default, handler: nil))
-      self.presentViewController(alert, animated: true, completion: nil)
-      return true
+    
+    func checkChars() {
+        
+        if(nameTextField.text?.characters.count == 0) {
+            print("DEBUG", "nameTextField.text = <empty>")
+            let alert = UIAlertController(title: "Please add a name", message:"", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            noName()
+        }
+        
     }
     
-    textField.resignFirstResponder()
     
-    assert(cleanedName.characters.count != 0 , "Name cannot be blank")
+    func noName() {
+        nameTextField.resignFirstResponder()
+        
+        
+        let alert = UIAlertController(title: "Please enter your name", message:"", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title:"Ok", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated:true, completion: nil)
+
+    }
     
-    let segueName = ModelInterface.sharedInstance.setUserName(cleanedName)
-    performSegueWithIdentifier(segueName, sender: self)
     
-    return false
-  }
+  
 }
 

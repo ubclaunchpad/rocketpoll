@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<<<<<<< 5e1c351714a889e36808441d2e9615d2f3602a87
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cR5-N0-mBp">
+=======
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="awl-lu-Pvw">
+>>>>>>> Error message upon empty name field submission.
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -246,6 +250,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.90283133140000005" green="1" blue="0.83708174599999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="WdX-I1-H6R" firstAttribute="centerX" secondItem="loa-Yt-ywj" secondAttribute="centerX" id="CZS-LD-SOY"/>
                             <constraint firstItem="WdX-I1-H6R" firstAttribute="top" secondItem="TwO-j1-wh9" secondAttribute="bottom" constant="50" id="VFE-3Y-Bh7"/>
@@ -253,6 +258,9 @@
                             <constraint firstItem="TwO-j1-wh9" firstAttribute="width" secondItem="loa-Yt-ywj" secondAttribute="width" multiplier="0.5" id="xEL-pr-DNn"/>
                             <constraint firstItem="TwO-j1-wh9" firstAttribute="centerY" secondItem="loa-Yt-ywj" secondAttribute="centerY" constant="-50" id="yyj-8e-7yo"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="kzT-cL-SUL" appends="YES" id="8ka-pS-wEM"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="nameTextField" destination="TwO-j1-wh9" id="POz-gk-hMa"/>
@@ -261,6 +269,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jZE-dT-07f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="kzT-cL-SUL"/>
             </objects>
             <point key="canvasLocation" x="-665" y="-44"/>
         </scene>
