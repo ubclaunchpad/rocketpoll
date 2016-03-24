@@ -8,8 +8,10 @@
 
 import UIKit
 
-class PollResultsTableViewCell: UITableViewCell {
+class PollResultsTableViewCell: UITableViewCell{
 
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
