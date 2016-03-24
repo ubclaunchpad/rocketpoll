@@ -26,9 +26,13 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
         let cell = self.resultsTableView.dequeueReusableCellWithIdentifier("resultsCell", forIndexPath: indexPath)
         return cell
     }
-
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5;
+        return 5 //TODO set to number of answers
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 60
     }
     
 }
