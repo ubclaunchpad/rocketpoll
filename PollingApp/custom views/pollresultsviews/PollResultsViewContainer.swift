@@ -9,6 +9,7 @@
 import UIKit
 
 class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
+    
     @IBOutlet weak var resultsTableView: UITableView!
     
     class func instanceFromNib(frame: CGRect) -> PollResultsViewContainer {
