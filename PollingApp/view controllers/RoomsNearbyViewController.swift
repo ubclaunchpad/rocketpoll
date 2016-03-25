@@ -10,7 +10,9 @@ import UIKit
 
 class RoomsNearbyViewController: UIViewController {
     
+    private var roomIDDictionary = [Room: RoomID]()
     var container: RoomsNearbyViewContainer?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +40,18 @@ class RoomsNearbyViewController: UIViewController {
         for roomID in roomIDs {
             temp_room_name = ModelInterface.sharedInstance.getRoomName(roomID)
             temp_rooms.append(temp_room_name)
+            roomIDDictionary[temp_room_name] = roomID
         }
         return temp_rooms
+    }
+}
+
+extension RoomsNearbyViewController: RoomsNearbyViewContainerDelegate {
+    func roomSelected(room: Room) {
+        if let selectedRoomID = roomIDDictionary[room] {
+            let roomSegue = ModelInterface.sharedInstance.goToRoom(selectedRoomID)
+            print(selectedRoomID)
+            performSegueWithIdentifier(roomSegue, sender: self)
+        }
     }
 }

@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol RoomsNearbyViewContainerDelegate {
+    func roomSelected(room: Room)
+}
+
 class RoomsNearbyViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
     
 //    @IBOutlet weak var tableView: UITableView!
@@ -15,6 +19,8 @@ class RoomsNearbyViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
     
     private var rooms:[String] = ["Room 1", "Room2"]
+    
+    var delegate: RoomsNearbyViewContainerDelegate?
     
     class func instancefromNib(frame: CGRect) -> RoomsNearbyViewContainer {
         let view = UINib(nibName: "RoomsNearbyViewContainer", bundle: nil).instantiateWithOwner(nil, options: nil)[0]
@@ -45,4 +51,11 @@ class RoomsNearbyViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
         return 90
     }
 
+}
+
+extension RoomsNearbyViewContainer: RoomsViewTableViewCellDelegate {
+    func roomSelected(room: Room) {
+        print("HELLO")
+        delegate?.roomSelected(room)
+    }
 }

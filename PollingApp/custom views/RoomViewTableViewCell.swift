@@ -8,13 +8,19 @@
 
 import UIKit
 
+protocol RoomsViewTableViewCellDelegate{
+    func roomSelected(room: Room)
+}
+
 class RoomViewTableViewCell: UITableViewCell {
 
     @IBOutlet weak var roomName: UIButton!
-   
+    var delegate: RoomsViewTableViewCellDelegate?
+    
     @IBAction func roomSelected(sender: AnyObject) {
         if let selectedRoom = sender.currentTitle {
             print(selectedRoom)
+            delegate?.roomSelected(selectedRoom!)
         }
     }
     override func awakeFromNib() {
