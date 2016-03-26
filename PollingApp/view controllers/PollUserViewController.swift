@@ -63,13 +63,13 @@ final class PollUserViewController: UIViewController {
         let sec_temp = seconds-60*(min_temp)
         container?.updateTimerLabel(sec_temp, mins: min_temp)
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: ("updateTimer"), userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: (#selector(PollUserViewController.updateTimer)), userInfo: nil, repeats: true)
         
     }
     
     func updateTimer() {
         if(seconds>0) {
-            seconds--
+            seconds -= 1
             min = seconds/60
             sec = seconds - 60*min
             container?.updateTimerLabel(sec,mins: min)
