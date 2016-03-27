@@ -43,6 +43,7 @@ class RoomsNearbyViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
         let nib_name = UINib(nibName: "RoomViewTableViewCell", bundle: nil)
         tableView.registerNib(nib_name, forCellReuseIdentifier: "roomCell")
         let cell = self.tableView.dequeueReusableCellWithIdentifier("roomCell", forIndexPath: indexPath) as! RoomViewTableViewCell
+        cell.delegate = self
         cell.setRoomNameText(rooms[indexPath.row])
         return cell
     }

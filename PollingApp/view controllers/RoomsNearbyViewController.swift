@@ -30,6 +30,7 @@ class RoomsNearbyViewController: UIViewController {
         view.addSubview(container!)
         
         let rooms = getRooms(ModelInterface.sharedInstance.getRoomsNeaby())
+        container?.delegate = self
         container?.setRooms(rooms)
         
     }
