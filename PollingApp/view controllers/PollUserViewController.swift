@@ -90,6 +90,7 @@ extension PollUserViewController: PollUserViewContainerDelegate {
     func answerSelected(answer: Answer) {
         if let selectedAnswerID = answerIDDictionary[answer] {
             ModelInterface.sharedInstance.setUserAnswer(questionID, answerID: selectedAnswerID)
+            print("selected answer is: \(answer) ,printed from viewController")
         }
     }
     

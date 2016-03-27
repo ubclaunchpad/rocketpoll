@@ -22,6 +22,7 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     
     var delegate: PollUserViewContainerDelegate?
     
+    
     @IBOutlet weak var question: UILabel!
     
     @IBOutlet weak var timerLabel: UILabel!
@@ -67,6 +68,7 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
         tableView.registerNib(nib_name, forCellReuseIdentifier: "answerCell")
         let cell = self.tableView.dequeueReusableCellWithIdentifier("answerCell", forIndexPath: indexPath) as! AnswerViewTableViewCell
         cell.setAnswerText(answers[indexPath.row])
+        cell.delegate = self
         return cell
     }
     
@@ -79,7 +81,6 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
 
 extension PollUserViewContainer: AnswerViewTableViewCellDelegate {
     func answerSelected(answer: Answer) {
-        print(answer)
         delegate?.answerSelected(answer)
         
     }
