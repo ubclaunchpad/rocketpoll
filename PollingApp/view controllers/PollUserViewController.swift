@@ -91,6 +91,9 @@ extension PollUserViewController: PollUserViewContainerDelegate {
         if let selectedAnswerID = answerIDDictionary[answer] {
             ModelInterface.sharedInstance.setUserAnswer(questionID, answerID: selectedAnswerID)
             print("selected answer is: \(answer) ,printed from viewController")
+            //let nextRoom = ModelInterface.sharedInstance.SEGUE_GETTER_FUNCTION(selectedRoomID) //implement these function once segue function is added to model 
+            //performSegueWithIdentifier(nextRoom, sender: self)
+
         }
     }
     
