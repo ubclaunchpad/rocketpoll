@@ -10,11 +10,15 @@ import UIKit
 
 protocol PollUserViewContainerDelegate {
     func answerSelected(answer: Answer)
-
+    
 }
 
-class PollUserViewContainer: UIView {
-    var selectedAnswer: String = "";
+class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet weak var tableView: UITableView!
+    
+    private var answers:[Answer] = []
+    
+    var selectedAnswer: String = ""
     
     var delegate: PollUserViewContainerDelegate?
     
@@ -22,49 +26,62 @@ class PollUserViewContainer: UIView {
     @IBOutlet weak var question: UILabel!
     
     @IBOutlet weak var timerLabel: UILabel!
-  
+    
     class func instanceFromNib(frame: CGRect) -> PollUserViewContainer {
-        
         let view = UINib(nibName: "PollUserViewContainer", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PollUserViewContainer
         view.frame = frame
-
+        view.tableView.delegate = view
+        view.tableView.dataSource = view
+        
         return view
     }
-    func setQuestionText(questionText: Question) {
-        question.text = questionText;
-    }
-    func populateAnswerViews(answers: [Answer]) {
-        // Proportionate Layout - fits all screens
-        let answerViewHeight: CGFloat = 0.15 * bounds.height
-        var answerViewFrame = CGRectMake(0, bounds.height*2/5, bounds.width, answerViewHeight)
+    
+    func setAnswers(Answers: [Answer]){
+        answers = Answers
         
-        for answer in answers {
-            let answerView = AnswerView.instanceFromNib(answerViewFrame)
-            answerView.setAnswerText(answer)
-            answerView.delegate = self
-            addSubview(answerView)
-            
-            answerViewFrame.origin.y += answerViewHeight+1
-        }
     }
-    func updateTimerLabel (secs: Int, mins: Int){
+    
+    func setQuestionText(questionText: Question) {
+        question.text = questionText
+    }
+    
+    func updateTimerLabel(secs: Int, mins: Int) {
         if (mins==0){
-        timerLabel.text = "\(secs)";
-        }
-        else {
+            timerLabel.text = "\(secs)"
+        } else {
             if secs<10{
-              timerLabel.text = "\(mins):0\(secs)";
-            }
-            else {
-                timerLabel.text = "\(mins):\(secs)";
+                timerLabel.text = "\(mins):0\(secs)"
+            } else {
+                timerLabel.text = "\(mins):\(secs)"
             }
         }
+        
     }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return answers.count
+        
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let nib_name = UINib(nibName: "AnswerViewTableViewCell", bundle:nil)
+        tableView.registerNib(nib_name, forCellReuseIdentifier: "answerCell")
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("answerCell", forIndexPath: indexPath) as! AnswerViewTableViewCell
+        cell.setAnswerText(answers[indexPath.row])
+        cell.delegate = self
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 75
+        //TODO: set tableView Cell size based on content size
+    }
+    
 }
-extension PollUserViewContainer: AnswerViewDelegate {
+
+extension PollUserViewContainer: AnswerViewTableViewCellDelegate {
     func answerSelected(answer: Answer) {
-        print(answer)
         delegate?.answerSelected(answer)
-               
+        
     }
 }
