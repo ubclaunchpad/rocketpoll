@@ -11,51 +11,18 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Poll Results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLe-5G-PWL">
-                    <rect key="frame" x="252" y="27" width="96" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="96" id="C9N-Ee-lNl"/>
-                        <constraint firstAttribute="height" constant="21" id="UDa-QM-63z"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="UDa-QM-63z"/>
-                        </mask>
-                    </variation>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Question" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5CA-cR-wpc">
-                    <rect key="frame" x="252" y="113" width="69" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="21" id="dGL-qr-ena"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="dGL-qr-ena"/>
-                        </mask>
-                    </variation>
-                </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZFL-iT-IRe">
                     <rect key="frame" x="0.0" y="177" width="600" height="423"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="423" id="xom-Gi-s1p"/>
+                    </constraints>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="5CA-cR-wpc" firstAttribute="trailing" secondItem="eLe-5G-PWL" secondAttribute="trailing" constant="-27" id="1J9-wA-pgG"/>
-                <constraint firstItem="eLe-5G-PWL" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="8BX-Gf-PCG"/>
-                <constraint firstItem="eLe-5G-PWL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="27" id="BSn-R5-QZ6"/>
-                <constraint firstAttribute="trailing" secondItem="5CA-cR-wpc" secondAttribute="trailing" constant="279" id="EPi-j0-887"/>
-                <constraint firstItem="5CA-cR-wpc" firstAttribute="top" secondItem="eLe-5G-PWL" secondAttribute="bottom" constant="65" id="Fce-Hu-Roc"/>
                 <constraint firstAttribute="bottom" secondItem="ZFL-iT-IRe" secondAttribute="bottom" id="Ign-p8-07x"/>
-                <constraint firstItem="5CA-cR-wpc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="252" id="arx-k6-muW"/>
                 <constraint firstItem="ZFL-iT-IRe" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="m0I-RQ-fzP"/>
-                <constraint firstItem="ZFL-iT-IRe" firstAttribute="top" secondItem="5CA-cR-wpc" secondAttribute="bottom" constant="43" id="mKt-at-vL7"/>
                 <constraint firstItem="ZFL-iT-IRe" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="o1C-CT-TUH"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
