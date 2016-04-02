@@ -98,10 +98,10 @@
                         <viewControllerLayoutGuide type="top" id="4tn-Bl-wbL"/>
                         <viewControllerLayoutGuide type="bottom" id="LbJ-fd-Jzq"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="46c-q7-RAg">
+                    <view key="view" contentMode="scaleToFill" id="46c-q7-RAg" customClass="PollUserViewContainer" customModule="PollingApp" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qdz-jp-vsx" userLabel="First Responder" sceneMemberID="firstResponder"/>
