@@ -65,6 +65,8 @@ class InputNameViewController: UIViewController {
 extension InputNameViewController: UITextFieldDelegate {
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     
+    
+    
     checkChars()
     performSegueWithIdentifier(Segues.toMainApp, sender: self)
     
@@ -93,14 +95,28 @@ extension InputNameViewController: UITextFieldDelegate {
   }
     
     func checkChars() {
-        if(nameTextField.text?.characters.count == 0) {
+        if (nameTextField.text?.characters.count == 0 ) {
             print("DEBUG", "nameTextField.text = <empty>")
             let alert = UIAlertController(title: "Please enter your name", message:"", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Got it", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
-            
+        }
+        
+        else {
+
+            for _ in nameTextField.text!.characters {
+                if  !(nameTextField.text >= "a" && nameTextField.text <= "z") && !(nameTextField.text >= "A" && nameTextField.text <= "Z") {
+                    print("DEBUG", "nameTextField.text = <empty>")
+                    let alert = UIAlertController(title: "Oops, letters only, please.", message:"", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Got it", style: UIAlertActionStyle.Default, handler: nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
+            }
         }
         
     }
+    
+    }
+    
+
 }
 
