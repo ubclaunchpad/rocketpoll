@@ -11,6 +11,11 @@
 		47851E04F2C8BA1146E72473 /* Pods_PollingAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04AA1F183F106CFD9B91BB19 /* Pods_PollingAppTests.framework */; };
 		521E4FF91C8B9D48004A8F52 /* PollUserViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521E4FF51C8B9D48004A8F52 /* PollUserViewContainer.swift */; };
 		521E4FFA1C8B9D48004A8F52 /* PollUserViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 521E4FF61C8B9D48004A8F52 /* PollUserViewContainer.xib */; };
+		523FCD021C9BD84A007EA5E1 /* RoomsNearbyViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523FCD011C9BD84A007EA5E1 /* RoomsNearbyViewContainer.swift */; };
+		523FCD071C9BE1F3007EA5E1 /* RoomViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523FCD051C9BE1F3007EA5E1 /* RoomViewTableViewCell.swift */; };
+		523FCD081C9BE1F3007EA5E1 /* RoomViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 523FCD061C9BE1F3007EA5E1 /* RoomViewTableViewCell.xib */; };
+		52C2C65F1C9A7700001779F5 /* RoomsNearbyViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52C2C65E1C9A7700001779F5 /* RoomsNearbyViewContainer.xib */; };
+		52D0395C1C989D8000367271 /* RoomsNearbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D0395B1C989D8000367271 /* RoomsNearbyViewController.swift */; };
 		6E3D7BED1CA4A243001E685B /* PollResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3D7BEB1CA4A243001E685B /* PollResultsTableViewCell.swift */; };
 		6E3D7BEE1CA4A243001E685B /* PollResultsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E3D7BEC1CA4A243001E685B /* PollResultsTableViewCell.xib */; };
 		6E705D4E1C9925160096AD36 /* AnswerViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E705D4C1C9925160096AD36 /* AnswerViewTableViewCell.swift */; };
@@ -80,6 +85,11 @@
 		511377F8A051053193FEBA66 /* Pods-PollingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PollingApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PollingApp/Pods-PollingApp.debug.xcconfig"; sourceTree = "<group>"; };
 		521E4FF51C8B9D48004A8F52 /* PollUserViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollUserViewContainer.swift; sourceTree = "<group>"; };
 		521E4FF61C8B9D48004A8F52 /* PollUserViewContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PollUserViewContainer.xib; sourceTree = "<group>"; };
+		523FCD011C9BD84A007EA5E1 /* RoomsNearbyViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsNearbyViewContainer.swift; sourceTree = "<group>"; };
+		523FCD051C9BE1F3007EA5E1 /* RoomViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomViewTableViewCell.swift; sourceTree = "<group>"; };
+		523FCD061C9BE1F3007EA5E1 /* RoomViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomViewTableViewCell.xib; sourceTree = "<group>"; };
+		52C2C65E1C9A7700001779F5 /* RoomsNearbyViewContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomsNearbyViewContainer.xib; sourceTree = "<group>"; };
+		52D0395B1C989D8000367271 /* RoomsNearbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsNearbyViewController.swift; sourceTree = "<group>"; };
 		63E509F08582745B345E562A /* Pods-PollingAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PollingAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PollingAppTests/Pods-PollingAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		6AED17E3E5F4D11255D0EA2B /* Pods-PollingAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PollingAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PollingAppTests/Pods-PollingAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6E3D7BEB1CA4A243001E685B /* PollResultsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollResultsTableViewCell.swift; sourceTree = "<group>"; };
@@ -184,6 +194,17 @@
 			name = "poll user views";
 			sourceTree = "<group>";
 		};
+		52C2C65B1C9A7395001779F5 /* room nearby views */ = {
+			isa = PBXGroup;
+			children = (
+				523FCD051C9BE1F3007EA5E1 /* RoomViewTableViewCell.swift */,
+				523FCD061C9BE1F3007EA5E1 /* RoomViewTableViewCell.xib */,
+				52C2C65E1C9A7700001779F5 /* RoomsNearbyViewContainer.xib */,
+				523FCD011C9BD84A007EA5E1 /* RoomsNearbyViewContainer.swift */,
+			);
+			name = "room nearby views";
+			sourceTree = "<group>";
+		};
 		6A8CB076EDF11093151FF223 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,6 +280,7 @@
 			children = (
 				76B28C481C66CAAA008407EE /* InputNameViewController.swift */,
 				76C150081C6FDFCC0066C0FE /* CreateQuestionViewController.swift */,
+				52D0395B1C989D8000367271 /* RoomsNearbyViewController.swift */,
 				76C1500A1C6FE0220066C0FE /* PollAdminViewController.swift */,
 				76C1500C1C6FE0550066C0FE /* PollResultsViewController.swift */,
 				76C150061C6FDF8E0066C0FE /* PollUserViewController.swift */,
@@ -273,6 +295,7 @@
 		76B28C4D1C66CF66008407EE /* custom views */ = {
 			isa = PBXGroup;
 			children = (
+				52C2C65B1C9A7395001779F5 /* room nearby views */,
 				521E4FF21C8B9CFD004A8F52 /* poll user views */,
 				D342961C1C792F7900C33920 /* pollresultsviews */,
 				D3D4593E1C6FE64D000ABD57 /* create question */,
@@ -502,12 +525,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				76B28C511C66CFC8008407EE /* CampaignView.xib in Resources */,
+				523FCD081C9BE1F3007EA5E1 /* RoomViewTableViewCell.xib in Resources */,
 				76B28C251C66C84A008407EE /* LaunchScreen.storyboard in Resources */,
 				D3D4593D1C6FE646000ABD57 /* CreateQuestionContainerView.xib in Resources */,
 				6E3D7BEE1CA4A243001E685B /* PollResultsTableViewCell.xib in Resources */,
 				521E4FFA1C8B9D48004A8F52 /* PollUserViewContainer.xib in Resources */,
 				6E705D4F1C9925160096AD36 /* AnswerViewTableViewCell.xib in Resources */,
 				76C150111C6FE15F0066C0FE /* RoomViewContainer.xib in Resources */,
+				52C2C65F1C9A7700001779F5 /* RoomsNearbyViewContainer.xib in Resources */,
+				521E4FF81C8B9D48004A8F52 /* AnswerView.xib in Resources */,
 				D34296221C792F9C00C33920 /* PollResultsViewContainer.xib in Resources */,
 				76B28C221C66C84A008407EE /* Assets.xcassets in Resources */,
 				76B28C201C66C84A008407EE /* Main.storyboard in Resources */,
@@ -668,7 +694,9 @@
 				C80396141C8CD869007C276F /* QuestionModelProtocol.swift in Sources */,
 				76B28C4C1C66CC75008407EE /* Constants.swift in Sources */,
 				76B28C491C66CAAA008407EE /* InputNameViewController.swift in Sources */,
+				523FCD021C9BD84A007EA5E1 /* RoomsNearbyViewContainer.swift in Sources */,
 				C80396041C8CB743007C276F /* TimerModelProtocol.swift in Sources */,
+				52D0395C1C989D8000367271 /* RoomsNearbyViewController.swift in Sources */,
 				76B28C1D1C66C84A008407EE /* SecondViewController.swift in Sources */,
 				76C1500F1C6FE14C0066C0FE /* RoomViewContainer.swift in Sources */,
 				C803960D1C8CC8F7007C276F /* RoomModelProtocol.swift in Sources */,
@@ -690,6 +718,7 @@
 				76C150071C6FDF8E0066C0FE /* PollUserViewController.swift in Sources */,
 				76C150031C6FDE3E0066C0FE /* JoinRoomViewController.swift in Sources */,
 				C80396001C8CB5FE007C276F /* ModelInterface.swift in Sources */,
+				523FCD071C9BE1F3007EA5E1 /* RoomViewTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
