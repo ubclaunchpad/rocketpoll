@@ -13,10 +13,8 @@ class RoomsNearbyViewController: UIViewController {
     private var roomIDDictionary = [Room: RoomID]()
     var container: RoomsNearbyViewContainer?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setup()
     }
     
