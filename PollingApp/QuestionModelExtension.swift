@@ -57,4 +57,7 @@ extension ModelInterface: QuestionModelProtocol {
   func segueToCreateNewQuestion() -> SegueName {
     return Segues.toMainApp
   }
+  func segueToQuestionsScreen() -> SegueName {
+    return Segues.toQuestionsScreen
+  }
 }
