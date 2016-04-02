@@ -28,5 +28,6 @@ protocol QuestionModelProtocol {
   func segueToQuestionsNearMe() -> SegueName
   func segueToQuestion() -> SegueName
   func segueToCreateNewQuestion() -> SegueName
-  
+  func segueToQuestionsScreen() -> SegueName
+    
 }
