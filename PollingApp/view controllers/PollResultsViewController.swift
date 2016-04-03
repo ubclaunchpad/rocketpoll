@@ -12,6 +12,7 @@ import UIKit
 
 class PollResultsViewController: UIViewController {
   
+  private var answerIDDictionary = [Answer: AnswerID]()
   private var questionID:QuestionID = ""
   var container: PollResultsViewContainer?
   private var answers:[Answer] = []
@@ -32,6 +33,22 @@ class PollResultsViewController: UIViewController {
     view.addSubview(container!)
     
     container?.setQuestionLabelText(questionText)
+    answers = getAnswers(answerIDs)
+    container?.setAnswers(answers)
+    
+  }
+  
+  func getAnswers(answerIDs: [AnswerID]) -> [Answer] {
+    // Changes the list of answerIDs to list of answers
+    var answers = [String]()
+    var temp_answer:Answer
+    
+    for answerID in answerIDs {
+      temp_answer = ModelInterface.sharedInstance.getAnswer(answerID)
+      answers.append(temp_answer)
+      answerIDDictionary[temp_answer] = answerID
+    }
+    return answers
   }
 }
 
