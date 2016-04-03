@@ -26,5 +26,6 @@ enum UserDefaultKeys {
 enum Segues {
   static let toMainApp = "showMainApp"
   static let toSomeVC = "myIdentifier"
+  static let toQuestionsScreen = "toQuestionsScreen"
 }
  
