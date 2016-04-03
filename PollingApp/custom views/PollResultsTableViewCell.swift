@@ -9,18 +9,27 @@
 import UIKit
 
 class PollResultsTableViewCell: UITableViewCell{
-
+  
+  @IBOutlet weak var answerLabel: UILabel!
+  
+  @IBOutlet weak var resultsLabel: UILabel!
+  
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    // Initialization code
+  }
+  
+  override func setSelected(selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
     
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
+    // Configure the view for the selected state
+  }
+  
+  func setAnswerText(answer: String) {
+    answerLabel.text = answer
+  }
+  
+  func changeCorrectAnswerColor (){
+    self.backgroundColor = UIColor.greenColor()
+  }
 }
