@@ -28,4 +28,8 @@ class PollResultsTableViewCell: UITableViewCell{
   func setAnswerText(answer: String) {
     answerLabel.text = answer
   }
+  
+  func changeCorrectAnswerColor (){
+    self.backgroundColor = UIColor.greenColor()
+  }
 }

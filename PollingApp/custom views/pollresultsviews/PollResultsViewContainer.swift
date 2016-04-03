@@ -13,6 +13,7 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
   @IBOutlet weak var resultsTableView: UITableView!
   @IBOutlet weak var questionLabel: UILabel!
   private var answers:[Answer] = []
+  private var correctAnswer: Answer = ""
   
   class func instanceFromNib(frame: CGRect) -> PollResultsViewContainer {
     let view = UINib(nibName: "PollResultsViewContainer", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PollResultsViewContainer
@@ -27,6 +28,10 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     tableView.registerNib(pollResultsCell, forCellReuseIdentifier: "resultsCell")
     let cell = self.resultsTableView.dequeueReusableCellWithIdentifier("resultsCell", forIndexPath: indexPath) as! PollResultsTableViewCell
     cell.setAnswerText(answers[indexPath.row])
+    if(answers[indexPath.row] == correctAnswer){
+      cell.changeCorrectAnswerColor()
+    }
+    
     return cell
   }
   
@@ -45,6 +50,10 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
   func setAnswers (Answers: [Answer]){
     answers = Answers
     print(answers.count)
+  }
+  
+  func setCorrectAnswer (rightAnswer:Answer){
+    correctAnswer = rightAnswer
   }
   
 }
