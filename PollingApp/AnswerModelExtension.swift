@@ -40,7 +40,7 @@ extension ModelInterface: AnswerModelProtocol {
     return ["A1","A2","A3","A4"]
   }
   
-  func getSumOfUsersThatSubmittedAnswers(questionId: QuestionID) -> Int {
+  func getSumOfUsersThatSubmittedAnswers(questionID: QuestionID) -> Int {
     return 40
   }
   
