@@ -28,6 +28,7 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     tableView.registerNib(pollResultsCell, forCellReuseIdentifier: "resultsCell")
     let cell = self.resultsTableView.dequeueReusableCellWithIdentifier("resultsCell", forIndexPath: indexPath) as! PollResultsTableViewCell
     cell.setAnswerText(answers[indexPath.row])
+    
     if(answers[indexPath.row] == correctAnswer){
       cell.changeCorrectAnswerColor()
     }

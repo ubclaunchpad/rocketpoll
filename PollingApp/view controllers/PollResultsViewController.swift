@@ -18,6 +18,7 @@ class PollResultsViewController: UIViewController {
   private var answers:[Answer] = []
   private var answerIDs:[AnswerID] = []
   private var correctAnswer: Answer = ""
+  private var correctAnswerId:AnswerID = ""
   
   override func viewDidLoad() {
     
@@ -30,14 +31,17 @@ class PollResultsViewController: UIViewController {
     questionID = ModelInterface.sharedInstance.getQuestionID()
     let questionText: Question = ModelInterface.sharedInstance.getQuestion(questionID)
     answerIDs = ModelInterface.sharedInstance.getListOfAnswerIDs(questionID)
-    correctAnswer = ModelInterface.sharedInstance.getCorrectAnswer(questionID)
+    correctAnswerId = ModelInterface.sharedInstance.getCorrectAnswer(questionID)
+    correctAnswer = ModelInterface.sharedInstance.getAnswer(correctAnswerId)
+    answers = getAnswers(answerIDs)
+    
     
     container = PollResultsViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
     view.addSubview(container!)
     
     container?.setQuestionLabelText(questionText)
-    answers = getAnswers(answerIDs)
     container?.setAnswers(answers)
+    container?.setCorrectAnswer(correctAnswer)
     
   }
   
