@@ -23,6 +23,7 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     view.frame = frame
     view.resultsTableView.delegate = view
     view.resultsTableView.dataSource = view
+    view.resultsTableView.allowsSelection = false
     return view
   }
   
@@ -37,7 +38,7 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     }
     
     if(totalNumberOfAnswers != 0){
-      let results:Double = Double(numberOfResponsesPerAnswer[indexPath.row])/Double(totalNumberOfAnswers)
+      let results:Double = Double(numberOfResponsesPerAnswer[indexPath.row])/Double(totalNumberOfAnswers)*100
       cell.setResults(results)
     }
     

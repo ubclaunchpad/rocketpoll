@@ -34,7 +34,7 @@ class PollResultsTableViewCell: UITableViewCell{
   }
   
   func setResults (result:Double){
-    let percent:Int = Int(result*100)
+    let percent = Double(round(10*result)/10)
     resultsLabel.text = ("\(percent)%")
   }
 }
