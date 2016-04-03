@@ -10,7 +10,9 @@ import UIKit
 
 class PollResultsTableViewCell: UITableViewCell{
 
+  @IBOutlet weak var answerLabel: UILabel!
     
+  @IBOutlet weak var resultsLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
