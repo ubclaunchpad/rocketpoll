@@ -17,8 +17,14 @@
                 </tableView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7J-Ch-5YH">
                     <rect key="frame" x="220" y="58" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EXa-dg-5Z1">
+                    <rect key="frame" x="220" y="112" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -27,6 +33,7 @@
                 <constraint firstItem="o7J-Ch-5YH" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="48M-Op-bnN"/>
                 <constraint firstItem="o7J-Ch-5YH" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="CBD-uR-j0T"/>
                 <constraint firstAttribute="bottom" secondItem="ZFL-iT-IRe" secondAttribute="bottom" id="Ign-p8-07x"/>
+                <constraint firstItem="EXa-dg-5Z1" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="iLQ-g4-DUw"/>
                 <constraint firstItem="ZFL-iT-IRe" firstAttribute="top" secondItem="o7J-Ch-5YH" secondAttribute="bottom" constant="98" id="lrj-pP-Glp"/>
                 <constraint firstItem="ZFL-iT-IRe" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="m0I-RQ-fzP"/>
                 <constraint firstItem="ZFL-iT-IRe" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="o1C-CT-TUH"/>
@@ -35,6 +42,7 @@
             <connections>
                 <outlet property="questionLabel" destination="o7J-Ch-5YH" id="Chb-Fz-RdT"/>
                 <outlet property="resultsTableView" destination="ZFL-iT-IRe" id="l06-xn-iKf"/>
+                <outlet property="totalAnswersLabel" destination="EXa-dg-5Z1" id="N0L-cZ-oJd"/>
             </connections>
         </view>
     </objects>

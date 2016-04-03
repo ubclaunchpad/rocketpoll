@@ -32,4 +32,9 @@ class PollResultsTableViewCell: UITableViewCell{
   func changeCorrectAnswerColor (){
     self.backgroundColor = UIColor.greenColor()
   }
+  
+  func setResults (result:Double){
+    let percent:Int = Int(result*100)
+    resultsLabel.text = ("\(percent)%")
+  }
 }

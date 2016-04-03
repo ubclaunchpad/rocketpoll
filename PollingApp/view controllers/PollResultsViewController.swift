@@ -15,10 +15,12 @@ class PollResultsViewController: UIViewController {
   private var answerIDDictionary = [Answer: AnswerID]()
   private var questionID:QuestionID = ""
   var container: PollResultsViewContainer?
-  private var answers:[Answer] = []
-  private var answerIDs:[AnswerID] = []
+  private var answers: [Answer] = []
+  private var answerIDs: [AnswerID] = []
   private var correctAnswer: Answer = ""
-  private var correctAnswerId:AnswerID = ""
+  private var correctAnswerId: AnswerID = ""
+  private var NumResponsesPerAnswer: [Int] = []
+  var totalNumberOfUserAnswers: Int = 0
   
   override func viewDidLoad() {
     
@@ -34,14 +36,18 @@ class PollResultsViewController: UIViewController {
     correctAnswerId = ModelInterface.sharedInstance.getCorrectAnswer(questionID)
     correctAnswer = ModelInterface.sharedInstance.getAnswer(correctAnswerId)
     answers = getAnswers(answerIDs)
-    
+    totalNumberOfUserAnswers = ModelInterface.sharedInstance.getSumOfUsersThatSubmittedAnswers(questionID)
+   // NumResponsesPerAnswer = ModelInterface.sharedInstance.
+    NumResponsesPerAnswer = [1,2,3,4] //TODO: delete this line
     
     container = PollResultsViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
     view.addSubview(container!)
     
+    container?.setTotalNumberOfAnswers(totalNumberOfUserAnswers)
     container?.setQuestionLabelText(questionText)
     container?.setAnswers(answers)
     container?.setCorrectAnswer(correctAnswer)
+    container?.setNumberOfResponsesForAnswer(NumResponsesPerAnswer)
     
   }
   

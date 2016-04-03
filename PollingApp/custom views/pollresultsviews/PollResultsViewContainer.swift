@@ -12,8 +12,11 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
   
   @IBOutlet weak var resultsTableView: UITableView!
   @IBOutlet weak var questionLabel: UILabel!
-  private var answers:[Answer] = []
+  @IBOutlet weak var totalAnswersLabel: UILabel!
+  private var answers: [Answer] = []
   private var correctAnswer: Answer = ""
+  private var totalNumberOfAnswers: Int = 0;
+  private var numberOfResponsesPerAnswer: [Int] = [];
   
   class func instanceFromNib(frame: CGRect) -> PollResultsViewContainer {
     let view = UINib(nibName: "PollResultsViewContainer", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PollResultsViewContainer
@@ -31,6 +34,11 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     
     if(answers[indexPath.row] == correctAnswer){
       cell.changeCorrectAnswerColor()
+    }
+    
+    if(totalNumberOfAnswers != 0){
+      let results:Double = Double(numberOfResponsesPerAnswer[indexPath.row])/Double(totalNumberOfAnswers)
+      cell.setResults(results)
     }
     
     return cell
@@ -57,4 +65,12 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     correctAnswer = rightAnswer
   }
   
+  func setTotalNumberOfAnswers (totalNumOfAnswers:Int){
+    totalNumberOfAnswers = totalNumOfAnswers
+    totalAnswersLabel.text = ("Number of users that answered: \(totalNumberOfAnswers)")
+  }
+  
+  func setNumberOfResponsesForAnswer (NumResponses:[Int]){
+    numberOfResponsesPerAnswer = NumResponses
+  }
 }
