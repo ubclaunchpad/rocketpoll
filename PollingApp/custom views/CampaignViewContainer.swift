@@ -26,6 +26,7 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     @IBAction func newQuestionPressed(sender: AnyObject) {
         delegate?.newQuestionSelected()
     }
+    
     class func instancefromNib(frame: CGRect) -> CampaignViewContainer {
         let view = UINib(nibName: "CampaignViewContainer", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! CampaignViewContainer
         view.frame = frame
@@ -64,6 +65,7 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
         return 90
     }
 }
+
 extension CampaignViewContainer: CampaignViewTableViewCellDelegate {
     func questionSelected(question: Question) {
         print(question)

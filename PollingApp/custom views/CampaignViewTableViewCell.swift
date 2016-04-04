@@ -32,6 +32,7 @@ class CampaignViewTableViewCell: UITableViewCell {
     func setQuestionText(questionName: Question) {
         button.setTitle(questionName, forState: UIControlState.Normal)
     }
+    
     func setAnsweredBackground(isAnswered: Bool) {
         if isAnswered {
             self.backgroundColor = UIColor.lightGrayColor()
