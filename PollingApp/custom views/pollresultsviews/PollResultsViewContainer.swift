@@ -40,6 +40,8 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     if(totalNumberOfAnswers != 0){
       let results:Double = Double(numberOfResponsesPerAnswer[indexPath.row])/Double(totalNumberOfAnswers)*100
       cell.setResults(results)
+    }else{
+      cell.setResults(0)
     }
     
     return cell
