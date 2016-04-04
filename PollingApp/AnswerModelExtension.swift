@@ -44,7 +44,7 @@ extension ModelInterface: AnswerModelProtocol {
     return 40
   }
   
-  func getNumberOfUsersThatGaveThisAnswer(questionID: QuestionID) -> Int {
+  func getNumberOfUsersThatGaveThisAnswer(answerID: AnswerID) -> Int {
     return 10
   }
 }
