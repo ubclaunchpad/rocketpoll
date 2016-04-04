@@ -14,10 +14,10 @@
 		523FCD021C9BD84A007EA5E1 /* RoomsNearbyViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523FCD011C9BD84A007EA5E1 /* RoomsNearbyViewContainer.swift */; };
 		523FCD071C9BE1F3007EA5E1 /* RoomViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523FCD051C9BE1F3007EA5E1 /* RoomViewTableViewCell.swift */; };
 		523FCD081C9BE1F3007EA5E1 /* RoomViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 523FCD061C9BE1F3007EA5E1 /* RoomViewTableViewCell.xib */; };
-		525F8E691CB08D3E00B72F91 /* CampaignViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 525F8E681CB08D3E00B72F91 /* CampaignViewTableViewCell.xib */; };
 		52A1795C1CB079E500BADA2A /* CampaignViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52A1795B1CB079E500BADA2A /* CampaignViewContainer.xib */; };
 		52C2C65F1C9A7700001779F5 /* RoomsNearbyViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52C2C65E1C9A7700001779F5 /* RoomsNearbyViewContainer.xib */; };
 		52D0395C1C989D8000367271 /* RoomsNearbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D0395B1C989D8000367271 /* RoomsNearbyViewController.swift */; };
+		52EB17B71CB21CC300C40DBC /* CampaignViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52EB17B61CB21CC300C40DBC /* CampaignViewTableViewCell.xib */; };
 		6E3D7BED1CA4A243001E685B /* PollResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3D7BEB1CA4A243001E685B /* PollResultsTableViewCell.swift */; };
 		6E3D7BEE1CA4A243001E685B /* PollResultsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E3D7BEC1CA4A243001E685B /* PollResultsTableViewCell.xib */; };
 		6E705D4E1C9925160096AD36 /* AnswerViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E705D4C1C9925160096AD36 /* AnswerViewTableViewCell.swift */; };
@@ -88,10 +88,10 @@
 		523FCD011C9BD84A007EA5E1 /* RoomsNearbyViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsNearbyViewContainer.swift; sourceTree = "<group>"; };
 		523FCD051C9BE1F3007EA5E1 /* RoomViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomViewTableViewCell.swift; sourceTree = "<group>"; };
 		523FCD061C9BE1F3007EA5E1 /* RoomViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomViewTableViewCell.xib; sourceTree = "<group>"; };
-		525F8E681CB08D3E00B72F91 /* CampaignViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CampaignViewTableViewCell.xib; sourceTree = "<group>"; };
 		52A1795B1CB079E500BADA2A /* CampaignViewContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CampaignViewContainer.xib; sourceTree = "<group>"; };
 		52C2C65E1C9A7700001779F5 /* RoomsNearbyViewContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomsNearbyViewContainer.xib; sourceTree = "<group>"; };
 		52D0395B1C989D8000367271 /* RoomsNearbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsNearbyViewController.swift; sourceTree = "<group>"; };
+		52EB17B61CB21CC300C40DBC /* CampaignViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CampaignViewTableViewCell.xib; sourceTree = "<group>"; };
 		63E509F08582745B345E562A /* Pods-PollingAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PollingAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PollingAppTests/Pods-PollingAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		6AED17E3E5F4D11255D0EA2B /* Pods-PollingAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PollingAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PollingAppTests/Pods-PollingAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6E3D7BEB1CA4A243001E685B /* PollResultsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollResultsTableViewCell.swift; sourceTree = "<group>"; };
@@ -308,9 +308,9 @@
 		76C150121C6FE1670066C0FE /* campaign views */ = {
 			isa = PBXGroup;
 			children = (
+				52EB17B61CB21CC300C40DBC /* CampaignViewTableViewCell.xib */,
 				76B28C4E1C66CF8B008407EE /* CampaignViewTableViewCell.swift */,
 				76B28C521C66D0B0008407EE /* CampaignViewContainer.swift */,
-				525F8E681CB08D3E00B72F91 /* CampaignViewTableViewCell.xib */,
 				52A1795B1CB079E500BADA2A /* CampaignViewContainer.xib */,
 			);
 			name = "campaign views";
@@ -529,7 +529,7 @@
 				76B28C251C66C84A008407EE /* LaunchScreen.storyboard in Resources */,
 				D3D4593D1C6FE646000ABD57 /* CreateQuestionContainerView.xib in Resources */,
 				6E3D7BEE1CA4A243001E685B /* PollResultsTableViewCell.xib in Resources */,
-				525F8E691CB08D3E00B72F91 /* CampaignViewTableViewCell.xib in Resources */,
+				52EB17B71CB21CC300C40DBC /* CampaignViewTableViewCell.xib in Resources */,
 				521E4FFA1C8B9D48004A8F52 /* PollUserViewContainer.xib in Resources */,
 				6E705D4F1C9925160096AD36 /* AnswerViewTableViewCell.xib in Resources */,
 				76C150111C6FE15F0066C0FE /* RoomViewContainer.xib in Resources */,

@@ -10,18 +10,21 @@ import UIKit
 
 protocol CampaignViewContainerDelegate {
     func questionSelected(question: Question)
+    func newQuestionSelected()
 }
 
 class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
   
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var roomName: UILabel!
     
     private var questions:[Question] = []
+    private var questionsAnswered:[Bool] = []
     
     var delegate: CampaignViewContainerDelegate?
     
     @IBAction func newQuestionPressed(sender: AnyObject) {
-        print("hi")
+        delegate?.newQuestionSelected()
     }
     class func instancefromNib(frame: CGRect) -> CampaignViewContainer {
         let view = UINib(nibName: "CampaignViewContainer", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! CampaignViewContainer
@@ -31,8 +34,16 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
         return view
     }
     
+    func setRoomNameTitle(name: String) {
+        roomName.text = name;
+    }
+    
     func setQuestions(questionNames: [Question]) {
         questions = questionNames
+    }
+    
+    func setQuestionAnswered(questions: [Bool]) {
+        questionsAnswered = questions
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,6 +56,7 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
         let cell = self.tableView.dequeueReusableCellWithIdentifier("campaignCell", forIndexPath: indexPath) as! CampaignViewTableViewCell
         cell.delegate = self
         cell.setQuestionText(questions[indexPath.row])
+        cell.setAnsweredBackground(questionsAnswered[indexPath.row])
         return cell
     }
     

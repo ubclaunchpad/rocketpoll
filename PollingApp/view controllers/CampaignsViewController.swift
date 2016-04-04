@@ -10,8 +10,8 @@ import UIKit
 
 class CampaignsViewController: UIViewController {
     
-    var container: CampaignViewContainer?
     private var questionIDDictionary = [Question: QuestionID]()
+    var container: CampaignViewContainer?    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +27,14 @@ class CampaignsViewController: UIViewController {
         container = CampaignViewContainer.instancefromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
         view.addSubview(container!)
         
-        let questions = ModelInterface.sharedInstance.getListOfQuestions()
+        let questions = getQuestions(ModelInterface.sharedInstance.getListOfQuestions())
+        let questionAnswered = isQuestionAnswered(ModelInterface.sharedInstance.getListOfQuestions())
+        let roomID = ModelInterface.sharedInstance.getCurrentRoomID()
+        let roomName = ModelInterface.sharedInstance.getRoomName(roomID)
+        container?.delegate = self
         container?.setQuestions(questions)
-//        container?.delegate = self
-        
+        container?.setQuestionAnswered(questionAnswered)
+        container?.setRoomNameTitle(roomName)
     }
     
     func getQuestions(questionIDs: [Question]) -> [Question] {
@@ -44,6 +48,15 @@ class CampaignsViewController: UIViewController {
         return temp_questions
     }
     
+    func isQuestionAnswered(questionIDs: [Question]) -> [Bool] {
+        var temp_question_Answered = [Bool]()
+        for questionID in questionIDs {
+            let isQuestionAnswered = ModelInterface.sharedInstance.isQuestionAnswered(questionID)
+            temp_question_Answered.append(isQuestionAnswered)
+        }
+        return temp_question_Answered
+    }
+    
 }
 
 
@@ -52,9 +65,16 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
         if let questionID = questionIDDictionary[question] {
             print(questionID)
             let questionSegue = ModelInterface.sharedInstance.segueToQuestion()
-            performSegueWithIdentifier(questionSegue, sender: self)
+            print("Perform selected question segue")
+//            TODO: Set actual segue
+//            performSegueWithIdentifier(questionSegue, sender: self)
             
         }
+    }
+    func newQuestionSelected() {
+        let newQuestionSegue = ModelInterface.sharedInstance.segueToCreateNewQuestion()
+        print("Perform create question segue")
+//        performSegueWithIdentifier(newQuestionSelected(), sender: self)
     }
 }
 

@@ -13,15 +13,16 @@ protocol CampaignViewTableViewCellDelegate {
 }
 
 class CampaignViewTableViewCell: UITableViewCell {
-
+    
+    var delegate: CampaignViewTableViewCellDelegate?
 
     @IBOutlet weak var button: UIButton!
 
     @IBAction func buttonPressed(sender: AnyObject) {
-        print("hi")
+        if let senderTitle = sender.currentTitle {
+            delegate?.questionSelected(senderTitle!)
+        }
     }
-
-    var delegate: CampaignViewTableViewCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,6 +31,11 @@ class CampaignViewTableViewCell: UITableViewCell {
  
     func setQuestionText(questionName: Question) {
         button.setTitle(questionName, forState: UIControlState.Normal)
+    }
+    func setAnsweredBackground(isAnswered: Bool) {
+        if isAnswered {
+            self.backgroundColor = UIColor.lightGrayColor()
+        }
     }
 
 }
