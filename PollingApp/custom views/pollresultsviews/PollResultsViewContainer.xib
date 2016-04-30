@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -11,23 +11,38 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZFL-iT-IRe">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZFL-iT-IRe">
                     <rect key="frame" x="0.0" y="177" width="600" height="423"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="423" id="xom-Gi-s1p"/>
-                    </constraints>
                 </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7J-Ch-5YH">
+                    <rect key="frame" x="220" y="58" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EXa-dg-5Z1">
+                    <rect key="frame" x="220" y="112" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="o7J-Ch-5YH" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="48M-Op-bnN"/>
+                <constraint firstItem="o7J-Ch-5YH" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="CBD-uR-j0T"/>
                 <constraint firstAttribute="bottom" secondItem="ZFL-iT-IRe" secondAttribute="bottom" id="Ign-p8-07x"/>
+                <constraint firstItem="EXa-dg-5Z1" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="iLQ-g4-DUw"/>
+                <constraint firstItem="ZFL-iT-IRe" firstAttribute="top" secondItem="o7J-Ch-5YH" secondAttribute="bottom" constant="98" id="lrj-pP-Glp"/>
                 <constraint firstItem="ZFL-iT-IRe" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="m0I-RQ-fzP"/>
                 <constraint firstItem="ZFL-iT-IRe" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="o1C-CT-TUH"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <connections>
+                <outlet property="questionLabel" destination="o7J-Ch-5YH" id="Chb-Fz-RdT"/>
                 <outlet property="resultsTableView" destination="ZFL-iT-IRe" id="l06-xn-iKf"/>
+                <outlet property="totalAnswersLabel" destination="EXa-dg-5Z1" id="N0L-cZ-oJd"/>
             </connections>
         </view>
     </objects>
