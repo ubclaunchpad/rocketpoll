@@ -9,64 +9,72 @@
 import UIKit
 
 class CampaignsViewController: UIViewController {
-  
-  @IBOutlet weak var tableView: UITableView!
-  let campaignViewContainer: CampaignViewContainer
-  
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-    campaignViewContainer = CampaignViewContainer()
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-  }
-  
-  required init?(coder aDecoder: NSCoder) {
-    campaignViewContainer = CampaignViewContainer()
-    super.init(coder: aDecoder)
-  }
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-//    tableView.delegate = self
-//    tableView.dataSource = self
-    populateCampaigns()
-  }
-  
-  override func viewWillLayoutSubviews() {
-    var buffer: CGFloat = 0
-
-    if let tabBarController = self.tabBarController {
-      buffer = tabBarController.tabBar.bounds.height
+    
+    private var questionIDDictionary = [Question: QuestionID]()
+    var container: CampaignViewContainer?    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setup()
     }
-    campaignViewContainer.updateSubviewsForNewOrientation(view.bounds.width, height: view.bounds.height, buffer: buffer)
-  }
-  
-  func populateCampaigns() {
-    // TODO: Create model to handle data. Have the model return questions even if they are hardcoded (like below) for now
-    var questions: [Question] = []
-    for i in 0..<20 {
-      questions += ["Question \(i+1)"]
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
-    campaignViewContainer.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
-    campaignViewContainer.populateCampaignViews(questions)
-    view.addSubview(campaignViewContainer)
-  }
-  
+    
+    func setup() {
+        container = CampaignViewContainer.instancefromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
+        view.addSubview(container!)
+        
+        let questions = getQuestions(ModelInterface.sharedInstance.getListOfQuestions())
+        let questionAnswered = isQuestionAnswered(ModelInterface.sharedInstance.getListOfQuestions())
+        let roomID = ModelInterface.sharedInstance.getCurrentRoomID()
+        let roomName = ModelInterface.sharedInstance.getRoomName(roomID)
+        container?.delegate = self
+        container?.setQuestions(questions)
+        container?.setQuestionAnswered(questionAnswered)
+        container?.setRoomNameTitle(roomName)
+    }
+    
+    func getQuestions(questionIDs: [Question]) -> [Question] {
+        var temp_questions = [Question]()
+        var temp_question:Question
+        for questionID in questionIDs {
+            temp_question = ModelInterface.sharedInstance.getQuestion(questionID)
+            temp_questions.append(temp_question)
+            questionIDDictionary[temp_question] = questionID
+        }
+        return temp_questions
+    }
+    
+    func isQuestionAnswered(questionIDs: [Question]) -> [Bool] {
+        var temp_question_Answered = [Bool]()
+        for questionID in questionIDs {
+            let isQuestionAnswered = ModelInterface.sharedInstance.isQuestionAnswered(questionID)
+            temp_question_Answered.append(isQuestionAnswered)
+        }
+        return temp_question_Answered
+    }
+    
 }
 
 
-extension CampaignsViewController: UITableViewDataSource {
-  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-    cell.textLabel?.text = "Question"
-    return cell
-  }
-  
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-    return 5
-  }
-}
-
-extension CampaignsViewController: UITableViewDelegate {
-  
+extension CampaignsViewController: CampaignViewContainerDelegate {
+    func questionSelected(question: Question) {
+        if let questionID = questionIDDictionary[question] {
+            print(questionID)
+            let questionSegue = ModelInterface.sharedInstance.segueToQuestion()
+            print("Perform selected question segue")
+//            TODO: Set actual segue
+//            performSegueWithIdentifier(questionSegue, sender: self)
+            
+        }
+    }
+    func newQuestionSelected() {
+        let newQuestionSegue = ModelInterface.sharedInstance.segueToCreateNewQuestion()
+        print("Perform create question segue")
+//        performSegueWithIdentifier(newQuestionSegue, sender: self)
+    }
 }
 
