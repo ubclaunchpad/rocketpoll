@@ -73,5 +73,12 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
         let newQuestionSegue = ModelInterface.sharedInstance.segueToCreateNewQuestion()
         performSegueWithIdentifier(newQuestionSegue, sender: self)
     }
+  
+  func resultsButtonSelected() {
+    let nextRoom = ModelInterface.sharedInstance.segueToResultsScreen()
+    performSegueWithIdentifier(nextRoom, sender: self)
+  print("perform segue")
+  }
+  
 }
 

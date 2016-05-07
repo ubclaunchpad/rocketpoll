@@ -48,4 +48,5 @@ extension ModelInterface: AnswerModelProtocol {
 
     return 10
   }
+
 }

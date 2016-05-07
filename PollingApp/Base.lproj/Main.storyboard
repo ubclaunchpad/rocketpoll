@@ -23,6 +23,7 @@
                     <connections>
                         <segue destination="cR5-N0-mBp" kind="show" identifier="toPollUserViewController" id="4RF-x9-CbW"/>
                         <segue destination="AX5-EL-cxe" kind="show" identifier="toCreateQuestionView" id="cFD-QF-wgD"/>
+                        <segue destination="EKJ-zm-ZFh" kind="show" identifier="toPollResultsView" id="Abn-F0-8SY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -265,6 +266,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vhX-Xt-MiD"/>
-        <segue reference="Dqi-TN-jQf"/>
+        <segue reference="r35-Ea-4Oc"/>
     </inferredMetricsTieBreakers>
 </document>
