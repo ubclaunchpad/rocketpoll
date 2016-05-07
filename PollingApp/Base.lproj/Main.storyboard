@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2o0-Nz-L7T">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="awl-lu-Pvw">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -20,6 +20,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Campaigns" image="first" id="acW-dT-cKf"/>
+                    <connections>
+                        <segue destination="cR5-N0-mBp" kind="show" identifier="toPollUserViewController" id="4RF-x9-CbW"/>
+                        <segue destination="AX5-EL-cxe" kind="show" identifier="toCreateQuestionView" id="cFD-QF-wgD"/>
+                        <segue destination="EKJ-zm-ZFh" kind="show" identifier="toPollResultsView" id="Abn-F0-8SY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
@@ -131,6 +136,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="2o0-Nz-L7T" kind="show" identifier="toPollAdminScreen" id="TNB-cT-E5l"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rfj-tf-LcV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -257,7 +265,7 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xF5-2l-TcJ"/>
-        <segue reference="Dqi-TN-jQf"/>
+        <segue reference="vhX-Xt-MiD"/>
+        <segue reference="r35-Ea-4Oc"/>
     </inferredMetricsTieBreakers>
 </document>

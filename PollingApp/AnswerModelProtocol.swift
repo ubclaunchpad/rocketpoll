@@ -15,6 +15,7 @@ protocol AnswerModelProtocol {
   func setCorrectAnswer(answerId: AnswerID, isCorrectAnswer: Bool) -> Bool
   func setUserAnswer(questionId: QuestionID, answerID: AnswerID) -> Bool
   
+  
   //MARK: - Get Answer Information -
   func isCorrectAnswer(answerId: AnswerID) -> Bool
   func getCorrectAnswer(questionID: QuestionID) -> AnswerID

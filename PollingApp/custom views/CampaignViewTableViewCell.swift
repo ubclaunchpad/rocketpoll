@@ -10,6 +10,7 @@ import UIKit
 
 protocol CampaignViewTableViewCellDelegate {
     func questionSelected(question: Question)
+    func resultsButtonSelected()
 }
 
 class CampaignViewTableViewCell: UITableViewCell {
@@ -17,6 +18,7 @@ class CampaignViewTableViewCell: UITableViewCell {
     var delegate: CampaignViewTableViewCellDelegate?
 
     @IBOutlet weak var button: UIButton!
+  @IBOutlet weak var resultsButton: UIButton!
 
     @IBAction func buttonPressed(sender: AnyObject) {
         if let senderTitle = sender.currentTitle {
@@ -28,6 +30,9 @@ class CampaignViewTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+  @IBAction func resultsButtonPressed(sender: AnyObject) {
+      delegate?.resultsButtonSelected()
+  }
  
     func setQuestionText(questionName: Question) {
         button.setTitle(questionName, forState: UIControlState.Normal)

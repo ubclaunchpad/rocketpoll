@@ -51,13 +51,19 @@ extension ModelInterface: QuestionModelProtocol {
   }
   
   func segueToQuestion() -> SegueName {
-    return Segues.toMainApp
+    return Segues.toPollUserViewController
   }
   
   func segueToCreateNewQuestion() -> SegueName {
-    return Segues.toMainApp
+    return Segues.toCreateQuestionView
   }
   func segueToQuestionsScreen() -> SegueName {
     return Segues.toQuestionsScreen
+  }
+  func segueToAdminScreen() -> SegueName {
+    return Segues.toPollAdminScreen
+  }
+  func segueToResultsScreen() -> SegueName{
+    return Segues.toPollResultsView
   }
 }

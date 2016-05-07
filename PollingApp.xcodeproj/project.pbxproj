@@ -18,6 +18,7 @@
 		52C2C65F1C9A7700001779F5 /* RoomsNearbyViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52C2C65E1C9A7700001779F5 /* RoomsNearbyViewContainer.xib */; };
 		52D0395C1C989D8000367271 /* RoomsNearbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D0395B1C989D8000367271 /* RoomsNearbyViewController.swift */; };
 		52EB17B71CB21CC300C40DBC /* CampaignViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52EB17B61CB21CC300C40DBC /* CampaignViewTableViewCell.xib */; };
+		6E04B3DE1CDEB4FA003408AB /* PollResultsViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E04B3DD1CDEB4FA003408AB /* PollResultsViewContainer.xib */; };
 		6E3D7BED1CA4A243001E685B /* PollResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3D7BEB1CA4A243001E685B /* PollResultsTableViewCell.swift */; };
 		6E3D7BEE1CA4A243001E685B /* PollResultsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E3D7BEC1CA4A243001E685B /* PollResultsTableViewCell.xib */; };
 		6E705D4E1C9925160096AD36 /* AnswerViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E705D4C1C9925160096AD36 /* AnswerViewTableViewCell.swift */; };
@@ -97,6 +98,7 @@
 		52EB17B61CB21CC300C40DBC /* CampaignViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CampaignViewTableViewCell.xib; sourceTree = "<group>"; };
 		63E509F08582745B345E562A /* Pods-PollingAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PollingAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PollingAppTests/Pods-PollingAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		6AED17E3E5F4D11255D0EA2B /* Pods-PollingAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PollingAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PollingAppTests/Pods-PollingAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6E04B3DD1CDEB4FA003408AB /* PollResultsViewContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PollResultsViewContainer.xib; path = pollresultsviews/PollResultsViewContainer.xib; sourceTree = "<group>"; };
 		6E3D7BEB1CA4A243001E685B /* PollResultsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollResultsTableViewCell.swift; sourceTree = "<group>"; };
 		6E3D7BEC1CA4A243001E685B /* PollResultsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PollResultsTableViewCell.xib; sourceTree = "<group>"; };
 		6E705D4C1C9925160096AD36 /* AnswerViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerViewTableViewCell.swift; sourceTree = "<group>"; };
@@ -405,9 +407,9 @@
 			isa = PBXGroup;
 			children = (
 				D342961E1C792F9C00C33920 /* PollResultsViewContainer.swift */,
+				6E04B3DD1CDEB4FA003408AB /* PollResultsViewContainer.xib */,
 				6E3D7BEB1CA4A243001E685B /* PollResultsTableViewCell.swift */,
 				6E3D7BEC1CA4A243001E685B /* PollResultsTableViewCell.xib */,
-				D342961F1C792F9C00C33920 /* PollResultsViewContainer.xib */,
 			);
 			name = pollresultsviews;
 			sourceTree = "<group>";
@@ -552,14 +554,13 @@
 				6E705D4F1C9925160096AD36 /* AnswerViewTableViewCell.xib in Resources */,
 				76C150111C6FE15F0066C0FE /* RoomViewContainer.xib in Resources */,
 				52C2C65F1C9A7700001779F5 /* RoomsNearbyViewContainer.xib in Resources */,
-				D34296221C792F9C00C33920 /* PollResultsViewContainer.xib in Resources */,
-				76B28C511C66CFC8008407EE /* CampaignView.xib in Resources */,
 				D0659D301CB0767300D98EED /* AnswerAdminTableViewCell.xib in Resources */,
 				76B28C251C66C84A008407EE /* LaunchScreen.storyboard in Resources */,
 				D3D4593D1C6FE646000ABD57 /* CreateQuestionContainerView.xib in Resources */,
 				D0659D221CB068F600D98EED /* PollAdminViewContainer.xib in Resources */,
 				521E4FFA1C8B9D48004A8F52 /* PollUserViewContainer.xib in Resources */,
 				6E705D4F1C9925160096AD36 /* AnswerViewTableViewCell.xib in Resources */,
+				6E04B3DE1CDEB4FA003408AB /* PollResultsViewContainer.xib in Resources */,
 				76C150111C6FE15F0066C0FE /* RoomViewContainer.xib in Resources */,
 				76B28C221C66C84A008407EE /* Assets.xcassets in Resources */,
 				76B28C201C66C84A008407EE /* Main.storyboard in Resources */,
