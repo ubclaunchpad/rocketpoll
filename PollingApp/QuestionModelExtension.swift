@@ -51,7 +51,7 @@ extension ModelInterface: QuestionModelProtocol {
   }
   
   func segueToQuestion() -> SegueName {
-    return Segues.toMainApp
+    return Segues.toPollUserViewController
   }
   
   func segueToCreateNewQuestion() -> SegueName {
