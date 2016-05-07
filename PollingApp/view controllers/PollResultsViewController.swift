@@ -39,7 +39,7 @@ class PollResultsViewController: UIViewController {
     totalNumberOfUserAnswers = ModelInterface.sharedInstance.getSumOfUsersThatSubmittedAnswers(questionID)
     
     for i in 0...answerIDs.count-1{
-      NumResponsesPerAnswer.append(ModelInterface.sharedInstance.getNumberOfUsersThatGaveThisAnswer(answerIDs[i]))
+      NumResponsesPerAnswer.append(ModelInterface.sharedInstance.getNumberOfUsersThatGaveThisAnswer(questionID,answerID: answerIDs[i]))
     }
     
     container = PollResultsViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))

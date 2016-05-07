@@ -53,8 +53,11 @@
 		C80396161C8CE15E007C276F /* QuestionModelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80396151C8CE15E007C276F /* QuestionModelExtension.swift */; };
 		C80396191C8CE2FE007C276F /* AnswerModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80396181C8CE2FE007C276F /* AnswerModelProtocol.swift */; };
 		C803961B1C8CE6D0007C276F /* AnswerModelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C803961A1C8CE6D0007C276F /* AnswerModelExtension.swift */; };
+		D0659D221CB068F600D98EED /* PollAdminViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0659D211CB068F600D98EED /* PollAdminViewContainer.xib */; };
+		D0659D241CB06AAD00D98EED /* PollAdminViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0659D231CB06AAD00D98EED /* PollAdminViewContainer.swift */; };
+		D0659D2F1CB0767300D98EED /* AnswerAdminTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0659D2D1CB0767300D98EED /* AnswerAdminTableViewCell.swift */; };
+		D0659D301CB0767300D98EED /* AnswerAdminTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0659D2E1CB0767300D98EED /* AnswerAdminTableViewCell.xib */; };
 		D34296211C792F9C00C33920 /* PollResultsViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D342961E1C792F9C00C33920 /* PollResultsViewContainer.swift */; };
-		D34296221C792F9C00C33920 /* PollResultsViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = D342961F1C792F9C00C33920 /* PollResultsViewContainer.xib */; };
 		D34296261C79308900C33920 /* FirebaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34296251C79308900C33920 /* FirebaseData.swift */; };
 		D3D4593B1C6FE626000ABD57 /* CreateQuestionContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D4593A1C6FE626000ABD57 /* CreateQuestionContainerView.swift */; };
 		D3D4593D1C6FE646000ABD57 /* CreateQuestionContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3D4593C1C6FE646000ABD57 /* CreateQuestionContainerView.xib */; };
@@ -137,8 +140,11 @@
 		C80396151C8CE15E007C276F /* QuestionModelExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionModelExtension.swift; sourceTree = "<group>"; };
 		C80396181C8CE2FE007C276F /* AnswerModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerModelProtocol.swift; sourceTree = "<group>"; };
 		C803961A1C8CE6D0007C276F /* AnswerModelExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerModelExtension.swift; sourceTree = "<group>"; };
+		D0659D211CB068F600D98EED /* PollAdminViewContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PollAdminViewContainer.xib; sourceTree = "<group>"; };
+		D0659D231CB06AAD00D98EED /* PollAdminViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollAdminViewContainer.swift; sourceTree = "<group>"; };
+		D0659D2D1CB0767300D98EED /* AnswerAdminTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerAdminTableViewCell.swift; sourceTree = "<group>"; };
+		D0659D2E1CB0767300D98EED /* AnswerAdminTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerAdminTableViewCell.xib; sourceTree = "<group>"; };
 		D342961E1C792F9C00C33920 /* PollResultsViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PollResultsViewContainer.swift; path = pollresultsviews/PollResultsViewContainer.swift; sourceTree = "<group>"; };
-		D342961F1C792F9C00C33920 /* PollResultsViewContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PollResultsViewContainer.xib; path = pollresultsviews/PollResultsViewContainer.xib; sourceTree = "<group>"; };
 		D34296251C79308900C33920 /* FirebaseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseData.swift; sourceTree = "<group>"; };
 		D3D4593A1C6FE626000ABD57 /* CreateQuestionContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateQuestionContainerView.swift; sourceTree = "<group>"; };
 		D3D4593C1C6FE646000ABD57 /* CreateQuestionContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateQuestionContainerView.xib; sourceTree = "<group>"; };
@@ -296,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				52C2C65B1C9A7395001779F5 /* room nearby views */,
+				D0659D201CB0681C00D98EED /* PollAdminView */,
 				521E4FF21C8B9CFD004A8F52 /* poll user views */,
 				D342961C1C792F7900C33920 /* pollresultsviews */,
 				D3D4593E1C6FE64D000ABD57 /* create question */,
@@ -381,6 +388,17 @@
 				C803961A1C8CE6D0007C276F /* AnswerModelExtension.swift */,
 			);
 			name = AnswerModel;
+			sourceTree = "<group>";
+		};
+		D0659D201CB0681C00D98EED /* PollAdminView */ = {
+			isa = PBXGroup;
+			children = (
+				D0659D211CB068F600D98EED /* PollAdminViewContainer.xib */,
+				D0659D2D1CB0767300D98EED /* AnswerAdminTableViewCell.swift */,
+				D0659D2E1CB0767300D98EED /* AnswerAdminTableViewCell.xib */,
+				D0659D231CB06AAD00D98EED /* PollAdminViewContainer.swift */,
+			);
+			name = PollAdminView;
 			sourceTree = "<group>";
 		};
 		D342961C1C792F7900C33920 /* pollresultsviews */ = {
@@ -535,6 +553,14 @@
 				76C150111C6FE15F0066C0FE /* RoomViewContainer.xib in Resources */,
 				52C2C65F1C9A7700001779F5 /* RoomsNearbyViewContainer.xib in Resources */,
 				D34296221C792F9C00C33920 /* PollResultsViewContainer.xib in Resources */,
+				76B28C511C66CFC8008407EE /* CampaignView.xib in Resources */,
+				D0659D301CB0767300D98EED /* AnswerAdminTableViewCell.xib in Resources */,
+				76B28C251C66C84A008407EE /* LaunchScreen.storyboard in Resources */,
+				D3D4593D1C6FE646000ABD57 /* CreateQuestionContainerView.xib in Resources */,
+				D0659D221CB068F600D98EED /* PollAdminViewContainer.xib in Resources */,
+				521E4FFA1C8B9D48004A8F52 /* PollUserViewContainer.xib in Resources */,
+				6E705D4F1C9925160096AD36 /* AnswerViewTableViewCell.xib in Resources */,
+				76C150111C6FE15F0066C0FE /* RoomViewContainer.xib in Resources */,
 				76B28C221C66C84A008407EE /* Assets.xcassets in Resources */,
 				76B28C201C66C84A008407EE /* Main.storyboard in Resources */,
 			);
@@ -702,6 +728,7 @@
 				C803961B1C8CE6D0007C276F /* AnswerModelExtension.swift in Sources */,
 				76C1500D1C6FE0550066C0FE /* PollResultsViewController.swift in Sources */,
 				D3D4593B1C6FE626000ABD57 /* CreateQuestionContainerView.swift in Sources */,
+				D0659D241CB06AAD00D98EED /* PollAdminViewContainer.swift in Sources */,
 				C80396191C8CE2FE007C276F /* AnswerModelProtocol.swift in Sources */,
 				D34296211C792F9C00C33920 /* PollResultsViewContainer.swift in Sources */,
 				C803960A1C8CC7F0007C276F /* NameModelProtocol.swift in Sources */,
@@ -716,6 +743,7 @@
 				C80396061C8CC790007C276F /* NameModelExtension.swift in Sources */,
 				76C150071C6FDF8E0066C0FE /* PollUserViewController.swift in Sources */,
 				76C150031C6FDE3E0066C0FE /* JoinRoomViewController.swift in Sources */,
+				D0659D2F1CB0767300D98EED /* AnswerAdminTableViewCell.swift in Sources */,
 				C80396001C8CB5FE007C276F /* ModelInterface.swift in Sources */,
 				523FCD071C9BE1F3007EA5E1 /* RoomViewTableViewCell.swift in Sources */,
 			);

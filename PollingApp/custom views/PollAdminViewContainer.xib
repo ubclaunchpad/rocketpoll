@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PollAdminViewContainer" customModule="PollingApp" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PollAdminViewContainer" customModule="PollingApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="twC-3R-UDR">
+                    <rect key="frame" x="279" y="57" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DxE-d9-QX1">
+                    <rect key="frame" x="0.0" y="130" width="592" height="239"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tzC-oO-o8H">
+                    <rect key="frame" x="239" y="427" width="121" height="30"/>
+                    <state key="normal" title="Stop Question"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tNw-BN-ATH">
+                    <rect key="frame" x="239" y="480" width="121" height="30"/>
+                    <state key="normal" title="Remove Question"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Question    " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50n-2B-dDg">
+                    <rect key="frame" x="255.5" y="20" width="96" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="50n-2B-dDg" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="3.5" id="91f-pW-eu2"/>
+                <constraint firstItem="twC-3R-UDR" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Bex-Pg-KLr"/>
+                <constraint firstItem="tNw-BN-ATH" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Dth-0w-bPa"/>
+                <constraint firstItem="DxE-d9-QX1" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-4" id="MsS-rv-rXg"/>
+                <constraint firstAttribute="bottom" secondItem="DxE-d9-QX1" secondAttribute="bottom" constant="231" id="OBt-ba-khK"/>
+                <constraint firstItem="DxE-d9-QX1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="130" id="Qaf-W2-FUk"/>
+                <constraint firstItem="twC-3R-UDR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="57" id="ab3-AI-dnF"/>
+                <constraint firstItem="tzC-oO-o8H" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="bsI-Bw-EcS"/>
+                <constraint firstAttribute="bottom" secondItem="tzC-oO-o8H" secondAttribute="bottom" constant="143" id="hyh-iW-Nnn"/>
+                <constraint firstAttribute="bottom" secondItem="tNw-BN-ATH" secondAttribute="bottom" constant="90" id="jag-Tp-FvT"/>
+                <constraint firstItem="tzC-oO-o8H" firstAttribute="top" secondItem="DxE-d9-QX1" secondAttribute="bottom" constant="58" id="l9J-EX-q3Z"/>
+                <constraint firstItem="tNw-BN-ATH" firstAttribute="trailing" secondItem="tzC-oO-o8H" secondAttribute="trailing" id="ojo-ch-SDI"/>
+                <constraint firstItem="twC-3R-UDR" firstAttribute="top" secondItem="50n-2B-dDg" secondAttribute="bottom" constant="16" id="sen-9L-KZr"/>
+                <constraint firstItem="DxE-d9-QX1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="spl-86-3HH"/>
+            </constraints>
+            <connections>
+                <outlet property="AnswerTable" destination="DxE-d9-QX1" id="S93-Nv-ma5"/>
+                <outlet property="question" destination="50n-2B-dDg" id="dJT-qb-T5s"/>
+                <outlet property="timer" destination="twC-3R-UDR" id="aOv-vF-TA7"/>
+            </connections>
+        </view>
+    </objects>
+</document>
