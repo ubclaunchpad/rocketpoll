@@ -4,7 +4,7 @@
 //
 //  Created by Gabriel Uribe on 2/13/16.
 //  Copyright © 2016 Gabriel Uribe. All rights reserved.
-//
+
 
 import UIKit
 
@@ -19,9 +19,11 @@ final class PollAdminViewController: UIViewController {
     private var timer = NSTimer()
     var answers:[Answer] = []
     var correctAnswers:[Answer] = []
+    var sumuserresults = 0;
     
     var answerIDs:[AnswerID] = []
-
+    var numsubmitforeachAns:[[NSString:Int]] = [[:]]
+    
     private var questionID:QuestionID = ""
     
     var container: PollAdminViewContainer?
@@ -37,10 +39,12 @@ final class PollAdminViewController: UIViewController {
         view.addSubview(container!)
         
        questionID = ModelInterface.sharedInstance.getQuestionID()
+        sumuserresults = ModelInterface.sharedInstance.getSumOfUsersThatSubmittedAnswers(questionID)
+        
         let questionText: Question = ModelInterface.sharedInstance.getQuestion(questionID)
        answerIDs = ModelInterface.sharedInstance.getListOfAnswerIDs(questionID)
-
-     container?.setQuestionText(questionText)
+       
+       container?.setQuestionText(questionText)
         
         
         self.getAnswers(answerIDs)
@@ -53,7 +57,19 @@ final class PollAdminViewController: UIViewController {
     }
     
     
-    // get answers and answers that are correct
+    func getnumsubmitforeachAns(answerIDs: [AnswerID], questionID: QuestionID) {
+        var temp = 0;
+        for answerID in answerIDs {
+            temp = ModelInterface.sharedInstance.getNumberOfUsersThatGaveThisAnswer(questionID, answerID: answerID)
+            numsubmitforeachAns.append([answerID:temp])
+        }
+        
+    }
+    
+    
+    
+    
+    // get all the answers and answers that are correct
     func getAnswers(answerIDs: [AnswerID])   {
         // Changes the list of answerIDs to list of answers
         var temp_answer:Answer
