@@ -8,14 +8,25 @@
 
 import UIKit
 
+protocol CreateQuestionViewContainerDelegate {
+  func submitButtonPressed()
+ 
+}
+
+
 class CreateQuestionContainerView: UIView {
+  @IBOutlet weak var Submit: UIButton!
+    var delegate: CreateQuestionViewContainerDelegate?
+  
+  @IBAction func SubmitPress(sender: AnyObject) {
+    print("Hello")
+    delegate?.submitButtonPressed();
     
-//    class func instanceFromNib(frame: CGRect) -> CreateQuestionContainerView {
-//        let view = UINib(nibName: "CreateQuestionContainerView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! CreateQuestionContainerView
-//        view.frame = frame
-//        
-//        return view
-//    }
+      
+  }
+  
+  
+  
     @IBOutlet var view: UIView!
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -24,7 +35,7 @@ class CreateQuestionContainerView: UIView {
         view.frame = self.bounds
         
     }
-    
+  
 
     /*
     // Only override drawRect: if you perform custom drawing.
@@ -35,3 +46,5 @@ class CreateQuestionContainerView: UIView {
     */
 
 }
+
+

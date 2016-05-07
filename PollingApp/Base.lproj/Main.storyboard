@@ -135,6 +135,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="2o0-Nz-L7T" kind="show" identifier="toPollAdminScreen" id="TNB-cT-E5l"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rfj-tf-LcV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

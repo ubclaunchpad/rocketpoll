@@ -29,5 +29,6 @@ enum Segues {
   static let toQuestionsScreen = "toQuestionsScreen"
   static let toPollUserViewController = "toPollUserViewController"
   static let toCreateQuestionView = "toCreateQuestionView"
+  static let toPollAdminScreen = "toPollAdminScreen"
 }
  

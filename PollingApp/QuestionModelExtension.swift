@@ -60,4 +60,7 @@ extension ModelInterface: QuestionModelProtocol {
   func segueToQuestionsScreen() -> SegueName {
     return Segues.toQuestionsScreen
   }
+  func segueToAdminScreen() -> SegueName {
+    return Segues.toPollAdminScreen
+  }
 }
