@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -30,6 +30,14 @@
                         <constraint firstAttribute="height" constant="411" id="Fme-Fp-W5C"/>
                     </constraints>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DDv-YN-nRk">
+                    <rect key="frame" x="39" y="26" width="73" height="32"/>
+                    <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="0.17638830236486486" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="BACK"/>
+                    <connections>
+                        <action selector="backButtonPressed:" destination="-1" eventType="touchUpInside" id="CB7-fy-i01"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -43,6 +51,7 @@
                 <constraint firstAttribute="bottom" secondItem="qnC-wG-dm1" secondAttribute="bottom" id="tS6-OW-WPV"/>
             </constraints>
             <connections>
+                <outlet property="backButton" destination="DDv-YN-nRk" id="1Po-AX-G3j"/>
                 <outlet property="question" destination="uMY-gA-wC6" id="pjI-A5-J4r"/>
                 <outlet property="tableView" destination="qnC-wG-dm1" id="eOk-QO-Vyw"/>
                 <outlet property="timerLabel" destination="JUl-rh-oju" id="XrN-L3-1MM"/>

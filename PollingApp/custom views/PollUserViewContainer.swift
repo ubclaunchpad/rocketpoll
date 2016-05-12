@@ -10,11 +10,12 @@ import UIKit
 
 protocol PollUserViewContainerDelegate {
     func answerSelected(answer: Answer)
-    
+    func backButtonPushed()
 }
 
 class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var backButton: UIButton!
     
     private var answers:[Answer] = []
     
@@ -71,6 +72,9 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
         cell.delegate = self
         return cell
     }
+  @IBAction func backButtonPressed(sender: AnyObject) {
+    delegate?.backButtonPushed()
+  }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 75
