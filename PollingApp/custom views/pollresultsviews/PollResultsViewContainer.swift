@@ -38,17 +38,11 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     return view
   }
   
-<<<<<<< HEAD
-  @IBAction func BackButtonPressed(sender: AnyObject) {
-  
-  }
-  
-  
-=======
+
   @IBAction func backButtonPressed(sender: AnyObject) {
     delegate?.goBackToCampaign()
   }
->>>>>>> IPA-54
+
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let pollResultsCell = UINib(nibName: "PollResultsTableViewCell", bundle: nil)
     tableView.registerNib(pollResultsCell, forCellReuseIdentifier: "resultsCell")
