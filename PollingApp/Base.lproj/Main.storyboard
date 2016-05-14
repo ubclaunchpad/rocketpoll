@@ -100,6 +100,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="9pv-A4-QxB" kind="show" identifier="toQuestionsScreen" id="yYD-iH-uUR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tjk-8g-2Nb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -272,5 +275,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="BHO-bG-YD8"/>
         <segue reference="vhX-Xt-MiD"/>
+        <segue reference="yYD-iH-uUR"/>
     </inferredMetricsTieBreakers>
 </document>
