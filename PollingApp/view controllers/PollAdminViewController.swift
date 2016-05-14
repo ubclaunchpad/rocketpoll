@@ -45,7 +45,7 @@ final class PollAdminViewController: UIViewController {
        answerIDs = ModelInterface.sharedInstance.getListOfAnswerIDs(questionID)
        
        container?.setQuestionText(questionText)
-        
+        container?.delegate = self
         
         self.getAnswers(answerIDs)
         container?.setAnswers(answers)
@@ -110,6 +110,23 @@ final class PollAdminViewController: UIViewController {
             timer.invalidate()
             // TODO: SEGUE to next view
         }
+    }
+
 }
 
+
+
+extension PollAdminViewController: PollAdminViewContainerDelegate {
+    
+    func segueToResult() {
+        let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
+        performSegueWithIdentifier(nextRoom, sender: self)
+        print("SegueToResult");
+    }
+    
+    func segueToCampaign() {
+        let nextRoom =  ModelInterface.sharedInstance.segueToQuestionsScreen()
+        performSegueWithIdentifier(nextRoom, sender: self)
+        print("SegueToCampaign");
+    }
 }
