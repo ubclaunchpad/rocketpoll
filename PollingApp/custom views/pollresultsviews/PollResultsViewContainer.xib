@@ -27,6 +27,13 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nra-Xm-ph2">
+                    <rect key="frame" x="60" y="49" width="34" height="30"/>
+                    <state key="normal" title="Back"/>
+                    <connections>
+                        <action selector="BackButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="G1Z-WW-JuP"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -40,6 +47,7 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <connections>
+                <outlet property="BackButton" destination="Nra-Xm-ph2" id="c7O-bS-HQ7"/>
                 <outlet property="questionLabel" destination="o7J-Ch-5YH" id="Chb-Fz-RdT"/>
                 <outlet property="resultsTableView" destination="ZFL-iT-IRe" id="l06-xn-iKf"/>
                 <outlet property="totalAnswersLabel" destination="EXa-dg-5Z1" id="N0L-cZ-oJd"/>

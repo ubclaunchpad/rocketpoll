@@ -10,6 +10,7 @@ import UIKit
 
 class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
   
+  @IBOutlet weak var BackButton: UIButton!
   @IBOutlet weak var resultsTableView: UITableView!
   @IBOutlet weak var questionLabel: UILabel!
   @IBOutlet weak var totalAnswersLabel: UILabel!
@@ -26,6 +27,11 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     view.resultsTableView.allowsSelection = false
     return view
   }
+  
+  @IBAction func BackButtonPressed(sender: AnyObject) {
+  
+  }
+  
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let pollResultsCell = UINib(nibName: "PollResultsTableViewCell", bundle: nil)

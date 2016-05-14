@@ -96,5 +96,8 @@ extension PollUserViewController: PollUserViewContainerDelegate {
 
         }
     }
-    
+  func backButtonPushed() {
+    let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
+    performSegueWithIdentifier(nextRoom, sender: self)
+  }
 }

@@ -10,19 +10,25 @@ import UIKit
 
 protocol CreateQuestionViewContainerDelegate {
   func submitButtonPressed()
+  func backButtonPressed()
  
 }
 
 
 class CreateQuestionContainerView: UIView {
+  
+  @IBOutlet weak var backButton: UIButton!
+  
   @IBOutlet weak var Submit: UIButton!
     var delegate: CreateQuestionViewContainerDelegate?
   
   @IBAction func SubmitPress(sender: AnyObject) {
-    print("Hello")
     delegate?.submitButtonPressed();
     
       
+  }
+  @IBAction func backButtonPressed(sender: AnyObject) {
+    delegate?.backButtonPressed()
   }
   
   
@@ -32,14 +38,6 @@ class CreateQuestionContainerView: UIView {
         return view
     }
 
-
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
 
 }
 
