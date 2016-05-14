@@ -8,28 +8,73 @@
 
 import UIKit
 
-class CampaignViewContainer: DynamicScrollView {
-  
-  init() {
-    super.init(aClass: object_getClass(CampaignView()))
-  }
+protocol CampaignViewContainerDelegate {
+    func questionSelected(question: Question)
+    func newQuestionSelected()
+    func resultsButtonSelected()
+}
 
-  required convenience init?(coder aDecoder: NSCoder) {
-    self.init()
-  }
+class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
   
-  func populateCampaignViews(questions: [Question]) {
-    let campaignViewHeight: CGFloat = 100
-    var campaignViewFrame = CGRectMake(0, 0, bounds.width, campaignViewHeight)
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var roomName: UILabel!
     
-    for question in questions {
-      let campaignView = CampaignView.instanceFromNib(campaignViewFrame)
-      campaignView.setQuestionText(question)
-      addSubview(campaignView)
-      
-      campaignViewFrame.origin.y += campaignViewHeight
+    private var questions:[Question] = []
+    private var questionsAnswered:[Bool] = []
+    
+    var delegate: CampaignViewContainerDelegate?
+    
+    @IBAction func newQuestionPressed(sender: AnyObject) {
+        delegate?.newQuestionSelected()
     }
-    updateContentSize(campaignViewFrame.origin.y + campaignViewHeight)
+    
+    class func instancefromNib(frame: CGRect) -> CampaignViewContainer {
+        let view = UINib(nibName: "CampaignViewContainer", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! CampaignViewContainer
+        view.frame = frame
+        view.tableView.delegate = view
+        view.tableView.dataSource = view
+        return view
+    }
+    
+    func setRoomNameTitle(name: String) {
+        roomName.text = name;
+    }
+    
+    func setQuestions(questionNames: [Question]) {
+        questions = questionNames
+    }
+    
+    func setQuestionAnswered(questions: [Bool]) {
+        questionsAnswered = questions
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return questions.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let nib_name = UINib(nibName: "CampaignViewTableViewCell", bundle: nil)
+        tableView.registerNib(nib_name, forCellReuseIdentifier: "campaignCell")
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("campaignCell", forIndexPath: indexPath) as! CampaignViewTableViewCell
+        cell.delegate = self
+        cell.setQuestionText(questions[indexPath.row])
+        cell.setAnsweredBackground(questionsAnswered[indexPath.row])
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 90
+    }
+}
+
+extension CampaignViewContainer: CampaignViewTableViewCellDelegate {
+  func resultsButtonSelected() {
+    delegate?.resultsButtonSelected()
   }
   
+  func questionSelected(question: Question) {
+        print(question)
+        delegate?.questionSelected(question)
+      
+    }
 }

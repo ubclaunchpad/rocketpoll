@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateQuestionContainerView" customModule="PollingApp" customModuleProvider="target">
+            <connections>
+                <outlet property="Submit" destination="v3B-Rw-fEn" id="pko-t4-kxj"/>
+                <outlet property="view" destination="iN0-l3-epB" id="1pt-8W-IX6"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insert the question and answers below" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="znN-aG-y5G">
+                    <rect key="frame" x="153" y="33" width="294" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Answer#1" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="64b-ld-drs">
+                    <rect key="frame" x="8" y="161" width="584" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Answer#2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n41-vZ-DMU">
+                    <rect key="frame" x="8" y="229" width="584" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Answer#3" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o2O-qg-gia">
+                    <rect key="frame" x="8" y="297" width="584" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Answer#4" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Znl-G1-0eg">
+                    <rect key="frame" x="8" y="365" width="584" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3B-Rw-fEn">
+                    <rect key="frame" x="494" y="516" width="98" height="47"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="47" id="1xw-pa-bnr"/>
+                        <constraint firstAttribute="width" constant="98" id="tr6-lf-Tfz"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <state key="normal" title="Submit"/>
+                    <connections>
+                        <action selector="SubmitPress:" destination="-1" eventType="touchUpInside" id="gjV-KY-md9"/>
+                    </connections>
+                </button>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Insert Question here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jYa-5L-Z0s">
+                    <rect key="frame" x="8" y="93" width="584" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="v3B-Rw-fEn" secondAttribute="bottom" constant="37" id="0CE-eB-PyX"/>
+                <constraint firstItem="jYa-5L-Z0s" firstAttribute="trailing" secondItem="64b-ld-drs" secondAttribute="trailing" id="2kK-mb-EVr"/>
+                <constraint firstItem="64b-ld-drs" firstAttribute="top" secondItem="jYa-5L-Z0s" secondAttribute="bottom" constant="38" id="69D-EH-wpH"/>
+                <constraint firstItem="znN-aG-y5G" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="33" id="8Qk-yO-efm"/>
+                <constraint firstItem="jYa-5L-Z0s" firstAttribute="leading" secondItem="n41-vZ-DMU" secondAttribute="leading" id="8dE-Jc-CAx"/>
+                <constraint firstItem="jYa-5L-Z0s" firstAttribute="leading" secondItem="Znl-G1-0eg" secondAttribute="leading" id="BDe-Xm-SS9"/>
+                <constraint firstItem="jYa-5L-Z0s" firstAttribute="top" secondItem="znN-aG-y5G" secondAttribute="bottom" constant="39" id="Dfx-dU-9NK"/>
+                <constraint firstItem="jYa-5L-Z0s" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="HLn-bK-pcD"/>
+                <constraint firstItem="jYa-5L-Z0s" firstAttribute="trailing" secondItem="v3B-Rw-fEn" secondAttribute="trailing" id="JWo-hS-wkU"/>
+                <constraint firstItem="jYa-5L-Z0s" firstAttribute="trailing" secondItem="Znl-G1-0eg" secondAttribute="trailing" id="M0u-xW-p4O"/>
+                <constraint firstItem="o2O-qg-gia" firstAttribute="top" secondItem="n41-vZ-DMU" secondAttribute="bottom" constant="38" id="NVp-pO-X8v"/>
+                <constraint firstItem="jYa-5L-Z0s" firstAttribute="leading" secondItem="64b-ld-drs" secondAttribute="leading" id="Oqh-9C-CAy"/>
+                <constraint firstItem="Znl-G1-0eg" firstAttribute="top" secondItem="o2O-qg-gia" secondAttribute="bottom" constant="38" id="Tm9-CT-O2m"/>
+                <constraint firstItem="jYa-5L-Z0s" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="ZBN-QO-GyA"/>
+                <constraint firstItem="o2O-qg-gia" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="297" id="Zlo-L6-PgI"/>
+                <constraint firstItem="jYa-5L-Z0s" firstAttribute="trailing" secondItem="o2O-qg-gia" secondAttribute="trailing" id="e2v-Fy-Q6A"/>
+                <constraint firstItem="jYa-5L-Z0s" firstAttribute="trailing" secondItem="n41-vZ-DMU" secondAttribute="trailing" id="esM-Tm-N3d"/>
+                <constraint firstItem="znN-aG-y5G" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="mgD-tH-71d"/>
+                <constraint firstItem="jYa-5L-Z0s" firstAttribute="leading" secondItem="o2O-qg-gia" secondAttribute="leading" id="x1L-en-BsA"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="493" y="331"/>
+        </view>
+    </objects>
+</document>
