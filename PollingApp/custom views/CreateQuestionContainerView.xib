@@ -24,6 +24,14 @@
                         <action selector="SubmitPress:" destination="iN0-l3-epB" eventType="touchUpInside" id="dqq-Bl-BL7"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jVL-e3-Jmb">
+                    <rect key="frame" x="38" y="35" width="46" height="37"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="0.16400971283783783" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Back"/>
+                    <connections>
+                        <action selector="backButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="KSO-e3-fJQ"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -34,6 +42,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="Submit" destination="v3B-Rw-fEn" id="MHC-TU-KlC"/>
+                <outlet property="backButton" destination="jVL-e3-Jmb" id="y4g-32-AxK"/>
             </connections>
             <point key="canvasLocation" x="493" y="331"/>
         </view>
