@@ -35,9 +35,23 @@ class CreateQuestionViewController: UIViewController {
 
 extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
   
-    func submitButtonPressed(question: Question, answerArray: [String] ) {
+   func submitButtonPressed(question: Question, answerArray: [String] ) {
     let nextRoom = ModelInterface.sharedInstance.segueToAdminScreen()
     performSegueWithIdentifier(nextRoom, sender: self)
+    
+    ModelInterface.sharedInstance.setNewQuestion(question);
+    
+    let questionID = ModelInterface.sharedInstance.getQuestionID()
+    
+    var answerIDs = [String]();
+    var answerID = "";
+    for (var i = 0; i < answerArray.count; i++){
+        answerID = ModelInterface.sharedInstance.setNewAnswer(answerArray[i],questionID:questionID);
+        answerIDs.append(answerID);
+    }
+    ModelInterface.sharedInstance.setCorrectAnswer(answerIDs[0], isCorrectAnswer: true);
+    
+    
   }
   func backButtonPressed() {
    
