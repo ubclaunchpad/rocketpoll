@@ -12,7 +12,7 @@ protocol CreateQuestionViewContainerDelegate {
   
   func submitButtonPressed(question: Question, answerArray: [String])
   func backButtonPressed()
- 
+  func checksInput (question:String, A1:String, A2:String,  A3:String,A4:String) -> Bool
 }
 
 
@@ -37,8 +37,18 @@ class CreateQuestionContainerView: UIView {
     
     
   @IBAction func SubmitPress(sender: AnyObject) {
-    var question = questionInputText.text;
-    var Answers = [Ans1.text!, Ans2.text!, Ans3.text!, Ans4.text!];
+
+    let question = questionInputText.text;
+    let A1 = Ans1.text;
+    let A2 = Ans2.text;
+    let A3 = Ans3.text;
+    let A4 = Ans4.text;
+   
+    if ((  delegate?.checksInput(question!, A1: A1!, A2: A2!, A3: A3!, A4: A4!)) == true) {
+        return
+    }
+   
+    let Answers = [A1!, A2!, A3!, A4!];
 
     delegate?.submitButtonPressed(question!,answerArray: Answers);
     
