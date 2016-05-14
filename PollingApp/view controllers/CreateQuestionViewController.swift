@@ -35,7 +35,7 @@ class CreateQuestionViewController: UIViewController {
 
 extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
   
-  func submitButtonPressed() {
+    func submitButtonPressed(question: Question, answerArray: [String] ) {
     let nextRoom = ModelInterface.sharedInstance.segueToAdminScreen()
     performSegueWithIdentifier(nextRoom, sender: self)
   }
