@@ -35,6 +35,7 @@ class CampaignsViewController: UIViewController {
         container?.setQuestions(questions)
         container?.setQuestionAnswered(questionAnswered)
         container?.setRoomNameTitle(roomName)
+        //container?.showResultsLabel(questionAnswered)
     }
     
     func getQuestions(questionIDs: [Question]) -> [Question] {

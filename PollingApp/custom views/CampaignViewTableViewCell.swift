@@ -34,6 +34,10 @@ class CampaignViewTableViewCell: UITableViewCell {
       delegate?.resultsButtonSelected()
   }
  
+  func hideResultsLabel(){
+    resultsButton.alpha = 0;
+  }
+  
     func setQuestionText(questionName: Question) {
         button.setTitle(questionName, forState: UIControlState.Normal)
     }

@@ -21,6 +21,7 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     
     private var questions:[Question] = []
     private var questionsAnswered:[Bool] = []
+  
     
     var delegate: CampaignViewContainerDelegate?
     
@@ -51,6 +52,7 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return questions.count
     }
+  
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let nib_name = UINib(nibName: "CampaignViewTableViewCell", bundle: nil)
@@ -59,6 +61,11 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
         cell.delegate = self
         cell.setQuestionText(questions[indexPath.row])
         cell.setAnsweredBackground(questionsAnswered[indexPath.row])
+      
+      if(!questionsAnswered[indexPath.row]){
+       cell.hideResultsLabel()
+      }
+      
         return cell
     }
     
