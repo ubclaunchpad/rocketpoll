@@ -8,8 +8,16 @@
 
 import UIKit
 
+
+protocol PollResultsViewContainerDelegate {
+  func goBackToCampaign()
+}
+
+
+
 class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
   
+  @IBOutlet weak var backButton: UIButton!
   @IBOutlet weak var resultsTableView: UITableView!
   @IBOutlet weak var questionLabel: UILabel!
   @IBOutlet weak var totalAnswersLabel: UILabel!
@@ -18,6 +26,8 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
   private var totalNumberOfAnswers: Int = 0;
   private var numberOfResponsesPerAnswer: [Int] = [];
   
+  var delegate: PollResultsViewContainerDelegate?
+
   class func instanceFromNib(frame: CGRect) -> PollResultsViewContainer {
     let view = UINib(nibName: "PollResultsViewContainer", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PollResultsViewContainer
     view.frame = frame
@@ -27,6 +37,9 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     return view
   }
   
+  @IBAction func backButtonPressed(sender: AnyObject) {
+    delegate?.goBackToCampaign()
+  }
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let pollResultsCell = UINib(nibName: "PollResultsTableViewCell", bundle: nil)
     tableView.registerNib(pollResultsCell, forCellReuseIdentifier: "resultsCell")

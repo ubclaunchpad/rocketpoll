@@ -8,8 +8,6 @@
 
 import UIKit
 
-// TODO: James is working here
-
 class PollResultsViewController: UIViewController {
   
   private var answerIDDictionary = [Answer: AnswerID]()
@@ -44,7 +42,7 @@ class PollResultsViewController: UIViewController {
     
     container = PollResultsViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
     view.addSubview(container!)
-    
+    container?.delegate = self
     container?.setTotalNumberOfAnswers(totalNumberOfUserAnswers)
     container?.setQuestionLabelText(questionText)
     container?.setAnswers(answers)
@@ -65,5 +63,14 @@ class PollResultsViewController: UIViewController {
     }
     return answers
   }
+}
+
+
+extension PollResultsViewController: PollResultsViewContainerDelegate {
+  func goBackToCampaign() {
+    let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
+    performSegueWithIdentifier(nextRoom, sender: self)
+  }
+  
 }
 
