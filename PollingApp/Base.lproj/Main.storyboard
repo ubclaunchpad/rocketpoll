@@ -67,7 +67,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qdz-jp-vsx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1415" y="330"/>
+            <point key="canvasLocation" x="1135" y="958"/>
         </scene>
         <!--Created Questions View Controller-->
         <scene sceneID="ANJ-eQ-IZ3">
@@ -118,10 +118,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="EKJ-zm-ZFh" kind="show" identifier="toPollResultsView" id="2ct-sD-9ap"/>
+                        <segue destination="9pv-A4-QxB" kind="show" identifier="toQuestionsScreen" id="z6b-mB-HqA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wta-HZ-a9E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2925" y="344"/>
+            <point key="canvasLocation" x="2945" y="374"/>
         </scene>
         <!--Create Question View Controller-->
         <scene sceneID="M1E-94-OFn">
@@ -182,7 +186,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="360"/>
+            <point key="canvasLocation" x="602" y="1056"/>
         </scene>
         <!--Input Name View Controller-->
         <scene sceneID="Dvh-8U-Fgw">
@@ -265,7 +269,8 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="z6b-mB-HqA"/>
+        <segue reference="2ct-sD-9ap"/>
         <segue reference="vhX-Xt-MiD"/>
-        <segue reference="r35-Ea-4Oc"/>
     </inferredMetricsTieBreakers>
 </document>

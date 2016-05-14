@@ -66,4 +66,5 @@ extension ModelInterface: QuestionModelProtocol {
   func segueToResultsScreen() -> SegueName{
     return Segues.toPollResultsView
   }
+
 }

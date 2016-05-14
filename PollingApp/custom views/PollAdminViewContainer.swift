@@ -9,6 +9,12 @@
 
 import UIKit
 
+
+protocol PollAdminViewContainerDelegate  {
+    func segueToResult()
+    func segueToCampaign()
+}
+
 class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
     
     private var answers:[Answer] = []
@@ -19,12 +25,24 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
 
     @IBOutlet weak var AnswerTable: UITableView!
     
+    var delegate: PollAdminViewContainerDelegate?
+
+    
+    
+    @IBAction func goToResult(sender: AnyObject) {
+        delegate?.segueToResult();
+    }
+    
+    @IBAction func goToCampaign(sender: AnyObject) {
+        delegate?.segueToCampaign();
+    }
     
     class func instanceFromNib(frame: CGRect) -> PollAdminViewContainer {
         let view = UINib(nibName: "PollAdminViewContainer", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PollAdminViewContainer
         view.frame = frame
         view.AnswerTable.delegate = view
         view.AnswerTable.dataSource = view
+        
         return view
     }
     
