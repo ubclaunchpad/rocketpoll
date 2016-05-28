@@ -1,6 +1,0 @@
-framework module Pods_PollingAppUITests {
-  umbrella header "Pods-PollingAppUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}
