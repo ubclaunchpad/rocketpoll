@@ -7,12 +7,48 @@
 //
 
 import Foundation
+import Firebase
 
 extension ModelInterface: AnswerModelProtocol {
   
+  func randomStringWithLength (len : Int) -> NSString {
+    
+    let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    
+    var randomString : NSMutableString = NSMutableString(capacity: len)
+    
+    for (var i=0; i < len; i++){
+      var length = UInt32 (letters.length)
+      var rand = arc4random_uniform(length)
+      randomString.appendFormat("%C", letters.characterAtIndex(Int(rand)))
+    }
+    
+    return randomString
+  }
+  
+  
   //MARK: Setting Answer Information -
-  func setNewAnswer(answer: String, questionID: QuestionID) -> AnswerID {
-    return "A1"
+  func setNewAnswer(answer: String, questionID: QuestionID, i:NSInteger) -> AnswerID {
+//    let timeStamp = NSDate().timeIntervalSince1970
+//    let endStamp = NSDate().timeIntervalSince1970 + 30; //TODO: CHANGE THIS
+//    let QID = ["Author": "Jon","Question": question, "startTimeStamp": timeStamp, "endTimeStamp": endStamp];
+//    let fbd:FirebaseData = FirebaseData();
+//    let key = fbd.postToFirebaseWithKey("QUESTIONS", child: "QID", children: QID) as QuestionID;
+    
+    let fBD:FirebaseData = FirebaseData();
+    
+    let ref =  FIRDatabase.database().reference();
+    
+    let key = ref.child("AID").childByAutoId().key
+    fBD.postToFirebaseWithOutKey("QUESTIONSCREEN/\(questionID as String)", child: "AIDS", children: ["AID\(i)":key]);
+  
+    
+//    let children = ["tally": "0", "answer": answer, "isCorrect": "correct"];
+//    let AID = ["\(key)": children ];
+//    let Answers = ["Answers": AID ];
+//    fBD.postToFirebaseWithOutKey("QUESTIONS", child: questionID as String, children: Answers)
+    
+      return "A1"
   }
   
   func setCorrectAnswer(answerId: AnswerID, isCorrectAnswer: Bool) -> Bool {

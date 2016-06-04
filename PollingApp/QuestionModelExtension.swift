@@ -17,7 +17,7 @@ extension ModelInterface: QuestionModelProtocol {
     let endStamp = NSDate().timeIntervalSince1970 + 30; //TODO: CHANGE THIS
     let QID = ["Author": "Jon","Question": question, "startTimeStamp": timeStamp, "endTimeStamp": endStamp];
     let fbd:FirebaseData = FirebaseData();
-    let key = fbd.postToFirebaseWithKey("QUESTIONS", child: "QID", children: QID) as QuestionID;
+    let key = fbd.postToFirebaseWithKey("QUESTIONSCREEN", child: "QID", children: QID) as QuestionID;
     
     
     

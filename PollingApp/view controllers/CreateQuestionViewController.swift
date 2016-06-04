@@ -55,10 +55,11 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
        // let questionID = ModelInterface.sharedInstance.getQuestionID()
         
         var answerIDs = [String]();
-        var answerID = "";
+        var answerID: String
         for (var i = 0; i < answerArray.count; i++){
-            answerID = ModelInterface.sharedInstance.setNewAnswer(answerArray[i],questionID:questionID);
+            answerID = ModelInterface.sharedInstance.setNewAnswer(answerArray[i],questionID:questionID,i: i);
             answerIDs.append(answerID);
+          
         }
         ModelInterface.sharedInstance.setCorrectAnswer(answerIDs[0], isCorrectAnswer: true);
         

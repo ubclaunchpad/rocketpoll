@@ -27,5 +27,12 @@ class FirebaseData {
     return key;
   }
   
+  func postToFirebaseWithOutKey (parent: String, child:String, children: NSDictionary) {
+    let ref =  FIRDatabase.database().reference();
     
+    let childUpdates =  ["/" + parent + "/\(child)": children];
+    ref.updateChildValues(childUpdates)
+  }
+  
+  
 }
