@@ -15,23 +15,17 @@ import Firebase
 class FirebaseData {
   
   
-  func postToFirebase (keyBool:Bool, parent:String, child:String, children:NSDictionary) {
+  func postToFirebaseWithKey ( parent:String, child:String, children:NSDictionary) -> String {
     let ref =  FIRDatabase.database().reference();
-    var key:String
+
+    let key = ref.child(child).childByAutoId().key
     
-    if (keyBool) {
-      key = ref.child(child).childByAutoId().key
-    }
-    else {
-      key = child
-    }
     
     let childUpdates = ["/" + parent + "/\(key)": children];
     ref.updateChildValues(childUpdates)
     
+    return key;
   }
   
-    
-    
     
 }
