@@ -1,38 +1,37 @@
-////
-////  FirebaseData.swift
-////  PollingApp
-////
-////  Created by QuantumSpark on 2016-02-20.
-////  Copyright © 2016 Gabriel Uribe. All rights reserved.
-////
 //
-//import Foundation
-//import Firebase
+//  FirebaseData.swift
+//  PollingApp
 //
-//// Singleton Class
-//// Note  add references to other nodes if needed
-//let mainurl = "https://polling-app-test.firebaseio.com"
+//  Created by QuantumSpark and Cyrus on 2016-02-20.
+//  Copyright © 2016 Gabriel Uribe. All rights reserved.
 //
-//class FirebaseData {
-//    
-//    static let fd = FirebaseData();
-//
-//    // Main reference
-//    private var _base_ref = Firebase(url:"\(mainurl)")
-//    
-//    // Test reference
-//    private var _test_ref = Firebase(url:"\(mainurl)/ON_OFF");
-//    
-//    
-//    var base_ref: Firebase {
-//        return _base_ref
-//    }
-//    
-//    var test_ref: Firebase {
-//        return _test_ref;
-//    }
-//    
-//    
-//    
-//    
-//}
+
+import Foundation
+import Firebase
+
+// Singleton Class
+// Note  add references to other nodes if needed
+
+class FirebaseData {
+  
+  
+  func postToFirebase (keyBool:Bool, parent:String, child:String, children:NSDictionary) {
+    let ref =  FIRDatabase.database().reference();
+    var key:String
+    
+    if (keyBool) {
+      key = ref.child(child).childByAutoId().key
+    }
+    else {
+      key = child
+    }
+    
+    let childUpdates = ["/" + parent + "/\(key)": children];
+    ref.updateChildValues(childUpdates)
+    
+  }
+  
+    
+    
+    
+}

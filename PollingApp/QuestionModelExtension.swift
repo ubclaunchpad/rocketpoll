@@ -13,14 +13,22 @@ extension ModelInterface: QuestionModelProtocol {
   
   //MARK: - Setting Question Information -
   func setNewQuestion(question: String) -> Bool {
-    let ref =  FIRDatabase.database().reference();
     
+//    let ref =  FIRDatabase.database().reference();
+//    
+//
+//    let key = ref.child("QID").childByAutoId().key
+//    
+     let example = ["Colour" : "Yellow"];
+        let QID = ["Author": "Jon","Question": question];
+//    let childUpdates = ["/QUESTIONS/\(key)": QID]
+//    ref.updateChildValues(childUpdates)
     
-    let key = ref.child("QID").childByAutoId().key
-    let QID = ["Author": "Jon",
-                "Question": question];
-    let childUpdates = ["/QUESTIONS/\(key)": QID]
-    ref.updateChildValues(childUpdates)
+    let fbd:FirebaseData = FirebaseData();
+    
+    fbd.postToFirebase(false, parent: "QUESTIONS", child: "QID", children: QID);
+    
+    fbd.postToFirebase(false, parent: "QUESTIONS/QID", child: "Dank", children: example);
     
     return true
   }
