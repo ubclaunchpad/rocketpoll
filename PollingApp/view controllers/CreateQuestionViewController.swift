@@ -10,12 +10,19 @@ import UIKit
 
 
 class CreateQuestionViewController: UIViewController {
-    
+  
+  
+  
     
     var container: CreateQuestionContainerView?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
+      
+      let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CreateQuestionViewController.dismissKeyboards))
+      view.addGestureRecognizer(tap)
+      
+      
         setup()
     }
     
@@ -25,7 +32,11 @@ class CreateQuestionViewController: UIViewController {
         container?.delegate = self
         view.addSubview(container!)
     }
-    
+  
+  
+  func dismissKeyboards() {
+    view.endEditing(true)
+  }
     
 }
 
