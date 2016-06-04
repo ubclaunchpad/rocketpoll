@@ -7,11 +7,21 @@
 //
 
 import Foundation
+import Firebase
 
 extension ModelInterface: NameModelProtocol {
   
-  // TODO: Write username to Firebase
+  // TODO: Check if udid exists
   func setUserName(name: String) -> SegueName {
+    let ref =  FIRDatabase.database().reference();
+    let udid = UIDevice.currentDevice().identifierForVendor!.UUIDString
+    let post = ["UserName": name,
+                "MyQuestions": "my questions",
+                "QuestionsAnswered":  "questions answered"];
+    let childUpdates = ["/users/\(udid)": post]
+
+    ref.updateChildValues(childUpdates)
+
     return Segues.toMainApp
   }
 }
