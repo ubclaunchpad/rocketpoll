@@ -49,9 +49,9 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
     func submitButtonPressed(question: Question, answerArray: [String] ) {
         let nextRoom = ModelInterface.sharedInstance.segueToAdminScreen()
         performSegueWithIdentifier(nextRoom, sender: self)
-        
+      
+        //sends question string to firebase. firebase generates unique id corresponding to question
         ModelInterface.sharedInstance.setNewQuestion(question);
-        
         let questionID = ModelInterface.sharedInstance.getQuestionID()
         
         var answerIDs = [String]();

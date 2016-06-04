@@ -7,11 +7,21 @@
 //
 
 import Foundation
+import Firebase
 
 extension ModelInterface: QuestionModelProtocol {
   
   //MARK: - Setting Question Information -
   func setNewQuestion(question: String) -> Bool {
+    let ref =  FIRDatabase.database().reference();
+    
+    
+    let key = ref.child("QID").childByAutoId().key
+    let QID = ["Author": "Jon",
+                "Question": question];
+    let childUpdates = ["/QUESTIONS/\(key)": QID]
+    ref.updateChildValues(childUpdates)
+    
     return true
   }
   
