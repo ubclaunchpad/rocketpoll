@@ -10,6 +10,7 @@ import Foundation
 
 extension ModelInterface: NameModelProtocol {
   
+  // TODO: Write username to Firebase
   func setUserName(name: String) -> SegueName {
     return Segues.toMainApp
   }
