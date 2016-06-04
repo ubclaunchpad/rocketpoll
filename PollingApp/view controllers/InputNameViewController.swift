@@ -18,7 +18,7 @@ class InputNameViewController: UIViewController {
     
 
     let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
-      action: "dismissKeyboard")
+      action: #selector(InputNameViewController.dismissKeyboard))
     view.addGestureRecognizer(tap)
   }
   
