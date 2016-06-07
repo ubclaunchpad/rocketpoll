@@ -24,10 +24,16 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tzC-oO-o8H">
                     <rect key="frame" x="239" y="427" width="121" height="30"/>
                     <state key="normal" title="Stop Question"/>
+                    <connections>
+                        <action selector="goToResult:" destination="iN0-l3-epB" eventType="touchUpInside" id="suU-DT-V8u"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tNw-BN-ATH">
                     <rect key="frame" x="239" y="480" width="121" height="30"/>
                     <state key="normal" title="Remove Question"/>
+                    <connections>
+                        <action selector="goToCampaign:" destination="iN0-l3-epB" eventType="touchUpInside" id="8Gx-pL-DJy"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Question    " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50n-2B-dDg">
                     <rect key="frame" x="255.5" y="20" width="96" height="21"/>
