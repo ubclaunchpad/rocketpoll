@@ -10,8 +10,9 @@ import Foundation
 
 protocol AnswerModelProtocol {
   
+    
+func setAnswerIDS(questionID:String, answerString:[String]) -> [String]
   //MARK: Setting Answer Information -
-  func setNewAnswer(answer: String, questionID: QuestionID, i:NSInteger) -> AnswerID
   func setCorrectAnswer(answerId: AnswerID, isCorrectAnswer: Bool) -> Bool
   func setUserAnswer(questionId: QuestionID, answerID: AnswerID) -> Bool
   

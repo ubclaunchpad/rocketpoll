@@ -13,16 +13,14 @@ extension ModelInterface: QuestionModelProtocol {
   
   //MARK: - Setting Question Information -
   func setNewQuestion(question: String) -> QuestionID {
+
+    
     let timeStamp = NSDate().timeIntervalSince1970
     let endStamp = NSDate().timeIntervalSince1970 + 30; //TODO: CHANGE THIS
     let QID = ["Author": "Jon","Question": question, "startTimeStamp": timeStamp, "endTimeStamp": endStamp];
     let fbd:FirebaseData = FirebaseData();
     let key = fbd.postToFirebaseWithKey("QUESTIONSCREEN", child: "QID", children: QID) as QuestionID;
-    
-    
-    
-    //fbd.postToFirebase(false, parent: "QUESTIONS/QID", child: "Dank", children: example);
-    
+
     return key
   }
   

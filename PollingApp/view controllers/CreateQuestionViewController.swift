@@ -10,19 +10,16 @@ import UIKit
 
 
 class CreateQuestionViewController: UIViewController {
-  
-  
-  
     
     var container: CreateQuestionContainerView?
     override func viewDidLoad() {
         super.viewDidLoad()
-      
-      
-      let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CreateQuestionViewController.dismissKeyboards))
-      view.addGestureRecognizer(tap)
-      
-      
+        
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CreateQuestionViewController.dismissKeyboards))
+        view.addGestureRecognizer(tap)
+        
+        
         setup()
     }
     
@@ -32,11 +29,11 @@ class CreateQuestionViewController: UIViewController {
         container?.delegate = self
         view.addSubview(container!)
     }
-  
-  
-  func dismissKeyboards() {
-    view.endEditing(true)
-  }
+    
+    
+    func dismissKeyboards() {
+        view.endEditing(true)
+    }
     
 }
 
@@ -46,21 +43,15 @@ class CreateQuestionViewController: UIViewController {
 
 extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
     
+    
     func submitButtonPressed(question: Question, answerArray: [String] ) {
         let nextRoom = ModelInterface.sharedInstance.segueToAdminScreen()
         performSegueWithIdentifier(nextRoom, sender: self)
-      
-        //sends question string to firebase. firebase generates unique id corresponding to question
-      let questionID = ModelInterface.sharedInstance.setNewQuestion(question)
-       // let questionID = ModelInterface.sharedInstance.getQuestionID()
         
-        var answerIDs = [String]();
-        var answerID: String
-        for (var i = 0; i < answerArray.count; i++){
-            answerID = ModelInterface.sharedInstance.setNewAnswer(answerArray[i],questionID:questionID,i: i);
-            answerIDs.append(answerID);
-          
-        }
+        //sends question string to firebase. firebase generates unique id corresponding to question
+        let questionID = ModelInterface.sharedInstance.setNewQuestion(question)
+        let answerIDs =  ModelInterface.sharedInstance.setAnswerIDS(questionID, answerString: answerArray)
+        
         ModelInterface.sharedInstance.setCorrectAnswer(answerIDs[0], isCorrectAnswer: true);
         
         

@@ -10,79 +10,68 @@ import Foundation
 import Firebase
 
 extension ModelInterface: AnswerModelProtocol {
-  
-  func randomStringWithLength (len : Int) -> NSString {
     
-    let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    // Create a list of AIDS in the QuestionScreen node
+    func setAnswerIDS(questionID:String, answerString:[String]) -> [String]  {
+        
+        var i = 0;
+        let fBD:FirebaseData = FirebaseData();
+        var answerIDS = [String]();
+        var answerID:String
+        for answer in answerString {
+            let children = ["tally": "0", "answer": answer , "isCorrect": false];
+            
+            answerID = fBD.postToFirebaseWithKey("ANSWERS/AIDS", child: "AID" , children: children);
+            answerIDS.append(answerID);
+            i += 1;
+        }
+        
     
-    var randomString : NSMutableString = NSMutableString(capacity: len)
-    
-    for (var i=0; i < len; i++){
-      var length = UInt32 (letters.length)
-      var rand = arc4random_uniform(length)
-      randomString.appendFormat("%C", letters.characterAtIndex(Int(rand)))
+        var answerIDsFireBase = [String:String]();
+        i = 1;
+        for answerID in answerIDS {
+            answerIDsFireBase["AID\(i)"] = answerID
+            i += 1;
+        }
+        fBD.postToFirebaseWithOutKey("QUESTIONSCREEN/\(questionID as String)", child: "AIDS", children: answerIDsFireBase);
+        return answerIDS
     }
     
-    return randomString
-  }
-  
-  
-  //MARK: Setting Answer Information -
-  func setNewAnswer(answer: String, questionID: QuestionID, i:NSInteger) -> AnswerID {
-//    let timeStamp = NSDate().timeIntervalSince1970
-//    let endStamp = NSDate().timeIntervalSince1970 + 30; //TODO: CHANGE THIS
-//    let QID = ["Author": "Jon","Question": question, "startTimeStamp": timeStamp, "endTimeStamp": endStamp];
-//    let fbd:FirebaseData = FirebaseData();
-//    let key = fbd.postToFirebaseWithKey("QUESTIONS", child: "QID", children: QID) as QuestionID;
+    func setCorrectAnswer(answerId: AnswerID, isCorrectAnswer: Bool) -> Bool {
+        let fBD:FirebaseData = FirebaseData();
+        fBD.updateFirebaseDatabase("ANSWERS/AIDS/\(answerId as String)", targetNode: "isCorrect", desiredValue: isCorrectAnswer)
     
-    let fBD:FirebaseData = FirebaseData();
+        return true
+    }
     
-    let ref =  FIRDatabase.database().reference();
+    func setUserAnswer(questionId: QuestionID, answerID: AnswerID) -> Bool {
+        return true
+    }
     
-    let key = ref.child("AID").childByAutoId().key
-    fBD.postToFirebaseWithOutKey("QUESTIONSCREEN/\(questionID as String)", child: "AIDS", children: ["AID\(i)":key]);
-  
+    //MARK: - Get Answer Information -
+    func isCorrectAnswer(answerId: AnswerID) -> Bool {
+        return true
+    }
     
-//    let children = ["tally": "0", "answer": answer, "isCorrect": "correct"];
-//    let AID = ["\(key)": children ];
-//    let Answers = ["Answers": AID ];
-//    fBD.postToFirebaseWithOutKey("QUESTIONS", child: questionID as String, children: Answers)
+    func getCorrectAnswer(questionID: QuestionID) -> AnswerID {
+        return "A1"
+    }
     
-      return "A1"
-  }
-  
-  func setCorrectAnswer(answerId: AnswerID, isCorrectAnswer: Bool) -> Bool {
-    return true
-  }
-  
-  func setUserAnswer(questionId: QuestionID, answerID: AnswerID) -> Bool {
-    return true
-  }
-  
-  //MARK: - Get Answer Information -
-  func isCorrectAnswer(answerId: AnswerID) -> Bool {
-    return true
-  }
-  
-  func getCorrectAnswer(questionID: QuestionID) -> AnswerID {
-    return "A1"
-  }
-  
-  func getAnswer(answerId: AnswerID) -> String {
-    return "This is the answer"
-  }
-  
-  func getListOfAnswerIDs(questionId: QuestionID) -> [AnswerID] {
-    return ["A1","A2","A3","A4"]
-  }
-  
-  func getSumOfUsersThatSubmittedAnswers(questionID: QuestionID) -> Int {
-    return 40
-  }
-  
+    func getAnswer(answerId: AnswerID) -> String {
+        return "This is the answer"
+    }
+    
+    func getListOfAnswerIDs(questionId: QuestionID) -> [AnswerID] {
+        return ["A1","A2","A3","A4"]
+    }
+    
+    func getSumOfUsersThatSubmittedAnswers(questionID: QuestionID) -> Int {
+        return 40
+    }
+    
     func getNumberOfUsersThatGaveThisAnswer(questionID: QuestionID, answerID: AnswerID) -> Int {
-
-    return 10
-  }
-
+        
+        return 10
+    }
+    
 }
