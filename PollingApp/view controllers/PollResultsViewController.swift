@@ -3,7 +3,7 @@
 //  PollingApp
 //
 //  Created by Gabriel Uribe on 2/13/16.
-//  Copyright © 2016 Gabriel Uribe. All rights reserved.
+//  Copyright © 2016 Gabriel Uribe. All rights reserved..
 //
 
 import UIKit
