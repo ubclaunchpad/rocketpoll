@@ -11,7 +11,7 @@ import Firebase
 
 extension ModelInterface: NameModelProtocol {
   
-  // TODO: Write username to Firebase
+  // TODO: Check if udid exists
   func setUserName(name: String) -> SegueName {
     
     let ref =  FIRDatabase.database().reference();
