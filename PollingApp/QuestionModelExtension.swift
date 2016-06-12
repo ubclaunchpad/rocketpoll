@@ -29,6 +29,11 @@ extension ModelInterface: QuestionModelProtocol {
     let postDict = snapshot.childSnapshotForPath(questionId).value as! [String : AnyObject]
     return postDict["Question"] as! String
   }
+    
+    func getAuthor(questionId: QuestionID, snapshot:FIRDataSnapshot) -> String {
+        let postDict = snapshot.childSnapshotForPath(questionId).value as! [String : AnyObject]
+        return postDict["Author"] as! String
+    }
   
   func getSelectedQuestionID() -> QuestionID {
     return selectedQuestionID

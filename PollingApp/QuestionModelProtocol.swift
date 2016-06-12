@@ -17,11 +17,11 @@ protocol QuestionModelProtocol {
     
   func getQuestion(questionId: QuestionID, snapshot:FIRDataSnapshot) -> String
   func getSelectedQuestionID() -> QuestionID
-    func setSelectedQuestionID(questionID:String);
+  func setSelectedQuestionID(questionID:String);
   func getListOfQuestions(snapshot:FIRDataSnapshot) -> [QuestionID]
   func getListOfQuestionsUserCreated() -> [QuestionID]
   func isQuestionAnswered(questionId: QuestionID) -> Bool
-  
+  func getAuthor(questionId: QuestionID, snapshot:FIRDataSnapshot) -> String
   //MARK: - Remove Question Information -
   func removeQuestion(questionId: QuestionID) -> Bool
   

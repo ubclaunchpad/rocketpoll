@@ -21,7 +21,7 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     
     private var questions:[Question] = []
     private var questionsAnswered:[Bool] = []
-  
+    private var authors:[String] = []
     
     var delegate: CampaignViewContainerDelegate?
     
@@ -49,6 +49,10 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
         questionsAnswered = questions
     }
     
+    func setAuthors(authorNames: [String]) {
+        authors = authorNames
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return questions.count
     }
@@ -61,6 +65,7 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
         cell.delegate = self
         cell.setQuestionText(questions[indexPath.row])
         cell.setAnsweredBackground(questionsAnswered[indexPath.row])
+        cell.setAuthorText(authors[indexPath.row])
       
       if(!questionsAnswered[indexPath.row]){
        cell.hideResultsLabel()
@@ -70,7 +75,7 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 90
+        return 100
     }
 }
 

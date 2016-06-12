@@ -16,31 +16,31 @@ protocol CampaignViewTableViewCellDelegate {
 class CampaignViewTableViewCell: UITableViewCell {
     
     var delegate: CampaignViewTableViewCellDelegate?
-
+    
+    
     @IBOutlet weak var button: UIButton!
-  @IBOutlet weak var resultsButton: UIButton!
-
+    @IBOutlet weak var resultsButton: UIButton!
+    
+    @IBOutlet weak var author: UILabel!
     @IBAction func buttonPressed(sender: AnyObject) {
         if let senderTitle = sender.currentTitle {
             delegate?.questionSelected(senderTitle!)
             
         }
     }
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-  @IBAction func resultsButtonPressed(sender: AnyObject) {
+    @IBAction func resultsButtonPressed(sender: AnyObject) {
+        delegate?.resultsButtonSelected(button.titleLabel!.text!)
+    }
     
+    func hideResultsLabel(){
+        resultsButton.alpha = 0;
+    }
     
-      delegate?.resultsButtonSelected(button.titleLabel!.text!)
-  }
- 
-  func hideResultsLabel(){
-    resultsButton.alpha = 0;
-  }
-  
     func setQuestionText(questionName: Question) {
         button.setTitle(questionName, forState: UIControlState.Normal)
     }
@@ -50,5 +50,9 @@ class CampaignViewTableViewCell: UITableViewCell {
             self.backgroundColor = UIColor.lightGrayColor()
         }
     }
-
+    
+    func setAuthorText(author: String) {
+        self.author.text = author;
+    }
+    
 }

@@ -39,6 +39,7 @@ class CampaignsViewController: UIViewController {
         container = CampaignViewContainer.instancefromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
         view.addSubview(container!)
         let questions = getQuestions(ModelInterface.sharedInstance.getListOfQuestions(snapshot), snapshot: snapshot)
+        let authors = getAuthors (ModelInterface.sharedInstance.getListOfQuestions(snapshot), snapshot: snapshot);
         let questionAnswered = isQuestionAnswered(ModelInterface.sharedInstance.getListOfQuestions(snapshot))
         let roomID = ModelInterface.sharedInstance.getCurrentRoomID()
         let roomName = ModelInterface.sharedInstance.getRoomName(roomID)
@@ -46,16 +47,28 @@ class CampaignsViewController: UIViewController {
         container?.setQuestions(questions)
         container?.setQuestionAnswered(questionAnswered)
         container?.setRoomNameTitle(roomName)
+        container?.setAuthors(authors)
         //container?.showResultsLabel(questionAnswered)
         
         
+    }
+    
+    func getAuthors (questionIDs:[Question], snapshot:FIRDataSnapshot) -> [String] {
+        var temp_authors  = [String]();
+        var temp_author:String
+        for questionID in questionIDs {
+            temp_author = ModelInterface.sharedInstance.getAuthor(questionID, snapshot: snapshot)
+            temp_authors.append(temp_author);
+        }
+        
+        return temp_authors
     }
     
     func getQuestions(questionIDs: [Question], snapshot:FIRDataSnapshot) -> [Question] {
         var temp_questions = [Question]()
         var temp_question:Question
         for questionID in questionIDs {
-            temp_question = ModelInterface.sharedInstance.getQuestion(questionID,snapshot: snapshot)
+            temp_question = ModelInterface.sharedInstance.getQuestion(questionID, snapshot: snapshot)
             temp_questions.append(temp_question)
             questionIDDictionary[temp_question] = questionID
         }
