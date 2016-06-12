@@ -37,10 +37,6 @@ class CreateQuestionViewController: UIViewController {
     
 }
 
-
-
-
-
 extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
     
     

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class PollResultsViewController: UIViewController {
   
@@ -23,13 +24,20 @@ class PollResultsViewController: UIViewController {
   override func viewDidLoad() {
     
     super.viewDidLoad()
-    setup()
+    let ref = FIRDatabase.database().reference();
+    
+    ref.child("QUESTIONSCREEN").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+        // Get user value
+        self.setup(snapshot);
+    }) { (error) in
+        print(error.localizedDescription)
+    }
   }
   
-  func setup() {
+    func setup(snapshot:FIRDataSnapshot) {
     
-    questionID = ModelInterface.sharedInstance.getQuestionID()
-    let questionText: Question = ModelInterface.sharedInstance.getQuestion(questionID)
+    questionID = ModelInterface.sharedInstance.getSelectedQuestionID()
+    let questionText: Question = ModelInterface.sharedInstance.getQuestion(questionID,snapshot: snapshot)
     answerIDs = ModelInterface.sharedInstance.getListOfAnswerIDs(questionID)
     correctAnswerId = ModelInterface.sharedInstance.getCorrectAnswer(questionID)
     correctAnswer = ModelInterface.sharedInstance.getAnswer(correctAnswerId)

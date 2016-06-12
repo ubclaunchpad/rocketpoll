@@ -10,7 +10,7 @@ import UIKit
 
 protocol CampaignViewTableViewCellDelegate {
     func questionSelected(question: Question)
-    func resultsButtonSelected()
+    func resultsButtonSelected(question: Question)
 }
 
 class CampaignViewTableViewCell: UITableViewCell {
@@ -23,6 +23,7 @@ class CampaignViewTableViewCell: UITableViewCell {
     @IBAction func buttonPressed(sender: AnyObject) {
         if let senderTitle = sender.currentTitle {
             delegate?.questionSelected(senderTitle!)
+            
         }
     }
 
@@ -31,7 +32,9 @@ class CampaignViewTableViewCell: UITableViewCell {
         // Initialization code
     }
   @IBAction func resultsButtonPressed(sender: AnyObject) {
-      delegate?.resultsButtonSelected()
+    
+    
+      delegate?.resultsButtonSelected(button.titleLabel!.text!)
   }
  
   func hideResultsLabel(){

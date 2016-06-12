@@ -23,6 +23,7 @@ enum UserDefaultKeys {
   static let userName = "username"
 }
 
+var selectedQuestionID = "";
 enum Segues {
   static let toMainApp = "showMainApp"
   static let toSomeVC = "myIdentifier"
@@ -32,4 +33,6 @@ enum Segues {
   static let toPollAdminScreen = "toPollAdminScreen"
   static let toPollResultsView = "toPollResultsView"
 }
+
+
  

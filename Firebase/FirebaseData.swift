@@ -35,9 +35,11 @@ class FirebaseData {
     
     func updateFirebaseDatabase (parent: String, targetNode:String, desiredValue:NSObject) {
         let ref =  FIRDatabase.database().reference();
-
+        
         ref.child("\(parent)/\(targetNode)").setValue(desiredValue);
         
     }
+    
+    
     
 }

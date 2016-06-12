@@ -7,16 +7,18 @@
 //
 
 import Foundation
-
+import Firebase
 protocol QuestionModelProtocol {
   
   //MARK: - Setting Question Information -
   func setNewQuestion(question: String) -> QuestionID
   
   //MARK: - Getting Question Information -
-  func getQuestion(questionId: QuestionID) -> String
-  func getQuestionID() -> QuestionID
-  func getListOfQuestions() -> [QuestionID]
+    
+  func getQuestion(questionId: QuestionID, snapshot:FIRDataSnapshot) -> String
+  func getSelectedQuestionID() -> QuestionID
+    func setSelectedQuestionID(questionID:String);
+  func getListOfQuestions(snapshot:FIRDataSnapshot) -> [QuestionID]
   func getListOfQuestionsUserCreated() -> [QuestionID]
   func isQuestionAnswered(questionId: QuestionID) -> Bool
   

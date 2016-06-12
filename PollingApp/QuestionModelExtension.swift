@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 
 extension ModelInterface: QuestionModelProtocol {
-  
+
   //MARK: - Setting Question Information -
   func setNewQuestion(question: String) -> QuestionID {
 
@@ -25,26 +25,41 @@ extension ModelInterface: QuestionModelProtocol {
   }
   
   //MARK: - Getting Question Information -
-  func getQuestion(questionId: QuestionID) -> String {
-    return "Is this a question?"
+  func getQuestion(questionId: QuestionID, snapshot:FIRDataSnapshot) -> String {
+    let postDict = snapshot.childSnapshotForPath(questionId).value as! [String : AnyObject]
+    return postDict["Question"] as! String
   }
   
-  func getQuestionID() -> QuestionID {
-    return "Q1"
+  func getSelectedQuestionID() -> QuestionID {
+    return selectedQuestionID
   }
   
-  func getListOfQuestions() -> [QuestionID] {
-    return ["Q1", "Q2", "Q3"]
+    func setSelectedQuestionID(questionID:String){
+        selectedQuestionID = questionID
+    }
+    
+  func getListOfQuestions(snapshot:FIRDataSnapshot) -> [QuestionID] {
+    let postDict = snapshot.value as! [String : AnyObject]
+    
+    
+    var ListOfQuestions = [String]();
+    for (QID, _) in postDict {
+        ListOfQuestions.append(QID);
+    }
+
+    return ListOfQuestions
   }
   
   func getListOfQuestionsUserCreated() -> [QuestionID] {
+
     return ["Q1", "Q2", "Q3"]
   }
   
+    
   func isQuestionAnswered(questionId: QuestionID) -> Bool {
     return true
   }
-  
+    
   //MARK: - Remove Question Information -
   func removeQuestion(questionId: QuestionID) -> Bool {
     return true

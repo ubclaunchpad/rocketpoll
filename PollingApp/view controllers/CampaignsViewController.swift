@@ -7,15 +7,27 @@
 //
 
 import UIKit
-
+import Firebase
 class CampaignsViewController: UIViewController {
     
-    private var questionIDDictionary = [Question: QuestionID]()
-    var container: CampaignViewContainer?    
+    private var questionIDDictionary = [String:AnyObject]()
+    var container: CampaignViewContainer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
+        let ref = FIRDatabase.database().reference();
+        
+        ref.child("QUESTIONSCREEN").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            // Get user value
+            self.setup(snapshot);
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
+    
+    override func viewDidAppear (animated: Bool) {
+        super.viewDidAppear(animated)
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -23,12 +35,11 @@ class CampaignsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func setup() {
+    func setup(snapshot:FIRDataSnapshot) {
         container = CampaignViewContainer.instancefromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
         view.addSubview(container!)
-        
-        let questions = getQuestions(ModelInterface.sharedInstance.getListOfQuestions())
-        let questionAnswered = isQuestionAnswered(ModelInterface.sharedInstance.getListOfQuestions())
+        let questions = getQuestions(ModelInterface.sharedInstance.getListOfQuestions(snapshot), snapshot: snapshot)
+        let questionAnswered = isQuestionAnswered(ModelInterface.sharedInstance.getListOfQuestions(snapshot))
         let roomID = ModelInterface.sharedInstance.getCurrentRoomID()
         let roomName = ModelInterface.sharedInstance.getRoomName(roomID)
         container?.delegate = self
@@ -36,13 +47,15 @@ class CampaignsViewController: UIViewController {
         container?.setQuestionAnswered(questionAnswered)
         container?.setRoomNameTitle(roomName)
         //container?.showResultsLabel(questionAnswered)
+        
+        
     }
     
-    func getQuestions(questionIDs: [Question]) -> [Question] {
+    func getQuestions(questionIDs: [Question], snapshot:FIRDataSnapshot) -> [Question] {
         var temp_questions = [Question]()
         var temp_question:Question
         for questionID in questionIDs {
-            temp_question = ModelInterface.sharedInstance.getQuestion(questionID)
+            temp_question = ModelInterface.sharedInstance.getQuestion(questionID,snapshot: snapshot)
             temp_questions.append(temp_question)
             questionIDDictionary[temp_question] = questionID
         }
@@ -66,20 +79,25 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
         if let questionID = questionIDDictionary[question] {
             print(questionID)
             let questionSegue = ModelInterface.sharedInstance.segueToQuestion()
+            ModelInterface.sharedInstance.setSelectedQuestionID(questionID as! String)
             performSegueWithIdentifier(questionSegue, sender: self)
-          
+            
         }
     }
     func newQuestionSelected() {
         let newQuestionSegue = ModelInterface.sharedInstance.segueToCreateNewQuestion()
         performSegueWithIdentifier(newQuestionSegue, sender: self)
     }
-  
-  func resultsButtonSelected() {
-    let nextRoom = ModelInterface.sharedInstance.segueToResultsScreen()
-    performSegueWithIdentifier(nextRoom, sender: self)
-  print("perform segue")
-  }
-  
+    
+    func resultsButtonSelected(question: Question) {
+        
+        if let questionID = questionIDDictionary[question] {
+            ModelInterface.sharedInstance.setSelectedQuestionID(questionID as! String)
+            let nextRoom = ModelInterface.sharedInstance.segueToResultsScreen()
+            performSegueWithIdentifier(nextRoom, sender: self)
+        }
+        print("perform segue")
+    }
+    
 }
 

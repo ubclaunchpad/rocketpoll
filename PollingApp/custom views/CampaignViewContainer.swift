@@ -11,7 +11,7 @@ import UIKit
 protocol CampaignViewContainerDelegate {
     func questionSelected(question: Question)
     func newQuestionSelected()
-    func resultsButtonSelected()
+    func resultsButtonSelected(question: Question)
 }
 
 class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
@@ -75,8 +75,8 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
 }
 
 extension CampaignViewContainer: CampaignViewTableViewCellDelegate {
-  func resultsButtonSelected() {
-    delegate?.resultsButtonSelected()
+  func resultsButtonSelected(question: Question) {
+    delegate?.resultsButtonSelected(question)
   }
   
   func questionSelected(question: Question) {

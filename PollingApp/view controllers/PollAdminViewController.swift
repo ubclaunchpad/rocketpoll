@@ -7,8 +7,7 @@
 
 
 import UIKit
-
-
+import Firebase
 
 final class PollAdminViewController: UIViewController {
 
@@ -29,19 +28,25 @@ final class PollAdminViewController: UIViewController {
     var container: PollAdminViewContainer?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setup()
+        let ref = FIRDatabase.database().reference();
+        ref.child("QUESTIONSCREEN").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            // Get user value
+            self.setup(snapshot);
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+
     }
     
-    func setup() {
+    func setup(snapshot:FIRDataSnapshot) {
         // add your container class to view
         container = PollAdminViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
         view.addSubview(container!)
         
-       questionID = ModelInterface.sharedInstance.getQuestionID()
+       questionID = ModelInterface.sharedInstance.getSelectedQuestionID()
         sumuserresults = ModelInterface.sharedInstance.getSumOfUsersThatSubmittedAnswers(questionID)
         
-        let questionText: Question = ModelInterface.sharedInstance.getQuestion(questionID)
+        let questionText: Question = ModelInterface.sharedInstance.getQuestion(questionID, snapshot: snapshot)
        answerIDs = ModelInterface.sharedInstance.getListOfAnswerIDs(questionID)
        
        container?.setQuestionText(questionText)

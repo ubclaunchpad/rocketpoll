@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 final class PollUserViewController: UIViewController {
     private var answerIDDictionary = [Answer: AnswerID]()
@@ -17,24 +18,33 @@ final class PollUserViewController: UIViewController {
     var answers:[Answer] = []
     var answerIDs:[AnswerID] = []
     
-    private var questionID:QuestionID = ""
+    private var questionID = ""
     
     var container: PollUserViewContainer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setup()
+        let ref = FIRDatabase.database().reference();
+        
+        ref.child("QUESTIONSCREEN").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            // Get user value
+            self.setup(snapshot);
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+
     }
     
-    func setup() {
+    func setup(snapshot:FIRDataSnapshot) {
         // add your container class to view
         let viewSize = CGRectMake(0, 0, view.bounds.width, view.bounds.height)
         container = PollUserViewContainer.instanceFromNib(viewSize)
         view.addSubview(container!)
         
-        questionID = ModelInterface.sharedInstance.getQuestionID()
-        let questionText: Question = ModelInterface.sharedInstance.getQuestion(questionID)
+        questionID = ModelInterface.sharedInstance.getSelectedQuestionID()
+       // questionID = ModelInterface.sharedInstance.getQuestionID()
+        let questionText: Question = ModelInterface.sharedInstance.getQuestion(questionID, snapshot: snapshot)
         answerIDs = ModelInterface.sharedInstance.getListOfAnswerIDs(questionID)
         
         container?.setQuestionText(questionText)
