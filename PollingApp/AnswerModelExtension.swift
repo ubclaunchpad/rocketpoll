@@ -63,7 +63,7 @@ extension ModelInterface: AnswerModelProtocol {
                         }
                         
                     }
-                
+                    
                     var tempAnswer = AnswerC(AID: AID, isCorrect: sendIsCorrect, tally: sendTally, answerText: sendAnswerText)
                     sendAnswerData.append(tempAnswer)
                     
@@ -99,13 +99,13 @@ extension ModelInterface: AnswerModelProtocol {
         return "A1"
     }
     
-    func getAnswer(answerId: AnswerID) -> String {
-        return "This is the answer"
-    }
-    
-    func getListOfAnswerIDs(questionId: QuestionID) -> [AnswerID] {
-        return ["A1","A2","A3","A4"]
-    }
+    //    func getAnswer(answerId: AnswerID) -> String {
+    //        return "This is the answer"
+    //    }
+    //
+    //    func getListOfAnswerIDs(questionId: QuestionID) -> [AnswerID] {
+    //        return ["A1","A2","A3","A4"]
+    //    }
     
     func getSumOfUsersThatSubmittedAnswers(questionID: QuestionID) -> Int {
         return 40

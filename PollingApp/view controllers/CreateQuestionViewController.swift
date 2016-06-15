@@ -45,14 +45,18 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
     
     
     func submitButtonPressed(question: Question, answerArray: [String] ) {
-        let nextRoom = ModelInterface.sharedInstance.segueToAdminScreen()
-        performSegueWithIdentifier(nextRoom, sender: self)
+       
         
         //sends question string to firebase. firebase generates unique id corresponding to question
         let questionID = ModelInterface.sharedInstance.setNewQuestion(question)
         let answerIDs =  ModelInterface.sharedInstance.setAnswerIDS(questionID, answerString: answerArray)
         
         ModelInterface.sharedInstance.setCorrectAnswer(answerIDs[0], isCorrectAnswer: true);
+        
+        ModelInterface.sharedInstance.setSelectedQuestion(answerIDs, QID: questionID, questionText: question, author: "Jon")
+        
+        let nextRoom = ModelInterface.sharedInstance.segueToAdminScreen()
+        performSegueWithIdentifier(nextRoom, sender: self)
         
         
     }
@@ -64,7 +68,7 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
     
     func checksInput (question:String, A1:String, A2:String,  A3:String,A4:String) -> Bool {
         if((question == "") || (A1 == "") || (A2 == "") || (A3 == "") || (A4 == "") ) {
-            let alert = UIAlertController(title: "Invalid name", message:"",
+            let alert = UIAlertController(title: "Fill in the whole fields", message:"",
                                           preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Ok",
                 style: UIAlertActionStyle.Default, handler: nil))

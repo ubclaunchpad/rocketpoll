@@ -70,25 +70,25 @@ class CampaignsViewController: UIViewController {
       
     }
     
-    func getQuestions(questionIDs: [Question]) -> [Question] {
-        var temp_questions = [Question]()
-        var temp_question:Question
-        for questionID in questionIDs {
-            temp_question = ModelInterface.sharedInstance.getQuestion(questionID)
-            temp_questions.append(temp_question)
-            questionIDDictionary[temp_question] = questionID
-        }
-        return temp_questions
-    }
-    
-    func isQuestionAnswered(questionIDs: [Question]) -> [Bool] {
-        var temp_question_Answered = [Bool]()
-        for questionID in questionIDs {
-            let isQuestionAnswered = ModelInterface.sharedInstance.isQuestionAnswered(questionID)
-            temp_question_Answered.append(isQuestionAnswered)
-        }
-        return temp_question_Answered
-    }
+//    func getQuestions(questionIDs: [Question]) -> [Question] {
+//        var temp_questions = [Question]()
+//        var temp_question:Question
+//        for questionID in questionIDs {
+//            temp_question = ModelInterface.sharedInstance.getQuestion(questionID)
+//            temp_questions.append(temp_question)
+//            questionIDDictionary[temp_question] = questionID
+//        }
+//        return temp_questions
+//    }
+//    
+//    func isQuestionAnswered(questionIDs: [Question]) -> [Bool] {
+//        var temp_question_Answered = [Bool]()
+//        for questionID in questionIDs {
+//            let isQuestionAnswered = ModelInterface.sharedInstance.isQuestionAnswered(questionID)
+//            temp_question_Answered.append(isQuestionAnswered)
+//        }
+//        return temp_question_Answered
+//    }
     
 }
 
@@ -112,10 +112,16 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
         performSegueWithIdentifier(newQuestionSegue, sender: self)
     }
   
-  func resultsButtonSelected() {
-    let nextRoom = ModelInterface.sharedInstance.segueToResultsScreen()
-    performSegueWithIdentifier(nextRoom, sender: self)
-  print("perform segue")
+    func resultsButtonSelected(question: Question ) {
+    if let questionID = questionIDDictionary[question] {
+        
+        let AIDS = QIDToAIDSDictionary[questionID]!;
+        let author = QIDToAuthorDictionary[questionID]!;
+        ModelInterface.sharedInstance.setSelectedQuestion(AIDS, QID: questionID, questionText: question, author: author)
+        let nextRoom = ModelInterface.sharedInstance.segueToResultsScreen()
+        performSegueWithIdentifier(nextRoom, sender: self)
+    }
+    print("perform segue")
   }
   
 }

@@ -34,7 +34,6 @@ final class PollUserViewController: UIViewController {
         view.addSubview(container!)
     
         answerIDs = ModelInterface.sharedInstance.getSelectedQuestion().getAIDS()
-        var j = 0;
         ModelInterface.sharedInstance.processAnswerData(answerIDs) { (listofAllAnswers) in
             let size = listofAllAnswers.count
             for i in 0 ..< size  {
@@ -53,18 +52,18 @@ final class PollUserViewController: UIViewController {
         }
     }
     
-    func getAnswers(answerIDs: [AnswerID]) -> [Answer] {
-        // Changes the list of answerIDs to list of answers
-        var answers = [String]()
-        var temp_answer:Answer
-        
-        for answerID in answerIDs {
-            temp_answer = ModelInterface.sharedInstance.getAnswer(answerID)
-            answers.append(temp_answer)
-            answerIDDictionary[temp_answer] = answerID
-        }
-        return answers
-    }
+//    func getAnswers(answerIDs: [AnswerID]) -> [Answer] {
+//        // Changes the list of answerIDs to list of answers
+//        var answers = [String]()
+//        var temp_answer:Answer
+//        
+//        for answerID in answerIDs {
+//            temp_answer = ModelInterface.sharedInstance.getAnswer(answerID)
+//            answers.append(temp_answer)
+//            answerIDDictionary[temp_answer] = answerID
+//        }
+//        return answers
+//    }
     
     func createTimer (startingTime: Int) {
         seconds = startingTime
