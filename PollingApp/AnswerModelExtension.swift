@@ -26,7 +26,7 @@ extension ModelInterface: AnswerModelProtocol {
             i += 1;
         }
         
-    
+        
         var answerIDsFireBase = [String:String]();
         i = 1;
         for answerID in answerIDS {
@@ -37,10 +37,52 @@ extension ModelInterface: AnswerModelProtocol {
         return answerIDS
     }
     
+    func processAnswerData(selectedAnswerIDs:[String],completionHandler: (listofAllAnswers: [AnswerC]) -> ()) {
+        
+        let ref =  FIRDatabase.database().reference();
+        ref.child("ANSWERS").child("AIDS").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            // Get user value
+            let postDict = snapshot.value as! [String : AnyObject]
+            var sendAnswerData = [AnswerC]()
+            var sendTally = 0;
+            var sendIsCorrect = false;
+            var sendAnswerText = "";
+            for (AID, data) in postDict {
+                if (selectedAnswerIDs.contains(AID)) {
+                    let information = data as! [String : AnyObject]
+                    
+                    for (key,value) in information {
+                        if (key == "answer") {
+                            sendAnswerText = value as! String ;
+                        }
+                        if (key == "isCorrect") {
+                            sendIsCorrect = value as! Bool
+                        }
+                        if (key == "tally ") {
+                            sendTally = value as! Int
+                        }
+                        
+                    }
+                
+                    var tempAnswer = AnswerC(AID: AID, isCorrect: sendIsCorrect, tally: sendTally, answerText: sendAnswerText)
+                    sendAnswerData.append(tempAnswer)
+                    
+                }
+            }
+            
+            completionHandler(listofAllAnswers: sendAnswerData)
+            
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        
+    }
+    
+    
     func setCorrectAnswer(answerId: AnswerID, isCorrectAnswer: Bool) -> Bool {
         let fBD:FirebaseData = FirebaseData();
         fBD.updateFirebaseDatabase("ANSWERS/AIDS/\(answerId as String)", targetNode: "isCorrect", desiredValue: isCorrectAnswer)
-    
+        
         return true
     }
     

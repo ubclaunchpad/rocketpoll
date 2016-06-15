@@ -32,16 +32,25 @@ final class PollUserViewController: UIViewController {
         let viewSize = CGRectMake(0, 0, view.bounds.width, view.bounds.height)
         container = PollUserViewContainer.instanceFromNib(viewSize)
         view.addSubview(container!)
-        
-        questionID = ModelInterface.sharedInstance.getQuestionID()
-        let questionText: Question = ModelInterface.sharedInstance.getQuestion(questionID)
-        answerIDs = ModelInterface.sharedInstance.getListOfAnswerIDs(questionID)
-        
-        container?.setQuestionText(questionText)
-        container?.delegate = self
-        answers = getAnswers(answerIDs)
-        container?.setAnswers(answers)
-        createTimer(ModelInterface.sharedInstance.getCountdownSeconds())
+    
+        answerIDs = ModelInterface.sharedInstance.getSelectedQuestion().getAIDS()
+        var j = 0;
+        ModelInterface.sharedInstance.processAnswerData(answerIDs) { (listofAllAnswers) in
+            let size = listofAllAnswers.count
+            for i in 0 ..< size  {
+                let tempAnswer = listofAllAnswers[i].getAnswerText()
+                self.answerIDDictionary[tempAnswer] = self.answerIDs[i]
+                self.answers.append(tempAnswer)
+            }
+            self.container?.delegate = self
+            self.questionID = selectedQuestion.getQID()
+            let questionText: Question = selectedQuestion.getQuestionText()
+            self.container?.setQuestionText(questionText)
+            self.container?.setAnswers(self.answers)
+            self.createTimer(ModelInterface.sharedInstance.getCountdownSeconds())
+            self.container?.tableView.reloadData()
+
+        }
     }
     
     func getAnswers(answerIDs: [AnswerID]) -> [Answer] {

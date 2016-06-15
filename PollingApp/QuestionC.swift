@@ -15,6 +15,10 @@ class QuestionC {
     var author = "";
     var questionText = "";
     
+    init() {
+        
+    }
+    
     init (QID: String, AIDS:[String], author:String, questionText:String) {
         
         self.QID = QID;
@@ -23,6 +27,7 @@ class QuestionC {
         self.questionText = questionText
     }
     
+    // getters
     func getQID () -> String {
         return self.QID;
     }
@@ -38,6 +43,28 @@ class QuestionC {
     func getQuestionText () -> String{
         return self.questionText
     }
+    
+    // setters
+    func setQID (QID:String)  {
+        self.QID = QID;
+    }
+    
+    func setAIDS (AIDS:[String]){
+        
+            self.AIDS = AIDS;
+        
+        
+       
+    }
+    
+    func setAuthor (author:String)  {
+        self.author = author;
+    }
+    
+    func setQuestionText (questionText:String){
+        self.questionText = questionText
+    }
+    
     
     
 }

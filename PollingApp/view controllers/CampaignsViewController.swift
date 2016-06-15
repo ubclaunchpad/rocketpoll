@@ -12,6 +12,9 @@ class CampaignsViewController: UIViewController {
     
     private var questionIDDictionary = [Question: QuestionID]()
     private var listOfAllQuestions = [QuestionC]();
+    private var QIDToAIDSDictionary = [String:[String]]()
+    private var QIDToAuthorDictionary = [String:String]()
+    
     var container: CampaignViewContainer?    
     
     override func viewDidLoad() {
@@ -38,12 +41,21 @@ class CampaignsViewController: UIViewController {
                 authors.append(listofAllQuestions[i].getAuthor())
                 questionsAnswered.append(true);
                 self.questionIDDictionary[listofAllQuestions[i].getQuestionText()] = listofAllQuestions[i].getQID()
+                self.QIDToAIDSDictionary[listofAllQuestions[i].getQID()] = listofAllQuestions[i].getAIDS()
+                self.QIDToAuthorDictionary[listofAllQuestions[i].getQID()] = listofAllQuestions[i].getAuthor()
             }
+            // Not really important
+            
+            let roomID = ModelInterface.sharedInstance.getCurrentRoomID()
+            let roomName = ModelInterface.sharedInstance.getRoomName(roomID)
+            self.container?.setRoomNameTitle(roomName)
+            ///////////
+            
             
             self.container?.delegate = self
             self.container?.setQuestions(questions)
             self.container?.setQuestionAnswered(questionsAnswered)
-            
+           
             self.container?.tableView.reloadData()
         }
         
@@ -55,7 +67,7 @@ class CampaignsViewController: UIViewController {
 //        container?.setQuestions(questions)
 //        container?.setQuestionAnswered(questionAnswered)
 //        container?.setRoomNameTitle(roomName)
-        //container?.showResultsLabel(questionAnswered)
+      
     }
     
     func getQuestions(questionIDs: [Question]) -> [Question] {
@@ -85,6 +97,11 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
     func questionSelected(question: Question) {
         if let questionID = questionIDDictionary[question] {
             print(questionID)
+            
+            let AIDS = QIDToAIDSDictionary[questionID]!;
+            let author = QIDToAuthorDictionary[questionID]!;
+            ModelInterface.sharedInstance.setSelectedQuestion(AIDS, QID: questionID, questionText: question, author: author)
+            
             let questionSegue = ModelInterface.sharedInstance.segueToQuestion()
             performSegueWithIdentifier(questionSegue, sender: self)
           

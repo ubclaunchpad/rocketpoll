@@ -28,7 +28,16 @@ extension ModelInterface: QuestionModelProtocol {
   func getQuestion(questionId: QuestionID) -> String {
     return "Is this a question?"
   }
-  
+    func getSelectedQuestion() -> QuestionC  {
+        return selectedQuestion
+    }
+    
+    func setSelectedQuestion(AIDS: [String], QID: String, questionText: String, author: String) {
+        selectedQuestion.setQID(QID)
+        selectedQuestion.setAIDS(AIDS)
+        selectedQuestion.setQuestionText(questionText)
+        selectedQuestion.setAuthor(author)
+    }
     
     func processQuestionData(completionHandler: (listofAllQuestions: [QuestionC]) -> ()){
          let ref =  FIRDatabase.database().reference();
@@ -60,6 +69,7 @@ extension ModelInterface: QuestionModelProtocol {
                     }
                 }
                 let tempQuestionC = QuestionC(QID:sendQID, AIDS:sendAIDS, author: sendAuthor, questionText: sendQuestionText);
+                sendAIDS = [String]();
                 sendQuestionC.append(tempQuestionC);
             }
             

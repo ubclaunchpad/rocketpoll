@@ -16,6 +16,9 @@ protocol QuestionModelProtocol {
   //MARK: - Getting Question Information -
     
   func processQuestionData(completionHandler: (listofAllQuestions: [QuestionC]) -> ())
+  func setSelectedQuestion(AIDS:[String], QID:String, questionText:String, author:String)
+    func getSelectedQuestion() -> QuestionC 
+    
   func getQuestion(questionId: QuestionID) -> String
   func getQuestionID() -> QuestionID
   func getListOfQuestions() -> [QuestionID]
