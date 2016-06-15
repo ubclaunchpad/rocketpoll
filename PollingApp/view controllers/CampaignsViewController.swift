@@ -11,6 +11,7 @@ import UIKit
 class CampaignsViewController: UIViewController {
     
     private var questionIDDictionary = [Question: QuestionID]()
+    private var listOfAllQuestions = [QuestionC]();
     var container: CampaignViewContainer?    
     
     override func viewDidLoad() {
@@ -26,15 +27,34 @@ class CampaignsViewController: UIViewController {
     func setup() {
         container = CampaignViewContainer.instancefromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
         view.addSubview(container!)
+        ModelInterface.sharedInstance.processQuestionData { (listofAllQuestions) in
+            self.listOfAllQuestions = listofAllQuestions
+            let size = self.listOfAllQuestions.count
+            var questions = [String]();
+            var authors = [String]();
+            var questionsAnswered = [Bool]();
+            for i in 0 ..< size  {
+                questions.append(listofAllQuestions[i].getQuestionText())
+                authors.append(listofAllQuestions[i].getAuthor())
+                questionsAnswered.append(true);
+                self.questionIDDictionary[listofAllQuestions[i].getQuestionText()] = listofAllQuestions[i].getQID()
+            }
+            
+            self.container?.delegate = self
+            self.container?.setQuestions(questions)
+            self.container?.setQuestionAnswered(questionsAnswered)
+            
+            self.container?.tableView.reloadData()
+        }
         
-        let questions = getQuestions(ModelInterface.sharedInstance.getListOfQuestions())
-        let questionAnswered = isQuestionAnswered(ModelInterface.sharedInstance.getListOfQuestions())
-        let roomID = ModelInterface.sharedInstance.getCurrentRoomID()
-        let roomName = ModelInterface.sharedInstance.getRoomName(roomID)
-        container?.delegate = self
-        container?.setQuestions(questions)
-        container?.setQuestionAnswered(questionAnswered)
-        container?.setRoomNameTitle(roomName)
+//        let questions = getQuestions(ModelInterface.sharedInstance.getListOfQuestions())
+//        let questionAnswered = isQuestionAnswered(ModelInterface.sharedInstance.getListOfQuestions())
+//        let roomID = ModelInterface.sharedInstance.getCurrentRoomID()
+//        let roomName = ModelInterface.sharedInstance.getRoomName(roomID)
+//        container?.delegate = self
+//        container?.setQuestions(questions)
+//        container?.setQuestionAnswered(questionAnswered)
+//        container?.setRoomNameTitle(roomName)
         //container?.showResultsLabel(questionAnswered)
     }
     

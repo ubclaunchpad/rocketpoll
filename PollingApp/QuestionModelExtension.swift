@@ -29,6 +29,47 @@ extension ModelInterface: QuestionModelProtocol {
     return "Is this a question?"
   }
   
+    
+    func processQuestionData(completionHandler: (listofAllQuestions: [QuestionC]) -> ()){
+         let ref =  FIRDatabase.database().reference();
+         ref.child("QUESTIONSCREEN").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            // Get user value
+            let postDict = snapshot.value as! [String : AnyObject]
+            var sendQuestionC = [QuestionC]();
+            var sendQID = "";
+            var sendAuthor = "";
+            var sendAIDS = [String]();
+            var sendQuestionText = "";
+            for (QID, data) in postDict {
+                sendQID = QID;
+                let information = data as! [String : AnyObject]
+                
+                for (key,value) in information {
+                    
+                    if (key == "Author") {
+                        sendAuthor = value as! String ;
+                    }
+                    if (key == "Question") {
+                        sendQuestionText = value as! String ;
+                    }
+                    if (key == "AIDS") {
+                        let AIDS = value as! [String: AnyObject]
+                        for (_,AID) in AIDS {
+                            sendAIDS.append(AID as! String)
+                        }
+                    }
+                }
+                let tempQuestionC = QuestionC(QID:sendQID, AIDS:sendAIDS, author: sendAuthor, questionText: sendQuestionText);
+                sendQuestionC.append(tempQuestionC);
+            }
+            
+            completionHandler(listofAllQuestions: sendQuestionC)
+            
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
+    
   func getQuestionID() -> QuestionID {
     return "Q1"
   }

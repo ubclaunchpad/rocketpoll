@@ -14,6 +14,8 @@ protocol QuestionModelProtocol {
   func setNewQuestion(question: String) -> QuestionID
   
   //MARK: - Getting Question Information -
+    
+  func processQuestionData(completionHandler: (listofAllQuestions: [QuestionC]) -> ())
   func getQuestion(questionId: QuestionID) -> String
   func getQuestionID() -> QuestionID
   func getListOfQuestions() -> [QuestionID]
