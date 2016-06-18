@@ -3,10 +3,11 @@
 //  PollingApp
 //
 //  Created by Gabriel Uribe on 2/13/16.
-//  Copyright © 2016 Gabriel Uribe. All rights reserved..
+//  Copyright © 2016 Gabriel Uribe. All rights reserved.
 //
 
 import UIKit
+import Firebase
 
 class PollResultsViewController: UIViewController {
   
@@ -19,6 +20,7 @@ class PollResultsViewController: UIViewController {
   private var correctAnswerId: AnswerID = ""
   private var NumResponsesPerAnswer: [Int] = []
   var totalNumberOfUserAnswers: Int = 0
+  var postDict = [String : AnyObject]()
   
   override func viewDidLoad() {
     
@@ -27,6 +29,23 @@ class PollResultsViewController: UIViewController {
   }
   
   func setup() {
+    
+    let ref = FIRDatabase.database().reference();
+    
+    ref.child("QUESTIONSCREEN").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+        // Get user value
+        
+//        self.postDict = snapshot.value as! [String : AnyObject]
+//        print(self.postDict)
+    
+//        for (str, obj) in self.postDict {
+//            print(obj)
+//        }
+    
+    }) { (error) in
+        print(error.localizedDescription)
+    }
+    
     
     questionID = ModelInterface.sharedInstance.getQuestionID()
     let questionText: Question = ModelInterface.sharedInstance.getQuestion(questionID)
