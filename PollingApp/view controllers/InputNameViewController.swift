@@ -67,11 +67,6 @@ extension InputNameViewController: UITextFieldDelegate {
     
     checkChars()
     performSegueWithIdentifier(Segues.toMainApp, sender: self)
-    
-    return true
-    
-    
-    
     let cleanedName = cleanName(nameTextField.text!)
     if(cleanedName.characters.count <= 0) {
       let alert = UIAlertController(title: "Invalid name", message:"",
@@ -81,7 +76,7 @@ extension InputNameViewController: UITextFieldDelegate {
       self.presentViewController(alert, animated: true, completion: nil)
       return true
     }
-    
+    print("testing");
     textField.resignFirstResponder()
     
     assert(cleanedName.characters.count != 0 , "Name cannot be blank")

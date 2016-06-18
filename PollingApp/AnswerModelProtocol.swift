@@ -16,12 +16,12 @@ func setAnswerIDS(questionID:String, answerString:[String]) -> [String]
   func setCorrectAnswer(answerId: AnswerID, isCorrectAnswer: Bool) -> Bool
   func setUserAnswer(questionId: QuestionID, answerID: AnswerID) -> Bool
   
-  
+    func processAnswerData(selectedAnswerIDs:[String],completionHandler: (listofAllAnswers: [AnswerC]) -> ())
   //MARK: - Get Answer Information -
   func isCorrectAnswer(answerId: AnswerID) -> Bool
   func getCorrectAnswer(questionID: QuestionID) -> AnswerID
-  func getAnswer(answerId: AnswerID) -> String
-  func getListOfAnswerIDs(questionId: QuestionID) -> [AnswerID]
+//  func getAnswer(answerId: AnswerID) -> String
+//  func getListOfAnswerIDs(questionId: QuestionID) -> [AnswerID]
   func getSumOfUsersThatSubmittedAnswers(questionId: QuestionID) -> Int
   func getNumberOfUsersThatGaveThisAnswer(questionID: QuestionID,answerID:AnswerID) -> Int
 }

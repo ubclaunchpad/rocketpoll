@@ -10,86 +10,80 @@ import UIKit
 import Firebase
 
 class PollResultsViewController: UIViewController {
-  
-  private var answerIDDictionary = [Answer: AnswerID]()
-  private var questionID:QuestionID = ""
-  var container: PollResultsViewContainer?
-  private var answers: [Answer] = []
-  private var answerIDs: [AnswerID] = []
-  private var correctAnswer: Answer = ""
-  private var correctAnswerId: AnswerID = ""
-  private var NumResponsesPerAnswer: [Int] = []
-  var totalNumberOfUserAnswers: Int = 0
-  var postDict = [String : AnyObject]()
-  
-  override func viewDidLoad() {
+    private var answerIDDictionary = [Answer: AnswerID]()
+    private var questionID:QuestionID = ""
+    var container: PollResultsViewContainer?
+    private var answers: [Answer] = []
+    private var answerIDs: [AnswerID] = []
+    private var correctAnswer: Answer = ""
+    private var correctAnswerId: AnswerID = ""
+    private var NumResponsesPerAnswer: [Int] = []
+    var totalNumberOfUserAnswers: Int = 0
     
-    super.viewDidLoad()
-    setup()
-  }
-  
-  func setup() {
-    
-    let ref = FIRDatabase.database().reference();
-    
-    ref.child("QUESTIONSCREEN").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-        // Get user value
+    override func viewDidLoad() {
         
-//        self.postDict = snapshot.value as! [String : AnyObject]
-//        print(self.postDict)
+        super.viewDidLoad()
+        setup()
+    }
     
-//        for (str, obj) in self.postDict {
-//            print(obj)
+    func setup() {
+        container = PollResultsViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
+        view.addSubview(container!)
+        
+        questionID = ModelInterface.sharedInstance.getSelectedQuestion().getQID()
+        let questionText: Question = ModelInterface.sharedInstance.getSelectedQuestion().getQuestionText()
+        answerIDs = ModelInterface.sharedInstance.getSelectedQuestion().getAIDS()
+        
+        ModelInterface.sharedInstance.processAnswerData(answerIDs) { (listofAllAnswers) in
+            let size = listofAllAnswers.count
+            for i in 0 ..< size  {
+                let tempAnswer = listofAllAnswers[i].getAnswerText()
+                self.answerIDDictionary[tempAnswer] = self.answerIDs[i]
+                self.answers.append(tempAnswer)
+                if (listofAllAnswers[i].getIsCorrect() == true ) {
+                    self.correctAnswer = listofAllAnswers[i].getAnswerText()
+                }
+            }
+            self.totalNumberOfUserAnswers = ModelInterface.sharedInstance.getSumOfUsersThatSubmittedAnswers(self.questionID)
+            
+            for i in 0...self.answerIDs.count-1{
+                self.NumResponsesPerAnswer.append(ModelInterface.sharedInstance.getNumberOfUsersThatGaveThisAnswer(self.questionID,answerID: self.answerIDs[i]))
+            }
+            
+            self.container?.delegate = self
+            self.container?.setTotalNumberOfAnswers(self.totalNumberOfUserAnswers)
+            self.container?.setQuestionLabelText(questionText)
+            self.container?.setAnswers(self.answers)
+            self.container?.setCorrectAnswer(self.correctAnswer)
+            self.container?.setNumberOfResponsesForAnswer(self.NumResponsesPerAnswer)
+            self.container?.resultsTableView.reloadData()
+        }
+        
+        
+        
+        
+    }
+    
+//    func getAnswers(answerIDs: [AnswerID]) -> [Answer] {
+//        // Changes the list of answerIDs to list of answers
+//        var answers = [String]()
+//        var temp_answer:Answer
+//        
+//        for answerID in answerIDs {
+//            temp_answer = ModelInterface.sharedInstance.getAnswer(answerID)
+//            answers.append(temp_answer)
+//            answerIDDictionary[temp_answer] = answerID
 //        }
-    
-    }) { (error) in
-        print(error.localizedDescription)
-    }
-    
-    
-    questionID = ModelInterface.sharedInstance.getQuestionID()
-    let questionText: Question = ModelInterface.sharedInstance.getQuestion(questionID)
-    answerIDs = ModelInterface.sharedInstance.getListOfAnswerIDs(questionID)
-    correctAnswerId = ModelInterface.sharedInstance.getCorrectAnswer(questionID)
-    correctAnswer = ModelInterface.sharedInstance.getAnswer(correctAnswerId)
-    answers = getAnswers(answerIDs)
-    totalNumberOfUserAnswers = ModelInterface.sharedInstance.getSumOfUsersThatSubmittedAnswers(questionID)
-    
-    for i in 0...answerIDs.count-1{
-      NumResponsesPerAnswer.append(ModelInterface.sharedInstance.getNumberOfUsersThatGaveThisAnswer(questionID,answerID: answerIDs[i]))
-    }
-    
-    container = PollResultsViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
-    view.addSubview(container!)
-    container?.delegate = self
-    container?.setTotalNumberOfAnswers(totalNumberOfUserAnswers)
-    container?.setQuestionLabelText(questionText)
-    container?.setAnswers(answers)
-    container?.setCorrectAnswer(correctAnswer)
-    container?.setNumberOfResponsesForAnswer(NumResponsesPerAnswer)
-    
-  }
-  
-  func getAnswers(answerIDs: [AnswerID]) -> [Answer] {
-    // Changes the list of answerIDs to list of answers
-    var answers = [String]()
-    var temp_answer:Answer
-    
-    for answerID in answerIDs {
-      temp_answer = ModelInterface.sharedInstance.getAnswer(answerID)
-      answers.append(temp_answer)
-      answerIDDictionary[temp_answer] = answerID
-    }
-    return answers
-  }
+//        return answers
+//    }
 }
 
 
 extension PollResultsViewController: PollResultsViewContainerDelegate {
-  func goBackToCampaign() {
-    let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
-    performSegueWithIdentifier(nextRoom, sender: self)
-  }
-  
+    func goBackToCampaign() {
+        let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
+        performSegueWithIdentifier(nextRoom, sender: self)
+    }
+    
 }
 

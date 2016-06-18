@@ -32,30 +32,38 @@ final class PollUserViewController: UIViewController {
         let viewSize = CGRectMake(0, 0, view.bounds.width, view.bounds.height)
         container = PollUserViewContainer.instanceFromNib(viewSize)
         view.addSubview(container!)
-        
-        questionID = ModelInterface.sharedInstance.getQuestionID()
-        let questionText: Question = ModelInterface.sharedInstance.getQuestion(questionID)
-        answerIDs = ModelInterface.sharedInstance.getListOfAnswerIDs(questionID)
-        
-        container?.setQuestionText(questionText)
-        container?.delegate = self
-        answers = getAnswers(answerIDs)
-        container?.setAnswers(answers)
-        createTimer(ModelInterface.sharedInstance.getCountdownSeconds())
+    
+        answerIDs = ModelInterface.sharedInstance.getSelectedQuestion().getAIDS()
+        ModelInterface.sharedInstance.processAnswerData(answerIDs) { (listofAllAnswers) in
+            let size = listofAllAnswers.count
+            for i in 0 ..< size  {
+                let tempAnswer = listofAllAnswers[i].getAnswerText()
+                self.answerIDDictionary[tempAnswer] = self.answerIDs[i]
+                self.answers.append(tempAnswer)
+            }
+            self.container?.delegate = self
+            self.questionID = selectedQuestion.getQID()
+            let questionText: Question = selectedQuestion.getQuestionText()
+            self.container?.setQuestionText(questionText)
+            self.container?.setAnswers(self.answers)
+            self.createTimer(ModelInterface.sharedInstance.getCountdownSeconds())
+            self.container?.tableView.reloadData()
+
+        }
     }
     
-    func getAnswers(answerIDs: [AnswerID]) -> [Answer] {
-        // Changes the list of answerIDs to list of answers
-        var answers = [String]()
-        var temp_answer:Answer
-        
-        for answerID in answerIDs {
-            temp_answer = ModelInterface.sharedInstance.getAnswer(answerID)
-            answers.append(temp_answer)
-            answerIDDictionary[temp_answer] = answerID
-        }
-        return answers
-    }
+//    func getAnswers(answerIDs: [AnswerID]) -> [Answer] {
+//        // Changes the list of answerIDs to list of answers
+//        var answers = [String]()
+//        var temp_answer:Answer
+//        
+//        for answerID in answerIDs {
+//            temp_answer = ModelInterface.sharedInstance.getAnswer(answerID)
+//            answers.append(temp_answer)
+//            answerIDDictionary[temp_answer] = answerID
+//        }
+//        return answers
+//    }
     
     func createTimer (startingTime: Int) {
         seconds = startingTime
