@@ -44,27 +44,32 @@ extension ModelInterface: AnswerModelProtocol {
             // Get user value
             let postDict = snapshot.value as! [String : AnyObject]
             var sendAnswerData = [AnswerC]()
-            var sendTally = 0;
+            var sendTally = 0
             var sendIsCorrect = false;
             var sendAnswerText = "";
             for (AID, data) in postDict {
                 if (selectedAnswerIDs.contains(AID)) {
+                    if (AID == "-KKGhSdtD0cgrcXfd_1P") {
+                        print("HI")
+                    }
+                    
                     let information = data as! [String : AnyObject]
                     
                     for (key,value) in information {
                         if (key == "answer") {
-                            sendAnswerText = value as! String ;
+                            sendAnswerText = value as! String
                         }
                         if (key == "isCorrect") {
                             sendIsCorrect = value as! Bool
                         }
-                        if (key == "tally ") {
-                            sendTally = value as! Int
+                        if (key == "tally") {
+                            sendTally =  Int(value as! String)!
                         }
                         
                     }
-                    
-                    var tempAnswer = AnswerC(AID: AID, isCorrect: sendIsCorrect, tally: sendTally, answerText: sendAnswerText)
+
+               
+                    let tempAnswer = AnswerC(AID: AID, isCorrect: sendIsCorrect, tally: sendTally, answerText: sendAnswerText)
                     sendAnswerData.append(tempAnswer)
                     
                 }

@@ -36,6 +36,7 @@ class PollResultsViewController: UIViewController {
         
         ModelInterface.sharedInstance.processAnswerData(answerIDs) { (listofAllAnswers) in
             let size = listofAllAnswers.count
+            var totalSumOfUsersSubmitted = 0
             for i in 0 ..< size  {
                 let tempAnswer = listofAllAnswers[i].getAnswerText()
                 self.answerIDDictionary[tempAnswer] = self.answerIDs[i]
@@ -43,13 +44,15 @@ class PollResultsViewController: UIViewController {
                 if (listofAllAnswers[i].getIsCorrect() == true ) {
                     self.correctAnswer = listofAllAnswers[i].getAnswerText()
                 }
+                totalSumOfUsersSubmitted += listofAllAnswers[i].getTally()
+                
             }
-            self.totalNumberOfUserAnswers = ModelInterface.sharedInstance.getSumOfUsersThatSubmittedAnswers(self.questionID)
+            //self.totalNumberOfUserAnswers = ModelInterface.sharedInstance.getSumOfUsersThatSubmittedAnswers(self.questionID)
             
             for i in 0...self.answerIDs.count-1{
                 self.NumResponsesPerAnswer.append(ModelInterface.sharedInstance.getNumberOfUsersThatGaveThisAnswer(self.questionID,answerID: self.answerIDs[i]))
             }
-            
+            print("Total number of users: \(totalSumOfUsersSubmitted)")
             self.container?.delegate = self
             self.container?.setTotalNumberOfAnswers(self.totalNumberOfUserAnswers)
             self.container?.setQuestionLabelText(questionText)
@@ -57,6 +60,7 @@ class PollResultsViewController: UIViewController {
             self.container?.setCorrectAnswer(self.correctAnswer)
             self.container?.setNumberOfResponsesForAnswer(self.NumResponsesPerAnswer)
             self.container?.resultsTableView.reloadData()
+            self.container?.setTotalNumberOfAnswers(totalSumOfUsersSubmitted)
         }
         
         
