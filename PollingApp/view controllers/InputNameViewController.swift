@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class InputNameViewController: UIViewController {
   @IBOutlet weak var nameTextField: UITextField!
@@ -16,7 +17,6 @@ class InputNameViewController: UIViewController {
     super.viewDidLoad()
     nameTextField.delegate = self
     
-
     let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
       action: #selector(InputNameViewController.dismissKeyboard))
     view.addGestureRecognizer(tap)
@@ -36,10 +36,18 @@ class InputNameViewController: UIViewController {
       alert.addAction(UIAlertAction(title: "Ok",
         style: UIAlertActionStyle.Default, handler: nil))
       self.presentViewController(alert, animated: true, completion: nil)
-      return
     }
     
     assert(cleanedName.characters.count != 0 , "Name cannot be blank")
+    
+    let udid = UIDevice.currentDevice().identifierForVendor?.UUIDString
+
+    
+    FIRAuth.auth()?.createUserWithEmail("\(cleanedName)@ubclaunchpad.com", password: udid!) { (user, error) in
+        if error != nil {
+            print("User name is taken")
+        }
+    }
     
     let segueName = ModelInterface.sharedInstance.setUserName(cleanedName)
     performSegueWithIdentifier(segueName, sender: self)
