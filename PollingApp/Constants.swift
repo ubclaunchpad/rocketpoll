@@ -16,6 +16,8 @@ typealias AnswerID = String
 typealias Answer = String
 typealias SegueName = String
 
+var selectedQuestion = QuestionC();
+
 var okayNameCharacters : Set<Character> =
 Set("abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890".characters)
 
