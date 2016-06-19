@@ -37,11 +37,11 @@ class PollResultsViewController: UIViewController {
         ModelInterface.sharedInstance.processAnswerData(answerIDs) { (listofAllAnswers) in
             let size = listofAllAnswers.count
             for i in 0 ..< size  {
-                let tempAnswer = listofAllAnswers[i].getAnswerText()
+                let tempAnswer = listofAllAnswers[i].answerText
                 self.answerIDDictionary[tempAnswer] = self.answerIDs[i]
                 self.answers.append(tempAnswer)
-                if (listofAllAnswers[i].getIsCorrect() == true ) {
-                    self.correctAnswer = listofAllAnswers[i].getAnswerText()
+                if (listofAllAnswers[i].isCorrect == true ) {
+                    self.correctAnswer = listofAllAnswers[i].answerText
                 }
             }
             self.totalNumberOfUserAnswers = ModelInterface.sharedInstance.getSumOfUsersThatSubmittedAnswers(self.questionID)

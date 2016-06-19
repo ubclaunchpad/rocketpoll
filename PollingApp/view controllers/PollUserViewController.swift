@@ -37,7 +37,7 @@ final class PollUserViewController: UIViewController {
         ModelInterface.sharedInstance.processAnswerData(answerIDs) { (listofAllAnswers) in
             let size = listofAllAnswers.count
             for i in 0 ..< size  {
-                let tempAnswer = listofAllAnswers[i].getAnswerText()
+                let tempAnswer = listofAllAnswers[i].answerText
                 self.answerIDDictionary[tempAnswer] = self.answerIDs[i]
                 self.answers.append(tempAnswer)
             }
