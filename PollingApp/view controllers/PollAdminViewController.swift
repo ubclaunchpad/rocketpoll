@@ -12,13 +12,13 @@ import UIKit
 
 final class PollAdminViewController: UIViewController {
     
-    private var answerIDDictionary = [Answer: AnswerID]()
+    private var answerIDDictionary = [String: AnswerID]()
     private var min:Int = 0
     private var sec = 0
     private var seconds = 0
     private var timer = NSTimer()
-    var answers:[Answer] = []
-    var correctAnswers:[Answer] = []
+    var answers:[String] = []
+    var correctAnswers:[String] = []
     var sumuserresults = 0;
     
     var answerIDs:[AnswerID] = []
@@ -39,7 +39,7 @@ final class PollAdminViewController: UIViewController {
         container?.delegate = self
         questionID = ModelInterface.sharedInstance.getSelectedQuestion().getQID()
         answerIDs = ModelInterface.sharedInstance.getSelectedQuestion().getAIDS()
-        let questionText: Question = ModelInterface.sharedInstance.getSelectedQuestion().getQuestionText()
+        let questionText: String = ModelInterface.sharedInstance.getSelectedQuestion().getQuestionText()
         ModelInterface.sharedInstance.processAnswerData(answerIDs) { (listofAllAnswers) in
            
             let size = listofAllAnswers.count

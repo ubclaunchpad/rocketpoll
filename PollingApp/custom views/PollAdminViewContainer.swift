@@ -17,8 +17,8 @@ protocol PollAdminViewContainerDelegate  {
 
 class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
     
-    private var answers:[Answer] = []
-    private var correctAnswers:[Answer] = []
+    private var answers:[String] = []
+    private var correctAnswers:[String] = []
     
     @IBOutlet weak var question: UILabel!
     @IBOutlet weak var timer: UILabel!
@@ -47,18 +47,18 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
     }
     
     
-    func setAnswers(Answers: [Answer]){
+    func setAnswers(Answers: [String]){
         answers = Answers
         
     }
     
-    func setCorrectAnswers(Answers: [Answer]){
+    func setCorrectAnswers(Answers: [String]){
         correctAnswers = Answers
    }
     
     
     
-    func setQuestionText(questionText: Question) {
+    func setQuestionText(questionText: String) {
         question.text = questionText
     }
 

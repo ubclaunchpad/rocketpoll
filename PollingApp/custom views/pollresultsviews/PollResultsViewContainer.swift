@@ -22,8 +22,8 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
   @IBOutlet weak var resultsTableView: UITableView!
   @IBOutlet weak var questionLabel: UILabel!
   @IBOutlet weak var totalAnswersLabel: UILabel!
-  private var answers: [Answer] = []
-  private var correctAnswer: Answer = ""
+  private var answers: [String] = []
+  private var correctAnswer: String = ""
   private var totalNumberOfAnswers: Int = 0;
   private var numberOfResponsesPerAnswer: [Int] = [];
   
@@ -71,16 +71,16 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     return 60
   }
   
-  func setQuestionLabelText (questionText: Question){
+  func setQuestionLabelText (questionText: String){
     questionLabel.text = questionText
   }
   
-  func setAnswers (Answers: [Answer]){
+  func setAnswers (Answers: [String]){
     answers = Answers
     print(answers.count)
   }
   
-  func setCorrectAnswer (rightAnswer:Answer){
+  func setCorrectAnswer (rightAnswer:String){
     correctAnswer = rightAnswer
   }
   

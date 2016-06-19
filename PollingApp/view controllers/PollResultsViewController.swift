@@ -10,12 +10,12 @@ import UIKit
 
 class PollResultsViewController: UIViewController {
     
-    private var answerIDDictionary = [Answer: AnswerID]()
+    private var answerIDDictionary = [String: AnswerID]()
     private var questionID:QuestionID = ""
     var container: PollResultsViewContainer?
-    private var answers: [Answer] = []
+    private var answers: [String] = []
     private var answerIDs: [AnswerID] = []
-    private var correctAnswer: Answer = ""
+    private var correctAnswer: String = ""
     private var correctAnswerId: AnswerID = ""
     private var NumResponsesPerAnswer: [Int] = []
     var totalNumberOfUserAnswers: Int = 0
@@ -31,7 +31,7 @@ class PollResultsViewController: UIViewController {
         view.addSubview(container!)
         
         questionID = ModelInterface.sharedInstance.getSelectedQuestion().getQID()
-        let questionText: Question = ModelInterface.sharedInstance.getSelectedQuestion().getQuestionText()
+        let questionText: String = ModelInterface.sharedInstance.getSelectedQuestion().getQuestionText()
         answerIDs = ModelInterface.sharedInstance.getSelectedQuestion().getAIDS()
         
         ModelInterface.sharedInstance.processAnswerData(answerIDs) { (listofAllAnswers) in

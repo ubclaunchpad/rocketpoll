@@ -8,12 +8,10 @@
 
 import Foundation
 
-typealias Question = String
+
 typealias QuestionID = String
 typealias RoomID = String
-typealias Room = String
 typealias AnswerID = String
-typealias Answer = String
 typealias SegueName = String
 
 var selectedQuestion = QuestionC();

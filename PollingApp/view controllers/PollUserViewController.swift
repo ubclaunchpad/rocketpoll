@@ -9,12 +9,12 @@
 import UIKit
 
 final class PollUserViewController: UIViewController {
-    private var answerIDDictionary = [Answer: AnswerID]()
+    private var answerIDDictionary = [String: AnswerID]()
     private var min:Int = 0
     private var sec = 0
     private var seconds = 0
     private var timer = NSTimer()
-    var answers:[Answer] = []
+    var answers:[String] = []
     var answerIDs:[AnswerID] = []
     
     private var questionID:QuestionID = ""
@@ -43,7 +43,7 @@ final class PollUserViewController: UIViewController {
             }
             self.container?.delegate = self
             self.questionID = selectedQuestion.getQID()
-            let questionText: Question = selectedQuestion.getQuestionText()
+            let questionText: String = selectedQuestion.getQuestionText()
             self.container?.setQuestionText(questionText)
             self.container?.setAnswers(self.answers)
             self.createTimer(ModelInterface.sharedInstance.getCountdownSeconds())
@@ -95,7 +95,7 @@ final class PollUserViewController: UIViewController {
 }
 
 extension PollUserViewController: PollUserViewContainerDelegate {
-    func answerSelected(answer: Answer) {
+    func answerSelected(answer: String) {
         if let selectedAnswerID = answerIDDictionary[answer] {
             ModelInterface.sharedInstance.setUserAnswer(questionID, answerID: selectedAnswerID)
             print("selected answer is: \(answer) ,printed from viewController")

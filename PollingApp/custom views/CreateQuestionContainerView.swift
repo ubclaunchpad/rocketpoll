@@ -10,7 +10,7 @@ import UIKit
 
 protocol CreateQuestionViewContainerDelegate {
   
-  func submitButtonPressed(question: Question, answerArray: [String])
+  func submitButtonPressed(question: String, answerArray: [String])
   func backButtonPressed()
   func checksInput (question:String, A1:String, A2:String,  A3:String,A4:String) -> Bool
 }

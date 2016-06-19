@@ -9,8 +9,8 @@
 import UIKit
 
 protocol CampaignViewTableViewCellDelegate {
-    func questionSelected(question: Question)
-    func resultsButtonSelected(question:Question)
+    func questionSelected(question: String)
+    func resultsButtonSelected(question:String)
 }
 
 class CampaignViewTableViewCell: UITableViewCell {
@@ -38,7 +38,7 @@ class CampaignViewTableViewCell: UITableViewCell {
     resultsButton.alpha = 0;
   }
   
-    func setQuestionText(questionName: Question) {
+    func setQuestionText(questionName: String) {
         button.setTitle(questionName, forState: UIControlState.Normal)
     }
     

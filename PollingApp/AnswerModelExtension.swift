@@ -12,7 +12,7 @@ import Firebase
 extension ModelInterface: AnswerModelProtocol {
     
     // Create a list of AIDS in the QuestionScreen node
-    func setAnswerIDS(questionID:String, answerString:[String]) -> [String]  {
+    func setAnswerIDS(questionID:QuestionID, answerString:[String]) -> [String]  {
         
         var i = 0;
         let fBD:FirebaseData = FirebaseData();
@@ -58,13 +58,13 @@ extension ModelInterface: AnswerModelProtocol {
                         if (key == "isCorrect") {
                             sendIsCorrect = value as! Bool
                         }
-                        if (key == "tally ") {
-                            sendTally = value as! Int
+                        if (key == "tally") {
+                            sendTally = Int(value as! String)!
                         }
                         
                     }
                     
-                    var tempAnswer = AnswerC(AID: AID, isCorrect: sendIsCorrect, tally: sendTally, answerText: sendAnswerText)
+                    let tempAnswer = AnswerC(AID: AID, isCorrect: sendIsCorrect, tally: sendTally, answerText: sendAnswerText)
                     sendAnswerData.append(tempAnswer)
                     
                 }

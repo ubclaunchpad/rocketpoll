@@ -44,7 +44,7 @@ class CreateQuestionViewController: UIViewController {
 extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
     
     
-    func submitButtonPressed(question: Question, answerArray: [String] ) {
+    func submitButtonPressed(question: String, answerArray: [String] ) {
        
         
         //sends question string to firebase. firebase generates unique id corresponding to question

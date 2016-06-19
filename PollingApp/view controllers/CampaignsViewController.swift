@@ -10,7 +10,7 @@ import UIKit
 
 class CampaignsViewController: UIViewController {
     
-    private var questionIDDictionary = [Question: QuestionID]()
+    private var questionIDDictionary = [String: QuestionID]()
     private var listOfAllQuestions = [QuestionC]();
     private var QIDToAIDSDictionary = [String:[String]]()
     private var QIDToAuthorDictionary = [String:String]()
@@ -94,7 +94,7 @@ class CampaignsViewController: UIViewController {
 
 
 extension CampaignsViewController: CampaignViewContainerDelegate {
-    func questionSelected(question: Question) {
+    func questionSelected(question: String) {
         if let questionID = questionIDDictionary[question] {
             print(questionID)
             
@@ -112,7 +112,7 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
         performSegueWithIdentifier(newQuestionSegue, sender: self)
     }
   
-    func resultsButtonSelected(question: Question ) {
+    func resultsButtonSelected(question: String) {
     if let questionID = questionIDDictionary[question] {
         
         let AIDS = QIDToAIDSDictionary[questionID]!;
