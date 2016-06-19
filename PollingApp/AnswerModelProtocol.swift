@@ -11,12 +11,12 @@ import Foundation
 protocol AnswerModelProtocol {
     
     
-    func setAnswerIDS(questionID:QuestionID, answerString:[String]) -> [String]
+    func setAnswerIDS(questionID:QuestionID, answerText:[AnswerText]) -> [String]
     //MARK: Setting Answer Information -
     func setCorrectAnswer(answerId: AnswerID, isCorrectAnswer: Bool) -> Bool
     func setUserAnswer(questionId: QuestionID, answerID: AnswerID) -> Bool
     
-    func processAnswerData(selectedAnswerIDs:[String],completionHandler: (listofAllAnswers: [Answer]) -> ())
+    func processAnswerData(selectedAnswerIDs:[AnswerID],completionHandler: (listofAllAnswers: [Answer]) -> ())
     //MARK: - Get Answer Information -
     func isCorrectAnswer(answerId: AnswerID) -> Bool
     func getCorrectAnswer(questionID: QuestionID) -> AnswerID

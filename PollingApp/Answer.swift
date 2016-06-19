@@ -10,12 +10,13 @@ import Foundation
 
 
 class Answer {
-    var AID = ""
+    var AID:AnswerID = ""
+    var answerText:AnswerText = ""
     var isCorrect = false
     var tally = 0
-    var answerText = ""
     
-    init (AID:String, isCorrect:Bool, tally:Int, answerText:String ) {
+    
+    init (AID:AnswerID, isCorrect:Bool, tally:Int, answerText:AnswerText) {
         self.AID = AID
         self.isCorrect = isCorrect
         self.tally  = tally

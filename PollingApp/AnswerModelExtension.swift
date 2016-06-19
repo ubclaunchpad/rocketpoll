@@ -12,21 +12,20 @@ import Firebase
 extension ModelInterface: AnswerModelProtocol {
     
     // Create a list of AIDS in the QuestionScreen node
-    func setAnswerIDS(questionID:QuestionID, answerString:[String]) -> [String]  {
+    func setAnswerIDS(questionID:QuestionID, answerText:[AnswerText]) -> [String]  {
         
         var i = 0;
         let fBD:FirebaseData = FirebaseData();
         var answerIDS = [String]();
         var answerID:String
-        for answer in answerString {
+        for answer in answerText {
             let children = ["tally": "0", "answer": answer , "isCorrect": false];
             
             answerID = fBD.postToFirebaseWithKey("ANSWERS/AIDS", child: "AID" , children: children);
             answerIDS.append(answerID);
             i += 1;
         }
-        
-        
+    
         var answerIDsFireBase = [String:String]();
         i = 1;
         for answerID in answerIDS {
@@ -37,7 +36,7 @@ extension ModelInterface: AnswerModelProtocol {
         return answerIDS
     }
     
-    func processAnswerData(selectedAnswerIDs:[String],completionHandler: (listofAllAnswers: [Answer]) -> ()) {
+    func processAnswerData(selectedAnswerIDs:[AnswerID],completionHandler: (listofAllAnswers: [Answer]) -> ()) {
         
         let ref =  FIRDatabase.database().reference();
         ref.child("ANSWERS").child("AIDS").observeSingleEventOfType(.Value, withBlock: { (snapshot) in

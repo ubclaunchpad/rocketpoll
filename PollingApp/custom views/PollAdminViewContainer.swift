@@ -17,8 +17,8 @@ protocol PollAdminViewContainerDelegate  {
 
 class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
     
-    private var answers:[String] = []
-    private var correctAnswers:[String] = []
+    private var answers:[AnswerText] = []
+    private var correctAnswers:[AnswerText] = []
     
     @IBOutlet weak var question: UILabel!
     @IBOutlet weak var timer: UILabel!

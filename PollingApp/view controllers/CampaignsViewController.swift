@@ -10,10 +10,10 @@ import UIKit
 
 class CampaignsViewController: UIViewController {
     
-    private var questionIDDictionary = [String: QuestionID]()
+    private var questionIDDictionary = [QuestionText: QuestionID]()
     private var listOfAllQuestions = [Question]();
-    private var QIDToAIDSDictionary = [String:[String]]()
-    private var QIDToAuthorDictionary = [String:String]()
+    private var QIDToAIDSDictionary = [QuestionID:[AnswerID]]()
+    private var QIDToAuthorDictionary = [QuestionID:String]()
     
     var container: CampaignViewContainer?    
     
@@ -33,7 +33,7 @@ class CampaignsViewController: UIViewController {
         ModelInterface.sharedInstance.processQuestionData { (listofAllQuestions) in
             self.listOfAllQuestions = listofAllQuestions
             let size = self.listOfAllQuestions.count
-            var questions = [String]();
+            var questions = [QuestionText]();
             var authors = [String]();
             var questionsAnswered = [Bool]();
             for i in 0 ..< size  {
@@ -94,7 +94,7 @@ class CampaignsViewController: UIViewController {
 
 
 extension CampaignsViewController: CampaignViewContainerDelegate {
-    func questionSelected(question: String) {
+    func questionSelected(question: QuestionText) {
         if let questionID = questionIDDictionary[question] {
             print(questionID)
             
@@ -112,7 +112,7 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
         performSegueWithIdentifier(newQuestionSegue, sender: self)
     }
   
-    func resultsButtonSelected(question: String) {
+    func resultsButtonSelected(question: QuestionText) {
     if let questionID = questionIDDictionary[question] {
         
         let AIDS = QIDToAIDSDictionary[questionID]!;

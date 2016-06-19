@@ -12,7 +12,7 @@ import Firebase
 extension ModelInterface: QuestionModelProtocol {
     
     //MARK: - Setting Question Information -
-    func setNewQuestion(question: String) -> QuestionID {
+    func setNewQuestion(question: QuestionText) -> QuestionID {
         
         let timeStamp = NSDate().timeIntervalSince1970
         let endStamp = NSDate().timeIntervalSince1970 + 30; //TODO: CHANGE THIS
@@ -27,7 +27,7 @@ extension ModelInterface: QuestionModelProtocol {
         return selectedQuestion
     }
     
-    func setSelectedQuestion(AIDS: [String], QID: String, questionText: String, author: String) {
+    func setSelectedQuestion(AIDS: [AnswerID], QID: QuestionID, questionText: QuestionText, author: String) {
         selectedQuestion.QID = QID
         selectedQuestion.AIDS = AIDS
         selectedQuestion.questionText = questionText
@@ -41,10 +41,10 @@ extension ModelInterface: QuestionModelProtocol {
             // Get user value
             let postDict = snapshot.value as! [String : AnyObject]
             var sendQuestion = [Question]();
-            var sendQID = "";
+            var sendQID:QuestionID = "";
             var sendAuthor = "";
-            var sendAIDS = [String]();
-            var sendQuestionText = "";
+            var sendAIDS = [AnswerID]();
+            var sendQuestionText:QuestionText = "";
             for (QID, data) in postDict {
                 sendQID = QID;
                 let information = data as! [String : AnyObject]
@@ -65,7 +65,7 @@ extension ModelInterface: QuestionModelProtocol {
                     }
                 }
                 let tempQuestion = Question(QID:sendQID, AIDS:sendAIDS, author: sendAuthor, questionText: sendQuestionText);
-                sendAIDS = [String]();
+                sendAIDS = [AnswerID]();
                 sendQuestion.append(tempQuestion);
             }
             
@@ -76,15 +76,15 @@ extension ModelInterface: QuestionModelProtocol {
         }
     }
     
-    func getSpecificQuestion(questionID:String,completionHandler: (specificQuestion: Question) -> ()){
+    func getSpecificQuestion(questionID:QuestionID, completionHandler: (specificQuestion: Question) -> ()){
         
         let ref =  FIRDatabase.database().reference();
         ref.child("QUESTIONSCREEN").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             // Get user value
             let postDict = snapshot.value as! [String : AnyObject]
             var sendAuthor = "";
-            var sendAIDS = [String]();
-            var sendQuestionText = "";
+            var sendAIDS = [AnswerID]();
+            var sendQuestionText:QuestionText = "";
             for (QID, data) in postDict {
                 
                 if (questionID == QID ) {
@@ -96,18 +96,18 @@ extension ModelInterface: QuestionModelProtocol {
                             sendAuthor = value as! String ;
                         }
                         if (key == "Question") {
-                            sendQuestionText = value as! String ;
+                            sendQuestionText = value as! QuestionText ;
                         }
                         if (key == "AIDS") {
                             let AIDS = value as! [String: AnyObject]
                             for (_,AID) in AIDS {
-                                sendAIDS.append(AID as! String)
+                                sendAIDS.append(AID as! AnswerID)
                             }
                         }
                     }
                     let sendQuestionC = Question(QID:QID, AIDS:sendAIDS, author: sendAuthor, questionText: sendQuestionText);
                     completionHandler(specificQuestion: sendQuestionC)
-                    sendAIDS = [String]();
+                    sendAIDS = [AnswerID]();
                     break
                 }
             }

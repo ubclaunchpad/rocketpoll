@@ -10,12 +10,12 @@ import UIKit
 
 class PollResultsViewController: UIViewController {
     
-    private var answerIDDictionary = [String: AnswerID]()
+    private var answerIDDictionary = [AnswerText: AnswerID]()
     private var questionID:QuestionID = ""
     var container: PollResultsViewContainer?
-    private var answers: [String] = []
+    private var answers: [AnswerText] = []
     private var answerIDs: [AnswerID] = []
-    private var correctAnswer: String = ""
+    private var correctAnswer: AnswerText = ""
     private var correctAnswerId: AnswerID = ""
     private var NumResponsesPerAnswer: [Int] = []
     var totalNumberOfUserAnswers: Int = 0

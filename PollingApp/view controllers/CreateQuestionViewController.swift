@@ -15,10 +15,8 @@ class CreateQuestionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CreateQuestionViewController.dismissKeyboards))
         view.addGestureRecognizer(tap)
-        
         
         setup()
     }
@@ -37,19 +35,15 @@ class CreateQuestionViewController: UIViewController {
     
 }
 
-
-
-
-
 extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
     
     
-    func submitButtonPressed(question: String, answerArray: [String] ) {
-       
+    func submitButtonPressed(question: QuestionText, answerArray: [AnswerID] ) {
+        
         
         //sends question string to firebase. firebase generates unique id corresponding to question
         let questionID = ModelInterface.sharedInstance.setNewQuestion(question)
-        let answerIDs =  ModelInterface.sharedInstance.setAnswerIDS(questionID, answerString: answerArray)
+        let answerIDs =  ModelInterface.sharedInstance.setAnswerIDS(questionID, answerText: answerArray)
         
         ModelInterface.sharedInstance.setCorrectAnswer(answerIDs[0], isCorrectAnswer: true);
         

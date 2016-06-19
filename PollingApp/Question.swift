@@ -11,7 +11,7 @@ import Foundation
 class Question {
     
     var QID = "";
-    var AIDS = [String()];
+    var AIDS = [AnswerID]();
     var author = "";
     var questionText = "";
     
@@ -19,7 +19,7 @@ class Question {
         
     }
     
-    init (QID: String, AIDS:[String], author:String, questionText:String) {
+    init (QID: String, AIDS:[AnswerID], author:String, questionText:QuestionText) {
         
         self.QID = QID;
         self.AIDS = AIDS;

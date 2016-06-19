@@ -10,10 +10,12 @@ import Foundation
 
 
 typealias QuestionID = String
-typealias RoomID = String
+typealias QuestionText = String
 typealias AnswerID = String
-typealias SegueName = String
+typealias AnswerText = String
 
+typealias SegueName = String
+typealias RoomID = String
 var selectedQuestion = Question();
 
 var okayNameCharacters : Set<Character> =

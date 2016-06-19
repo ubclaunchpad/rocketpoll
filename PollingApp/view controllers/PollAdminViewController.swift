@@ -12,7 +12,7 @@ import UIKit
 
 final class PollAdminViewController: UIViewController {
     
-    private var answerIDDictionary = [String: AnswerID]()
+    private var answerIDDictionary = [AnswerText: AnswerID]()
     private var min:Int = 0
     private var sec = 0
     private var seconds = 0
