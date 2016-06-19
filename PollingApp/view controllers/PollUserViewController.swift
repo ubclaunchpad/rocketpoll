@@ -33,7 +33,7 @@ final class PollUserViewController: UIViewController {
         container = PollUserViewContainer.instanceFromNib(viewSize)
         view.addSubview(container!)
     
-        answerIDs = ModelInterface.sharedInstance.getSelectedQuestion().getAIDS()
+        answerIDs = ModelInterface.sharedInstance.getSelectedQuestion().AIDS
         ModelInterface.sharedInstance.processAnswerData(answerIDs) { (listofAllAnswers) in
             let size = listofAllAnswers.count
             for i in 0 ..< size  {
@@ -42,8 +42,8 @@ final class PollUserViewController: UIViewController {
                 self.answers.append(tempAnswer)
             }
             self.container?.delegate = self
-            self.questionID = selectedQuestion.getQID()
-            let questionText: String = selectedQuestion.getQuestionText()
+            self.questionID = selectedQuestion.QID
+            let questionText: String = selectedQuestion.questionText
             self.container?.setQuestionText(questionText)
             self.container?.setAnswers(self.answers)
             self.createTimer(ModelInterface.sharedInstance.getCountdownSeconds())

@@ -37,13 +37,13 @@ extension ModelInterface: AnswerModelProtocol {
         return answerIDS
     }
     
-    func processAnswerData(selectedAnswerIDs:[String],completionHandler: (listofAllAnswers: [AnswerC]) -> ()) {
+    func processAnswerData(selectedAnswerIDs:[String],completionHandler: (listofAllAnswers: [Answer]) -> ()) {
         
         let ref =  FIRDatabase.database().reference();
         ref.child("ANSWERS").child("AIDS").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             // Get user value
             let postDict = snapshot.value as! [String : AnyObject]
-            var sendAnswerData = [AnswerC]()
+            var sendAnswerData = [Answer]()
             var sendTally = 0;
             var sendIsCorrect = false;
             var sendAnswerText = "";
@@ -63,8 +63,8 @@ extension ModelInterface: AnswerModelProtocol {
                         }
                         
                     }
-                    
-                    let tempAnswer = AnswerC(AID: AID, isCorrect: sendIsCorrect, tally: sendTally, answerText: sendAnswerText)
+                
+                    let tempAnswer = Answer(AID: AID, isCorrect: sendIsCorrect, tally: sendTally, answerText: sendAnswerText)
                     sendAnswerData.append(tempAnswer)
                     
                 }

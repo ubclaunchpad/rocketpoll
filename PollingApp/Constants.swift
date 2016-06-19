@@ -14,7 +14,7 @@ typealias RoomID = String
 typealias AnswerID = String
 typealias SegueName = String
 
-var selectedQuestion = QuestionC();
+var selectedQuestion = Question();
 
 var okayNameCharacters : Set<Character> =
 Set("abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890".characters)

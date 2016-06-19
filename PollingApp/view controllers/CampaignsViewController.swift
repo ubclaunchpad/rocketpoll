@@ -11,7 +11,7 @@ import UIKit
 class CampaignsViewController: UIViewController {
     
     private var questionIDDictionary = [String: QuestionID]()
-    private var listOfAllQuestions = [QuestionC]();
+    private var listOfAllQuestions = [Question]();
     private var QIDToAIDSDictionary = [String:[String]]()
     private var QIDToAuthorDictionary = [String:String]()
     
@@ -37,12 +37,12 @@ class CampaignsViewController: UIViewController {
             var authors = [String]();
             var questionsAnswered = [Bool]();
             for i in 0 ..< size  {
-                questions.append(listofAllQuestions[i].getQuestionText())
-                authors.append(listofAllQuestions[i].getAuthor())
+                questions.append(listofAllQuestions[i].questionText)
+                authors.append(listofAllQuestions[i].author)
                 questionsAnswered.append(true);
-                self.questionIDDictionary[listofAllQuestions[i].getQuestionText()] = listofAllQuestions[i].getQID()
-                self.QIDToAIDSDictionary[listofAllQuestions[i].getQID()] = listofAllQuestions[i].getAIDS()
-                self.QIDToAuthorDictionary[listofAllQuestions[i].getQID()] = listofAllQuestions[i].getAuthor()
+                self.questionIDDictionary[listofAllQuestions[i].questionText] = listofAllQuestions[i].QID
+                self.QIDToAIDSDictionary[listofAllQuestions[i].QID] = listofAllQuestions[i].AIDS
+                self.QIDToAuthorDictionary[listofAllQuestions[i].QID] = listofAllQuestions[i].author
             }
             // Not really important
             

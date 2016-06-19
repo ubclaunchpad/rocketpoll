@@ -9,7 +9,7 @@
 import Foundation
 
 
-class AnswerC {
+class Answer {
     var AID = ""
     var isCorrect = false
     var tally = 0
@@ -23,8 +23,6 @@ class AnswerC {
         self.answerText = answerText
     }
     
-    
-    
     func getAID () -> String {
         return self.AID;
     }
@@ -34,7 +32,7 @@ class AnswerC {
     }
     
     func getAnswerText () -> String {
-        return self.answerText;
+        return self.answerText
     }
     
     func getTally () -> Int {

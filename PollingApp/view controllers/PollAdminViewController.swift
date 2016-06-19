@@ -37,9 +37,9 @@ final class PollAdminViewController: UIViewController {
         container = PollAdminViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
         view.addSubview(container!)
         container?.delegate = self
-        questionID = ModelInterface.sharedInstance.getSelectedQuestion().getQID()
-        answerIDs = ModelInterface.sharedInstance.getSelectedQuestion().getAIDS()
-        let questionText: String = ModelInterface.sharedInstance.getSelectedQuestion().getQuestionText()
+        questionID = ModelInterface.sharedInstance.getSelectedQuestion().QID
+        answerIDs = ModelInterface.sharedInstance.getSelectedQuestion().AIDS
+        let questionText: String = ModelInterface.sharedInstance.getSelectedQuestion().questionText
         ModelInterface.sharedInstance.processAnswerData(answerIDs) { (listofAllAnswers) in
            
             let size = listofAllAnswers.count

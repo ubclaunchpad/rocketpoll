@@ -16,7 +16,7 @@ protocol AnswerModelProtocol {
     func setCorrectAnswer(answerId: AnswerID, isCorrectAnswer: Bool) -> Bool
     func setUserAnswer(questionId: QuestionID, answerID: AnswerID) -> Bool
     
-    func processAnswerData(selectedAnswerIDs:[String],completionHandler: (listofAllAnswers: [AnswerC]) -> ())
+    func processAnswerData(selectedAnswerIDs:[String],completionHandler: (listofAllAnswers: [Answer]) -> ())
     //MARK: - Get Answer Information -
     func isCorrectAnswer(answerId: AnswerID) -> Bool
     func getCorrectAnswer(questionID: QuestionID) -> AnswerID

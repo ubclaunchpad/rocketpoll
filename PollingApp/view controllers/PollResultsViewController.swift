@@ -30,9 +30,9 @@ class PollResultsViewController: UIViewController {
         container = PollResultsViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
         view.addSubview(container!)
         
-        questionID = ModelInterface.sharedInstance.getSelectedQuestion().getQID()
-        let questionText: String = ModelInterface.sharedInstance.getSelectedQuestion().getQuestionText()
-        answerIDs = ModelInterface.sharedInstance.getSelectedQuestion().getAIDS()
+        questionID = ModelInterface.sharedInstance.getSelectedQuestion().QID
+        let questionText: String = ModelInterface.sharedInstance.getSelectedQuestion().questionText
+        answerIDs = ModelInterface.sharedInstance.getSelectedQuestion().AIDS
         
         ModelInterface.sharedInstance.processAnswerData(answerIDs) { (listofAllAnswers) in
             let size = listofAllAnswers.count
