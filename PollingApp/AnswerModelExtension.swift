@@ -42,7 +42,6 @@ extension ModelInterface: AnswerModelProtocol {
         
         let ref =  FIRDatabase.database().reference();
         ref.child("ANSWERS").child("AIDS").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-            // Get user value
             let postDict = snapshot.value as! [String : AnyObject]
             let  sendAnswerData = self.parseAIDNodeAndItsChildren(postDict, selectedAnswerIDs: selectedAnswerIDs)
             completionHandler(listofAllAnswers: sendAnswerData)
@@ -73,16 +72,17 @@ extension ModelInterface: AnswerModelProtocol {
         var sendAnswerText = "";
         
         for (key,value) in data {
-            if (key as! String == "answer") {
-                sendAnswerText = value as! String ;
-            }
-            if (key as! String == "isCorrect") {
+            let keyAsString = key as! String
+            switch keyAsString {
+            case "answer" :
+                sendAnswerText = value as! String
+            case "isCorrect":
                 sendIsCorrect = value as! Bool
-            }
-            if (key as! String == "tally") {
+            case "tally":
                 sendTally = Int(value as! String)!
-            }
+            default: break
             
+            }
         }
         
         let tempAnswer = Answer(AID: AID, isCorrect: sendIsCorrect, tally: sendTally, answerText: sendAnswerText)

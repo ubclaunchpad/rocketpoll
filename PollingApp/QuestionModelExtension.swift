@@ -38,10 +38,8 @@ extension ModelInterface: QuestionModelProtocol {
     func processQuestionData(completionHandler: (listofAllQuestions: [Question]) -> ()){
         let ref =  FIRDatabase.database().reference();
         ref.child("QUESTIONSCREEN").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-            // Get user value
             let postDict = snapshot.value as! [String : AnyObject]
-            var sendQuestion = [Question]()
-            sendQuestion = self.parseQIDNodeAndItsChildren(postDict)
+            let sendQuestion = self.parseQIDNodeAndItsChildren(postDict)
             completionHandler(listofAllQuestions: sendQuestion)
             
         }) { (error) in
@@ -49,6 +47,7 @@ extension ModelInterface: QuestionModelProtocol {
         }
     }
     
+    //MARK: - Helper Methods
     func parseQIDNodeAndItsChildren(data: NSDictionary) -> [Question] {
         var sendQuestion = [Question]();
         for (QID, children) in data  {
@@ -59,15 +58,15 @@ extension ModelInterface: QuestionModelProtocol {
         
         return sendQuestion;
     }
-    
+
     func parseQuestionNodeInformation(data:NSDictionary, QID:QuestionID) -> Question{
         var sendAuthor = "";
         var sendAIDS = [AnswerID]();
         var sendQuestionText:QuestionText = "";
         
         for (key,value) in data {
-            let val = key as! String
-            switch val {
+            let keyAsString  = key as! String
+            switch keyAsString  {
             case "Author" :
                 sendAuthor = value as! String
             case "Question":
