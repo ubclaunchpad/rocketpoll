@@ -9,9 +9,9 @@
 import UIKit
 
 protocol CampaignViewContainerDelegate {
-    func questionSelected(question: Question)
+    func questionSelected(question: QuestionText)
     func newQuestionSelected()
-    func resultsButtonSelected(question:Question)
+    func resultsButtonSelected(question:QuestionText)
 }
 
 class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
@@ -19,7 +19,7 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var roomName: UILabel!
     
-    private var questions:[Question] = []
+    private var questions:[QuestionText] = []
     private var questionsAnswered:[Bool] = []
   
     
@@ -41,7 +41,7 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
         roomName.text = name;
     }
     
-    func setQuestions(questionNames: [Question]) {
+    func setQuestions(questionNames: [QuestionText]) {
         questions = questionNames
     }
     
@@ -75,11 +75,11 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
 }
 
 extension CampaignViewContainer: CampaignViewTableViewCellDelegate {
-  func resultsButtonSelected(question:Question) {
+  func resultsButtonSelected(question:String) {
     delegate?.resultsButtonSelected(question)
   }
   
-  func questionSelected(question: Question) {
+  func questionSelected(question: String) {
         print(question)
         delegate?.questionSelected(question)
       

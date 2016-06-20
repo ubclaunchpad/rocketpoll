@@ -10,7 +10,7 @@ import UIKit
 
 class RoomsNearbyViewController: UIViewController {
     
-    private var roomIDDictionary = [Room: RoomID]()
+    private var roomIDDictionary = [String: RoomID]()
     var container: RoomsNearbyViewContainer?
     
     override func viewDidLoad() {
@@ -46,7 +46,7 @@ class RoomsNearbyViewController: UIViewController {
 }
 
 extension RoomsNearbyViewController: RoomsNearbyViewContainerDelegate {
-    func roomSelected(room: Room) {
+    func roomSelected(room: String) {
         if let selectedRoomID = roomIDDictionary[room] {
             let roomSegue = ModelInterface.sharedInstance.goToRoom(selectedRoomID)
             print(selectedRoomID)

@@ -8,15 +8,16 @@
 
 import Foundation
 
-typealias Question = String
-typealias QuestionID = String
-typealias RoomID = String
-typealias Room = String
-typealias AnswerID = String
-typealias Answer = String
-typealias SegueName = String
 
-var selectedQuestion = QuestionC();
+typealias QuestionID = String
+typealias QuestionText = String
+typealias AnswerID = String
+typealias AnswerText = String
+
+typealias Author = String 
+typealias SegueName = String
+typealias RoomID = String
+var selectedQuestion = Question();
 
 var okayNameCharacters : Set<Character> =
 Set("abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890".characters)
