@@ -17,14 +17,13 @@ final class PollAdminViewController: UIViewController {
     private var sec = 0
     private var seconds = 0
     private var timer = NSTimer()
-    var answers:[String] = []
-    var correctAnswers:[String] = []
-    var sumuserresults = 0;
-    
-    var answerIDs:[AnswerID] = []
-    var numsubmitforeachAns:[[NSString:Int]] = [[:]]
-    
+    private var answers:[AnswerText] = []
+    private var correctAnswers:[AnswerText] = []
+    private var sumuserresults = 0;
+    private var answerIDs:[AnswerID] = []
+    private var numsubmitforeachAns:[[NSString:Int]] = [[:]]
     private var questionID:QuestionID = ""
+    private var questionText:QuestionText = ""
     
     var container: PollAdminViewContainer?
     override func viewDidLoad() {
@@ -36,37 +35,40 @@ final class PollAdminViewController: UIViewController {
         // add your container class to view
         container = PollAdminViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
         view.addSubview(container!)
-        container?.delegate = self
-        questionID = ModelInterface.sharedInstance.getSelectedQuestion().QID
+
         answerIDs = ModelInterface.sharedInstance.getSelectedQuestion().AIDS
-        let questionText: String = ModelInterface.sharedInstance.getSelectedQuestion().questionText
+        
         ModelInterface.sharedInstance.processAnswerData(answerIDs) { (listofAllAnswers) in
+            self.fillInTheFields(listofAllAnswers)
+            
+            self.questionID = ModelInterface.sharedInstance.getSelectedQuestion().QID
+            self.sumuserresults = ModelInterface.sharedInstance.getSumOfUsersThatSubmittedAnswers(self.questionID)
+            self.createTimer(ModelInterface.sharedInstance.getCountdownSeconds())
+            
+            self.container?.delegate = self
+            self.container?.setQuestionText(self.questionText)
+            self.container?.setAnswers(self.answers)
+            self.container?.setCorrectAnswers(self.correctAnswers)
            
-            let size = listofAllAnswers.count
-            for i in 0 ..< size  {
-                let tempAnswer = listofAllAnswers[i].answerText
-                self.answerIDDictionary[tempAnswer] = self.answerIDs[i]
-                self.answers.append(tempAnswer)
-                if (listofAllAnswers[i].isCorrect) {
-                    self.correctAnswers.append(tempAnswer)
-                }
-                else {
-                    self.correctAnswers.append("not correct")
-                }
-            }
-             self.container?.setAnswers(self.answers)
-             self.container?.setCorrectAnswers(self.correctAnswers)
             self.container?.AnswerTable.reloadData()
         }
-        
-        
-        sumuserresults = ModelInterface.sharedInstance.getSumOfUsersThatSubmittedAnswers(questionID)
-        
-        container?.setQuestionText(questionText)
- 
-
-        createTimer(ModelInterface.sharedInstance.getCountdownSeconds())
-        
+    
+    }
+    
+    func fillInTheFields (listofAllAnswers: [Answer]) {
+        self.questionText = ModelInterface.sharedInstance.getSelectedQuestion().questionText
+        let size = listofAllAnswers.count
+        for i in 0 ..< size  {
+            let tempAnswer = listofAllAnswers[i].answerText
+            self.answerIDDictionary[tempAnswer] = self.answerIDs[i]
+            self.answers.append(tempAnswer)
+            if (listofAllAnswers[i].isCorrect) {
+                self.correctAnswers.append(tempAnswer)
+            }
+            else {
+                self.correctAnswers.append("not correct")
+            }
+        }
         
     }
     
@@ -77,32 +79,7 @@ final class PollAdminViewController: UIViewController {
             temp = ModelInterface.sharedInstance.getNumberOfUsersThatGaveThisAnswer(questionID, answerID: answerID)
             numsubmitforeachAns.append([answerID:temp])
         }
-        
     }
-    
-    
-    
-    
-//    // get all the answers and answers that are correct
-//    func getAnswers(answerIDs: [AnswerID])   {
-//        // Changes the list of answerIDs to list of answers
-//        var temp_answer:Answer
-//        
-//        for answerID in answerIDs {
-//            temp_answer = ModelInterface.sharedInstance.getAnswer(answerID)
-//            
-//            if (ModelInterface.sharedInstance.isCorrectAnswer(answerID)) {
-//                correctAnswers.append(temp_answer)
-//            }
-//            else {
-//                correctAnswers.append("notCorrect")
-//            }
-//            
-//            answers.append(temp_answer)
-//            answerIDDictionary[temp_answer] = answerID
-//        }
-//        
-//    }
     
     func createTimer (startingTime: Int) {
         seconds = startingTime
@@ -127,8 +104,6 @@ final class PollAdminViewController: UIViewController {
     }
     
 }
-
-
 
 extension PollAdminViewController: PollAdminViewContainerDelegate {
     
