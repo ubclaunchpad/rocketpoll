@@ -36,45 +36,58 @@ extension ModelInterface: AnswerModelProtocol {
         return answerIDS
     }
     
+    
+    
     func processAnswerData(selectedAnswerIDs:[AnswerID],completionHandler: (listofAllAnswers: [Answer]) -> ()) {
         
         let ref =  FIRDatabase.database().reference();
         ref.child("ANSWERS").child("AIDS").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             // Get user value
             let postDict = snapshot.value as! [String : AnyObject]
-            var sendAnswerData = [Answer]()
-            var sendTally = 0;
-            var sendIsCorrect = false;
-            var sendAnswerText = "";
-            for (AID, data) in postDict {
-                if (selectedAnswerIDs.contains(AID)) {
-                    let information = data as! [String : AnyObject]
-                    
-                    for (key,value) in information {
-                        if (key == "answer") {
-                            sendAnswerText = value as! String ;
-                        }
-                        if (key == "isCorrect") {
-                            sendIsCorrect = value as! Bool
-                        }
-                        if (key == "tally") {
-                            sendTally = Int(value as! String)!
-                        }
-                        
-                    }
-                
-                    let tempAnswer = Answer(AID: AID, isCorrect: sendIsCorrect, tally: sendTally, answerText: sendAnswerText)
-                    sendAnswerData.append(tempAnswer)
-                    
-                }
-            }
-            
+            let  sendAnswerData = self.parseAIDNodeAndItsChildren(postDict, selectedAnswerIDs: selectedAnswerIDs)
             completionHandler(listofAllAnswers: sendAnswerData)
             
         }) { (error) in
             print(error.localizedDescription)
         }
         
+    }
+    
+    
+    func parseAIDNodeAndItsChildren(data:NSDictionary,selectedAnswerIDs:[AnswerID]) -> [Answer] {
+        var sendAnswerData = [Answer]()
+        for (AID, children) in data {
+            if (selectedAnswerIDs.contains(AID as! AnswerID)) {
+                let information = children as! [String : AnyObject]
+                let tempAnswer = self.parseAnswerNodeInformation(information, AID: AID as! AnswerID)
+                sendAnswerData.append(tempAnswer)
+            }
+        }
+        return  sendAnswerData
+    
+    }
+    
+    func parseAnswerNodeInformation(data:NSDictionary, AID: AnswerID) -> Answer{
+        var sendTally = 0;
+        var sendIsCorrect = false;
+        var sendAnswerText = "";
+        
+        for (key,value) in data {
+            if (key as! String == "answer") {
+                sendAnswerText = value as! String ;
+            }
+            if (key as! String == "isCorrect") {
+                sendIsCorrect = value as! Bool
+            }
+            if (key as! String == "tally") {
+                sendTally = Int(value as! String)!
+            }
+            
+        }
+        
+        let tempAnswer = Answer(AID: AID, isCorrect: sendIsCorrect, tally: sendTally, answerText: sendAnswerText)
+        
+        return tempAnswer;
     }
     
     
@@ -98,20 +111,11 @@ extension ModelInterface: AnswerModelProtocol {
         return "A1"
     }
     
-    //    func getAnswer(answerId: AnswerID) -> String {
-    //        return "This is the answer"
-    //    }
-    //
-    //    func getListOfAnswerIDs(questionId: QuestionID) -> [AnswerID] {
-    //        return ["A1","A2","A3","A4"]
-    //    }
-    
     func getSumOfUsersThatSubmittedAnswers(questionID: QuestionID) -> Int {
         return 40
     }
     
     func getNumberOfUsersThatGaveThisAnswer(questionID: QuestionID, answerID: AnswerID) -> Int {
-        
         return 10
     }
     
