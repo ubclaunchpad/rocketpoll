@@ -24,4 +24,5 @@ protocol AnswerModelProtocol {
     //  func getListOfAnswerIDs(questionId: QuestionID) -> [AnswerID]
     func getSumOfUsersThatSubmittedAnswers(questionId: QuestionID) -> Int
     func getNumberOfUsersThatGaveThisAnswer(questionID: QuestionID, answerID:AnswerID) -> Int
+    
 }

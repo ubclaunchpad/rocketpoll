@@ -19,16 +19,18 @@ protocol QuestionModelProtocol {
     func setSelectedQuestion(AIDS:[AnswerText], QID:QuestionID, questionText:QuestionText, author:String)
     func getSelectedQuestion() -> Question
     
-    func getSpecificQuestion(questionID:QuestionID, completionHandler: (specificQuestion: Question) -> ())
-    //
-    //  func getQuestion(questionId: QuestionID) -> String
-    //  func getQuestionID() -> QuestionID
-    //  func getListOfQuestions() -> [QuestionID]
+
     func getListOfQuestionsUserCreated() -> [QuestionID]
     func isQuestionAnswered(questionId: QuestionID) -> Bool
     
     //MARK: - Remove Question Information -
     func removeQuestion(questionId: QuestionID) -> Bool
+    
+    //MARK: - Helper Methods -
+    func parseQIDNodeAndItsChildren(data:NSDictionary) -> [Question]
+    func parseQuestionNodeInformation(data:NSDictionary, QID:QuestionID) -> Question
+    func parseAIDs(data:NSDictionary) -> [AnswerID]
+
     
     //MARK: - Segues -
     func segueToQuestionsUserCreated() -> SegueName
