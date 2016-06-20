@@ -14,6 +14,7 @@ typealias QuestionText = String
 typealias AnswerID = String
 typealias AnswerText = String
 
+typealias Author = String 
 typealias SegueName = String
 typealias RoomID = String
 var selectedQuestion = Question();

@@ -27,7 +27,7 @@ extension ModelInterface: QuestionModelProtocol {
         return selectedQuestion
     }
     
-    func setSelectedQuestion(AIDS: [AnswerID], QID: QuestionID, questionText: QuestionText, author: String) {
+    func setSelectedQuestion(AIDS: [AnswerID], QID: QuestionID, questionText: QuestionText, author: Author) {
         selectedQuestion.QID = QID
         selectedQuestion.AIDS = AIDS
         selectedQuestion.questionText = questionText
@@ -68,9 +68,9 @@ extension ModelInterface: QuestionModelProtocol {
             let keyAsString  = key as! String
             switch keyAsString  {
             case "Author" :
-                sendAuthor = value as! String
+                sendAuthor = value as! Author
             case "Question":
-                sendQuestionText = value as! String
+                sendQuestionText = value as! QuestionText
             case "AIDS":
                 sendAIDS = self.parseAIDs(value as! [String: AnyObject]);
             default: break
@@ -83,7 +83,7 @@ extension ModelInterface: QuestionModelProtocol {
     func parseAIDs(data:NSDictionary) -> [AnswerID] {
         var sendAIDS = [AnswerID]();
         for (_, AID) in data {
-            sendAIDS.append(AID as! String)
+            sendAIDS.append(AID as! AnswerID)
         }
         return sendAIDS
     }

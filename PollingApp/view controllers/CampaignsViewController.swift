@@ -12,9 +12,9 @@ class CampaignsViewController: UIViewController {
     
     private var questionIDDictionary = [QuestionText: QuestionID]()
     private var QIDToAIDSDictionary = [QuestionID:[AnswerID]]()
-    private var QIDToAuthorDictionary = [QuestionID:String]()
+    private var QIDToAuthorDictionary = [QuestionID: Author]()
     private var questions = [QuestionText]();
-    private var authors = [String]();
+    private var authors = [Author]();
     private var questionsAnswered = [Bool]();
     
     

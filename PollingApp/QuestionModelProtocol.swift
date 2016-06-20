@@ -11,12 +11,12 @@ import Foundation
 protocol QuestionModelProtocol {
     
     //MARK: - Setting Question Information -
-    func setNewQuestion(question: String) -> QuestionID
+    func setNewQuestion(question: QuestionText) -> QuestionID
     
     //MARK: - Getting Question Information -
     
     func processQuestionData(completionHandler: (listofAllQuestions: [Question]) -> ())
-    func setSelectedQuestion(AIDS:[AnswerText], QID:QuestionID, questionText:QuestionText, author:String)
+    func setSelectedQuestion(AIDS:[AnswerText], QID:QuestionID, questionText:QuestionText, author:Author)
     func getSelectedQuestion() -> Question
     
 

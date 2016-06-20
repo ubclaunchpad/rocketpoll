@@ -75,7 +75,7 @@ extension ModelInterface: AnswerModelProtocol {
             let keyAsString = key as! String
             switch keyAsString {
             case "answer" :
-                sendAnswerText = value as! String
+                sendAnswerText = value as! AnswerText
             case "isCorrect":
                 sendIsCorrect = value as! Bool
             case "tally":
