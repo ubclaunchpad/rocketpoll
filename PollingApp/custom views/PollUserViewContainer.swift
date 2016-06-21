@@ -9,7 +9,7 @@
 import UIKit
 
 protocol PollUserViewContainerDelegate {
-    func answerSelected(answer: Answer)
+    func answerSelected(answer: AnswerText)
     func backButtonPushed()
 }
 
@@ -17,9 +17,9 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var backButton: UIButton!
     
-    private var answers:[Answer] = []
+    private var answers:[AnswerText] = []
     
-    var selectedAnswer: String = ""
+    var selectedAnswer: AnswerText = ""
     
     var delegate: PollUserViewContainerDelegate?
     
@@ -37,12 +37,12 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
         return view
     }
     
-    func setAnswers(Answers: [Answer]){
+    func setAnswers(Answers: [AnswerText]){
         answers = Answers
         
     }
     
-    func setQuestionText(questionText: Question) {
+    func setQuestionText(questionText: QuestionText) {
         question.text = questionText
     }
     
@@ -84,7 +84,7 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
 }
 
 extension PollUserViewContainer: AnswerViewTableViewCellDelegate {
-    func answerSelected(answer: Answer) {
+    func answerSelected(answer: AnswerText) {
         delegate?.answerSelected(answer)
         
     }
