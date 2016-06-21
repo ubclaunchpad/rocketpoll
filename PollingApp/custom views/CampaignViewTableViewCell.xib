@@ -12,18 +12,27 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="135"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qmY-d0-j3R" id="R8E-hd-k7b">
-                <rect key="frame" x="0.0" y="0.0" width="600" height="134.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="600" height="135"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1KI-Cl-Kvj">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="135"/>
+                        <rect key="frame" x="0.0" y="-22" width="600" height="115"/>
                         <state key="normal" title="Button"/>
                         <connections>
                             <action selector="buttonPressed:" destination="qmY-d0-j3R" eventType="touchUpInside" id="U0t-IT-6uL"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yex-pJ-v2Z">
+                        <rect key="frame" x="31" y="94" width="76" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="76" id="cIz-tK-r2D"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GCl-Wp-SKT">
-                        <rect key="frame" x="511" y="52" width="51" height="30"/>
+                        <rect key="frame" x="454" y="53" width="51" height="30"/>
                         <state key="normal" title="Results"/>
                         <connections>
                             <action selector="resultsButtonPressed:" destination="qmY-d0-j3R" eventType="touchUpInside" id="5AB-5R-zoF"/>
@@ -31,15 +40,18 @@
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="1KI-Cl-Kvj" firstAttribute="height" secondItem="R8E-hd-k7b" secondAttribute="height" id="7Hh-dS-d5L"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="GCl-Wp-SKT" secondAttribute="trailing" constant="30" id="CET-5c-Hyz"/>
-                    <constraint firstItem="1KI-Cl-Kvj" firstAttribute="top" secondItem="R8E-hd-k7b" secondAttribute="top" id="lWs-WF-Axd"/>
-                    <constraint firstItem="GCl-Wp-SKT" firstAttribute="centerY" secondItem="R8E-hd-k7b" secondAttribute="centerY" id="mNI-EL-IE4"/>
+                    <constraint firstItem="1KI-Cl-Kvj" firstAttribute="height" secondItem="R8E-hd-k7b" secondAttribute="height" constant="-19.5" id="7Hh-dS-d5L"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="GCl-Wp-SKT" secondAttribute="trailing" constant="87" id="CET-5c-Hyz"/>
+                    <constraint firstItem="Yex-pJ-v2Z" firstAttribute="bottom" secondItem="1KI-Cl-Kvj" secondAttribute="bottom" constant="22" id="cuU-Kr-Egj"/>
+                    <constraint firstItem="1KI-Cl-Kvj" firstAttribute="top" secondItem="R8E-hd-k7b" secondAttribute="top" constant="-22" id="lWs-WF-Axd"/>
+                    <constraint firstItem="GCl-Wp-SKT" firstAttribute="centerY" secondItem="R8E-hd-k7b" secondAttribute="centerY" constant="0.5" id="mNI-EL-IE4"/>
+                    <constraint firstItem="Yex-pJ-v2Z" firstAttribute="leading" secondItem="R8E-hd-k7b" secondAttribute="leadingMargin" constant="23" id="qAP-zl-xIJ"/>
                     <constraint firstItem="1KI-Cl-Kvj" firstAttribute="width" secondItem="R8E-hd-k7b" secondAttribute="width" id="t4M-fh-jCy"/>
                     <constraint firstItem="1KI-Cl-Kvj" firstAttribute="leading" secondItem="R8E-hd-k7b" secondAttribute="leading" id="zqZ-aj-gwX"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="author" destination="Yex-pJ-v2Z" id="B0Z-Jl-pmB"/>
                 <outlet property="button" destination="1KI-Cl-Kvj" id="qrp-Pe-t7k"/>
                 <outlet property="resultsButton" destination="GCl-Wp-SKT" id="CWx-Vu-Iit"/>
             </connections>

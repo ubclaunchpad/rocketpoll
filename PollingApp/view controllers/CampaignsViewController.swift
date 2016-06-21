@@ -19,7 +19,7 @@ class CampaignsViewController: UIViewController {
     private var questionsAnswered = [Bool]();
     
     
-    var container: CampaignViewContainer?    
+    var container: CampaignViewContainer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,11 +36,12 @@ class CampaignsViewController: UIViewController {
         container = CampaignViewContainer.instancefromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
         view.addSubview(container!)
         ModelInterface.sharedInstance.processQuestionData { (listofAllQuestions) in
-         
+            
             self.fillInTheFields(listofAllQuestions)
             let roomID = ModelInterface.sharedInstance.getCurrentRoomID()
             let roomName = ModelInterface.sharedInstance.getRoomName(roomID)
             
+            self.container?.setAuthors(self.authors)
             self.container?.setRoomNameTitle(roomName)
             self.container?.delegate = self
             self.container?.setQuestions(self.questions)
@@ -48,7 +49,7 @@ class CampaignsViewController: UIViewController {
             self.container?.tableView.reloadData()
         }
     }
-
+    
     
     func fillInTheFields (listofAllQuestions:[Question]) {
         let size = listofAllQuestions.count
@@ -74,31 +75,31 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
                 ModelInterface.sharedInstance.setSelectedQuestion(AIDS, QID: questionID, questionText: question, author: author)
                 let nextRoom = ModelInterface.sharedInstance.segueTotoPollAdminVCFromCampaign()
                 performSegueWithIdentifier(nextRoom, sender: self)
-
+                
             } else {
-            
+                
                 ModelInterface.sharedInstance.setSelectedQuestion(AIDS, QID: questionID, questionText: question, author: author)
                 let questionSegue = ModelInterface.sharedInstance.segueToQuestion()
                 performSegueWithIdentifier(questionSegue, sender: self)
             }
-          
+            
         }
     }
     func newQuestionSelected() {
         let newQuestionSegue = ModelInterface.sharedInstance.segueToCreateNewQuestion()
         performSegueWithIdentifier(newQuestionSegue, sender: self)
     }
-  
+    
     func resultsButtonSelected(question: QuestionText) {
-    if let questionID = questionIDDictionary[question] {
-        
-        let AIDS = QIDToAIDSDictionary[questionID]!;
-        let author = QIDToAuthorDictionary[questionID]!;
-        ModelInterface.sharedInstance.setSelectedQuestion(AIDS, QID: questionID, questionText: question, author: author)
-        let nextRoom = ModelInterface.sharedInstance.segueToResultsScreen()
-        performSegueWithIdentifier(nextRoom, sender: self)
+        if let questionID = questionIDDictionary[question] {
+            
+            let AIDS = QIDToAIDSDictionary[questionID]!;
+            let author = QIDToAuthorDictionary[questionID]!;
+            ModelInterface.sharedInstance.setSelectedQuestion(AIDS, QID: questionID, questionText: question, author: author)
+            let nextRoom = ModelInterface.sharedInstance.segueToResultsScreen()
+            performSegueWithIdentifier(nextRoom, sender: self)
+        }
     }
-  }
-  
+    
 }
 
