@@ -37,7 +37,7 @@ class FirebaseData {
         let ref =  FIRDatabase.database().reference();
 
         ref.child("\(parent)/\(targetNode)").setValue(desiredValue);
-        
     }
-    
+
+
 }

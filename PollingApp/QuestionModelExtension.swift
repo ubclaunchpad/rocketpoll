@@ -16,7 +16,7 @@ extension ModelInterface: QuestionModelProtocol {
         
         let timeStamp = NSDate().timeIntervalSince1970
         let endStamp = NSDate().timeIntervalSince1970 + 30; //TODO: CHANGE THIS
-        let QID = ["Author": "Jon","Question": question, "startTimeStamp": timeStamp, "endTimeStamp": endStamp]
+        let QID = ["Author": "\(currentUser)","Question": question, "startTimeStamp": timeStamp, "endTimeStamp": endStamp]
         let fbd:FirebaseData = FirebaseData()
         let key = fbd.postToFirebaseWithKey("QUESTIONSCREEN", child: "QID", children: QID) as QuestionID
         
@@ -99,6 +99,8 @@ extension ModelInterface: QuestionModelProtocol {
     
     //MARK: - Remove Question Information -
     func removeQuestion(questionId: QuestionID) -> Bool {
+        let ref =  FIRDatabase.database().reference();
+        ref.child("QUESTIONSCREEN").child("\(questionId)").removeValue()
         return true
     }
     
@@ -126,6 +128,10 @@ extension ModelInterface: QuestionModelProtocol {
     }
     func segueToResultsScreen() -> SegueName{
         return Segues.toPollResultsView
+    }
+    
+    func segueTotoPollAdminVCFromCampaign() -> SegueName {
+        return Segues.toPollAdminVCFromCampaign
     }
     
 }

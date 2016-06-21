@@ -19,6 +19,8 @@ typealias SegueName = String
 typealias RoomID = String
 var selectedQuestion = Question();
 
+var currentUser:Author = "";
+
 var okayNameCharacters : Set<Character> =
 Set("abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890".characters)
 
@@ -34,5 +36,7 @@ enum Segues {
   static let toCreateQuestionView = "toCreateQuestionView"
   static let toPollAdminScreen = "toPollAdminScreen"
   static let toPollResultsView = "toPollResultsView"
+  static let toPollAdminVCFromCampaign = "toPollAdminVCFromCampaign"
+    
 }
  

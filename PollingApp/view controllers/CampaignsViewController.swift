@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class CampaignsViewController: UIViewController {
     
@@ -22,6 +23,7 @@ class CampaignsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(currentUser)
         setup()
     }
     
@@ -68,9 +70,17 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
             print(question)
             let AIDS = QIDToAIDSDictionary[questionID]!
             let author = QIDToAuthorDictionary[questionID]!
-            ModelInterface.sharedInstance.setSelectedQuestion(AIDS, QID: questionID, questionText: question, author: author)
-            let questionSegue = ModelInterface.sharedInstance.segueToQuestion()
-            performSegueWithIdentifier(questionSegue, sender: self)
+            if (author == currentUser) {
+                ModelInterface.sharedInstance.setSelectedQuestion(AIDS, QID: questionID, questionText: question, author: author)
+                let nextRoom = ModelInterface.sharedInstance.segueTotoPollAdminVCFromCampaign()
+                performSegueWithIdentifier(nextRoom, sender: self)
+
+            } else {
+            
+                ModelInterface.sharedInstance.setSelectedQuestion(AIDS, QID: questionID, questionText: question, author: author)
+                let questionSegue = ModelInterface.sharedInstance.segueToQuestion()
+                performSegueWithIdentifier(questionSegue, sender: self)
+            }
           
         }
     }
