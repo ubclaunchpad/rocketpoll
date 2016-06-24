@@ -34,6 +34,7 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
     }
     
     @IBAction func goToCampaign(sender: AnyObject) {
+        
         delegate?.segueToCampaign();
     }
     

@@ -40,4 +40,5 @@ protocol QuestionModelProtocol {
     func segueToQuestionsScreen() -> SegueName
     func segueToAdminScreen() -> SegueName
     func segueToResultsScreen() -> SegueName
+    func segueTotoPollAdminVCFromCampaign() -> SegueName
 }

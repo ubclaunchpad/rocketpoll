@@ -35,7 +35,7 @@ final class PollAdminViewController: UIViewController {
         // add your container class to view
         container = PollAdminViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
         view.addSubview(container!)
-
+        
         answerIDs = ModelInterface.sharedInstance.getSelectedQuestion().AIDS
         
         ModelInterface.sharedInstance.processAnswerData(answerIDs) { (listofAllAnswers) in
@@ -49,10 +49,10 @@ final class PollAdminViewController: UIViewController {
             self.container?.setQuestionText(self.questionText)
             self.container?.setAnswers(self.answers)
             self.container?.setCorrectAnswers(self.correctAnswers)
-           
+            
             self.container?.AnswerTable.reloadData()
         }
-    
+        
     }
     
     func fillInTheFields (listofAllAnswers: [Answer]) {
@@ -115,6 +115,7 @@ extension PollAdminViewController: PollAdminViewContainerDelegate {
     
     func segueToCampaign() {
         let nextRoom =  ModelInterface.sharedInstance.segueToQuestionsScreen()
+        ModelInterface.sharedInstance.removeQuestion(questionID)
         performSegueWithIdentifier(nextRoom, sender: self)
         print("SegueToCampaign");
     }

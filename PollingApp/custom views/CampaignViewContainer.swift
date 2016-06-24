@@ -15,13 +15,13 @@ protocol CampaignViewContainerDelegate {
 }
 
 class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
-  
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var roomName: UILabel!
     
     private var questions:[QuestionText] = []
     private var questionsAnswered:[Bool] = []
-  
+    private var authors:[Author] = []
     
     var delegate: CampaignViewContainerDelegate?
     
@@ -49,10 +49,15 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
         questionsAnswered = questions
     }
     
+    func setAuthors (authors:[Author]) {
+        self.authors = authors;
+    }
+    
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return questions.count
     }
-  
+    
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let nib_name = UINib(nibName: "CampaignViewTableViewCell", bundle: nil)
@@ -61,11 +66,16 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
         cell.delegate = self
         cell.setQuestionText(questions[indexPath.row])
         cell.setAnsweredBackground(questionsAnswered[indexPath.row])
-      
-      if(!questionsAnswered[indexPath.row]){
-       cell.hideResultsLabel()
-      }
-      
+        if (authors[indexPath.row] == currentUser) {
+            cell.setAuthorText("Yours")
+        } else {
+            cell.setAuthorText(authors[indexPath.row])
+        }
+        
+        if(!questionsAnswered[indexPath.row]){
+            cell.hideResultsLabel()
+        }
+        
         return cell
     }
     
@@ -75,13 +85,13 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
 }
 
 extension CampaignViewContainer: CampaignViewTableViewCellDelegate {
-  func resultsButtonSelected(question:String) {
-    delegate?.resultsButtonSelected(question)
-  }
-  
-  func questionSelected(question: String) {
+    func resultsButtonSelected(question:String) {
+        delegate?.resultsButtonSelected(question)
+    }
+    
+    func questionSelected(question: String) {
         print(question)
         delegate?.questionSelected(question)
-      
+        
     }
 }
