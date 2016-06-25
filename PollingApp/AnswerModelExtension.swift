@@ -110,13 +110,4 @@ extension ModelInterface: AnswerModelProtocol {
     func getCorrectAnswer(questionID: QuestionID) -> AnswerID {
         return "A1"
     }
-    
-    func getSumOfUsersThatSubmittedAnswers(questionID: QuestionID) -> Int {
-        return 40
-    }
-    
-    func getNumberOfUsersThatGaveThisAnswer(questionID: QuestionID, answerID: AnswerID) -> Int {
-        return 10
-    }
-    
 }
