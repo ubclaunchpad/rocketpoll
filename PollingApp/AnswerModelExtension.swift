@@ -110,43 +110,4 @@ extension ModelInterface: AnswerModelProtocol {
     func getCorrectAnswer(questionID: QuestionID) -> AnswerID {
         return "A1"
     }
-    
-    func getSumOfUsersThatSubmittedAnswers(questionID: QuestionID) -> Int {
-        
-        var sum = 0
-        
-        let ref = FIRDatabase.database().reference();
-        
-        ref.child("ANSWERS").child("AIDS").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-            // Get user value
-            
-            let questionDict = snapshot.value as! [String : AnyObject]
-            
-            print(questionDict)
-        
-            for (AID, obj) in questionDict {
-                let test = obj as! [String: AnyObject]
-                for (key , value) in test {
-                    if (key == "tally") {
-                        let tallyAsString = value as! NSString
-                        print(tallyAsString)
-                        sum = sum + tallyAsString.integerValue
-                        print("printing tallyAsString: \(tallyAsString.integerValue)")
-                    }
-                }
-            }
-            print(sum)
-        }) { (error) in
-            print(error.localizedDescription)
-        }
-        
-        return sum
-        
-        //return 40
-    }
-    
-    func getNumberOfUsersThatGaveThisAnswer(questionID: QuestionID, answerID: AnswerID) -> Int {
-        return 10
-    }
-    
 }

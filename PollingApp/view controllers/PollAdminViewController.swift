@@ -42,7 +42,7 @@ final class PollAdminViewController: UIViewController {
             self.fillInTheFields(listofAllAnswers)
             
             self.questionID = ModelInterface.sharedInstance.getSelectedQuestion().QID
-            self.sumuserresults = ModelInterface.sharedInstance.getSumOfUsersThatSubmittedAnswers(self.questionID)
+//            self.sumuserresults = ModelInterface.sharedInstance.getSumOfUsersThatSubmittedAnswers(self.questionID)
             self.createTimer(ModelInterface.sharedInstance.getCountdownSeconds())
             
             self.container?.delegate = self
@@ -70,15 +70,6 @@ final class PollAdminViewController: UIViewController {
             }
         }
         
-    }
-    
-    
-    func getnumsubmitforeachAns(answerIDs: [AnswerID], questionID: QuestionID) {
-        var temp = 0;
-        for answerID in answerIDs {
-            temp = ModelInterface.sharedInstance.getNumberOfUsersThatGaveThisAnswer(questionID, answerID: answerID)
-            numsubmitforeachAns.append([answerID:temp])
-        }
     }
     
     func createTimer (startingTime: Int) {
