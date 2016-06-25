@@ -9,14 +9,14 @@
 import UIKit
 
 final class PollUserViewController: UIViewController {
-    private var answerIDDictionary = [Answer: AnswerID]()
+    private var answerIDDictionary = [AnswerText: AnswerID]()
     private var min:Int = 0
     private var sec = 0
     private var seconds = 0
     private var timer = NSTimer()
-    var answers:[Answer] = []
-    var answerIDs:[AnswerID] = []
-    
+    private var answers:[AnswerText] = []
+    private var answerIDs:[AnswerID] = []
+    private var questionText:QuestionText = ""
     private var questionID:QuestionID = ""
     
     var container: PollUserViewContainer?
@@ -33,29 +33,31 @@ final class PollUserViewController: UIViewController {
         container = PollUserViewContainer.instanceFromNib(viewSize)
         view.addSubview(container!)
         
-        questionID = ModelInterface.sharedInstance.getQuestionID()
-        let questionText: Question = ModelInterface.sharedInstance.getQuestion(questionID)
-        answerIDs = ModelInterface.sharedInstance.getListOfAnswerIDs(questionID)
-        
-        container?.setQuestionText(questionText)
-        container?.delegate = self
-        answers = getAnswers(answerIDs)
-        container?.setAnswers(answers)
-        createTimer(ModelInterface.sharedInstance.getCountdownSeconds())
+        self.answerIDs = ModelInterface.sharedInstance.getSelectedQuestion().AIDS
+        ModelInterface.sharedInstance.processAnswerData(self.answerIDs) { (listofAllAnswers) in
+            self.fillInTheFields(listofAllAnswers)
+            
+            self.container?.delegate = self
+            self.container?.setQuestionText(self.questionText)
+            self.container?.setAnswers(self.answers)
+            self.container?.tableView.reloadData()
+            
+        }
     }
     
-    func getAnswers(answerIDs: [AnswerID]) -> [Answer] {
-        // Changes the list of answerIDs to list of answers
-        var answers = [String]()
-        var temp_answer:Answer
-        
-        for answerID in answerIDs {
-            temp_answer = ModelInterface.sharedInstance.getAnswer(answerID)
-            answers.append(temp_answer)
-            answerIDDictionary[temp_answer] = answerID
+    func fillInTheFields (listofAllAnswers:[Answer]) {
+        let size = listofAllAnswers.count
+        for i in 0 ..< size  {
+            let tempAnswer = listofAllAnswers[i].answerText
+            self.answerIDDictionary[tempAnswer] = self.answerIDs[i]
+            self.answers.append(tempAnswer)
         }
-        return answers
+        self.questionID = selectedQuestion.QID
+        self.questionText = selectedQuestion.questionText
+        self.createTimer(ModelInterface.sharedInstance.getCountdownSeconds())
     }
+
+
     
     func createTimer (startingTime: Int) {
         seconds = startingTime
@@ -87,17 +89,17 @@ final class PollUserViewController: UIViewController {
 }
 
 extension PollUserViewController: PollUserViewContainerDelegate {
-    func answerSelected(answer: Answer) {
+    func answerSelected(answer: AnswerText) {
         if let selectedAnswerID = answerIDDictionary[answer] {
             ModelInterface.sharedInstance.setUserAnswer(questionID, answerID: selectedAnswerID)
             print("selected answer is: \(answer) ,printed from viewController")
             let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
             performSegueWithIdentifier(nextRoom, sender: self)
-
+            
         }
     }
-  func backButtonPushed() {
-    let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
-    performSegueWithIdentifier(nextRoom, sender: self)
-  }
+    func backButtonPushed() {
+        let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
+        performSegueWithIdentifier(nextRoom, sender: self)
+    }
 }

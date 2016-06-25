@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AnswerViewTableViewCellDelegate{
-    func answerSelected(answer: Answer)
+    func answerSelected(answer: AnswerText)
 }
 
 class AnswerViewTableViewCell: UITableViewCell {

@@ -9,38 +9,57 @@
 
 import UIKit
 
+
+protocol PollAdminViewContainerDelegate  {
+    func segueToResult()
+    func segueToCampaign()
+}
+
 class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
     
-    private var answers:[Answer] = []
-    private var correctAnswers:[Answer] = []
+    private var answers:[AnswerText] = []
+    private var correctAnswers:[AnswerText] = []
     
     @IBOutlet weak var question: UILabel!
     @IBOutlet weak var timer: UILabel!
 
     @IBOutlet weak var AnswerTable: UITableView!
     
+    var delegate: PollAdminViewContainerDelegate?
+
+    
+    
+    @IBAction func goToResult(sender: AnyObject) {
+        delegate?.segueToResult();
+    }
+    
+    @IBAction func goToCampaign(sender: AnyObject) {
+        
+        delegate?.segueToCampaign();
+    }
     
     class func instanceFromNib(frame: CGRect) -> PollAdminViewContainer {
         let view = UINib(nibName: "PollAdminViewContainer", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PollAdminViewContainer
         view.frame = frame
         view.AnswerTable.delegate = view
         view.AnswerTable.dataSource = view
+        
         return view
     }
     
     
-    func setAnswers(Answers: [Answer]){
+    func setAnswers(Answers: [String]){
         answers = Answers
         
     }
     
-    func setCorrectAnswers(Answers: [Answer]){
+    func setCorrectAnswers(Answers: [String]){
         correctAnswers = Answers
    }
     
     
     
-    func setQuestionText(questionText: Question) {
+    func setQuestionText(questionText: String) {
         question.text = questionText
     }
 
