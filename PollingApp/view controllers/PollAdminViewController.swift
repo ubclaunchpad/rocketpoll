@@ -43,12 +43,21 @@ final class PollAdminViewController: UIViewController {
             
             self.questionID = ModelInterface.sharedInstance.getSelectedQuestion().QID
             self.sumuserresults = ModelInterface.sharedInstance.getSumOfUsersThatSubmittedAnswers(self.questionID)
-            self.createTimer(ModelInterface.sharedInstance.getCountdownSeconds())
+            
             
             self.container?.delegate = self
             self.container?.setQuestionText(self.questionText)
             self.container?.setAnswers(self.answers)
             self.container?.setCorrectAnswers(self.correctAnswers)
+            
+            ModelInterface.sharedInstance.getCountdownSeconds({ (time) -> Void in
+                if time > 0 {
+                    let currentTime = Int(NSDate().timeIntervalSince1970)
+                    if Int(time) < currentTime {
+                        self.container?.doneTimerLabel("Done")
+                    }
+                }
+            })
             
             self.container?.AnswerTable.reloadData()
         }

@@ -11,6 +11,6 @@ import Foundation
 protocol TimerModelProtocol {
   
   func stopTimer(questionID: QuestionID) -> Bool
-  func getCountdownSeconds() -> Int
+  func getCountdownSeconds(completion: (Int) -> Void)
   func setTimerSeconds(seconds : Int) -> Bool  
 }

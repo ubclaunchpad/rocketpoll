@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 extension ModelInterface: TimerModelProtocol {
   
@@ -14,8 +15,15 @@ extension ModelInterface: TimerModelProtocol {
     return true
   }
   
-  func getCountdownSeconds() -> Int {
-    return 70
+  func getCountdownSeconds(completion: (Int) -> Void) {
+    let timerRef = FIRDatabase.database().reference().child("QUESTIONSCREEN/\(selectedQuestion.QID)")
+    let refHandle = timerRef.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
+        let timeDict = snapshot.value as! [String : AnyObject]
+        // ...
+        print(timeDict)
+        completion(timeDict["endTimeStamp"] as! Int)
+    })
+    
   }
   
   func setTimerSeconds(seconds : Int) -> Bool {

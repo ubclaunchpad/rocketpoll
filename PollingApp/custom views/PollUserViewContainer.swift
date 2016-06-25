@@ -41,7 +41,6 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
         answers = Answers
         
     }
-    
     func setQuestionText(questionText: QuestionText) {
         question.text = questionText
     }

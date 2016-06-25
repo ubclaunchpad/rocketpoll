@@ -54,12 +54,17 @@ final class PollUserViewController: UIViewController {
         }
         self.questionID = selectedQuestion.QID
         self.questionText = selectedQuestion.questionText
-        self.createTimer(ModelInterface.sharedInstance.getCountdownSeconds())
+        
+        
+        ModelInterface.sharedInstance.getCountdownSeconds({ (time) -> Void in
+            if time > 0 {
+                let currentTime = Int(NSDate().timeIntervalSince1970)
+                self.createTimer(Int(time) - currentTime)
+            }
+        })
     }
-
-
     
-    func createTimer (startingTime: Int) {
+    func createTimer(startingTime: Int) {
         seconds = startingTime
         let min_temp:Int = seconds/60
         let sec_temp = seconds-60*(min_temp)
