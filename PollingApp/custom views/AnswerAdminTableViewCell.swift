@@ -26,7 +26,7 @@ class AnswerAdminTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setAnswerText(answer: String){
+    func setAnswerText(answer: AnswerText){
         answerlabel.text = answer
     }
     

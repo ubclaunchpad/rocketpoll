@@ -9,26 +9,36 @@
 import Foundation
 
 protocol QuestionModelProtocol {
-  
-  //MARK: - Setting Question Information -
-  func setNewQuestion(question: String) -> Bool
-  
-  //MARK: - Getting Question Information -
-  func getQuestion(questionId: QuestionID) -> String
-  func getQuestionID() -> QuestionID
-  func getListOfQuestions() -> [QuestionID]
-  func getListOfQuestionsUserCreated() -> [QuestionID]
-  func isQuestionAnswered(questionId: QuestionID) -> Bool
-  
-  //MARK: - Remove Question Information -
-  func removeQuestion(questionId: QuestionID) -> Bool
-  
-  //MARK: - Segues -
-  func segueToQuestionsUserCreated() -> SegueName
-  func segueToQuestionsNearMe() -> SegueName
-  func segueToQuestion() -> SegueName
-  func segueToCreateNewQuestion() -> SegueName
-  func segueToQuestionsScreen() -> SegueName
-  func segueToAdminScreen() -> SegueName
-  func segueToResultsScreen() -> SegueName
+    
+    //MARK: - Setting Question Information -
+    func setNewQuestion(question: QuestionText) -> QuestionID
+    
+    //MARK: - Getting Question Information -
+    
+    func processQuestionData(completionHandler: (listofAllQuestions: [Question]) -> ())
+    func setSelectedQuestion(AIDS:[AnswerText], QID:QuestionID, questionText:QuestionText, author:Author)
+    func getSelectedQuestion() -> Question
+    
+
+    func getListOfQuestionsUserCreated() -> [QuestionID]
+    func isQuestionAnswered(questionId: QuestionID) -> Bool
+    
+    //MARK: - Remove Question Information -
+    func removeQuestion(questionId: QuestionID) -> Bool
+    
+    //MARK: - Helper Methods -
+    func parseQIDNodeAndItsChildren(data:NSDictionary) -> [Question]
+    func parseQuestionNodeInformation(data:NSDictionary, QID:QuestionID) -> Question
+    func parseAIDs(data:NSDictionary) -> [AnswerID]
+
+    
+    //MARK: - Segues -
+    func segueToQuestionsUserCreated() -> SegueName
+    func segueToQuestionsNearMe() -> SegueName
+    func segueToQuestion() -> SegueName
+    func segueToCreateNewQuestion() -> SegueName
+    func segueToQuestionsScreen() -> SegueName
+    func segueToAdminScreen() -> SegueName
+    func segueToResultsScreen() -> SegueName
+    func segueTotoPollAdminVCFromCampaign() -> SegueName
 }
