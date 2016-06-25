@@ -9,37 +9,42 @@
 import UIKit
 
 protocol CampaignViewTableViewCellDelegate {
-    func questionSelected(question: Question)
-    func resultsButtonSelected(question:Question)
+    func questionSelected(question: QuestionText)
+    func resultsButtonSelected(question: QuestionText)
 }
 
 class CampaignViewTableViewCell: UITableViewCell {
     
     var delegate: CampaignViewTableViewCellDelegate?
-
+    
+    @IBOutlet weak var author: UILabel!
     @IBOutlet weak var button: UIButton!
-  @IBOutlet weak var resultsButton: UIButton!
-
+    @IBOutlet weak var resultsButton: UIButton!
+    
     @IBAction func buttonPressed(sender: AnyObject) {
         if let senderTitle = sender.currentTitle {
             delegate?.questionSelected(senderTitle!)
         }
     }
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-  @IBAction func resultsButtonPressed(sender: AnyObject) {
-    delegate?.resultsButtonSelected((button.titleLabel?.text)!)
-  }
- 
-  func hideResultsLabel(){
-    resultsButton.alpha = 0;
-  }
-  
-    func setQuestionText(questionName: Question) {
+    @IBAction func resultsButtonPressed(sender: AnyObject) {
+        delegate?.resultsButtonSelected((button.titleLabel?.text)!)
+    }
+    
+    func hideResultsLabel(){
+        resultsButton.alpha = 0;
+    }
+    
+    func setQuestionText(questionName: QuestionText) {
         button.setTitle(questionName, forState: UIControlState.Normal)
+    }
+    
+    func setAuthorText(author:Author) {
+        self.author.text = author;
     }
     
     func setAnsweredBackground(isAnswered: Bool) {
@@ -47,5 +52,5 @@ class CampaignViewTableViewCell: UITableViewCell {
             self.backgroundColor = UIColor.lightGrayColor()
         }
     }
-
+    
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol RoomsViewTableViewCellDelegate{
-    func roomSelected(room: Room)
+    func roomSelected(room: String)
 }
 
 class RoomViewTableViewCell: UITableViewCell {

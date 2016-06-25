@@ -9,7 +9,7 @@
 import UIKit
 
 protocol RoomsNearbyViewContainerDelegate {
-    func roomSelected(room: Room)
+    func roomSelected(room: String)
 }
 
 class RoomsNearbyViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
@@ -55,8 +55,7 @@ class RoomsNearbyViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
 }
 
 extension RoomsNearbyViewContainer: RoomsViewTableViewCellDelegate {
-    func roomSelected(room: Room) {
-        print("HELLO")
+    func roomSelected(room: String) {
         delegate?.roomSelected(room)
     }
 }

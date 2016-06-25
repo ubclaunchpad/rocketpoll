@@ -25,7 +25,7 @@ class PollResultsTableViewCell: UITableViewCell{
     // Configure the view for the selected state
   }
   
-  func setAnswerText(answer: String) {
+  func setAnswerText(answer: AnswerText) {
     answerLabel.text = answer
   }
   

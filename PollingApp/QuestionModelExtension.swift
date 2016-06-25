@@ -12,126 +12,83 @@ import Firebase
 extension ModelInterface: QuestionModelProtocol {
     
     //MARK: - Setting Question Information -
-    func setNewQuestion(question: String) -> QuestionID {
+    func setNewQuestion(question: QuestionText) -> QuestionID {
         
         let timeStamp = NSDate().timeIntervalSince1970
         let endStamp = NSDate().timeIntervalSince1970 + 30; //TODO: CHANGE THIS
-        let QID = ["Author": "Jon","Question": question, "startTimeStamp": timeStamp, "endTimeStamp": endStamp];
-        let fbd:FirebaseData = FirebaseData();
-        let key = fbd.postToFirebaseWithKey("QUESTIONSCREEN", child: "QID", children: QID) as QuestionID;
+        let QID = ["Author": "\(currentUser)","Question": question, "startTimeStamp": timeStamp, "endTimeStamp": endStamp]
+        let fbd:FirebaseData = FirebaseData()
+        let key = fbd.postToFirebaseWithKey("QUESTIONSCREEN", child: "QID", children: QID) as QuestionID
         
         return key
     }
     
-    func getSelectedQuestion() -> QuestionC  {
+    func getSelectedQuestion() -> Question  {
         return selectedQuestion
     }
     
-    func setSelectedQuestion(AIDS: [String], QID: String, questionText: String, author: String) {
-        selectedQuestion.setQID(QID)
-        selectedQuestion.setAIDS(AIDS)
-        selectedQuestion.setQuestionText(questionText)
-        selectedQuestion.setAuthor(author)
+    func setSelectedQuestion(AIDS: [AnswerID], QID: QuestionID, questionText: QuestionText, author: Author) {
+        selectedQuestion.QID = QID
+        selectedQuestion.AIDS = AIDS
+        selectedQuestion.questionText = questionText
+        selectedQuestion.author = author
     }
     
     
-    func processQuestionData(completionHandler: (listofAllQuestions: [QuestionC]) -> ()){
+    func processQuestionData(completionHandler: (listofAllQuestions: [Question]) -> ()){
         let ref =  FIRDatabase.database().reference();
         ref.child("QUESTIONSCREEN").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-            // Get user value
             let postDict = snapshot.value as! [String : AnyObject]
-            var sendQuestionC = [QuestionC]();
-            var sendQID = "";
-            var sendAuthor = "";
-            var sendAIDS = [String]();
-            var sendQuestionText = "";
-            for (QID, data) in postDict {
-                sendQID = QID;
-                let information = data as! [String : AnyObject]
-                
-                for (key,value) in information {
-                    
-                    if (key == "Author") {
-                        sendAuthor = value as! String ;
-                    }
-                    if (key == "Question") {
-                        sendQuestionText = value as! String ;
-                    }
-                    if (key == "AIDS") {
-                        let AIDS = value as! [String: AnyObject]
-                        for (_,AID) in AIDS {
-                            sendAIDS.append(AID as! String)
-                        }
-                    }
-                }
-                let tempQuestionC = QuestionC(QID:sendQID, AIDS:sendAIDS, author: sendAuthor, questionText: sendQuestionText);
-                sendAIDS = [String]();
-                sendQuestionC.append(tempQuestionC);
-            }
-            
-            completionHandler(listofAllQuestions: sendQuestionC)
+            let sendQuestion = self.parseQIDNodeAndItsChildren(postDict)
+            completionHandler(listofAllQuestions: sendQuestion)
             
         }) { (error) in
             print(error.localizedDescription)
         }
     }
     
-    func getSpecificQuestion(questionID:String,completionHandler: (specificQuestion: QuestionC) -> ()){
+    //MARK: - Helper Methods
+    func parseQIDNodeAndItsChildren(data: NSDictionary) -> [Question] {
+        var sendQuestion = [Question]();
+        for (QID, children) in data  {
+            let information = children as! [String : AnyObject]
+            let tempQuestion = self.parseQuestionNodeInformation(information, QID:QID as! QuestionID)
+            sendQuestion.append(tempQuestion);
+        }
         
-        let ref =  FIRDatabase.database().reference();
-        ref.child("QUESTIONSCREEN").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-            // Get user value
-            let postDict = snapshot.value as! [String : AnyObject]
-            var sendAuthor = "";
-            var sendAIDS = [String]();
-            var sendQuestionText = "";
-            for (QID, data) in postDict {
-                
-                if (questionID == QID ) {
-                    let information = data as! [String : AnyObject]
-                    
-                    for (key,value) in information {
-                        
-                        if (key == "Author") {
-                            sendAuthor = value as! String ;
-                        }
-                        if (key == "Question") {
-                            sendQuestionText = value as! String ;
-                        }
-                        if (key == "AIDS") {
-                            let AIDS = value as! [String: AnyObject]
-                            for (_,AID) in AIDS {
-                                sendAIDS.append(AID as! String)
-                            }
-                        }
-                    }
-                    let sendQuestionC = QuestionC(QID:QID, AIDS:sendAIDS, author: sendAuthor, questionText: sendQuestionText);
-                    completionHandler(specificQuestion: sendQuestionC)
-                    sendAIDS = [String]();
-                    break
-                }
+        return sendQuestion;
+    }
+
+    func parseQuestionNodeInformation(data:NSDictionary, QID:QuestionID) -> Question{
+        var sendAuthor = "";
+        var sendAIDS = [AnswerID]();
+        var sendQuestionText:QuestionText = "";
+        
+        for (key,value) in data {
+            let keyAsString  = key as! String
+            switch keyAsString  {
+            case "Author" :
+                sendAuthor = value as! Author
+            case "Question":
+                sendQuestionText = value as! QuestionText
+            case "AIDS":
+                sendAIDS = self.parseAIDs(value as! [String: AnyObject]);
+            default: break
             }
-            
-            
-            
-        }) { (error) in
-            print(error.localizedDescription)
         }
+        let tempQuestion = Question(QID:QID, AIDS:sendAIDS, author: sendAuthor, questionText: sendQuestionText);
+        return tempQuestion;
     }
     
+    func parseAIDs(data:NSDictionary) -> [AnswerID] {
+        var sendAIDS = [AnswerID]();
+        for (_, AID) in data {
+            sendAIDS.append(AID as! AnswerID)
+        }
+        return sendAIDS
+    }
     
-    //    //MARK: - Getting Question Information -
-    //    func getQuestion(questionId: QuestionID) -> String {
-    //        return "Is this a question?"
-    //    }
-    //    func getQuestionID() -> QuestionID {
-    //        return "Q1"
-    //    }
-    //
-    //    func getListOfQuestions() -> [QuestionID] {
-    //        return ["Q1", "Q2", "Q3"]
-    //    }
-    
+
     func getListOfQuestionsUserCreated() -> [QuestionID] {
         return ["Q1", "Q2", "Q3"]
     }
@@ -142,6 +99,8 @@ extension ModelInterface: QuestionModelProtocol {
     
     //MARK: - Remove Question Information -
     func removeQuestion(questionId: QuestionID) -> Bool {
+        let ref =  FIRDatabase.database().reference();
+        ref.child("QUESTIONSCREEN").child("\(questionId)").removeValue()
         return true
     }
     
@@ -169,6 +128,10 @@ extension ModelInterface: QuestionModelProtocol {
     }
     func segueToResultsScreen() -> SegueName{
         return Segues.toPollResultsView
+    }
+    
+    func segueTotoPollAdminVCFromCampaign() -> SegueName {
+        return Segues.toPollAdminVCFromCampaign
     }
     
 }

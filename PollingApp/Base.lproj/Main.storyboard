@@ -24,11 +24,12 @@
                         <segue destination="cR5-N0-mBp" kind="show" identifier="toPollUserViewController" id="4RF-x9-CbW"/>
                         <segue destination="AX5-EL-cxe" kind="show" identifier="toCreateQuestionView" id="cFD-QF-wgD"/>
                         <segue destination="EKJ-zm-ZFh" kind="show" identifier="toPollResultsView" id="Abn-F0-8SY"/>
+                        <segue destination="2o0-Nz-L7T" kind="show" identifier="toPollAdminVCFromCampaign" id="maC-cO-7EO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="-320"/>
+            <point key="canvasLocation" x="676" y="-394"/>
         </scene>
         <!--Join Room View Controller-->
         <scene sceneID="RXe-fr-KmB">
@@ -253,7 +254,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="34" y="-16"/>
+            <point key="canvasLocation" x="-142" y="-358"/>
         </scene>
         <!--Rooms Nearby View Controller-->
         <scene sceneID="KbA-Ia-DLx">
@@ -274,7 +275,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vhX-Xt-MiD"/>
+        <segue reference="Abn-F0-8SY"/>
         <segue reference="z6b-mB-HqA"/>
-        <segue reference="2ct-sD-9ap"/>
+        <segue reference="maC-cO-7EO"/>
     </inferredMetricsTieBreakers>
 </document>
