@@ -15,7 +15,7 @@ protocol QuestionModelProtocol {
     
     //MARK: - Getting Question Information -
     
-    func processQuestionData(completionHandler: (listofAllQuestions: [Question]) -> ())
+    func processQuestionData(completionHandler: (listofAllQuestions: [Question], listofQuestionID: [QuestionID]) -> ())
     func setSelectedQuestion(AIDS:[AnswerText], QID:QuestionID, questionText:QuestionText, author:Author)
     func getSelectedQuestion() -> Question
     
@@ -27,7 +27,7 @@ protocol QuestionModelProtocol {
     func removeQuestion(questionId: QuestionID) -> Bool
     
     //MARK: - Helper Methods -
-    func parseQIDNodeAndItsChildren(data:NSDictionary) -> [Question]
+    func parseQIDNodeAndItsChildren(data: NSDictionary) -> ([Question],[QuestionID]) 
     func parseQuestionNodeInformation(data:NSDictionary, QID:QuestionID) -> Question
     func parseAIDs(data:NSDictionary) -> [AnswerID]
 

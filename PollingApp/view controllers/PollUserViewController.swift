@@ -56,7 +56,7 @@ final class PollUserViewController: UIViewController {
         self.questionText = selectedQuestion.questionText
         
         
-        ModelInterface.sharedInstance.getCountdownSeconds({ (time) -> Void in
+        ModelInterface.sharedInstance.getCountdownSeconds(selectedQuestion.QID, completion: { (time) -> Void in
             if time > 0 {
                 let currentTime = Int(NSDate().timeIntervalSince1970)
                 let difference = currentTime - Int(time)

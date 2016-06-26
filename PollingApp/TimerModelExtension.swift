@@ -17,8 +17,8 @@ extension ModelInterface: TimerModelProtocol {
     ref.child("QUESTIONSCREEN/\(questionID)/endTimeStamp").setValue(currentTime)
   }
   
-  func getCountdownSeconds(completion: (Int) -> Void) {
-    let timerRef = FIRDatabase.database().reference().child("QUESTIONSCREEN/\(selectedQuestion.QID)")
+  func getCountdownSeconds(QID: QuestionID, completion: (Int) -> Void) {
+    let timerRef = FIRDatabase.database().reference().child("QUESTIONSCREEN/\(QID)")
     timerRef.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
         let timeDict = snapshot.value as! [String : AnyObject]
         // ...

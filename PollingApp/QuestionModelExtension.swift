@@ -35,12 +35,12 @@ extension ModelInterface: QuestionModelProtocol {
     }
     
     
-    func processQuestionData(completionHandler: (listofAllQuestions: [Question]) -> ()){
+    func processQuestionData(completionHandler: (listofAllQuestions: [Question], listofQuestionID: [QuestionID]) -> ()){
         let ref =  FIRDatabase.database().reference();
         ref.child("QUESTIONSCREEN").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             let postDict = snapshot.value as! [String : AnyObject]
-            let sendQuestion = self.parseQIDNodeAndItsChildren(postDict)
-            completionHandler(listofAllQuestions: sendQuestion)
+            let returnValue = self.parseQIDNodeAndItsChildren(postDict)
+            completionHandler(listofAllQuestions: returnValue.0, listofQuestionID: returnValue.1)
             
         }) { (error) in
             print(error.localizedDescription)
@@ -48,15 +48,17 @@ extension ModelInterface: QuestionModelProtocol {
     }
     
     //MARK: - Helper Methods
-    func parseQIDNodeAndItsChildren(data: NSDictionary) -> [Question] {
+    func parseQIDNodeAndItsChildren(data: NSDictionary) -> ([Question],[QuestionID]) {
         var sendQuestion = [Question]();
+        var listOfQuestionID = [QuestionID]()
         for (QID, children) in data  {
             let information = children as! [String : AnyObject]
             let tempQuestion = self.parseQuestionNodeInformation(information, QID:QID as! QuestionID)
             sendQuestion.append(tempQuestion);
+            listOfQuestionID.append(QID as! QuestionID)
         }
         
-        return sendQuestion;
+        return (sendQuestion, listOfQuestionID)
     }
 
     func parseQuestionNodeInformation(data:NSDictionary, QID:QuestionID) -> Question{

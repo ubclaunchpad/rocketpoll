@@ -20,6 +20,8 @@ class CampaignViewTableViewCell: UITableViewCell {
     @IBOutlet weak var author: UILabel!
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var resultsButton: UIButton!
+    @IBOutlet weak var expiry: UILabel!
+    
     
     @IBAction func buttonPressed(sender: AnyObject) {
         if let senderTitle = sender.currentTitle {
@@ -45,6 +47,9 @@ class CampaignViewTableViewCell: UITableViewCell {
     
     func setAuthorText(author:Author) {
         self.author.text = author;
+    }
+    func setExpiryMessage(expiry: String) {
+        self.expiry.text = expiry
     }
     
     func setAnsweredBackground(isAnswered: Bool) {
