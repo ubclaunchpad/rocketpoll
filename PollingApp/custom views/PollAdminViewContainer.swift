@@ -58,6 +58,9 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
    }
     
     
+    func doneTimerLabel(string: String) {
+        timer.text = string
+    }
     
     func setQuestionText(questionText: String) {
         question.text = questionText

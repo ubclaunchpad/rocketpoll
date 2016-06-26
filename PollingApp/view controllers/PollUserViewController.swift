@@ -54,12 +54,45 @@ final class PollUserViewController: UIViewController {
         }
         self.questionID = selectedQuestion.QID
         self.questionText = selectedQuestion.questionText
-        self.createTimer(ModelInterface.sharedInstance.getCountdownSeconds())
+        
+        
+        ModelInterface.sharedInstance.getCountdownSeconds(selectedQuestion.QID, completion: { (time) -> Void in
+            if time > 0 {
+                let currentTime = Int(NSDate().timeIntervalSince1970)
+                let difference = currentTime - Int(time)
+                if difference > 0 {
+                    if difference < 300 {
+                        self.container?.doneTimerLabel("Poll ended a couple moments ago")
+                    }
+                    else if difference < 3600 {
+                        let minutes = Int(difference/60)
+                        self.container?.doneTimerLabel("Poll ended \(minutes) minute ago")
+                    }
+                    else if difference < 86400 {
+                        let hours = Int(difference/3600)
+                        if hours > 1 {
+                            self.container?.doneTimerLabel("Poll ended \(hours) hours ago")
+                        } else {
+                            self.container?.doneTimerLabel("Poll ended \(hours) hour ago")
+                        }
+                    }
+                    else {
+                        let days = Int(difference/86400)
+                        if days > 1 {
+                            self.container?.doneTimerLabel("Poll ended \(days) days ago")
+                        } else {
+                            self.container?.doneTimerLabel("Poll ended \(days) day ago")
+                        }
+                        
+                    }
+                } else {
+                    self.createTimer(Int(time) - currentTime)
+                }
+            }
+        })
     }
-
-
     
-    func createTimer (startingTime: Int) {
+    func createTimer(startingTime: Int) {
         seconds = startingTime
         let min_temp:Int = seconds/60
         let sec_temp = seconds-60*(min_temp)
@@ -77,7 +110,9 @@ final class PollUserViewController: UIViewController {
             container?.updateTimerLabel(sec,mins: min)
         } else {
             timer.invalidate()
-            // TODO: SEGUE to next view
+            
+            let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
+            performSegueWithIdentifier(nextRoom, sender: self)
         }
     }
     
