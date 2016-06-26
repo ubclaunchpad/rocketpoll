@@ -100,6 +100,7 @@ extension ModelInterface: QuestionModelProtocol {
     //MARK: - Remove Question Information -
     func removeQuestion(questionId: QuestionID) -> Bool {
         let ref =  FIRDatabase.database().reference();
+        ref.child("QUESTIONSCREEN/\(questionId)").removeAllObservers()
         ref.child("QUESTIONSCREEN").child("\(questionId)").removeValue()
         return true
     }
