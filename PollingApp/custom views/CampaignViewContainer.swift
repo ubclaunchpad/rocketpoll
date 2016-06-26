@@ -12,6 +12,7 @@ protocol CampaignViewContainerDelegate {
     func questionSelected(question: QuestionText)
     func newQuestionSelected()
     func resultsButtonSelected(question:QuestionText)
+    func refreshQuestions()
 }
 
 class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
@@ -19,6 +20,9 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var roomName: UILabel!
     
+    @IBAction func refresh(sender: AnyObject) {
+          delegate?.refreshQuestions()
+    }
     private var questions:[QuestionText] = []
     private var questionsAnswered:[Bool] = []
     private var authors:[Author] = []
@@ -102,4 +106,5 @@ extension CampaignViewContainer: CampaignViewTableViewCellDelegate {
         delegate?.questionSelected(question)
         
     }
+
 }
