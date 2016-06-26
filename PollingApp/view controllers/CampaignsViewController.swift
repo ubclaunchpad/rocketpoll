@@ -101,5 +101,16 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
         }
     }
     
+    func refreshQuestions() {
+        questionIDDictionary.removeAll()
+        QIDToAIDSDictionary.removeAll()
+        QIDToAuthorDictionary.removeAll()
+        questions.removeAll()
+        authors.removeAll()
+        questionsAnswered.removeAll()
+        setup()
+    }
+   
+    
 }
 

@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import Firebase
 
 class PollResultsViewController: UIViewController {
+
     
     private var answerIDDictionary = [AnswerText: AnswerID]()
     private var questionID:QuestionID = ""
@@ -43,6 +45,7 @@ class PollResultsViewController: UIViewController {
             self.container?.setCorrectAnswer(self.correctAnswer)
             self.container?.setNumberOfResponsesForAnswer(self.NumResponsesPerAnswer)
             self.container?.resultsTableView.reloadData()
+            self.container?.setTotalNumberOfAnswers(self.totalNumberOfUserAnswers)
         }
     }
     
@@ -55,11 +58,9 @@ class PollResultsViewController: UIViewController {
             if (listofAllAnswers[i].isCorrect == true ) {
                 self.correctAnswer = listofAllAnswers[i].answerText
             }
-        }
-        self.totalNumberOfUserAnswers = ModelInterface.sharedInstance.getSumOfUsersThatSubmittedAnswers(self.questionID)
-        
-        for i in 0...self.answerIDs.count-1{
-            self.NumResponsesPerAnswer.append(ModelInterface.sharedInstance.getNumberOfUsersThatGaveThisAnswer(self.questionID,answerID: self.answerIDs[i]))
+            self.totalNumberOfUserAnswers += listofAllAnswers[i].tally
+            
+            self.NumResponsesPerAnswer.append(listofAllAnswers[i].tally)
         }
     }
     

@@ -24,7 +24,4 @@ protocol AnswerModelProtocol {
     //MARK: - Get Answer Information -
     func isCorrectAnswer(answerId: AnswerID) -> Bool
     func getCorrectAnswer(questionID: QuestionID) -> AnswerID
-    func getSumOfUsersThatSubmittedAnswers(questionId: QuestionID) -> Int
-    func getNumberOfUsersThatGaveThisAnswer(questionID: QuestionID, answerID:AnswerID) -> Int
-    
 }
