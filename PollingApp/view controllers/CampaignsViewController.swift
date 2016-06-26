@@ -43,12 +43,10 @@ class CampaignsViewController: UIViewController {
             let roomID = ModelInterface.sharedInstance.getCurrentRoomID()
             let roomName = ModelInterface.sharedInstance.getRoomName(roomID)
             
-            self.container?.setAuthors(self.authors)
+            
             self.container?.setRoomNameTitle(roomName)
             
-            self.container?.delegate = self
-            self.container?.setQuestions(self.questions)
-            self.container?.setQuestionAnswered(self.questionsAnswered)
+            
             //            self.container?.tableView.reloadData()
         }
     }
@@ -57,13 +55,12 @@ class CampaignsViewController: UIViewController {
     func fillInTheFields (listofAllQuestions:[Question], listOfQuestionID:[QuestionID]) {
         let size = listofAllQuestions.count
         for i in 0 ..< size  {
-            self.questions.append(listofAllQuestions[i].questionText)
-            self.authors.append(listofAllQuestions[i].author)
-            self.questionsAnswered.append(true)
-            self.questionIDDictionary[listofAllQuestions[i].questionText] = listofAllQuestions[i].QID
-            self.QIDToAIDSDictionary[listofAllQuestions[i].QID] = listofAllQuestions[i].AIDS
-            self.QIDToAuthorDictionary[listofAllQuestions[i].QID] = listofAllQuestions[i].author
+            
+            
+            
+            
             ModelInterface.sharedInstance.getCountdownSeconds(listOfQuestionID[i], completion: { (time) -> Void in
+                var deleted = false
                 if time > 0 {
                     let currentTime = Int(NSDate().timeIntervalSince1970)
                     let difference = currentTime - Int(time)
@@ -91,6 +88,7 @@ class CampaignsViewController: UIViewController {
                     else if absDifference < 86400 {
                         let hours = Int(absDifference/3600)
                         if difference > 0 {
+                            
                             self.isExpired.append(true)
                             if hours > 1 {
                                 self.expiry.append("Poll ended \(hours) hours ago")
@@ -109,12 +107,8 @@ class CampaignsViewController: UIViewController {
                     else {
                         let days = Int(absDifference/86400)
                         if difference > 0 {
-                            self.isExpired.append(true)
-                            if days > 1 {
-                                self.expiry.append("Poll ended \(days) days ago")
-                            } else {
-                                self.expiry.append("Poll ended \(days) day ago")
-                            }
+                            deleted = true
+                            ModelInterface.sharedInstance.removeQuestion(listOfQuestionID[i])
                         } else {
                             self.isExpired.append(false)
                             if days > 1 {
@@ -127,15 +121,27 @@ class CampaignsViewController: UIViewController {
                     }
                     
                 }
+                if deleted == false {
+                    self.questions.append(listofAllQuestions[i].questionText)
+                    self.authors.append(listofAllQuestions[i].author)
+                    self.questionsAnswered.append(true)
+                    self.questionIDDictionary[listofAllQuestions[i].questionText] = listofAllQuestions[i].QID
+                    self.QIDToAIDSDictionary[listofAllQuestions[i].QID] = listofAllQuestions[i].AIDS
+                    self.QIDToAuthorDictionary[listofAllQuestions[i].QID] = listofAllQuestions[i].author
+                }
                 if i == size - 1 {
                     self.container?.setExpiryMessages(self.expiry)
                     self.container?.setIsExpired(self.isExpired)
+                    self.container?.setAuthors(self.authors)
+                    self.container?.delegate = self
+                    self.container?.setQuestions(self.questions)
+                    self.container?.setQuestionAnswered(self.questionsAnswered)
                     
                     self.container?.tableView.reloadData()
                 }
             })
         }
-    }
+    }    
 }
 
 
@@ -182,9 +188,11 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
         questions.removeAll()
         authors.removeAll()
         questionsAnswered.removeAll()
+        expiry.removeAll()
+        isExpired.removeAll()
         setup()
     }
-   
+    
     
 }
 

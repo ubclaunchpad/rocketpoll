@@ -43,7 +43,7 @@ final class PollAdminViewController: UIViewController {
             
             self.questionID = ModelInterface.sharedInstance.getSelectedQuestion().QID
 
-            self.sumuserresults = ModelInterface.sharedInstance.getSumOfUsersThatSubmittedAnswers(self.questionID)
+//            self.sumuserresults = ModelInterface.sharedInstance.getSumOfUsersThatSubmittedAnswers(self.questionID)
 
             
             self.container?.delegate = self
