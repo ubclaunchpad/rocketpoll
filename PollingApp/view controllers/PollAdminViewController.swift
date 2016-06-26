@@ -112,10 +112,12 @@ extension PollAdminViewController: PollAdminViewContainerDelegate {
         performSegueWithIdentifier(nextRoom, sender: self)
         print("SegueToResult");
     }
-    
+    func removeQuestion() {
+        ModelInterface.sharedInstance.removeQuestion(questionID)
+        segueToCampaign()
+    }
     func segueToCampaign() {
         let nextRoom =  ModelInterface.sharedInstance.segueToQuestionsScreen()
-        ModelInterface.sharedInstance.removeQuestion(questionID)
         performSegueWithIdentifier(nextRoom, sender: self)
         print("SegueToCampaign");
     }
