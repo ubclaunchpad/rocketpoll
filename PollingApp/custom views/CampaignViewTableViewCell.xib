@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="135"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qmY-d0-j3R" id="R8E-hd-k7b">
-                <rect key="frame" x="0.0" y="0.0" width="600" height="135"/>
+                <rect key="frame" x="0.0" y="0.0" width="600" height="134.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1KI-Cl-Kvj">
@@ -38,10 +38,21 @@
                             <action selector="resultsButtonPressed:" destination="qmY-d0-j3R" eventType="touchUpInside" id="5AB-5R-zoF"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f0s-dH-4Su">
+                        <rect key="frame" x="31" y="25" width="154" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="154" id="jOc-U9-Lq7"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="f0s-dH-4Su" firstAttribute="top" secondItem="R8E-hd-k7b" secondAttribute="topMargin" constant="17" id="0Mi-ya-IrC"/>
                     <constraint firstItem="1KI-Cl-Kvj" firstAttribute="height" secondItem="R8E-hd-k7b" secondAttribute="height" constant="-19.5" id="7Hh-dS-d5L"/>
                     <constraint firstAttribute="trailingMargin" secondItem="GCl-Wp-SKT" secondAttribute="trailing" constant="87" id="CET-5c-Hyz"/>
+                    <constraint firstItem="f0s-dH-4Su" firstAttribute="leading" secondItem="R8E-hd-k7b" secondAttribute="leadingMargin" constant="23" id="GTc-es-3oe"/>
                     <constraint firstItem="Yex-pJ-v2Z" firstAttribute="bottom" secondItem="1KI-Cl-Kvj" secondAttribute="bottom" constant="22" id="cuU-Kr-Egj"/>
                     <constraint firstItem="1KI-Cl-Kvj" firstAttribute="top" secondItem="R8E-hd-k7b" secondAttribute="top" constant="-22" id="lWs-WF-Axd"/>
                     <constraint firstItem="GCl-Wp-SKT" firstAttribute="centerY" secondItem="R8E-hd-k7b" secondAttribute="centerY" constant="0.5" id="mNI-EL-IE4"/>
@@ -53,6 +64,7 @@
             <connections>
                 <outlet property="author" destination="Yex-pJ-v2Z" id="B0Z-Jl-pmB"/>
                 <outlet property="button" destination="1KI-Cl-Kvj" id="qrp-Pe-t7k"/>
+                <outlet property="expiry" destination="f0s-dH-4Su" id="L8h-dk-dx5"/>
                 <outlet property="resultsButton" destination="GCl-Wp-SKT" id="CWx-Vu-Iit"/>
             </connections>
             <point key="canvasLocation" x="376" y="394.5"/>
