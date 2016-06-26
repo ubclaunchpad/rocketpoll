@@ -23,6 +23,7 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     private var questionsAnswered:[Bool] = []
     private var authors:[Author] = []
     private var expiry:[String] = []
+    private var isExpired:[Bool] = []
     
     var delegate: CampaignViewContainerDelegate?
     
@@ -56,6 +57,9 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     func setExpiryMessages(expiry: [String]) {
         self.expiry = expiry
     }
+    func setIsExpired(expired: [Bool]) {
+        isExpired = expired
+    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return questions.count
@@ -75,6 +79,7 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
             cell.setAuthorText(authors[indexPath.row])
         }
         cell.setExpiryMessage(expiry[indexPath.row])
+        cell.setIsExpired(isExpired[indexPath.row])
         if(!questionsAnswered[indexPath.row]){
             cell.hideResultsLabel()
         }

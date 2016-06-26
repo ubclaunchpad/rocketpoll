@@ -18,6 +18,7 @@ class CampaignsViewController: UIViewController {
     private var authors = [Author]();
     private var questionsAnswered = [Bool]();
     private var expiry = [String]()
+    private var isExpired = [Bool]()
     
     
     var container: CampaignViewContainer?
@@ -48,7 +49,7 @@ class CampaignsViewController: UIViewController {
             self.container?.delegate = self
             self.container?.setQuestions(self.questions)
             self.container?.setQuestionAnswered(self.questionsAnswered)
-//            self.container?.tableView.reloadData()
+            //            self.container?.tableView.reloadData()
         }
     }
     
@@ -70,28 +71,34 @@ class CampaignsViewController: UIViewController {
                     
                     if absDifference < 300 {
                         if difference > 0 {
+                            self.isExpired.append(true)
                             self.expiry.append("Poll ended a couple moments ago")
                         } else {
+                            self.isExpired.append(false)
                             self.expiry.append("Poll ends in a couple moments")
                         }
                     }
                     else if absDifference < 3600 {
                         let minutes = Int(absDifference/60)
                         if difference > 0 {
+                            self.isExpired.append(true)
                             self.expiry.append("Poll ended \(minutes) minutes ago")
                         } else {
+                            self.isExpired.append(false)
                             self.expiry.append("Poll ends in \(minutes) minutes")
                         }
                     }
                     else if absDifference < 86400 {
                         let hours = Int(absDifference/3600)
                         if difference > 0 {
+                            self.isExpired.append(true)
                             if hours > 1 {
                                 self.expiry.append("Poll ended \(hours) hours ago")
                             } else {
                                 self.expiry.append("Poll ended \(hours) hour ago")
                             }
                         } else {
+                            self.isExpired.append(false)
                             if hours > 1 {
                                 self.expiry.append("Poll ends in \(hours) hours")
                             } else {
@@ -102,12 +109,14 @@ class CampaignsViewController: UIViewController {
                     else {
                         let days = Int(absDifference/86400)
                         if difference > 0 {
-                        if days > 1 {
-                            self.expiry.append("Poll ended \(days) days ago")
+                            self.isExpired.append(true)
+                            if days > 1 {
+                                self.expiry.append("Poll ended \(days) days ago")
+                            } else {
+                                self.expiry.append("Poll ended \(days) day ago")
+                            }
                         } else {
-                            self.expiry.append("Poll ended \(days) day ago")
-                        }
-                        } else {
+                            self.isExpired.append(false)
                             if days > 1 {
                                 self.expiry.append("Poll ends in \(days) days")
                             } else {
@@ -120,6 +129,8 @@ class CampaignsViewController: UIViewController {
                 }
                 if i == size - 1 {
                     self.container?.setExpiryMessages(self.expiry)
+                    self.container?.setIsExpired(self.isExpired)
+                    
                     self.container?.tableView.reloadData()
                 }
             })

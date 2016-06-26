@@ -22,10 +22,16 @@ class CampaignViewTableViewCell: UITableViewCell {
     @IBOutlet weak var resultsButton: UIButton!
     @IBOutlet weak var expiry: UILabel!
     
+    private var isExpired:Bool?
+    
     
     @IBAction func buttonPressed(sender: AnyObject) {
-        if let senderTitle = sender.currentTitle {
-            delegate?.questionSelected(senderTitle!)
+        if isExpired == false {
+            if let senderTitle = sender.currentTitle {
+                delegate?.questionSelected(senderTitle!)
+            }
+        } else {
+            delegate?.resultsButtonSelected((button.titleLabel?.text)!)
         }
     }
     
@@ -50,6 +56,9 @@ class CampaignViewTableViewCell: UITableViewCell {
     }
     func setExpiryMessage(expiry: String) {
         self.expiry.text = expiry
+    }
+    func setIsExpired(expired: Bool) {
+        isExpired = expired
     }
     
     func setAnsweredBackground(isAnswered: Bool) {
