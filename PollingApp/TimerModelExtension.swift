@@ -11,8 +11,10 @@ import Firebase
 
 extension ModelInterface: TimerModelProtocol {
   
-  func stopTimer(questionID: QuestionID) -> Bool {
-    return true
+  func stopTimer(questionID: QuestionID) {
+    let ref = FIRDatabase.database().reference()
+    let currentTime = NSDate().timeIntervalSince1970
+    ref.child("QUESTIONSCREEN/\(questionID)/endTimeStamp").setValue(currentTime)
   }
   
   func getCountdownSeconds(completion: (Int) -> Void) {

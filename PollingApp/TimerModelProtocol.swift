@@ -10,7 +10,7 @@ import Foundation
 
 protocol TimerModelProtocol {
   
-  func stopTimer(questionID: QuestionID) -> Bool
+  func stopTimer(questionID: QuestionID)
   func getCountdownSeconds(completion: (Int) -> Void)
   func setTimerSeconds(seconds : Int) -> Bool  
 }

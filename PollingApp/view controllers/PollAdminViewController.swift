@@ -146,6 +146,7 @@ final class PollAdminViewController: UIViewController {
 extension PollAdminViewController: PollAdminViewContainerDelegate {
     
     func segueToResult() {
+        ModelInterface.sharedInstance.stopTimer(questionID)
         let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
         performSegueWithIdentifier(nextRoom, sender: self)
         print("SegueToResult");
