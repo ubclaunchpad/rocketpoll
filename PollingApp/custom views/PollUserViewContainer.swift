@@ -44,7 +44,9 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     func setQuestionText(questionText: QuestionText) {
         question.text = questionText
     }
-    
+    func doneTimerLabel(string: String) {
+        timerLabel.text = string
+    }
     func updateTimerLabel(secs: Int, mins: Int) {
         if (mins==0){
             timerLabel.text = "\(secs)"
