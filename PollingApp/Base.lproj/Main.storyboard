@@ -64,11 +64,12 @@
                     </view>
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="show" identifier="toQuestionsScreen" id="Dqi-TN-jQf"/>
+                        <segue destination="EKJ-zm-ZFh" kind="show" identifier="toPollResultsView" id="bkE-Lt-CRk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qdz-jp-vsx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1135" y="958"/>
+            <point key="canvasLocation" x="1247" y="1056"/>
         </scene>
         <!--Created Questions View Controller-->
         <scene sceneID="ANJ-eQ-IZ3">
@@ -274,9 +275,9 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vhX-Xt-MiD"/>
-        <segue reference="Abn-F0-8SY"/>
-        <segue reference="z6b-mB-HqA"/>
+        <segue reference="Dqi-TN-jQf"/>
+        <segue reference="bkE-Lt-CRk"/>
         <segue reference="maC-cO-7EO"/>
+        <segue reference="xF5-2l-TcJ"/>
     </inferredMetricsTieBreakers>
 </document>

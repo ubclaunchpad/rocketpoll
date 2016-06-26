@@ -83,6 +83,8 @@ final class PollUserViewController: UIViewController {
         } else {
             timer.invalidate()
             // TODO: SEGUE to next view
+            let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
+            performSegueWithIdentifier(nextRoom, sender: self)
         }
     }
     
