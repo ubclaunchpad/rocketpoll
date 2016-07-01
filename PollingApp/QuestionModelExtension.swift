@@ -12,7 +12,7 @@ import Firebase
 extension ModelInterface: QuestionModelProtocol {
     
     //MARK: - Setting Question Information -
-    func setNewQuestion(question: QuestionText) -> Question {
+    func createNewQuestion(question: QuestionText) -> Question {
         
         let timeStamp = NSDate().timeIntervalSince1970
         let endStamp = NSDate().timeIntervalSince1970 + 60; //TODO: CHANGE THIS

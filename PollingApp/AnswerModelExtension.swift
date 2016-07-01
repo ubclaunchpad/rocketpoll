@@ -12,7 +12,7 @@ import Firebase
 extension ModelInterface: AnswerModelProtocol {
     
     // Create a list of AIDS in the QuestionScreen node
-    func setAnswerIDS(questionID:QuestionID, answerText:[AnswerText]) -> [String]  {
+    func createAnswerIDs(questionID:QuestionID, answerText:[AnswerText]) -> [String]  {
         
         var i = 0;
         let fBD:FirebaseData = FirebaseData();
