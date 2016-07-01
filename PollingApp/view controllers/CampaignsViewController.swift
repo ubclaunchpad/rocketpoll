@@ -14,6 +14,7 @@ class CampaignsViewController: UIViewController {
     private var questionIDDictionary = [QuestionText: QuestionID]()
     private var QIDToAIDSDictionary = [QuestionID:[AnswerID]]()
     private var QIDToAuthorDictionary = [QuestionID: Author]()
+    private var QIDToTimeDictionary = [QuestionID: Double]()
     private var questions = [QuestionText]();
     private var authors = [Author]();
     private var questionsAnswered = [Bool]();
@@ -37,9 +38,9 @@ class CampaignsViewController: UIViewController {
     func setup() {
         container = CampaignViewContainer.instancefromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
         view.addSubview(container!)
-        ModelInterface.sharedInstance.processQuestionData { (listofAllQuestions, listOfQuestionID) in
+        ModelInterface.sharedInstance.processQuestionData { (listofAllQuestions) in
             
-            self.fillInTheFields(listofAllQuestions,listOfQuestionID: listOfQuestionID)
+            self.fillInTheFields(listofAllQuestions)
         
             
             
@@ -53,14 +54,13 @@ class CampaignsViewController: UIViewController {
     }
     
     
-    func fillInTheFields (listofAllQuestions:[Question], listOfQuestionID:[QuestionID]) {
+    func fillInTheFields (listofAllQuestions:[Question]) {
         let size = listofAllQuestions.count
         for i in 0 ..< size  {
-            
-            
-            
-            
-            ModelInterface.sharedInstance.getCountdownSeconds(listOfQuestionID[i], completion: { (time) -> Void in
+            let tempQuestionID = listofAllQuestions[i].QID;
+            let time = listofAllQuestions[i].endTimestamp
+        
+        
                 var deleted = false
                 if time > 0 {
                     let currentTime = Int(NSDate().timeIntervalSince1970)
@@ -109,7 +109,7 @@ class CampaignsViewController: UIViewController {
                         let days = Int(absDifference/86400)
                         if difference > 0 {
                             deleted = true
-                            ModelInterface.sharedInstance.removeQuestion(listOfQuestionID[i])
+                            ModelInterface.sharedInstance.removeQuestion(tempQuestionID)
                         } else {
                             self.isExpired.append(false)
                             if days > 1 {
@@ -129,6 +129,7 @@ class CampaignsViewController: UIViewController {
                     self.questionIDDictionary[listofAllQuestions[i].questionText] = listofAllQuestions[i].QID
                     self.QIDToAIDSDictionary[listofAllQuestions[i].QID] = listofAllQuestions[i].AIDS
                     self.QIDToAuthorDictionary[listofAllQuestions[i].QID] = listofAllQuestions[i].author
+                    self.QIDToTimeDictionary[listofAllQuestions[i].QID] = listofAllQuestions[i].endTimestamp
                 }
                 if i == size - 1 {
                     self.container?.setExpiryMessages(self.expiry)
@@ -140,7 +141,7 @@ class CampaignsViewController: UIViewController {
                     
                     self.container?.tableView.reloadData()
                 }
-            })
+        
         }
     }    
 }
@@ -152,14 +153,15 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
             print(question)
             let AIDS = QIDToAIDSDictionary[questionID]!
             let author = QIDToAuthorDictionary[questionID]!
+            let time = QIDToTimeDictionary[questionID]!
             if (author == currentUser) {
-                ModelInterface.sharedInstance.setSelectedQuestion(AIDS, QID: questionID, questionText: question, author: author)
+                ModelInterface.sharedInstance.setSelectedQuestion(AIDS, QID: questionID, questionText: question, author: author, time:time)
                 let nextRoom = ModelInterface.sharedInstance.segueTotoPollAdminVCFromCampaign()
                 performSegueWithIdentifier(nextRoom, sender: self)
                 
             } else {
                 
-                ModelInterface.sharedInstance.setSelectedQuestion(AIDS, QID: questionID, questionText: question, author: author)
+                ModelInterface.sharedInstance.setSelectedQuestion(AIDS, QID: questionID, questionText: question, author: author, time: time)
                 let questionSegue = ModelInterface.sharedInstance.segueToQuestion()
                 performSegueWithIdentifier(questionSegue, sender: self)
             }
@@ -176,7 +178,8 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
             
             let AIDS = QIDToAIDSDictionary[questionID]!;
             let author = QIDToAuthorDictionary[questionID]!;
-            ModelInterface.sharedInstance.setSelectedQuestion(AIDS, QID: questionID, questionText: question, author: author)
+            let time = QIDToTimeDictionary[questionID]!;
+            ModelInterface.sharedInstance.setSelectedQuestion(AIDS, QID: questionID, questionText: question, author: author, time:time)
             let nextRoom = ModelInterface.sharedInstance.segueToResultsScreen()
             performSegueWithIdentifier(nextRoom, sender: self)
         }

@@ -12,7 +12,7 @@ import Firebase
 extension ModelInterface: QuestionModelProtocol {
     
     //MARK: - Setting Question Information -
-    func setNewQuestion(question: QuestionText) -> QuestionID {
+    func setNewQuestion(question: QuestionText) -> Question {
         
         let timeStamp = NSDate().timeIntervalSince1970
         let endStamp = NSDate().timeIntervalSince1970 + 60; //TODO: CHANGE THIS
@@ -20,31 +20,33 @@ extension ModelInterface: QuestionModelProtocol {
         let fbd:FirebaseData = FirebaseData()
         let key = fbd.postToFirebaseWithKey("QUESTIONSCREEN", child: "QID", children: QID) as QuestionID
         
-        return key
+        let sendQuestion = Question(QID: key, AIDS: [AnswerID](), author: currentUser, questionText: question, endTimestamp: endStamp)
+        
+        return sendQuestion
     }
     
     func getSelectedQuestion() -> Question  {
         return selectedQuestion
     }
     
-    func setSelectedQuestion(AIDS: [AnswerID], QID: QuestionID, questionText: QuestionText, author: Author) {
+    func setSelectedQuestion(AIDS: [AnswerID], QID: QuestionID, questionText: QuestionText, author: Author, time: Double) {
         selectedQuestion.QID = QID
         selectedQuestion.AIDS = AIDS
         selectedQuestion.questionText = questionText
         selectedQuestion.author = author
+        selectedQuestion.endTimestamp = time
     }
     
     
-    func processQuestionData(completionHandler: (listofAllQuestions: [Question], listofQuestionID: [QuestionID]) -> ()){
+    func processQuestionData(completionHandler: (listofAllQuestions: [Question]) -> ()){
         let ref =  FIRDatabase.database().reference();
-        ref.child("QUESTIONSCREEN").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+        ref.child("QUESTIONSCREEN").observeEventType(.Value, withBlock: { (snapshot) in
             if let postDict = snapshot.value as? [String : AnyObject] {
                 let returnValue = self.parseQIDNodeAndItsChildren(postDict)
-                completionHandler(listofAllQuestions: returnValue.0, listofQuestionID: returnValue.1)
+                completionHandler(listofAllQuestions: returnValue)
             }else {
                 let listofQuestions = [Question]();
-                let listofQIDS = [QuestionID]();
-                 completionHandler(listofAllQuestions: listofQuestions, listofQuestionID: listofQIDS)
+                 completionHandler(listofAllQuestions: listofQuestions)
             }
             
         }) { (error) in
@@ -53,23 +55,22 @@ extension ModelInterface: QuestionModelProtocol {
     }
     
     //MARK: - Helper Methods
-    func parseQIDNodeAndItsChildren(data: NSDictionary) -> ([Question],[QuestionID]) {
+    func parseQIDNodeAndItsChildren(data: NSDictionary) -> [Question] {
         var sendQuestion = [Question]();
-        var listOfQuestionID = [QuestionID]()
         for (QID, children) in data  {
             let information = children as! [String : AnyObject]
             let tempQuestion = self.parseQuestionNodeInformation(information, QID:QID as! QuestionID)
             sendQuestion.append(tempQuestion);
-            listOfQuestionID.append(QID as! QuestionID)
         }
         
-        return (sendQuestion, listOfQuestionID)
+        return sendQuestion
     }
 
     func parseQuestionNodeInformation(data:NSDictionary, QID:QuestionID) -> Question{
         var sendAuthor = "";
         var sendAIDS = [AnswerID]();
         var sendQuestionText:QuestionText = "";
+        var sendEndTimeStamp = 0.0;
         
         for (key,value) in data {
             let keyAsString  = key as! String
@@ -80,10 +81,12 @@ extension ModelInterface: QuestionModelProtocol {
                 sendQuestionText = value as! QuestionText
             case "AIDS":
                 sendAIDS = self.parseAIDs(value as! [String: AnyObject]);
+            case "endTimeStamp":
+                sendEndTimeStamp = value as! Double
             default: break
             }
         }
-        let tempQuestion = Question(QID:QID, AIDS:sendAIDS, author: sendAuthor, questionText: sendQuestionText);
+        let tempQuestion = Question(QID:QID, AIDS:sendAIDS, author: sendAuthor, questionText: sendQuestionText, endTimestamp: sendEndTimeStamp);
         return tempQuestion;
     }
     

@@ -11,12 +11,12 @@ import Foundation
 protocol QuestionModelProtocol {
     
     //MARK: - Setting Question Information -
-    func setNewQuestion(question: QuestionText) -> QuestionID
+    func setNewQuestion(question: QuestionText) -> Question
     
     //MARK: - Getting Question Information -
     
-    func processQuestionData(completionHandler: (listofAllQuestions: [Question], listofQuestionID: [QuestionID]) -> ())
-    func setSelectedQuestion(AIDS:[AnswerText], QID:QuestionID, questionText:QuestionText, author:Author)
+    func processQuestionData(completionHandler: (listofAllQuestions: [Question]) -> ())
+    func setSelectedQuestion(AIDS:[AnswerText], QID:QuestionID, questionText:QuestionText, author:Author, time: Double)
     func getSelectedQuestion() -> Question
     
 
@@ -27,7 +27,7 @@ protocol QuestionModelProtocol {
     func removeQuestion(questionId: QuestionID) -> Bool
     
     //MARK: - Helper Methods -
-    func parseQIDNodeAndItsChildren(data: NSDictionary) -> ([Question],[QuestionID]) 
+    func parseQIDNodeAndItsChildren(data: NSDictionary) -> [Question]
     func parseQuestionNodeInformation(data:NSDictionary, QID:QuestionID) -> Question
     func parseAIDs(data:NSDictionary) -> [AnswerID]
 

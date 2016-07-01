@@ -42,12 +42,12 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
         
         
         //sends question string to firebase. firebase generates unique id corresponding to question
-        let questionID = ModelInterface.sharedInstance.setNewQuestion(question)
-        let answerIDs =  ModelInterface.sharedInstance.setAnswerIDS(questionID, answerText: answerArray)
-        
+        let questionObject = ModelInterface.sharedInstance.setNewQuestion(question)
+        let answerIDs =  ModelInterface.sharedInstance.setAnswerIDS(questionObject.QID, answerText: answerArray)
+        questionObject.AIDS = answerIDs
         ModelInterface.sharedInstance.setCorrectAnswer(answerIDs[0], isCorrectAnswer: true);
         
-        ModelInterface.sharedInstance.setSelectedQuestion(answerIDs, QID: questionID, questionText: question, author: "Jon")
+        ModelInterface.sharedInstance.setSelectedQuestion(answerIDs, QID: questionObject.QID, questionText: question, author: currentUser, time: questionObject.endTimestamp)
         
         let nextRoom = ModelInterface.sharedInstance.segueToAdminScreen()
         performSegueWithIdentifier(nextRoom, sender: self)

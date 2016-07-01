@@ -25,7 +25,7 @@ final class PollAdminViewController: UIViewController {
     private var questionID:QuestionID = ""
     private var questionText:QuestionText = ""
     private var tallyIDDictioanry = [AnswerText:String]()
-    
+    private var timerQuestion = 0.0 ;
     var container: PollAdminViewContainer?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +38,7 @@ final class PollAdminViewController: UIViewController {
         view.addSubview(container!)
         
         answerIDs = ModelInterface.sharedInstance.getSelectedQuestion().AIDS
-    
+        timerQuestion = ModelInterface.sharedInstance.getSelectedQuestion().endTimestamp
         
             
        
@@ -52,11 +52,10 @@ final class PollAdminViewController: UIViewController {
             self.container?.setQuestionText(self.questionText)
             self.container?.setAnswers(self.answers)
             self.container?.setCorrectAnswers(self.correctAnswers)
-           
-            ModelInterface.sharedInstance.getCountdownSeconds(selectedQuestion.QID, completion: { (time) -> Void in
-                if time > 0 {
+        
+                if self.timerQuestion > 0 {
                     let currentTime = Int(NSDate().timeIntervalSince1970)
-                    let difference = currentTime - Int(time)
+                    let difference = currentTime - Int(self.timerQuestion)
                     if difference > 0 {
                         if difference < 300 {
                             self.container?.doneTimerLabel("Poll ended a couple moments ago")
@@ -83,10 +82,10 @@ final class PollAdminViewController: UIViewController {
                             
                         }
                     } else {
-                        self.createTimer(Int(time) - currentTime)
+                        self.createTimer(Int(self.timerQuestion) - currentTime)
                     }
                 }
-            })
+            
             
             
             
