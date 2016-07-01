@@ -34,23 +34,33 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kz3-wi-tfR">
-                        <rect key="frame" x="23" y="97" width="42" height="21"/>
+                        <rect key="frame" x="73" y="97" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tally:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ncb-xM-ZX2">
+                        <rect key="frame" x="25" y="97" width="40" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <color key="backgroundColor" red="0.016007858703523503" green="1" blue="0.0062202634889959585" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="Kz3-wi-tfR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="15" id="2l0-hE-mjV"/>
+                    <constraint firstItem="Ncb-xM-ZX2" firstAttribute="top" secondItem="Uh0-16-zii" secondAttribute="bottom" constant="19" id="2d9-fi-8KJ"/>
+                    <constraint firstItem="Kz3-wi-tfR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="65" id="2l0-hE-mjV"/>
                     <constraint firstItem="2AQ-LO-jKk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="15" id="PG4-UX-5Bn"/>
                     <constraint firstItem="Uh0-16-zii" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="15" id="SVg-pA-J0u"/>
                     <constraint firstItem="Uh0-16-zii" firstAttribute="top" secondItem="2AQ-LO-jKk" secondAttribute="bottom" constant="23" id="SkE-fu-2CE"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Ncb-xM-ZX2" secondAttribute="bottom" constant="23.5" id="Xoo-ki-TD3"/>
                     <constraint firstItem="2AQ-LO-jKk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="phB-ZZ-9WN"/>
                     <constraint firstItem="Kz3-wi-tfR" firstAttribute="top" secondItem="Uh0-16-zii" secondAttribute="bottom" constant="19" id="vFD-kE-0Ex"/>
+                    <constraint firstItem="Ncb-xM-ZX2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="17" id="zLJ-Ro-A7K"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="Tally" destination="Kz3-wi-tfR" id="jyO-ma-4ey"/>
                 <outlet property="answerlabel" destination="2AQ-LO-jKk" id="KbQ-td-dxK"/>
                 <outlet property="isaCorrectAnswer" destination="Uh0-16-zii" id="RSQ-wh-qJI"/>
             </connections>

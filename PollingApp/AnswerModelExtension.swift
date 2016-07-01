@@ -36,12 +36,10 @@ extension ModelInterface: AnswerModelProtocol {
         return answerIDS
     }
     
-    
-    
     func processAnswerData(selectedAnswerIDs:[AnswerID],completionHandler: (listofAllAnswers: [Answer]) -> ()) {
         
         let ref =  FIRDatabase.database().reference();
-        ref.child("ANSWERS").child("AIDS").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+        ref.child("ANSWERS").child("AIDS").observeEventType(.Value, withBlock: { (snapshot) in
             let postDict = snapshot.value as! [String : AnyObject]
             let  sendAnswerData = self.parseAIDNodeAndItsChildren(postDict, selectedAnswerIDs: selectedAnswerIDs)
             completionHandler(listofAllAnswers: sendAnswerData)
@@ -98,7 +96,12 @@ extension ModelInterface: AnswerModelProtocol {
         return true
     }
     
-    func setUserAnswer(questionId: QuestionID, answerID: AnswerID) -> Bool {
+    func setUserAnswer(currentTally: Int, answerID: AnswerID) -> Bool {
+        let currentTally = 1 + currentTally;
+        let sendTally = String(currentTally);
+        print(" has this many votes: \(currentTally)")
+        let fBD:FirebaseData = FirebaseData();
+        fBD.updateFirebaseDatabase("ANSWERS/AIDS/\(answerID as String)", targetNode: "tally", desiredValue: sendTally)
         return true
     }
     

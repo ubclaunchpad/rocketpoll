@@ -14,17 +14,19 @@ class Question {
     var AIDS = [AnswerID]();
     var author = "";
     var questionText = "";
+    var endTimestamp = 0.0;
     
     init() {
         
     }
     
-    init (QID: String, AIDS:[AnswerID], author:String, questionText:QuestionText) {
+    init (QID: String, AIDS:[AnswerID], author:String, questionText:QuestionText, endTimestamp:Double) {
         
         self.QID = QID;
         self.AIDS = AIDS;
         self.author = author;
         self.questionText = questionText
+        self.endTimestamp = endTimestamp
     }
   
 }

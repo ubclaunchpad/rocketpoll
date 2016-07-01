@@ -20,6 +20,7 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
     
     private var answers:[AnswerText] = []
     private var correctAnswers:[AnswerText] = []
+    private var tallyIDDictioanry = [AnswerText:String]()
     
     @IBOutlet weak var question: UILabel!
     @IBOutlet weak var timer: UILabel!
@@ -60,6 +61,9 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
     func setCorrectAnswers(Answers: [String]){
         correctAnswers = Answers
    }
+    func setTally(tallyIDDictionary:[AnswerText:String]){
+        self.tallyIDDictioanry = tallyIDDictionary
+    }
     
     
     func doneTimerLabel(string: String) {
@@ -94,6 +98,10 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
         let cell = self.AnswerTable.dequeueReusableCellWithIdentifier("answeradminCell", forIndexPath: indexPath) as! AnswerAdminTableViewCell
         cell.setAnswerText(answers[indexPath.row]);
         cell.setisCorrect(correctAnswers[indexPath.row]);
+        cell.SetTallyLabel(tallyIDDictioanry[answers[indexPath.row]]!)
+        if (correctAnswers[indexPath.row] == "notCorrect") {
+            cell.changeCorrectAnswerColor();
+        }
         return cell
     }
     
