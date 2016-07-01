@@ -28,5 +28,13 @@ extension ModelInterface: NameModelProtocol {
     ref.updateChildValues(childUpdates)
     
     return Segues.toMainApp
-  }
+    }
+    
+    func cleanName(name: String) -> String {
+        let strippedString = String(
+            name.characters.filter {okayNameCharacters.contains($0)})
+        let trimmedString = strippedString.stringByTrimmingCharactersInSet(
+            NSCharacterSet.whitespaceCharacterSet())
+        return trimmedString
+    }
 }

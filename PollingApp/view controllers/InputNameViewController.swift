@@ -28,7 +28,7 @@ class InputNameViewController: UIViewController {
         performSegueWithIdentifier(Segues.toMainApp, sender: self)
         
         //TODO:warn users to not use special characters instead of just stripping it
-        let cleanedName = cleanName(nameTextField.text!)
+        let cleanedName = ModelInterface.sharedInstance.cleanName(nameTextField.text!)
         
         if(cleanedName.characters.count <= 0) {
             let alert = UIAlertController(title: "Invalid name", message:"",
@@ -57,15 +57,6 @@ class InputNameViewController: UIViewController {
         view.endEditing(true)
     }
     
-    //TODO: move this to the model layer. Possibly in a utils class?
-    func cleanName(name: String) -> String {
-        let strippedString = String(
-            name.characters.filter {okayNameCharacters.contains($0)})
-        let trimmedString = strippedString.stringByTrimmingCharactersInSet(
-            NSCharacterSet.whitespaceCharacterSet())
-        return trimmedString
-    }
-    
 }
 
 // MARK: - UITextFieldDelegate -
@@ -74,7 +65,7 @@ extension InputNameViewController: UITextFieldDelegate {
         
         checkChars()
         performSegueWithIdentifier(Segues.toMainApp, sender: self)
-        let cleanedName = cleanName(nameTextField.text!)
+        let cleanedName = ModelInterface.sharedInstance.cleanName(nameTextField.text!)
         if(cleanedName.characters.count <= 0) {
             let alert = UIAlertController(title: "Invalid name", message:"",
                                           preferredStyle: UIAlertControllerStyle.Alert)
