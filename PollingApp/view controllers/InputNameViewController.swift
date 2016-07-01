@@ -83,7 +83,7 @@ extension InputNameViewController: UITextFieldDelegate {
             self.presentViewController(alert, animated: true, completion: nil)
             return true
         }
-        print("testing");
+        //print("testing");
         textField.resignFirstResponder()
         
         assert(cleanedName.characters.count != 0 , "Name cannot be blank")
@@ -96,7 +96,7 @@ extension InputNameViewController: UITextFieldDelegate {
     
     func checkChars() {
         if(nameTextField.text?.characters.count == 0) {
-            print("DEBUG", "nameTextField.text = <empty>")
+           // print("DEBUG", "nameTextField.text = <empty>")
             let alert = UIAlertController(title: "Please enter your name", message:"", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Got it", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)

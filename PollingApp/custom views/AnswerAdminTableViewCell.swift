@@ -15,6 +15,7 @@ class AnswerAdminTableViewCell: UITableViewCell {
     
     @IBOutlet weak var isaCorrectAnswer: UILabel!
     
+    @IBOutlet weak var Tally: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -29,7 +30,9 @@ class AnswerAdminTableViewCell: UITableViewCell {
     func setAnswerText(answer: AnswerText){
         answerlabel.text = answer
     }
-    
+    func changeCorrectAnswerColor (){
+        self.backgroundColor = UIColor.redColor()
+    }
     func setisCorrect(isCorrect: String) {
         if isCorrect == "notCorrect" {
            isaCorrectAnswer.text = "not Correct"
@@ -37,6 +40,10 @@ class AnswerAdminTableViewCell: UITableViewCell {
         else{
             isaCorrectAnswer.text = "Correct"
         }
+    }
+    
+    func SetTallyLabel (tally: String) {
+        self.Tally.text = tally
     }
     
     

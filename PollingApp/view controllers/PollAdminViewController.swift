@@ -24,6 +24,7 @@ final class PollAdminViewController: UIViewController {
     private var numsubmitforeachAns:[[NSString:Int]] = [[:]]
     private var questionID:QuestionID = ""
     private var questionText:QuestionText = ""
+    private var tallyIDDictioanry = [AnswerText:String]()
     
     var container: PollAdminViewContainer?
     override func viewDidLoad() {
@@ -37,20 +38,21 @@ final class PollAdminViewController: UIViewController {
         view.addSubview(container!)
         
         answerIDs = ModelInterface.sharedInstance.getSelectedQuestion().AIDS
+    
         
+            
+       
         ModelInterface.sharedInstance.processAnswerData(answerIDs) { (listofAllAnswers) in
             self.fillInTheFields(listofAllAnswers)
-            
+        
             self.questionID = ModelInterface.sharedInstance.getSelectedQuestion().QID
-
-//            self.sumuserresults = ModelInterface.sharedInstance.getSumOfUsersThatSubmittedAnswers(self.questionID)
-
+             self.container?.setTally(self.tallyIDDictioanry)
             
             self.container?.delegate = self
             self.container?.setQuestionText(self.questionText)
             self.container?.setAnswers(self.answers)
             self.container?.setCorrectAnswers(self.correctAnswers)
-            
+           
             ModelInterface.sharedInstance.getCountdownSeconds(selectedQuestion.QID, completion: { (time) -> Void in
                 if time > 0 {
                     let currentTime = Int(NSDate().timeIntervalSince1970)
@@ -86,6 +88,9 @@ final class PollAdminViewController: UIViewController {
                 }
             })
             
+            
+            
+            
             self.container?.AnswerTable.reloadData()
         }
         
@@ -98,11 +103,12 @@ final class PollAdminViewController: UIViewController {
             let tempAnswer = listofAllAnswers[i].answerText
             self.answerIDDictionary[tempAnswer] = self.answerIDs[i]
             self.answers.append(tempAnswer)
+            self.tallyIDDictioanry[tempAnswer] = String(listofAllAnswers[i].tally);
             if (listofAllAnswers[i].isCorrect) {
                 self.correctAnswers.append(tempAnswer)
             }
             else {
-                self.correctAnswers.append("not correct")
+                self.correctAnswers.append("notCorrect")
             }
         }
         
@@ -141,7 +147,7 @@ extension PollAdminViewController: PollAdminViewContainerDelegate {
         ModelInterface.sharedInstance.stopTimer(questionID)
         let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
         performSegueWithIdentifier(nextRoom, sender: self)
-        print("SegueToResult");
+        //print("SegueToResult");
     }
     func removeQuestion() {
         ModelInterface.sharedInstance.removeQuestion(questionID)
@@ -150,6 +156,6 @@ extension PollAdminViewController: PollAdminViewContainerDelegate {
     func segueToCampaign() {
         let nextRoom =  ModelInterface.sharedInstance.segueToQuestionsScreen()
         performSegueWithIdentifier(nextRoom, sender: self)
-        print("SegueToCampaign");
+       // print("SegueToCampaign");
     }
 }

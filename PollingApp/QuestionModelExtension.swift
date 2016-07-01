@@ -15,7 +15,7 @@ extension ModelInterface: QuestionModelProtocol {
     func setNewQuestion(question: QuestionText) -> QuestionID {
         
         let timeStamp = NSDate().timeIntervalSince1970
-        let endStamp = NSDate().timeIntervalSince1970 + 30; //TODO: CHANGE THIS
+        let endStamp = NSDate().timeIntervalSince1970 + 60; //TODO: CHANGE THIS
         let QID = ["Author": "\(currentUser)","Question": question, "startTimeStamp": timeStamp, "endTimeStamp": endStamp]
         let fbd:FirebaseData = FirebaseData()
         let key = fbd.postToFirebaseWithKey("QUESTIONSCREEN", child: "QID", children: QID) as QuestionID
@@ -38,9 +38,14 @@ extension ModelInterface: QuestionModelProtocol {
     func processQuestionData(completionHandler: (listofAllQuestions: [Question], listofQuestionID: [QuestionID]) -> ()){
         let ref =  FIRDatabase.database().reference();
         ref.child("QUESTIONSCREEN").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-            let postDict = snapshot.value as! [String : AnyObject]
-            let returnValue = self.parseQIDNodeAndItsChildren(postDict)
-            completionHandler(listofAllQuestions: returnValue.0, listofQuestionID: returnValue.1)
+            if let postDict = snapshot.value as? [String : AnyObject] {
+                let returnValue = self.parseQIDNodeAndItsChildren(postDict)
+                completionHandler(listofAllQuestions: returnValue.0, listofQuestionID: returnValue.1)
+            }else {
+                let listofQuestions = [Question]();
+                let listofQIDS = [QuestionID]();
+                 completionHandler(listofAllQuestions: listofQuestions, listofQuestionID: listofQIDS)
+            }
             
         }) { (error) in
             print(error.localizedDescription)

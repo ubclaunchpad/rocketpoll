@@ -10,6 +10,7 @@ import UIKit
 
 final class PollUserViewController: UIViewController {
     private var answerIDDictionary = [AnswerText: AnswerID]()
+    private var tallyDictionary = [AnswerID: Int]()
     private var min:Int = 0
     private var sec = 0
     private var seconds = 0
@@ -49,8 +50,9 @@ final class PollUserViewController: UIViewController {
         let size = listofAllAnswers.count
         for i in 0 ..< size  {
             let tempAnswer = listofAllAnswers[i].answerText
-            self.answerIDDictionary[tempAnswer] = self.answerIDs[i]
+            self.answerIDDictionary[tempAnswer] = listofAllAnswers[i].AID
             self.answers.append(tempAnswer)
+            self.tallyDictionary[listofAllAnswers[i].AID] = listofAllAnswers[i].tally
         }
         self.questionID = selectedQuestion.QID
         self.questionText = selectedQuestion.questionText
@@ -126,8 +128,10 @@ final class PollUserViewController: UIViewController {
 extension PollUserViewController: PollUserViewContainerDelegate {
     func answerSelected(answer: AnswerText) {
         if let selectedAnswerID = answerIDDictionary[answer] {
-            ModelInterface.sharedInstance.setUserAnswer(questionID, answerID: selectedAnswerID)
-            print("selected answer is: \(answer) ,printed from viewController")
+            let tally = tallyDictionary[selectedAnswerID]!;
+            print("Answer:\(answer) HAD this many votes: \(tally)")
+            ModelInterface.sharedInstance.setUserAnswer(tally, answerID: selectedAnswerID)
+           // print("selected answer is: \(answer) ,printed from viewController")
             let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
             performSegueWithIdentifier(nextRoom, sender: self)
             
