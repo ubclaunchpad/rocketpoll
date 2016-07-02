@@ -49,17 +49,6 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
   }
   
   // TODO: get rid of this updateTimerLabel
-  func updateTimerLabel(secs: Int, mins: Int, hours: Int) {
-    if (mins==0){
-      timerLabel.text = "\(secs)"
-    } else {
-      if secs<10{
-        timerLabel.text = "\(mins):0\(secs)"
-      } else {
-        timerLabel.text = "\(hours):\(mins):\(secs)"
-      }
-    }
-  }
   
   func updateTimerLabel(timerString: String) {
     timerLabel.text = timerString
