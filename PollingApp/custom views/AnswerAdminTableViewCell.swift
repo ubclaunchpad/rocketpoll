@@ -9,35 +9,38 @@
 import UIKit
 
 class AnswerAdminTableViewCell: UITableViewCell {
-
   
-    @IBOutlet weak var answerlabel: UILabel!
-    
-    @IBOutlet weak var isaCorrectAnswer: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+  @IBOutlet weak var answerlabel: UILabel!
+  @IBOutlet weak var isaCorrectAnswer: UILabel!
+  @IBOutlet weak var Tally: UILabel!
+  
+  override func awakeFromNib() {
+    super.awakeFromNib()
+  }
+  
+  override func setSelected(selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
+  }
+  
+  func setAnswerText(answer: AnswerText){
+    answerlabel.text = answer
+  }
+  func changeCorrectAnswerColor (){
+    self.backgroundColor = UIColor.redColor()
+  }
+  func setisCorrect(isCorrect: String) {
+    //TODO: this should no be a magic string
+    if isCorrect == "notCorrect" {
+      isaCorrectAnswer.text = "not Correct"
     }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    else{
+      isaCorrectAnswer.text = "Correct"
     }
-    
-    func setAnswerText(answer: AnswerText){
-        answerlabel.text = answer
-    }
-    
-    func setisCorrect(isCorrect: String) {
-        if isCorrect == "notCorrect" {
-           isaCorrectAnswer.text = "not Correct"
-        }
-        else{
-            isaCorrectAnswer.text = "Correct"
-        }
-    }
-    
-    
+  }
+  
+  func SetTallyLabel (tally: String) {
+    self.Tally.text = tally
+  }
+  
+  
 }

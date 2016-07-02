@@ -9,32 +9,32 @@
 import UIKit
 
 protocol AnswerViewTableViewCellDelegate{
-    func answerSelected(answer: AnswerText)
+  func answerSelected(answer: AnswerText)
 }
 
 class AnswerViewTableViewCell: UITableViewCell {
-    @IBOutlet var answerButton: UIButton!
-    var delegate: AnswerViewTableViewCellDelegate?
-    
-    @IBAction func cellAnswerButtonPressed(sender: AnyObject) {
-        if let selectedAnswer = sender.currentTitle {
-            delegate?.answerSelected(selectedAnswer!)
-            
-        }
+  @IBOutlet var answerButton: UIButton!
+  var delegate: AnswerViewTableViewCellDelegate?
+  
+  @IBAction func cellAnswerButtonPressed(sender: AnyObject) {
+    if let selectedAnswer = sender.currentTitle {
+      delegate?.answerSelected(selectedAnswer!)
+      
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
-    func setAnswerText(answer: String) {
-        answerButton.setTitle(answer, forState:UIControlState.Normal )
-    }
-    
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
-    }
-    
+  }
+  
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    // Initialization code
+  }
+  
+  func setAnswerText(answer: String) {
+    answerButton.setTitle(answer, forState:UIControlState.Normal )
+  }
+  
+  override func setSelected(selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
+    // Configure the view for the selected state
+  }
+  
 }

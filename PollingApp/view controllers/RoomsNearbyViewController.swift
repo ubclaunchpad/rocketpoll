@@ -9,48 +9,48 @@
 import UIKit
 
 class RoomsNearbyViewController: UIViewController {
+  
+  private var roomIDDictionary = [String: RoomID]()
+  var container: RoomsNearbyViewContainer?
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    setup()
+  }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
+  
+  func setup() {
+    container = RoomsNearbyViewContainer.instancefromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
+    view.addSubview(container!)
     
-    private var roomIDDictionary = [String: RoomID]()
-    var container: RoomsNearbyViewContainer?
+    let rooms = getRooms(ModelInterface.sharedInstance.getRoomsNeaby())
+    container?.delegate = self
+    container?.setRooms(rooms)
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setup()
+  }
+  
+  func getRooms(roomIDs: [String]) -> [String] {
+    var temp_rooms = [String]()
+    var temp_room_name:String
+    for roomID in roomIDs {
+      temp_room_name = ModelInterface.sharedInstance.getRoomName(roomID)
+      temp_rooms.append(temp_room_name)
+      roomIDDictionary[temp_room_name] = roomID
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func setup() {
-        container = RoomsNearbyViewContainer.instancefromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
-        view.addSubview(container!)
-        
-        let rooms = getRooms(ModelInterface.sharedInstance.getRoomsNeaby())
-        container?.delegate = self
-        container?.setRooms(rooms)
-        
-    }
-    
-    func getRooms(roomIDs: [String]) -> [String] {
-        var temp_rooms = [String]()
-        var temp_room_name:String
-        for roomID in roomIDs {
-            temp_room_name = ModelInterface.sharedInstance.getRoomName(roomID)
-            temp_rooms.append(temp_room_name)
-            roomIDDictionary[temp_room_name] = roomID
-        }
-        return temp_rooms
-    }
+    return temp_rooms
+  }
 }
 
 extension RoomsNearbyViewController: RoomsNearbyViewContainerDelegate {
-    func roomSelected(room: String) {
-        if let selectedRoomID = roomIDDictionary[room] {
-            let roomSegue = ModelInterface.sharedInstance.goToRoom(selectedRoomID)
-            print(selectedRoomID)
-            performSegueWithIdentifier(roomSegue, sender: self)
-        }
+  func roomSelected(room: String) {
+    if let selectedRoomID = roomIDDictionary[room] {
+      let roomSegue = ModelInterface.sharedInstance.goToRoom(selectedRoomID)
+      print(selectedRoomID)
+      performSegueWithIdentifier(roomSegue, sender: self)
     }
+  }
 }
