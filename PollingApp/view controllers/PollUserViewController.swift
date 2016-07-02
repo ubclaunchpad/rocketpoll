@@ -57,7 +57,7 @@ final class PollUserViewController: UIViewController {
         self.questionID = selectedQuestion.QID
         self.questionText = selectedQuestion.questionText
         
-        
+        //TODO: this is a duplicate from PollAdminVC IPA-126. Keep reading below
         ModelInterface.sharedInstance.getCountdownSeconds(selectedQuestion.QID, completion: { (time) -> Void in
             if time > 0 {
                 let currentTime = Int(NSDate().timeIntervalSince1970)
@@ -94,6 +94,7 @@ final class PollUserViewController: UIViewController {
         })
     }
     
+    //IPA-126
     func createTimer(startingTime: Int) {
         seconds = startingTime
         let min_temp:Int = seconds/60
@@ -104,6 +105,7 @@ final class PollUserViewController: UIViewController {
         
     }
     
+    //IPA-126
     func updateTimer() {
         if(seconds>0) {
             seconds -= 1
@@ -126,6 +128,7 @@ final class PollUserViewController: UIViewController {
 }
 
 extension PollUserViewController: PollUserViewContainerDelegate {
+    
     func answerSelected(answer: AnswerText) {
         if let selectedAnswerID = answerIDDictionary[answer] {
             let tally = tallyDictionary[selectedAnswerID]!;
@@ -134,9 +137,9 @@ extension PollUserViewController: PollUserViewContainerDelegate {
            // print("selected answer is: \(answer) ,printed from viewController")
             let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
             performSegueWithIdentifier(nextRoom, sender: self)
-            
         }
     }
+    
     func backButtonPushed() {
         let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
         performSegueWithIdentifier(nextRoom, sender: self)

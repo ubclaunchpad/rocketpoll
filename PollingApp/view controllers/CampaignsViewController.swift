@@ -26,8 +26,7 @@ class CampaignsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(currentUser)
-        setup()
+        addContainerToVC()
     }
     
     override func didReceiveMemoryWarning() {
@@ -35,21 +34,17 @@ class CampaignsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func setup() {
-        container = CampaignViewContainer.instancefromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
+    func addContainerToVC() {
+        container = CampaignViewContainer.instancefromNib(
+            CGRectMake(0, 0, view.bounds.width, view.bounds.height))
         view.addSubview(container!)
         ModelInterface.sharedInstance.processQuestionData { (listofAllQuestions) in
-            
             self.fillInTheFields(listofAllQuestions)
-        
-            
-            
-            //            self.container?.tableView.reloadData()
         }
         let roomID = ModelInterface.sharedInstance.getCurrentRoomID()
         let roomName = ModelInterface.sharedInstance.getRoomName(roomID)
         
-         container?.delegate = self
+        container?.delegate = self
         self.container?.setRoomNameTitle(roomName)
     }
     
@@ -148,6 +143,7 @@ class CampaignsViewController: UIViewController {
 
 
 extension CampaignsViewController: CampaignViewContainerDelegate {
+    //IPA-129
     func questionSelected(question: QuestionText) {
         if let questionID = questionIDDictionary[question] {
             print(question)
@@ -165,9 +161,9 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
                 let questionSegue = ModelInterface.sharedInstance.segueToQuestion()
                 performSegueWithIdentifier(questionSegue, sender: self)
             }
-            
         }
     }
+    
     func newQuestionSelected() {
         let newQuestionSegue = ModelInterface.sharedInstance.segueToCreateNewQuestion()
         performSegueWithIdentifier(newQuestionSegue, sender: self)
@@ -175,7 +171,6 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
     
     func resultsButtonSelected(question: QuestionText) {
         if let questionID = questionIDDictionary[question] {
-            
             let AIDS = QIDToAIDSDictionary[questionID]!;
             let author = QIDToAuthorDictionary[questionID]!;
             let time = QIDToTimeDictionary[questionID]!;
@@ -194,7 +189,7 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
         questionsAnswered.removeAll()
         expiry.removeAll()
         isExpired.removeAll()
-        setup()
+        addContainerToVC()
     }
     
     

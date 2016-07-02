@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 
 class PollResultsViewController: UIViewController {
-
     
     private var answerIDDictionary = [AnswerText: AnswerID]()
     private var questionID:QuestionID = ""
@@ -22,18 +21,19 @@ class PollResultsViewController: UIViewController {
     var totalNumberOfUserAnswers: Int = 0
     
     var container: PollResultsViewContainer?
+    
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        setup()
+        addContainerToVC()
     }
     
-    func setup() {
+    func addContainerToVC() {
         container = PollResultsViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
         view.addSubview(container!)
-        
+
+        //TODO:IPA-125
         questionID = ModelInterface.sharedInstance.getSelectedQuestion().QID
-        let questionText: String = ModelInterface.sharedInstance.getSelectedQuestion().questionText
+        let questionText = ModelInterface.sharedInstance.getSelectedQuestion().questionText
         answerIDs = ModelInterface.sharedInstance.getSelectedQuestion().AIDS
         
         ModelInterface.sharedInstance.processAnswerData(answerIDs) { (listofAllAnswers) in
@@ -63,9 +63,7 @@ class PollResultsViewController: UIViewController {
             self.NumResponsesPerAnswer.append(listofAllAnswers[i].tally)
         }
     }
-    
 }
-
 
 extension PollResultsViewController: PollResultsViewContainerDelegate {
     func goBackToCampaign() {
