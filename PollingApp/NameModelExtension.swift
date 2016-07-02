@@ -15,7 +15,7 @@ extension ModelInterface: NameModelProtocol {
   func setUserName(name: String) -> SegueName {
     
     let ref =  FIRDatabase.database().reference();
-
+    
     let udid = UIDevice.currentDevice().identifierForVendor!.UUIDString
     
     ref.queryEqualToValue(udid)
@@ -28,13 +28,13 @@ extension ModelInterface: NameModelProtocol {
     ref.updateChildValues(childUpdates)
     
     return Segues.toMainApp
-    }
-    
-    func cleanName(name: String) -> String {
-        let strippedString = String(
-            name.characters.filter {okayNameCharacters.contains($0)})
-        let trimmedString = strippedString.stringByTrimmingCharactersInSet(
-            NSCharacterSet.whitespaceCharacterSet())
-        return trimmedString
-    }
+  }
+  
+  func cleanName(name: String) -> String {
+    let strippedString = String(
+      name.characters.filter {okayNameCharacters.contains($0)})
+    let trimmedString = strippedString.stringByTrimmingCharactersInSet(
+      NSCharacterSet.whitespaceCharacterSet())
+    return trimmedString
+  }
 }

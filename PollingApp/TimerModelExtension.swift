@@ -20,10 +20,10 @@ extension ModelInterface: TimerModelProtocol {
   func getCountdownSeconds(QID: QuestionID, completion: (Int) -> Void) {
     let timerRef = FIRDatabase.database().reference().child("QUESTIONSCREEN/\(QID)")
     timerRef.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
-        let timeDict = snapshot.value as! [String : AnyObject]
-        // ...
-        //print(timeDict)
-        completion(timeDict["endTimeStamp"] as! Int)
+      let timeDict = snapshot.value as! [String : AnyObject]
+      // ...
+      //print(timeDict)
+      completion(timeDict["endTimeStamp"] as! Int)
     })
     
     
@@ -33,5 +33,5 @@ extension ModelInterface: TimerModelProtocol {
     return true
   }
   
-
+  
 }

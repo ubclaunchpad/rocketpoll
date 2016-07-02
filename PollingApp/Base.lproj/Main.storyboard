@@ -214,8 +214,8 @@
         <image name="first" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="r35-Ea-4Oc"/>
         <segue reference="Abn-F0-8SY"/>
+        <segue reference="BHO-bG-YD8"/>
         <segue reference="TNB-cT-E5l"/>
     </inferredMetricsTieBreakers>
 </document>

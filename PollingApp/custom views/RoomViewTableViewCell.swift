@@ -9,33 +9,33 @@
 import UIKit
 
 protocol RoomsViewTableViewCellDelegate{
-    func roomSelected(room: String)
+  func roomSelected(room: String)
 }
 
 class RoomViewTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var roomName: UIButton!
-    var delegate: RoomsViewTableViewCellDelegate?
+  
+  @IBOutlet weak var roomName: UIButton!
+  var delegate: RoomsViewTableViewCellDelegate?
+  
+  @IBAction func roomSelected(sender: AnyObject) {
+    if let selectedRoom = sender.currentTitle {
+      print(selectedRoom)
+      delegate?.roomSelected(selectedRoom!)
+    }
+  }
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    // Initialization code
+  }
+  
+  override func setSelected(selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
     
-    @IBAction func roomSelected(sender: AnyObject) {
-        if let selectedRoom = sender.currentTitle {
-            print(selectedRoom)
-            delegate?.roomSelected(selectedRoom!)
-        }
-    }
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
-    func setRoomNameText(name: String) {
-        roomName.setTitle(name, forState: UIControlState.Normal)
-    }
-    
+    // Configure the view for the selected state
+  }
+  
+  func setRoomNameText(name: String) {
+    roomName.setTitle(name, forState: UIControlState.Normal)
+  }
+  
 }
