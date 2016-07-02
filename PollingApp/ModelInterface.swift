@@ -13,7 +13,7 @@ import Foundation
  Do the following to use the class: Modelinterface.sharedInstance.<functionName>
  
  See *ModelProtocol.swift files for functions supported by ModelInterface.
-*/
+ */
 class ModelInterface {
   static let sharedInstance = ModelInterface()
 }
