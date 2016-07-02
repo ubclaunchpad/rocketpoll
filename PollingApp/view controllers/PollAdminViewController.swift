@@ -85,11 +85,7 @@ final class PollAdminViewController: UIViewController {
                         self.createTimer(Int(self.timerQuestion) - currentTime)
                     }
                 }
-            
-            
-            
-            
-            
+          
             self.container?.AnswerTable.reloadData()
         }
         
@@ -98,19 +94,29 @@ final class PollAdminViewController: UIViewController {
     func fillInTheFields (listofAllAnswers: [Answer]) {
         self.questionText = ModelInterface.sharedInstance.getSelectedQuestion().questionText
         let size = listofAllAnswers.count
+        var tempanswerIDDictionary = [AnswerText: AnswerID]()
+        var tempanswers:[AnswerText] = []
+        var temptallyIDDictioanry = [AnswerText:String]()
+        var tempcorrectAnswers:[AnswerText] = []
+    
         for i in 0 ..< size  {
             let tempAnswer = listofAllAnswers[i].answerText
-            self.answerIDDictionary[tempAnswer] = self.answerIDs[i]
-            self.answers.append(tempAnswer)
-            self.tallyIDDictioanry[tempAnswer] = String(listofAllAnswers[i].tally);
+            tempanswerIDDictionary[tempAnswer] = self.answerIDs[i]
+            tempanswers.append(tempAnswer)
+            temptallyIDDictioanry[tempAnswer] = String(listofAllAnswers[i].tally);
             if (listofAllAnswers[i].isCorrect) {
-                self.correctAnswers.append(tempAnswer)
+                tempcorrectAnswers.append(tempAnswer)
             }
             else {
-                self.correctAnswers.append("notCorrect")
+                tempcorrectAnswers.append("notCorrect")
             }
         }
-        
+      
+        self.answerIDDictionary = tempanswerIDDictionary
+        self.answers = tempanswers
+        self.tallyIDDictioanry = temptallyIDDictioanry
+        self.correctAnswers = tempcorrectAnswers
+      
     }
     
     func createTimer (startingTime: Int) {
