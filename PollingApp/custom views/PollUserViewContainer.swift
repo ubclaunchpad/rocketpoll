@@ -20,6 +20,7 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
   private var answers:[AnswerText] = []
   
   var selectedAnswer: AnswerText = ""
+  
   var delegate: PollUserViewContainerDelegate?
   
   
@@ -47,21 +48,26 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     timerLabel.text = string
   }
   
-  //TODO:IPA-126
-  func updateTimerLabel(secs: Int, mins: Int) {
+  // TODO: get rid of this updateTimerLabel
+  func updateTimerLabel(secs: Int, mins: Int, hours: Int) {
     if (mins==0){
       timerLabel.text = "\(secs)"
     } else {
       if secs<10{
         timerLabel.text = "\(mins):0\(secs)"
       } else {
-        timerLabel.text = "\(mins):\(secs)"
+        timerLabel.text = "\(hours):\(mins):\(secs)"
       }
     }
   }
   
+  func updateTimerLabel(timerString: String) {
+    timerLabel.text = timerString
+  }
+  
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return answers.count
+    
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

@@ -11,9 +11,10 @@ import UIKit
 final class PollUserViewController: UIViewController {
   private var answerIDDictionary = [AnswerText: AnswerID]()
   private var tallyDictionary = [AnswerID: Int]()
-  private var min:Int = 0
-  private var sec = 0
+  private var hours = 0
+  private var minutes = 0
   private var seconds = 0
+  private var totalSeconds = 0
   private var timer = NSTimer()
   private var answers:[AnswerText] = []
   private var answerIDs:[AnswerID] = []
@@ -57,7 +58,7 @@ final class PollUserViewController: UIViewController {
     self.questionID = selectedQuestion.QID
     self.questionText = selectedQuestion.questionText
     
-    //TODO: this is a duplicate from PollAdminVC IPA-126. Keep reading below
+    
     ModelInterface.sharedInstance.getCountdownSeconds(selectedQuestion.QID, completion: { (time) -> Void in
       if time > 0 {
         let currentTime = Int(NSDate().timeIntervalSince1970)
@@ -94,24 +95,25 @@ final class PollUserViewController: UIViewController {
     })
   }
   
-  //IPA-126
   func createTimer(startingTime: Int) {
-    seconds = startingTime
-    let min_temp:Int = seconds/60
-    let sec_temp = seconds-60*(min_temp)
-    container?.updateTimerLabel(sec_temp, mins: min_temp)
-    
+    totalSeconds = startingTime
+    updateTimer()
+    //    let hour_temp = totalSeconds/3600
+    //    let min_temp = totalSeconds/60
+    //    let sec_temp = totalSeconds-60*(min_temp)
+    //    container?.updateTimerLabel(sec_temp, mins: min_temp, hours: hour_temp)
     timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: (#selector(PollUserViewController.updateTimer)), userInfo: nil, repeats: true)
     
   }
   
   //IPA-126
   func updateTimer() {
-    if(seconds>0) {
-      seconds -= 1
-      min = seconds/60
-      sec = seconds - 60*min
-      container?.updateTimerLabel(sec,mins: min)
+    if(totalSeconds>0) {
+      totalSeconds -= 1
+      hours = totalSeconds/3600
+      minutes = (totalSeconds - hours*3600) / 60
+      seconds = totalSeconds - hours*3600 - minutes*60
+      container?.updateTimerLabel(seconds,mins: minutes, hours: hours)
     } else {
       timer.invalidate()
       
@@ -124,11 +126,9 @@ final class PollUserViewController: UIViewController {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
-  
 }
 
 extension PollUserViewController: PollUserViewContainerDelegate {
-  
   func answerSelected(answer: AnswerText) {
     if let selectedAnswerID = answerIDDictionary[answer] {
       let tally = tallyDictionary[selectedAnswerID]!;
@@ -137,9 +137,9 @@ extension PollUserViewController: PollUserViewContainerDelegate {
       // print("selected answer is: \(answer) ,printed from viewController")
       let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
       performSegueWithIdentifier(nextRoom, sender: self)
+      
     }
   }
-  
   func backButtonPushed() {
     let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
     performSegueWithIdentifier(nextRoom, sender: self)
