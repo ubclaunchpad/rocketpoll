@@ -22,6 +22,7 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
   @IBOutlet weak var resultsTableView: UITableView!
   @IBOutlet weak var questionLabel: UILabel!
   @IBOutlet weak var totalAnswersLabel: UILabel!
+    
   private var answers: [AnswerText] = []
   private var correctAnswer: AnswerText = ""
   private var totalNumberOfAnswers: Int = 0;
@@ -43,6 +44,7 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     delegate?.goBackToCampaign()
   }
 
+    //TODO:IPA-132 Move this logic to VC or model
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let pollResultsCell = UINib(nibName: "PollResultsTableViewCell", bundle: nil)
     tableView.registerNib(pollResultsCell, forCellReuseIdentifier: "resultsCell")

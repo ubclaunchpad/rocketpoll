@@ -10,21 +10,16 @@ import UIKit
 
 class AnswerAdminTableViewCell: UITableViewCell {
 
-  
     @IBOutlet weak var answerlabel: UILabel!
-    
     @IBOutlet weak var isaCorrectAnswer: UILabel!
-    
     @IBOutlet weak var Tally: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     func setAnswerText(answer: AnswerText){
@@ -34,6 +29,7 @@ class AnswerAdminTableViewCell: UITableViewCell {
         self.backgroundColor = UIColor.redColor()
     }
     func setisCorrect(isCorrect: String) {
+        //TODO: this should no be a magic string
         if isCorrect == "notCorrect" {
            isaCorrectAnswer.text = "not Correct"
         }

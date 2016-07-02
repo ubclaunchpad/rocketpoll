@@ -24,15 +24,13 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
     
     @IBOutlet weak var question: UILabel!
     @IBOutlet weak var timer: UILabel!
-
     @IBOutlet weak var AnswerTable: UITableView!
     
     var delegate: PollAdminViewContainerDelegate?
-
+    
     @IBAction func backButton(sender: AnyObject) {
         delegate?.segueToCampaign();
     }
-    
     
     @IBAction func goToResult(sender: AnyObject) {
         delegate?.segueToResult();
@@ -48,7 +46,6 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
         view.frame = frame
         view.AnswerTable.delegate = view
         view.AnswerTable.dataSource = view
-        
         return view
     }
     
@@ -60,7 +57,7 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
     
     func setCorrectAnswers(Answers: [String]){
         correctAnswers = Answers
-   }
+    }
     func setTally(tallyIDDictionary:[AnswerText:String]){
         self.tallyIDDictioanry = tallyIDDictionary
     }
@@ -73,7 +70,7 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
     func setQuestionText(questionText: String) {
         question.text = questionText
     }
-
+    
     func updateTimerLabel(secs: Int, mins: Int) {
         if (mins==0){
             timer.text = "\(secs)"
@@ -87,7 +84,7 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
         
     }
     
-   
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return answers.count
         
@@ -114,7 +111,7 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
     
     
     
-
+    
     
     
 }
