@@ -33,5 +33,9 @@ enum Segues {
   static let toPollAdminVCFromCampaign = "toPollAdminVCFromCampaign"
 }
 
+enum UIStringConstants {
+  static let lessThanOneDayLeft = "Less than one day"
+}
+
 
 

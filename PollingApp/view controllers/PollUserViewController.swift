@@ -98,26 +98,20 @@ final class PollUserViewController: UIViewController {
   func createTimer(startingTime: Int) {
     totalSeconds = startingTime
     updateTimer()
-    //    let hour_temp = totalSeconds/3600
-    //    let min_temp = totalSeconds/60
-    //    let sec_temp = totalSeconds-60*(min_temp)
-    //    container?.updateTimerLabel(sec_temp, mins: min_temp, hours: hour_temp)
-    timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: (#selector(PollUserViewController.updateTimer)), userInfo: nil, repeats: true)
-    
+    timer = NSTimer.scheduledTimerWithTimeInterval(
+      1,
+      target: self,
+      selector: (#selector(PollUserViewController.updateTimer)),
+      userInfo: nil,
+      repeats: true)
   }
   
-  //IPA-126
   func updateTimer() {
     if(totalSeconds>0) {
       totalSeconds -= 1
-      
-//      hours = totalSeconds/3600
-//      minutes = (totalSeconds - hours*3600) / 60
-//      seconds = totalSeconds - hours*3600 - minutes*60
       container?.updateTimerLabel(TimerUtil.totalSecondsToString(totalSeconds))
     } else {
       timer.invalidate()
-      
       let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
       performSegueWithIdentifier(nextRoom, sender: self)
     }

@@ -9,10 +9,31 @@
 import Foundation
 
 class TimerUtil {
+  static let secondsInADay = 86400
+  static let secondsInAnHour = 3600
+  static let secondsInAMinute = 60
   
   static func totalSecondsToString(sec: Int) -> String {
-    let secondsInAnHour = 3600
-    let secondsInAMinute = 60
+    return sec < secondsInADay
+      ? formatSecondsToHHMMSS(sec)
+      : formatSecondsToDays(sec)
+  }
+
+  static func formatSecondsToDays(sec: Int) -> String {
+    let numberOfDays = sec/secondsInADay
+    
+    if sec < secondsInADay {
+      return UIStringConstants.lessThanOneDayLeft
+    }
+    
+    if numberOfDays <= 1 {
+      return "\(numberOfDays) Day Left"
+    } else {
+      return "\(numberOfDays) Days Left"
+    }
+  }
+
+  static func formatSecondsToHHMMSS(sec: Int) -> String {
     let hours = sec/secondsInAnHour
     let minutes = (sec - hours*secondsInAnHour) / secondsInAMinute
     let seconds = sec - hours*secondsInAnHour - minutes*secondsInAMinute
@@ -33,7 +54,7 @@ class TimerUtil {
   }
   
   static private func setLeadingZero(num: Int) -> String {
-    if(num < 10) {
+    if num < 10 {
       return "0\(num)"
     } else {
       return "\(num)"

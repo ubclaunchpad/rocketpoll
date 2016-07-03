@@ -26,13 +26,31 @@ class TimerUtilTest: XCTestCase {
     // Use XCTAssert and related functions to verify your tests produce the correct results.
   }
   
+  func testFormatSecondsToHHMMSS() {
+    XCTAssertEqual("00:00:05", TimerUtil.formatSecondsToHHMMSS(5))
+    XCTAssertEqual("00:01:00", TimerUtil.formatSecondsToHHMMSS(60))
+    XCTAssertEqual("01:00:00", TimerUtil.formatSecondsToHHMMSS(3600))
+    XCTAssertEqual("00:50:01", TimerUtil.formatSecondsToHHMMSS(3001))
+    XCTAssertEqual("11:11:11", TimerUtil.formatSecondsToHHMMSS(40271))
+    XCTAssertEqual("100:11:11", TimerUtil.formatSecondsToHHMMSS(360671))
+  }
+  
+  func testFormatSecondsToDays() {
+    XCTAssertEqual(UIStringConstants.lessThanOneDayLeft,
+                   TimerUtil.formatSecondsToDays(TimerUtil.secondsInADay-1))
+    XCTAssertEqual("1 Day", TimerUtil.formatSecondsToDays(TimerUtil.secondsInADay))
+    XCTAssertEqual("2 Days", TimerUtil.formatSecondsToDays(TimerUtil.secondsInADay*2))
+  }
+  
   func testTotalSecondsToString() {
     XCTAssertEqual("00:00:05", TimerUtil.totalSecondsToString(5))
     XCTAssertEqual("00:01:00", TimerUtil.totalSecondsToString(60))
     XCTAssertEqual("01:00:00", TimerUtil.totalSecondsToString(3600))
     XCTAssertEqual("00:50:01", TimerUtil.totalSecondsToString(3001))
     XCTAssertEqual("11:11:11", TimerUtil.totalSecondsToString(40271))
-    XCTAssertEqual("100:11:11", TimerUtil.totalSecondsToString(360671))
+    
+    XCTAssertEqual("1 Day Left", TimerUtil.totalSecondsToString(TimerUtil.secondsInADay))
+    XCTAssertEqual("2 Days Left", TimerUtil.totalSecondsToString(TimerUtil.secondsInADay*2))
   }
   
   func testPerformanceExample() {

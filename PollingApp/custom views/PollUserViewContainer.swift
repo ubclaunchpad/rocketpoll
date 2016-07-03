@@ -48,8 +48,6 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     timerLabel.text = string
   }
   
-  // TODO: get rid of this updateTimerLabel
-  
   func updateTimerLabel(timerString: String) {
     timerLabel.text = timerString
   }
