@@ -38,9 +38,10 @@ final class PollUserViewController: UIViewController {
         ModelInterface.sharedInstance.processAnswerData(self.answerIDs) { (listofAllAnswers) in
             self.fillInTheFields(listofAllAnswers)
             
-            self.container?.delegate = self
+          
             self.container?.setQuestionText(self.questionText)
             self.container?.setAnswers(self.answers)
+            self.container?.delegate = self
             self.container?.tableView.reloadData()
             
         }
@@ -56,9 +57,9 @@ final class PollUserViewController: UIViewController {
         }
         self.questionID = selectedQuestion.QID
         self.questionText = selectedQuestion.questionText
-        
-        
-        ModelInterface.sharedInstance.getCountdownSeconds(selectedQuestion.QID, completion: { (time) -> Void in
+      
+      let time = selectedQuestion.endTimestamp
+       
             if time > 0 {
                 let currentTime = Int(NSDate().timeIntervalSince1970)
                 let difference = currentTime - Int(time)
@@ -91,7 +92,7 @@ final class PollUserViewController: UIViewController {
                     self.createTimer(Int(time) - currentTime)
                 }
             }
-        })
+      
     }
     
     func createTimer(startingTime: Int) {

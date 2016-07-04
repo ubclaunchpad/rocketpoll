@@ -41,10 +41,7 @@ class CampaignsViewController: UIViewController {
         ModelInterface.sharedInstance.processQuestionData { (listofAllQuestions) in
             
             self.fillInTheFields(listofAllQuestions)
-        
-            
-            
-            //            self.container?.tableView.reloadData()
+      
         }
         let roomID = ModelInterface.sharedInstance.getCurrentRoomID()
         let roomName = ModelInterface.sharedInstance.getRoomName(roomID)
