@@ -58,49 +58,63 @@ final class PollUserViewController: UIViewController {
         self.questionID = selectedQuestion.QID
         self.questionText = selectedQuestion.questionText
       
-      let time = selectedQuestion.endTimestamp
-       
-            if time > 0 {
-                let currentTime = Int(NSDate().timeIntervalSince1970)
-                let difference = currentTime - Int(time)
-                if difference > 0 {
-                    if difference < 300 {
-                        self.container?.doneTimerLabel("Poll ended a couple moments ago")
-                    }
-                    else if difference < 3600 {
-                        let minutes = Int(difference/60)
-                        self.container?.doneTimerLabel("Poll ended \(minutes) minute ago")
-                    }
-                    else if difference < 86400 {
-                        let hours = Int(difference/3600)
-                        if hours > 1 {
-                            self.container?.doneTimerLabel("Poll ended \(hours) hours ago")
-                        } else {
-                            self.container?.doneTimerLabel("Poll ended \(hours) hour ago")
-                        }
-                    }
-                    else {
-                        let days = Int(difference/86400)
-                        if days > 1 {
-                            self.container?.doneTimerLabel("Poll ended \(days) days ago")
-                        } else {
-                            self.container?.doneTimerLabel("Poll ended \(days) day ago")
-                        }
-                        
-                    }
-                } else {
-                    self.createTimer(Int(time) - currentTime)
-                }
+      //let time = selectedQuestion.endTimestamp
+       ModelInterface.sharedInstance.getCountdownSeconds(selectedQuestion.QID) { (time) in
+        if time > 0 {
+          let currentTime = Int(NSDate().timeIntervalSince1970)
+          let difference = currentTime - Int(time)
+          if difference > 0 {
+            if difference < 300 {
+              self.container?.doneTimerLabel("Poll ended a couple moments ago")
+              let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
+              self.performSegueWithIdentifier(nextRoom, sender: self)
             }
+            else if difference < 3600 {
+              let minutes = Int(difference/60)
+              self.container?.doneTimerLabel("Poll ended \(minutes) minute ago")
+              let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
+              self.performSegueWithIdentifier(nextRoom, sender: self)
+            }
+            else if difference < 86400 {
+              let hours = Int(difference/3600)
+              if hours > 1 {
+                self.container?.doneTimerLabel("Poll ended \(hours) hours ago")
+                let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
+                self.performSegueWithIdentifier(nextRoom, sender: self)
+              } else {
+                self.container?.doneTimerLabel("Poll ended \(hours) hour ago")
+                let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
+                self.performSegueWithIdentifier(nextRoom, sender: self)
+              }
+            }
+            else {
+              let days = Int(difference/86400)
+              if days > 1 {
+                self.container?.doneTimerLabel("Poll ended \(days) days ago")
+                let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
+                self.performSegueWithIdentifier(nextRoom, sender: self)
+              } else {
+                self.container?.doneTimerLabel("Poll ended \(days) day ago")
+                let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
+               self.performSegueWithIdentifier(nextRoom, sender: self)
+              }
+              
+            }
+          } else {
+            self.createTimer(Int(time) - currentTime)
+          }
+        }
+      }
+    
       
     }
-    
+  
     func createTimer(startingTime: Int) {
         seconds = startingTime
         let min_temp:Int = seconds/60
         let sec_temp = seconds-60*(min_temp)
         container?.updateTimerLabel(sec_temp, mins: min_temp)
-        
+      
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: (#selector(PollUserViewController.updateTimer)), userInfo: nil, repeats: true)
         
     }

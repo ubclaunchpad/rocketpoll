@@ -54,8 +54,6 @@ final class PollAdminViewController: UIViewController {
           
             self.container?.AnswerTable.reloadData()
         }
-      
-      
       if self.timerQuestion > 0 {
         let currentTime = Int(NSDate().timeIntervalSince1970)
         let difference = currentTime - Int(self.timerQuestion)
@@ -146,6 +144,7 @@ extension PollAdminViewController: PollAdminViewContainerDelegate {
         //print("SegueToResult");
     }
     func removeQuestion() {
+        ModelInterface.sharedInstance.stopTimer(questionID)
         ModelInterface.sharedInstance.removeQuestion(questionID)
         segueToCampaign()
     }
