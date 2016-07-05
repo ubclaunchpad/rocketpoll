@@ -37,4 +37,14 @@ extension ModelInterface: NameModelProtocol {
       NSCharacterSet.whitespaceCharacterSet())
     return trimmedString
   }
+  
+  func isValidName(name:String) -> Bool {
+    for char in name.characters {
+      if (!okayNameCharacters.contains(char)) {
+        return false
+      }
+    }
+    return true
+  }
+  
 }

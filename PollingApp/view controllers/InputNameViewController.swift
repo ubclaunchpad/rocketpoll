@@ -19,37 +19,36 @@ class InputNameViewController: UIViewController {
       action: #selector(InputNameViewController.dismissKeyboard))
     
     view.addGestureRecognizer(tap)
+    
+    nameTextField.delegate = self
   }
   
   @IBAction func submitButtonPressed(sender: AnyObject) {
+    submitButton()
+  }
+  func submitButton () {
     checkChars()
-    performSegueWithIdentifier(Segues.toMainApp, sender: self)
     
-    //TODO:warn users to not use special characters instead of just stripping it
-    let cleanedName = ModelInterface.sharedInstance.cleanName(nameTextField.text!)
-    
-    if cleanedName.characters.count <= 0 {
+    if ModelInterface.sharedInstance.isValidName(nameTextField.text!) == false {
       let alert = UIAlertController(title: "Invalid name", message:"",
                                     preferredStyle: UIAlertControllerStyle.Alert)
       alert.addAction(UIAlertAction(title: "Ok",
         style: UIAlertActionStyle.Default, handler: nil))
       self.presentViewController(alert, animated: true, completion: nil)
+      
     }
-    
-    assert(cleanedName.characters.count != 0 , "Name cannot be blank")
     
     let udid = UIDevice.currentDevice().identifierForVendor?.UUIDString
     
-    FIRAuth.auth()?.createUserWithEmail("\(cleanedName)@ubclaunchpad.com", password: udid!) { (user, error) in
+    FIRAuth.auth()?.createUserWithEmail("\(nameTextField.text!)@ubclaunchpad.com", password: udid!) { (user, error) in
       if error != nil {
         print("User name is taken")
       }
     }
-    currentUser = cleanedName
-    let segueName = ModelInterface.sharedInstance.setUserName(cleanedName)
+    currentUser = nameTextField.text!
+    let segueName = ModelInterface.sharedInstance.setUserName(nameTextField.text!)
     performSegueWithIdentifier(segueName, sender: self)
   }
-  
   // MARK: - Helper methods
   func dismissKeyboard() {
     view.endEditing(true)
@@ -59,24 +58,7 @@ class InputNameViewController: UIViewController {
 // MARK: - UITextFieldDelegate -
 extension InputNameViewController: UITextFieldDelegate {
   func textFieldShouldReturn(textField: UITextField) -> Bool {
-    checkChars()
-    performSegueWithIdentifier(Segues.toMainApp, sender: self)
-    let cleanedName = ModelInterface.sharedInstance.cleanName(nameTextField.text!)
-    if cleanedName.characters.count <= 0 {
-      let alert = UIAlertController(title: "Invalid name", message:"",
-                                    preferredStyle: UIAlertControllerStyle.Alert)
-      alert.addAction(UIAlertAction(title: "Ok",
-        style: UIAlertActionStyle.Default, handler: nil))
-      self.presentViewController(alert, animated: true, completion: nil)
-      return true
-    }
-    
-    textField.resignFirstResponder()
-    
-    assert(cleanedName.characters.count != 0 , "Name cannot be blank")
-    
-    let segueName = ModelInterface.sharedInstance.setUserName(cleanedName)
-    performSegueWithIdentifier(segueName, sender: self)
+    submitButton()
     return false
   }
   
