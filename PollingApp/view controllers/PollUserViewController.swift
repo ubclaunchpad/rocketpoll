@@ -39,9 +39,9 @@ final class PollUserViewController: UIViewController {
     ModelInterface.sharedInstance.processAnswerData(self.answerIDs) { (listofAllAnswers) in
       self.fillInTheFields(listofAllAnswers)
       
-      self.container?.delegate = self
       self.container?.setQuestionText(self.questionText)
       self.container?.setAnswers(self.answers)
+      self.container?.delegate = self
       self.container?.tableView.reloadData()
       
     }
@@ -49,6 +49,7 @@ final class PollUserViewController: UIViewController {
   
   func fillInTheFields (listofAllAnswers:[Answer]) {
     let size = listofAllAnswers.count
+    let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
     for i in 0 ..< size  {
       let tempAnswer = listofAllAnswers[i].answerText
       self.answerIDDictionary[tempAnswer] = listofAllAnswers[i].AID
@@ -66,25 +67,32 @@ final class PollUserViewController: UIViewController {
         if difference > 0 {
           if difference < 300 {
             self.container?.doneTimerLabel("Poll ended a couple moments ago")
+            self.performSegueWithIdentifier(nextRoom, sender: self)
+
           }
           else if difference < 3600 {
             let minutes = Int(difference/60)
             self.container?.doneTimerLabel("Poll ended \(minutes) minute ago")
+            self.performSegueWithIdentifier(nextRoom, sender: self)
           }
           else if difference < 86400 {
             let hours = Int(difference/3600)
             if hours > 1 {
               self.container?.doneTimerLabel("Poll ended \(hours) hours ago")
+              self.performSegueWithIdentifier(nextRoom, sender: self)
             } else {
               self.container?.doneTimerLabel("Poll ended \(hours) hour ago")
+              self.performSegueWithIdentifier(nextRoom, sender: self)
             }
           }
           else {
             let days = Int(difference/86400)
             if days > 1 {
               self.container?.doneTimerLabel("Poll ended \(days) days ago")
+              self.performSegueWithIdentifier(nextRoom, sender: self)
             } else {
               self.container?.doneTimerLabel("Poll ended \(days) day ago")
+              self.performSegueWithIdentifier(nextRoom, sender: self)
             }
             
           }
