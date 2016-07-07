@@ -38,7 +38,7 @@ enum UIStringConstants {
   static let notCorrect = "notCorrect"
 }
 
-enum UINumConstants {
+enum UITimeConstants {
   static let oneDayinSeconds = 86400
   static let oneHourinSeconds = 3600
   static let oneMinuteinSeconds = 60

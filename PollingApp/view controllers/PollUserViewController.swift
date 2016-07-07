@@ -83,17 +83,20 @@ final class PollUserViewController: UIViewController {
     }
   }
   func setCountdown(QID: String) {
-   let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
+    let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
     ModelInterface.sharedInstance.getCountdownSeconds(QID, completion: { (time) -> Void in
-      if time > 0 {
-        let currentTime = Int(NSDate().timeIntervalSince1970)
-        let difference = currentTime - Int(time)
-        if difference > 0 {
-          self.performSegueWithIdentifier(nextRoom, sender: self)
-        } else {
-          self.createTimer(Int(time) - currentTime)
-        }
+      guard time > 0 else {
+        return
       }
+      
+      let currentTime = Int(NSDate().timeIntervalSince1970)
+      let difference = currentTime - Int(time)
+      if difference > 0 {
+        self.performSegueWithIdentifier(nextRoom, sender: self)
+      } else {
+        self.createTimer(Int(time) - currentTime)
+      }
+      
     })
   }
   
@@ -111,7 +114,6 @@ extension PollUserViewController: PollUserViewContainerDelegate {
       ModelInterface.sharedInstance.setUserAnswer(tally, answerID: selectedAnswerID)
       let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
       performSegueWithIdentifier(nextRoom, sender: self)
-      
     }
   }
   func backButtonPushed() {

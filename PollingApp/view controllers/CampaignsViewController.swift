@@ -120,13 +120,15 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
   
   func setExpirationDate (time:Double, QID:QuestionID) -> Bool {
     var deleted = false
-   
-    if time > 0 {
+    guard time > 0 else {
+      return deleted
+    }
+
       let currentTime = Int(NSDate().timeIntervalSince1970)
       let difference = currentTime - Int(time)
       let absDifference = abs(difference)
       
-      if absDifference < UINumConstants.moment {
+      if absDifference < UITimeConstants.moment {
         if difference > 0 {
           self.isExpired.append(true)
           self.expiry.append("Poll ended a couple moments ago")
@@ -135,8 +137,8 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
           self.expiry.append("Poll ends in a couple moments")
         }
       }
-      else if absDifference < UINumConstants.oneHourinSeconds {
-        let minutes = Int(absDifference/UINumConstants.oneMinuteinSeconds)
+      else if absDifference < UITimeConstants.oneHourinSeconds {
+        let minutes = absDifference/UITimeConstants.oneMinuteinSeconds
         if difference > 0 {
           self.isExpired.append(true)
           self.expiry.append("Poll ended \(minutes) minutes ago")
@@ -145,8 +147,8 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
           self.expiry.append("Poll ends in \(minutes) minutes")
         }
       }
-      else if absDifference < UINumConstants.oneDayinSeconds {
-        let hours = Int(absDifference/UINumConstants.oneHourinSeconds)
+      else if absDifference < UITimeConstants.oneDayinSeconds {
+        let hours = Int(absDifference/UITimeConstants.oneHourinSeconds)
         if difference > 0 {
           
           self.isExpired.append(true)
@@ -165,7 +167,7 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
         }
       }
       else {
-        let days = Int(absDifference/UINumConstants.oneDayinSeconds)
+        let days = Int(absDifference/UITimeConstants.oneDayinSeconds)
         if difference > 0 {
           deleted = true
           ModelInterface.sharedInstance.removeQuestion(QID)
@@ -180,7 +182,7 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
         
       }
       
-    }
+    
     
     return deleted;
 
