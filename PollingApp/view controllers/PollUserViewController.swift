@@ -109,7 +109,6 @@ extension PollUserViewController: PollUserViewContainerDelegate {
       let tally = tallyDictionary[selectedAnswerID]!;
       print("Answer:\(answer) HAD this many votes: \(tally)")
       ModelInterface.sharedInstance.setUserAnswer(tally, answerID: selectedAnswerID)
-      // print("selected answer is: \(answer) ,printed from viewController")
       let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
       performSegueWithIdentifier(nextRoom, sender: self)
       
