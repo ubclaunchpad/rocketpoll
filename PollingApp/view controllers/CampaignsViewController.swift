@@ -54,70 +54,8 @@ class CampaignsViewController: UIViewController {
     for i in 0 ..< size  {
       let tempQuestionID = listofAllQuestions[i].QID;
       let time = listofAllQuestions[i].endTimestamp
-      
-      
-      var deleted = false
-      if time > 0 {
-        let currentTime = Int(NSDate().timeIntervalSince1970)
-        let difference = currentTime - Int(time)
-        let absDifference = abs(difference)
-        
-        if absDifference < 300 {
-          if difference > 0 {
-            self.isExpired.append(true)
-            self.expiry.append("Poll ended a couple moments ago")
-          } else {
-            self.isExpired.append(false)
-            self.expiry.append("Poll ends in a couple moments")
-          }
-        }
-        else if absDifference < 3600 {
-          let minutes = Int(absDifference/60)
-          if difference > 0 {
-            self.isExpired.append(true)
-            self.expiry.append("Poll ended \(minutes) minutes ago")
-          } else {
-            self.isExpired.append(false)
-            self.expiry.append("Poll ends in \(minutes) minutes")
-          }
-        }
-        else if absDifference < 86400 {
-          let hours = Int(absDifference/3600)
-          if difference > 0 {
-            
-            self.isExpired.append(true)
-            if hours > 1 {
-              self.expiry.append("Poll ended \(hours) hours ago")
-            } else {
-              self.expiry.append("Poll ended \(hours) hour ago")
-            }
-          } else {
-            self.isExpired.append(false)
-            if hours > 1 {
-              self.expiry.append("Poll ends in \(hours) hours")
-            } else {
-              self.expiry.append("Poll ends in \(hours) hour")
-            }
-          }
-        }
-        else {
-          let days = Int(absDifference/86400)
-          if difference > 0 {
-            deleted = true
-            ModelInterface.sharedInstance.removeQuestion(tempQuestionID)
-          } else {
-            self.isExpired.append(false)
-            if days > 1 {
-              self.expiry.append("Poll ends in \(days) days")
-            } else {
-              self.expiry.append("Poll ends in \(days) day")
-            }
-          }
-          
-        }
-        
-      }
-      if deleted == false {
+    
+      if setExpirationDate(time, QID: tempQuestionID) == false {
         self.questions.append(listofAllQuestions[i].questionText)
         self.authors.append(listofAllQuestions[i].author)
         self.questionsAnswered.append(true)
@@ -178,6 +116,76 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
       let nextRoom = ModelInterface.sharedInstance.segueToResultsScreen()
       performSegueWithIdentifier(nextRoom, sender: self)
     }
+  }
+  
+  func setExpirationDate (time:Double, QID:QuestionID) -> Bool {
+    var deleted = false
+    guard time > 0 else {
+      return deleted
+    }
+
+      let currentTime = Int(NSDate().timeIntervalSince1970)
+      let difference = currentTime - Int(time)
+      let absDifference = abs(difference)
+      
+      if absDifference < UITimeConstants.moment {
+        if difference > 0 {
+          self.isExpired.append(true)
+          self.expiry.append("Poll ended a couple moments ago")
+        } else {
+          self.isExpired.append(false)
+          self.expiry.append("Poll ends in a couple moments")
+        }
+      }
+      else if absDifference < UITimeConstants.oneHourinSeconds {
+        let minutes = absDifference/UITimeConstants.oneMinuteinSeconds
+        if difference > 0 {
+          self.isExpired.append(true)
+          self.expiry.append("Poll ended \(minutes) minutes ago")
+        } else {
+          self.isExpired.append(false)
+          self.expiry.append("Poll ends in \(minutes) minutes")
+        }
+      }
+      else if absDifference < UITimeConstants.oneDayinSeconds {
+        let hours = Int(absDifference/UITimeConstants.oneHourinSeconds)
+        if difference > 0 {
+          
+          self.isExpired.append(true)
+          if hours > 1 {
+            self.expiry.append("Poll ended \(hours) hours ago")
+          } else {
+            self.expiry.append("Poll ended \(hours) hour ago")
+          }
+        } else {
+          self.isExpired.append(false)
+          if hours > 1 {
+            self.expiry.append("Poll ends in \(hours) hours")
+          } else {
+            self.expiry.append("Poll ends in \(hours) hour")
+          }
+        }
+      }
+      else {
+        let days = Int(absDifference/UITimeConstants.oneDayinSeconds)
+        if difference > 0 {
+          deleted = true
+          ModelInterface.sharedInstance.removeQuestion(QID)
+        } else {
+          self.isExpired.append(false)
+          if days > 1 {
+            self.expiry.append("Poll ends in \(days) days")
+          } else {
+            self.expiry.append("Poll ends in \(days) day")
+          }
+        }
+        
+      }
+      
+    
+    
+    return deleted;
+
   }
   
   func refreshQuestions() {

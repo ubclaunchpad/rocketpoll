@@ -40,8 +40,8 @@ extension ModelInterface: AnswerModelProtocol {
     
     let ref =  FIRDatabase.database().reference();
     ref.child("ANSWERS").child("AIDS").observeEventType(.Value, withBlock: { (snapshot) in
-      let postDict = snapshot.value as! [String : AnyObject]
-      let  sendAnswerData = self.parseAIDNodeAndItsChildren(postDict, selectedAnswerIDs: selectedAnswerIDs)
+      let answerNodes = snapshot.value as! [String : AnyObject]
+      let  sendAnswerData = self.parseAIDNodeAndItsChildren(answerNodes, selectedAnswerIDs: selectedAnswerIDs)
       completionHandler(listofAllAnswers: sendAnswerData)
       
     }) { (error) in

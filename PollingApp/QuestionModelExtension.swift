@@ -41,8 +41,8 @@ extension ModelInterface: QuestionModelProtocol {
   func processQuestionData(completionHandler: (listofAllQuestions: [Question]) -> ()){
     let ref =  FIRDatabase.database().reference();
     ref.child("QUESTIONSCREEN").observeEventType(.Value, withBlock: { (snapshot) in
-      if let postDict = snapshot.value as? [String : AnyObject] {
-        let returnValue = self.parseQIDNodeAndItsChildren(postDict)
+      if let questionNodes = snapshot.value as? [String : AnyObject] {
+        let returnValue = self.parseQIDNodeAndItsChildren(questionNodes)
         completionHandler(listofAllQuestions: returnValue)
       }else {
         let listofQuestions = [Question]();

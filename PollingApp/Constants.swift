@@ -35,6 +35,14 @@ enum Segues {
 
 enum UIStringConstants {
   static let lessThanOneDayLeft = "Less than one day"
+  static let notCorrect = "notCorrect"
+}
+
+enum UITimeConstants {
+  static let oneDayinSeconds = 86400
+  static let oneHourinSeconds = 3600
+  static let oneMinuteinSeconds = 60
+  static let moment = 300
 }
 
 
