@@ -49,7 +49,6 @@ final class PollUserViewController: UIViewController {
   
   func fillInTheFields (listofAllAnswers:[Answer]) {
     let size = listofAllAnswers.count
-    let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
     for i in 0 ..< size  {
       let tempAnswer = listofAllAnswers[i].answerText
       self.answerIDDictionary[tempAnswer] = listofAllAnswers[i].AID
@@ -59,48 +58,7 @@ final class PollUserViewController: UIViewController {
     self.questionID = selectedQuestion.QID
     self.questionText = selectedQuestion.questionText
     
-    
-    ModelInterface.sharedInstance.getCountdownSeconds(selectedQuestion.QID, completion: { (time) -> Void in
-      if time > 0 {
-        let currentTime = Int(NSDate().timeIntervalSince1970)
-        let difference = currentTime - Int(time)
-        if difference > 0 {
-          if difference < 300 {
-            self.container?.doneTimerLabel("Poll ended a couple moments ago")
-            self.performSegueWithIdentifier(nextRoom, sender: self)
-
-          }
-          else if difference < 3600 {
-            let minutes = Int(difference/60)
-            self.container?.doneTimerLabel("Poll ended \(minutes) minute ago")
-            self.performSegueWithIdentifier(nextRoom, sender: self)
-          }
-          else if difference < 86400 {
-            let hours = Int(difference/3600)
-            if hours > 1 {
-              self.container?.doneTimerLabel("Poll ended \(hours) hours ago")
-              self.performSegueWithIdentifier(nextRoom, sender: self)
-            } else {
-              self.container?.doneTimerLabel("Poll ended \(hours) hour ago")
-              self.performSegueWithIdentifier(nextRoom, sender: self)
-            }
-          }
-          else {
-            let days = Int(difference/86400)
-            if days > 1 {
-              self.container?.doneTimerLabel("Poll ended \(days) days ago")
-              self.performSegueWithIdentifier(nextRoom, sender: self)
-            } else {
-              self.container?.doneTimerLabel("Poll ended \(days) day ago")
-              self.performSegueWithIdentifier(nextRoom, sender: self)
-            }
-            
-          }
-        } else {
-          self.createTimer(Int(time) - currentTime)
-        }
-      }
-    })
+    setCountdown(questionID);
   }
   
   func createTimer(startingTime: Int) {
@@ -123,6 +81,20 @@ final class PollUserViewController: UIViewController {
       let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
       performSegueWithIdentifier(nextRoom, sender: self)
     }
+  }
+  func setCountdown(QID: String) {
+   let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
+    ModelInterface.sharedInstance.getCountdownSeconds(QID, completion: { (time) -> Void in
+      if time > 0 {
+        let currentTime = Int(NSDate().timeIntervalSince1970)
+        let difference = currentTime - Int(time)
+        if difference > 0 {
+          self.performSegueWithIdentifier(nextRoom, sender: self)
+        } else {
+          self.createTimer(Int(time) - currentTime)
+        }
+      }
+    })
   }
   
   override func didReceiveMemoryWarning() {
