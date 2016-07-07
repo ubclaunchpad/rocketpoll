@@ -12,9 +12,10 @@ final class PollAdminViewController: UIViewController {
   
   //TODO: change this into a struct. IPA-123
   private var answerIDDictionary = [AnswerText: AnswerID]()
-  private var min:Int = 0
-  private var sec = 0
+  private var hours = 0
+  private var minutes = 0
   private var seconds = 0
+  private var totalSeconds = 0
   private var timer = NSTimer()
   private var answers:[AnswerText] = []
   private var correctAnswers:[AnswerText] = []
@@ -106,20 +107,15 @@ final class PollAdminViewController: UIViewController {
   }
   
   func createTimer (startingTime: Int) {
-    seconds = startingTime
-    let min_temp:Int = seconds/60
-    let sec_temp = seconds-60*(min_temp)
-    container?.updateTimerLabel(sec_temp, mins: min_temp)
-    
+    totalSeconds = startingTime
+    updateTimer()
     timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: (#selector(PollUserViewController.updateTimer)),userInfo: nil, repeats: true)
   }
   
   func updateTimer() {
-    if(seconds>0) {
-      seconds -= 1
-      min = seconds/60
-      sec = seconds - 60*min
-      container?.updateTimerLabel(sec,mins: min)
+    if (totalSeconds > 0) {
+      totalSeconds -= 1
+      container?.updateTimerLabel(TimerUtil.totalSecondsToString(totalSeconds))
     } else {
       timer.invalidate()
       // TODO: SEGUE to next view
