@@ -54,40 +54,7 @@ final class PollAdminViewController: UIViewController {
     
       self.container?.AnswerTable.reloadData()
     })
-    //TODO: IPA-124
-    if self.timerQuestion > 0 {
-      let currentTime = Int(NSDate().timeIntervalSince1970)
-      let difference = currentTime - Int(self.timerQuestion)
-      if difference > 0 {
-        if difference < 300 {
-          self.container?.doneTimerLabel("Poll ended a couple moments ago")
-        }
-        else if difference < 3600 {
-          let minutes = Int(difference/60)
-          self.container?.doneTimerLabel("Poll ended \(minutes) minute ago")
-        }
-        else if difference < 86400 {
-          let hours = Int(difference/3600)
-          if hours > 1 {
-            self.container?.doneTimerLabel("Poll ended \(hours) hours ago")
-          } else {
-            self.container?.doneTimerLabel("Poll ended \(hours) hour ago")
-          }
-        }
-        else {
-          let days = Int(difference/86400)
-          if days > 1 {
-            self.container?.doneTimerLabel("Poll ended \(days) days ago")
-          } else {
-            self.container?.doneTimerLabel("Poll ended \(days) day ago")
-          }
-          
-        }
-      } else {
-        self.createTimer(Int(self.timerQuestion) - currentTime)
-      }
-    }
-    
+    setCountDown();
   }
   
   func fillInTheFields(listofAllAnswers: [Answer]) {
@@ -102,7 +69,7 @@ final class PollAdminViewController: UIViewController {
         self.correctAnswers.append(tempAnswer)
       }
       else {
-        self.correctAnswers.append("notCorrect")
+        self.correctAnswers.append(UIStringConstants.notCorrect)
       }
     }
   }
@@ -123,6 +90,17 @@ final class PollAdminViewController: UIViewController {
       let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
       performSegueWithIdentifier(nextRoom, sender: self)
     }
+  }
+  
+  func setCountDown () {
+    if self.timerQuestion > 0 {
+      let currentTime = Int(NSDate().timeIntervalSince1970)
+      let difference = currentTime - Int(self.timerQuestion)
+      if difference <= 0 {
+        self.createTimer(Int(self.timerQuestion) - currentTime)
+      }
+    }
+  
   }
 }
 
