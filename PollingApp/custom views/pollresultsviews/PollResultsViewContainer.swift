@@ -11,7 +11,7 @@ import UIKit
 
 protocol PollResultsViewContainerDelegate {
   func goBackToCampaign()
-  func deleteQuestion()
+  func presentConfirmationVaraible()
 }
 
 
@@ -97,7 +97,7 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
   }
   
   @IBAction func deleteButtonPressed(sender: AnyObject) {
-    delegate?.deleteQuestion()
+    delegate?.presentConfirmationVaraible()
   }
   
   func makeDeleteButtonVisisble(){
