@@ -23,15 +23,16 @@ final class PollAdminViewController: UIViewController {
   private var answers:[AnswerText] = []
   private var correctAnswers:[AnswerText] = []
   private var sumuserresults = 0;
-  private var answerIDs:[AnswerID] = []
+   var answerIDs:[AnswerID] = []
   private var numsubmitforeachAns:[[NSString:Int]] = [[:]]
   private var tallyIDDictioanry = [AnswerText:String]()
- 
+  var hello = "";
   
   var container: PollAdminViewContainer?
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    print(hello);
     addContainerToVC()
   }
   

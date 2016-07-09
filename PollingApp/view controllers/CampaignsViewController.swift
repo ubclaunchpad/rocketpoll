@@ -48,6 +48,12 @@ class CampaignsViewController: UIViewController {
     self.container?.setRoomNameTitle(roomName)
   }
   
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if (segue.identifier == ModelInterface.sharedInstance.segueTotoPollAdminVCFromCampaign()) {
+       let viewController:PollAdminViewController = segue.destinationViewController as! PollAdminViewController
+      viewController.answerIDs = [];
+    }
+  }
   
   func fillInTheFields (listofAllQuestions:[Question]) {
     let size = listofAllQuestions.count
@@ -101,6 +107,7 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
       let time = QIDToTimeDictionary[questionID]!
       if (author == currentUser) {
         ModelInterface.sharedInstance.setSelectedQuestion(AIDS, QID: questionID, questionText: question, author: author, time:time)
+        
         let nextRoom = ModelInterface.sharedInstance.segueTotoPollAdminVCFromCampaign()
         performSegueWithIdentifier(nextRoom, sender: self)
         
