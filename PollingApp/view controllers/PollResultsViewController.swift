@@ -10,15 +10,15 @@ import UIKit
 import Firebase
 
 class PollResultsViewController: UIViewController {
-  
-  private var answerIDDictionary = [AnswerText: AnswerID]()
-  private var questionID:QuestionID = ""
-  private var answers: [AnswerText] = []
-  private var answerIDs: [AnswerID] = []
   private var correctAnswer: AnswerText = ""
   private var correctAnswerId: AnswerID = ""
-  private var NumResponsesPerAnswer: [Int] = []
+  private var questionID:QuestionID = ""
   var totalNumberOfUserAnswers: Int = 0
+  private var answerIDDictionary = [AnswerText: AnswerID]()
+  private var answers: [AnswerText] = []
+  private var answerIDs: [AnswerID] = []
+  private var NumResponsesPerAnswer: [Int] = []
+ 
   
   var container: PollResultsViewContainer?
   
@@ -35,8 +35,11 @@ class PollResultsViewController: UIViewController {
     questionID = ModelInterface.sharedInstance.getSelectedQuestion().QID
     let questionText = ModelInterface.sharedInstance.getSelectedQuestion().questionText
     answerIDs = ModelInterface.sharedInstance.getSelectedQuestion().AIDS
-    
     ModelInterface.sharedInstance.processAnswerData(answerIDs) { (listofAllAnswers) in
+      self.answerIDDictionary = [AnswerText: AnswerID]()
+      self.answers = []
+      self.NumResponsesPerAnswer = []
+
       self.fillInTheFields(listofAllAnswers)
       self.container?.delegate = self
       self.container?.setTotalNumberOfAnswers(self.totalNumberOfUserAnswers)
