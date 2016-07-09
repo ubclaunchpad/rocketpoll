@@ -30,9 +30,9 @@ class InputNameViewController: UIViewController {
     checkChars()
     
     if ModelInterface.sharedInstance.isValidName(nameTextField.text!) == false {
-      let alert = UIAlertController(title: "Invalid name", message:"",
+      let alert = UIAlertController(title: "\(alertMessages.invalid)", message:"",
                                     preferredStyle: UIAlertControllerStyle.Alert)
-      alert.addAction(UIAlertAction(title: "Ok",
+      alert.addAction(UIAlertAction(title: "\(alertMessages.confirm)",
         style: UIAlertActionStyle.Default, handler: nil))
       self.presentViewController(alert, animated: true, completion: nil)
       
@@ -40,7 +40,7 @@ class InputNameViewController: UIViewController {
     
     let udid = UIDevice.currentDevice().identifierForVendor?.UUIDString
     
-    FIRAuth.auth()?.createUserWithEmail("\(nameTextField.text!)@ubclaunchpad.com", password: udid!) { (user, error) in
+    FIRAuth.auth()?.createUserWithEmail("\(nameTextField.text!)\(launchpadEmail)", password: udid!) { (user, error) in
       if error != nil {
         print("User name is taken")
       }
@@ -64,8 +64,8 @@ extension InputNameViewController: UITextFieldDelegate {
   
   func checkChars() { //TODO: move this into a utils classs.
     if nameTextField.text?.characters.count == 0 {
-      let alert = UIAlertController(title: "Please enter your name", message:"", preferredStyle: UIAlertControllerStyle.Alert)
-      alert.addAction(UIAlertAction(title: "Got it", style: UIAlertActionStyle.Default, handler: nil))
+      let alert = UIAlertController(title: "\(alertMessages.empty)", message:"", preferredStyle: UIAlertControllerStyle.Alert)
+      alert.addAction(UIAlertAction(title: "\(alertMessages.confirm)", style: UIAlertActionStyle.Default, handler: nil))
       self.presentViewController(alert, animated: true, completion: nil)
     }
   }

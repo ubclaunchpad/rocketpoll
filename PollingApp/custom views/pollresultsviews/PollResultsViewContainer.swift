@@ -88,7 +88,7 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
   
   func setTotalNumberOfAnswers (totalNumOfAnswers:Int){
     totalNumberOfAnswers = totalNumOfAnswers
-    totalAnswersLabel.text = ("Number of users that answered: \(totalNumberOfAnswers)")
+    totalAnswersLabel.text = ("\(StringUtil.fillInString(numberOfAnswers, time: totalNumberOfAnswers))")
   }
   
   func setNumberOfResponsesForAnswer (NumResponses:[Int]){
