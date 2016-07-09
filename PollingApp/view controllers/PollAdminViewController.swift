@@ -11,21 +11,22 @@ import UIKit
 final class PollAdminViewController: UIViewController {
   
   //TODO: change this into a struct. IPA-123
-  private var answerIDDictionary = [AnswerText: AnswerID]()
   private var hours = 0
   private var minutes = 0
   private var seconds = 0
   private var totalSeconds = 0
+  private var timerQuestion = 0.0
   private var timer = NSTimer()
+  private var questionID:QuestionID = ""
+  private var questionText:QuestionText = ""
+  private var answerIDDictionary = [AnswerText: AnswerID]()
   private var answers:[AnswerText] = []
   private var correctAnswers:[AnswerText] = []
   private var sumuserresults = 0;
   private var answerIDs:[AnswerID] = []
   private var numsubmitforeachAns:[[NSString:Int]] = [[:]]
-  private var questionID:QuestionID = ""
-  private var questionText:QuestionText = ""
   private var tallyIDDictioanry = [AnswerText:String]()
-  private var timerQuestion = 0.0
+ 
   
   var container: PollAdminViewContainer?
   
@@ -38,10 +39,14 @@ final class PollAdminViewController: UIViewController {
     container = PollAdminViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
     view.addSubview(container!)
     
+    answerIDs = []
     answerIDs = ModelInterface.sharedInstance.getSelectedQuestion().AIDS
     timerQuestion = ModelInterface.sharedInstance.getSelectedQuestion().endTimestamp
     
     ModelInterface.sharedInstance.processAnswerData(answerIDs, completionHandler: { (listofAllAnswers) in
+      self.answerIDDictionary = [AnswerText: AnswerID]()
+      self.answers = []
+      self.correctAnswers = []
       self.fillInTheFields(listofAllAnswers)
       
       self.questionID = ModelInterface.sharedInstance.getSelectedQuestion().QID
@@ -58,6 +63,7 @@ final class PollAdminViewController: UIViewController {
   }
   
   func fillInTheFields(listofAllAnswers: [Answer]) {
+    
     self.questionText = ModelInterface.sharedInstance.getSelectedQuestion().questionText
     let size = listofAllAnswers.count
     for i in 0 ..< size  {

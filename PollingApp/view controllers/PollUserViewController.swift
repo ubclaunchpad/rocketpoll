@@ -9,13 +9,13 @@
 import UIKit
 
 final class PollUserViewController: UIViewController {
-  private var answerIDDictionary = [AnswerText: AnswerID]()
-  private var tallyDictionary = [AnswerID: Int]()
   private var hours = 0
   private var minutes = 0
   private var seconds = 0
   private var totalSeconds = 0
   private var timer = NSTimer()
+  private var answerIDDictionary = [AnswerText: AnswerID]()
+  private var tallyDictionary = [AnswerID: Int]()
   private var answers:[AnswerText] = []
   private var answerIDs:[AnswerID] = []
   private var questionText:QuestionText = ""
@@ -34,9 +34,14 @@ final class PollUserViewController: UIViewController {
     let viewSize = CGRectMake(0, 0, view.bounds.width, view.bounds.height)
     container = PollUserViewContainer.instanceFromNib(viewSize)
     view.addSubview(container!)
-    
+   
     self.answerIDs = ModelInterface.sharedInstance.getSelectedQuestion().AIDS
     ModelInterface.sharedInstance.processAnswerData(self.answerIDs) { (listofAllAnswers) in
+      self.answerIDDictionary = [AnswerText: AnswerID]()
+      self.tallyDictionary = [AnswerID: Int]()
+      self.answers = []
+      self.questionText = ""
+      self.questionID  = ""
       self.fillInTheFields(listofAllAnswers)
       
       self.container?.setQuestionText(self.questionText)
