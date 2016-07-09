@@ -23,6 +23,9 @@ var currentUser:Author = ""; //TODO: this should persist on phone restart
 var okayNameCharacters : Set<Character> =
   Set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890".characters)
 
+var charactersToAvoid : [Character] =
+  Array("#[]*?".characters)
+
 enum Segues {
   static let toMainApp = "showMainApp"
   static let toQuestionsScreen = "toQuestionsScreen"
