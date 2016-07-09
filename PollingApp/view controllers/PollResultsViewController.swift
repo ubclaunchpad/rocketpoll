@@ -34,6 +34,7 @@ class PollResultsViewController: UIViewController {
     //TODO:IPA-125
     questionID = ModelInterface.sharedInstance.getSelectedQuestion().QID
     let questionText = ModelInterface.sharedInstance.getSelectedQuestion().questionText
+    answerIDs = []
     answerIDs = ModelInterface.sharedInstance.getSelectedQuestion().AIDS
     ModelInterface.sharedInstance.processAnswerData(answerIDs) { (listofAllAnswers) in
       self.answerIDDictionary = [AnswerText: AnswerID]()
