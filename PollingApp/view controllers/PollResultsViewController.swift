@@ -31,6 +31,12 @@ class PollResultsViewController: UIViewController {
     container = PollResultsViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
     view.addSubview(container!)
     
+    if (currentUser == selectedQuestion.author){
+      container?.makeDeleteButtonVisisble()
+    }else{
+      container?.hideDeleteButton()
+    }
+    
     //TODO:IPA-125
     questionID = ModelInterface.sharedInstance.getSelectedQuestion().QID
     let questionText = ModelInterface.sharedInstance.getSelectedQuestion().questionText

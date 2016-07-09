@@ -17,8 +17,7 @@ protocol PollResultsViewContainerDelegate {
 
 
 class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
-  
-  
+
   @IBOutlet weak var deleteButton: UIButton!
   @IBOutlet weak var backButton: UIButton!
   @IBOutlet weak var resultsTableView: UITableView!
@@ -99,5 +98,13 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
   
   @IBAction func deleteButtonPressed(sender: AnyObject) {
     delegate?.deleteQuestion()
+  }
+  
+  func makeDeleteButtonVisisble(){
+    deleteButton.alpha = 1
+  }
+  
+  func hideDeleteButton(){
+    deleteButton.alpha = 0
   }
 }
