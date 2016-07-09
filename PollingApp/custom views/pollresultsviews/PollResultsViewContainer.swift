@@ -56,7 +56,7 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     }
     
     if(totalNumberOfAnswers != 0){
-      let results:Double = Double(numberOfResponsesPerAnswer[indexPath.row])/Double(totalNumberOfAnswers)*100
+      let results:Double = MathUtil.calculatePercentage(Double(numberOfResponsesPerAnswer[indexPath.row]), denom: Double(totalNumberOfAnswers))
       cell.setResults(results)
     }else{
       cell.setResults(0)

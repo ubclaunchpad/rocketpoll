@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		250E2B0500B548C2467E30CF /* Pods_PollingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE145B2DBCA1EC9373BDBFFA /* Pods_PollingApp.framework */; };
 		3E7E717C4F6D5A585AE2C154 /* Pods_PollingAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8441E8DD16DDBF46611D1B6C /* Pods_PollingAppUITests.framework */; };
+		43D5B4001D31BDF500A3EB5C /* MathUtilTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5B3FF1D31BDF500A3EB5C /* MathUtilTest.swift */; };
 		521E4FF91C8B9D48004A8F52 /* PollUserViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521E4FF51C8B9D48004A8F52 /* PollUserViewContainer.swift */; };
 		521E4FFA1C8B9D48004A8F52 /* PollUserViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 521E4FF61C8B9D48004A8F52 /* PollUserViewContainer.xib */; };
 		523FCD021C9BD84A007EA5E1 /* RoomsNearbyViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523FCD011C9BD84A007EA5E1 /* RoomsNearbyViewContainer.swift */; };
@@ -90,6 +91,7 @@
 
 /* Begin PBXFileReference section */
 		3A613A0296CE71CACBB45669 /* Pods-PollingAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PollingAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PollingAppUITests/Pods-PollingAppUITests.release.xcconfig"; sourceTree = "<group>"; };
+		43D5B3FF1D31BDF500A3EB5C /* MathUtilTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathUtilTest.swift; sourceTree = "<group>"; };
 		521E4FF51C8B9D48004A8F52 /* PollUserViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollUserViewContainer.swift; sourceTree = "<group>"; };
 		521E4FF61C8B9D48004A8F52 /* PollUserViewContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PollUserViewContainer.xib; sourceTree = "<group>"; };
 		523FCD011C9BD84A007EA5E1 /* RoomsNearbyViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsNearbyViewContainer.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				76B28C2F1C66C84B008407EE /* PollingAppTests.swift */,
 				76B28C311C66C84B008407EE /* Info.plist */,
 				C80EE1981D287D39005872DD /* TimerUtilTest.swift */,
+				43D5B3FF1D31BDF500A3EB5C /* MathUtilTest.swift */,
 			);
 			path = PollingAppTests;
 			sourceTree = "<group>";
@@ -786,6 +789,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				76B28C301C66C84B008407EE /* PollingAppTests.swift in Sources */,
+				43D5B4001D31BDF500A3EB5C /* MathUtilTest.swift in Sources */,
 				C80EE1991D287D39005872DD /* TimerUtilTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

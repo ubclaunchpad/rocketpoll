@@ -35,7 +35,7 @@ class PollResultsTableViewCell: UITableViewCell{
   
   //IPA-132
   func setResults (result:Double){
-    let percent = MathUtil.calculatePercentage(result);
-    resultsLabel.text = ("\(percent)%")
+    //let percent = MathUtil.calculatePercentage(result);
+    resultsLabel.text = ("\(result)%")
   }
 }
