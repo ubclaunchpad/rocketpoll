@@ -75,5 +75,11 @@ extension PollResultsViewController: PollResultsViewContainerDelegate {
     performSegueWithIdentifier(nextRoom, sender: self)
   }
   
+  func deleteQuestion() {
+    ModelInterface.sharedInstance.stopTimer(questionID)
+    ModelInterface.sharedInstance.removeQuestion(questionID)
+    let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
+    performSegueWithIdentifier(nextRoom, sender: self)
+  }
 }
 

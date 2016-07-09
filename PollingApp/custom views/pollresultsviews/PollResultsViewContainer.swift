@@ -11,6 +11,7 @@ import UIKit
 
 protocol PollResultsViewContainerDelegate {
   func goBackToCampaign()
+  func deleteQuestion()
 }
 
 
@@ -18,6 +19,7 @@ protocol PollResultsViewContainerDelegate {
 class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
   
   
+  @IBOutlet weak var deleteButton: UIButton!
   @IBOutlet weak var backButton: UIButton!
   @IBOutlet weak var resultsTableView: UITableView!
   @IBOutlet weak var questionLabel: UILabel!
@@ -93,5 +95,9 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
   
   func setNumberOfResponsesForAnswer (NumResponses:[Int]){
     numberOfResponsesPerAnswer = NumResponses
+  }
+  
+  @IBAction func deleteButtonPressed(sender: AnyObject) {
+    delegate?.deleteQuestion()
   }
 }
