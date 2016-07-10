@@ -106,7 +106,12 @@ final class PollAdminViewController: UIViewController {
         self.createTimer(Int(self.timerQuestion) - currentTime)
       }
     }
+  }
   
+  func deleteQuestion(){
+    ModelInterface.sharedInstance.stopTimer(questionID)
+    ModelInterface.sharedInstance.removeQuestion(questionID)
+    segueToCampaign()
   }
 }
 
@@ -118,10 +123,14 @@ extension PollAdminViewController: PollAdminViewContainerDelegate {
     performSegueWithIdentifier(nextRoom, sender: self)
     //print("SegueToResult");
   }
-  func removeQuestion() {
-    ModelInterface.sharedInstance.stopTimer(questionID)
-    ModelInterface.sharedInstance.removeQuestion(questionID)
-    segueToCampaign()
+  func displayConfirmationMessage() {
+    let deleteAlert = UIAlertController(title: "Confirmation", message: "Are you sure you want to delete your quesiton?", preferredStyle: UIAlertControllerStyle.Alert)
+    deleteAlert.addAction(UIAlertAction(title: "No", style: .Default, handler: { (action: UIAlertAction!) in deleteAlert.dismissViewControllerAnimated(true, completion: nil)
+    }))
+    deleteAlert.addAction(UIAlertAction(title: "Yes", style: .Cancel, handler: { (action: UIAlertAction!) in
+      self.deleteQuestion()
+    }))
+    presentViewController(deleteAlert, animated: true, completion: nil)
   }
   func segueToCampaign() {
     let nextRoom =  ModelInterface.sharedInstance.segueToQuestionsScreen()
