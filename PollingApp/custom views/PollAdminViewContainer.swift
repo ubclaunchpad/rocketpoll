@@ -13,7 +13,7 @@ import UIKit
 protocol PollAdminViewContainerDelegate  {
   func segueToResult()
   func segueToCampaign()
-  func removeQuestion()
+  func displayConfirmationMessage()
 }
 
 class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
@@ -38,7 +38,7 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
   
   @IBAction func goToCampaign(sender: AnyObject) {
     
-    delegate?.removeQuestion();
+    delegate?.displayConfirmationMessage();
   }
   
   class func instanceFromNib(frame: CGRect) -> PollAdminViewContainer {
