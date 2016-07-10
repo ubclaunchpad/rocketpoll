@@ -34,7 +34,7 @@ class StringUtilTest: XCTestCase {
     }
   
   func testCleanText(){
-    XCTAssertEqual("hello", StringUtil.cleanText("hello?"))
+    XCTAssertEqual("hello?", StringUtil.cleanText("hello?"))
     XCTAssertEqual("hello", StringUtil.cleanText("hel[]lo"))
     XCTAssertEqual("", StringUtil.cleanText(""))
     XCTAssertEqual("123", StringUtil.cleanText("*123"))

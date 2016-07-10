@@ -24,7 +24,7 @@ var okayNameCharacters : Set<Character> =
   Set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890".characters)
 
 var charactersToAvoid : [Character] =
-  Array("#[]*?".characters)
+  Array("#[]*".characters)
 
 enum Segues {
   static let toMainApp = "showMainApp"

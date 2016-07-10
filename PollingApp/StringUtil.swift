@@ -20,10 +20,9 @@ class StringUtil {
   
   static func cleanText(name: String) -> String {
     var strippedString = name.stringByReplacingOccurrencesOfString("\(charactersToAvoid[0])", withString: "")
-    strippedString = strippedString.stringByReplacingOccurrencesOfString("\(charactersToAvoid[1])", withString: "")
-    strippedString = strippedString.stringByReplacingOccurrencesOfString("\(charactersToAvoid[2])", withString: "")
-    strippedString = strippedString.stringByReplacingOccurrencesOfString("\(charactersToAvoid[3])", withString: "")
-    strippedString = strippedString.stringByReplacingOccurrencesOfString("\(charactersToAvoid[4])", withString: "")
+    for index in 0...(charactersToAvoid.count - 1) {
+      strippedString = strippedString.stringByReplacingOccurrencesOfString("\(charactersToAvoid[index])", withString: "")
+    }
     let trimmedString = strippedString.stringByTrimmingCharactersInSet(
       NSCharacterSet.whitespaceCharacterSet())
     return trimmedString
