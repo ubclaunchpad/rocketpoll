@@ -84,6 +84,13 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sj9-mE-D92">
+                    <rect key="frame" x="269" y="490" width="63" height="30"/>
+                    <state key="normal" title="Set timer"/>
+                    <connections>
+                        <action selector="timerButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="vLn-qD-NRy"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -93,6 +100,8 @@
                 <constraint firstAttribute="bottom" secondItem="O8M-Xv-WWk" secondAttribute="bottom" constant="261" id="OEp-If-6en"/>
                 <constraint firstAttribute="bottom" secondItem="MNP-HJ-xH4" secondAttribute="bottom" constant="209" id="P1d-UP-tXh"/>
                 <constraint firstItem="cZY-ZI-fNH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="100" id="Pbj-53-9HP"/>
+                <constraint firstItem="Sj9-mE-D92" firstAttribute="top" secondItem="MNP-HJ-xH4" secondAttribute="bottom" constant="99" id="Wiq-cS-5dc"/>
+                <constraint firstItem="Sj9-mE-D92" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ZJo-tj-gYR"/>
                 <constraint firstItem="ykc-VT-xrB" firstAttribute="leading" secondItem="cZY-ZI-fNH" secondAttribute="leading" id="c97-yg-TNy"/>
                 <constraint firstItem="cZY-ZI-fNH" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="cmw-ek-fqy"/>
                 <constraint firstItem="v3B-Rw-fEn" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="g1b-fi-1DY"/>
@@ -111,6 +120,7 @@
                 <outlet property="Submit" destination="v3B-Rw-fEn" id="MHC-TU-KlC"/>
                 <outlet property="backButton" destination="jVL-e3-Jmb" id="y4g-32-AxK"/>
                 <outlet property="questionInputText" destination="cZY-ZI-fNH" id="0mJ-Jv-kfA"/>
+                <outlet property="timerButton" destination="Sj9-mE-D92" id="YzZ-xN-erf"/>
             </connections>
             <point key="canvasLocation" x="493" y="331"/>
         </view>

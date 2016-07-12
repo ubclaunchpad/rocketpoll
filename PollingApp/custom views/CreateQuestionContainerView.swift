@@ -17,6 +17,7 @@ protocol CreateQuestionViewContainerDelegate {
 
 class CreateQuestionContainerView: UIView {
   
+  @IBOutlet weak var timerButton: UIButton!
   @IBOutlet weak var backButton: UIButton!
   
   @IBOutlet weak var Submit: UIButton!
@@ -62,6 +63,8 @@ class CreateQuestionContainerView: UIView {
     return view
   }
   
+  @IBAction func timerButtonPressed(sender: AnyObject) {
+  }
   
 }
 
