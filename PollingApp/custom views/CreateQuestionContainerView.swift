@@ -39,6 +39,7 @@ class CreateQuestionContainerView: UIView {
   
   @IBAction func setTimerButtonPressed(sender: AnyObject) {
     timerScroller.alpha = 1;
+    timerScroller.addTarget(self, action:#selector(CreateQuestionContainerView.timerScrollerValChanged), forControlEvents: UIControlEvents.ValueChanged)
   }
   
   @IBAction func SubmitPress(sender: AnyObject) {
@@ -72,7 +73,9 @@ class CreateQuestionContainerView: UIView {
   }
   
   
-    
+  func timerScrollerValChanged(){
+    print(timerScroller.countDownDuration)
+  }
  
  
   
