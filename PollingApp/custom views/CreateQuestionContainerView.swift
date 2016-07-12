@@ -74,7 +74,10 @@ class CreateQuestionContainerView: UIView {
   
   
   func timerScrollerValChanged(){
-    print(timerScroller.countDownDuration)
+    let time: Double = timerScroller.countDownDuration - 7
+    let hour: Int = Int(time)/3600
+    let min: Int = (Int(time)%3600)/60
+    print(hour,min)
   }
  
  
