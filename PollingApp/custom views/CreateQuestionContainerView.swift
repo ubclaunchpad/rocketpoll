@@ -12,11 +12,13 @@ protocol CreateQuestionViewContainerDelegate {
   
   func submitButtonPressed(question: QuestionText, answerArray: [AnswerText])
   func backButtonPressed()
-  func checksInput (question:QuestionText, A1:AnswerText, A2:AnswerText, A3:AnswerText, A4:AnswerText) -> Bool
+  func checksInput (question:QuestionText, A1:AnswerText, A2:AnswerText, A3:AnswerText, A4:AnswerText, timerWasSet:Bool) -> Bool
 }
 
 class CreateQuestionContainerView: UIView {
   @IBOutlet weak var timerLabel: UILabel!
+  
+  @IBOutlet weak var doneButton: UIButton!
   
   @IBOutlet weak var setTimerButton: UIButton!
   
@@ -37,21 +39,24 @@ class CreateQuestionContainerView: UIView {
   
   @IBOutlet weak var Ans4: UITextField!
   
+  var timerHasBeenSet = false
+  
   @IBAction func setTimerButtonPressed(sender: AnyObject) {
+    doneButton.alpha = 1;
+    Submit.alpha = 0
     setTimerButton.alpha = 0;
     timerScroller.alpha = 1;
-    timerScroller.addTarget(self, action:#selector(CreateQuestionContainerView.timerScrollerValChanged), forControlEvents: UIControlEvents.ValueChanged)
+   // timerScroller.addTarget(self, action:#selector(CreateQuestionContainerView.timerScrollerValChanged), forControlEvents: UIControlEvents.ValueChanged)
   }
   
   @IBAction func SubmitPress(sender: AnyObject) {
-    
     let question = questionInputText.text;
     let A1 = Ans1.text;
     let A2 = Ans2.text;
     let A3 = Ans3.text;
     let A4 = Ans4.text;
     
-    if ((  delegate?.checksInput(question!, A1: A1!, A2: A2!, A3: A3!, A4: A4!)) == true) {
+    if ((delegate?.checksInput(question!, A1: A1!, A2: A2!, A3: A3!, A4: A4!, timerWasSet:timerHasBeenSet)) == true) {
       return
     }
     
@@ -74,15 +79,25 @@ class CreateQuestionContainerView: UIView {
   }
   
   
-  func timerScrollerValChanged(){
-    timerLabel.alpha = 1;
+  //func timerScrollerValChanged(){
+  //}
+ 
+  @IBAction func doneButtonPressed(sender: AnyObject) {
+    timerScroller.alpha = 0
+    Submit.alpha = 1
+    setTimerButton.alpha = 1
+    timerHasBeenSet = true
+    timerLabel.alpha = 1
     let time: Double = timerScroller.countDownDuration - 7
     let hour: Int = Int(time)/3600
     let min: Int = (Int(time)%3600)/60
     timerLabel.text = ("Hours: \(hour), Mins: \(min)")
+    doneButton.alpha = 0
   }
  
  
+  
+  
   
 }
 

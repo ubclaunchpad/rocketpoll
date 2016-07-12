@@ -12,18 +12,6 @@
             <rect key="frame" x="0.0" y="0.0" width="472" height="550"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3B-Rw-fEn">
-                    <rect key="frame" x="366" y="466" width="98" height="47"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="47" id="1xw-pa-bnr"/>
-                        <constraint firstAttribute="width" constant="98" id="tr6-lf-Tfz"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                    <state key="normal" title="Submit"/>
-                    <connections>
-                        <action selector="SubmitPress:" destination="iN0-l3-epB" eventType="touchUpInside" id="dqq-Bl-BL7"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jVL-e3-Jmb">
                     <rect key="frame" x="38" y="35" width="46" height="37"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="0.16400971283783783" colorSpace="calibratedRGB"/>
@@ -103,6 +91,25 @@
                         <action selector="setTimerButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="Xhl-Fu-xL9"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3B-Rw-fEn">
+                    <rect key="frame" x="366" y="466" width="98" height="47"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="47" id="1xw-pa-bnr"/>
+                        <constraint firstAttribute="width" constant="98" id="tr6-lf-Tfz"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <state key="normal" title="Submit"/>
+                    <connections>
+                        <action selector="SubmitPress:" destination="iN0-l3-epB" eventType="touchUpInside" id="dqq-Bl-BL7"/>
+                    </connections>
+                </button>
+                <button opaque="NO" alpha="0.0" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iyg-xW-GN4">
+                    <rect key="frame" x="16" y="180" width="37" height="30"/>
+                    <state key="normal" title="Done"/>
+                    <connections>
+                        <action selector="doneButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="qf5-sf-hRi"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -112,6 +119,8 @@
                 <constraint firstAttribute="bottom" secondItem="NcP-8S-j5g" secondAttribute="bottom" id="DKC-RN-imG"/>
                 <constraint firstItem="kSR-OB-ORh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="EQk-eU-NJ2"/>
                 <constraint firstItem="NcP-8S-j5g" firstAttribute="top" secondItem="JuN-gt-ugg" secondAttribute="bottom" id="GcB-cN-Dpm"/>
+                <constraint firstItem="NcP-8S-j5g" firstAttribute="top" secondItem="iyg-xW-GN4" secondAttribute="bottom" id="HbU-uS-DLi"/>
+                <constraint firstItem="iyg-xW-GN4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="Hrb-1q-KYf"/>
                 <constraint firstAttribute="bottom" secondItem="kSR-OB-ORh" secondAttribute="bottom" constant="20" id="Lha-J0-poG"/>
                 <constraint firstItem="MNP-HJ-xH4" firstAttribute="leading" secondItem="O8M-Xv-WWk" secondAttribute="leading" id="NX5-Bq-4JU"/>
                 <constraint firstAttribute="bottom" secondItem="O8M-Xv-WWk" secondAttribute="bottom" constant="261" id="OEp-If-6en"/>
@@ -137,6 +146,7 @@
                 <outlet property="Ans4" destination="MNP-HJ-xH4" id="MPQ-6U-S6p"/>
                 <outlet property="Submit" destination="v3B-Rw-fEn" id="MHC-TU-KlC"/>
                 <outlet property="backButton" destination="jVL-e3-Jmb" id="y4g-32-AxK"/>
+                <outlet property="doneButton" destination="iyg-xW-GN4" id="mEb-mG-LE6"/>
                 <outlet property="questionInputText" destination="cZY-ZI-fNH" id="0mJ-Jv-kfA"/>
                 <outlet property="setTimerButton" destination="kSR-OB-ORh" id="RcJ-2V-lTK"/>
                 <outlet property="timerLabel" destination="JuN-gt-ugg" id="0mw-ls-MBn"/>
