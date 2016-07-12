@@ -90,8 +90,14 @@
                         <!--2016-07-12 05:32:02 +0000-->
                     </date>
                 </datePicker>
-                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kSR-OB-ORh">
-                    <rect key="frame" x="248" y="494" width="63" height="30"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JuN-gt-ugg">
+                    <rect key="frame" x="152" y="184" width="211" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kSR-OB-ORh">
+                    <rect key="frame" x="205" y="377" width="63" height="30"/>
                     <state key="normal" title="Set timer"/>
                     <connections>
                         <action selector="setTimerButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="Xhl-Fu-xL9"/>
@@ -101,14 +107,18 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="v3B-Rw-fEn" secondAttribute="bottom" constant="37" id="0CE-eB-PyX"/>
+                <constraint firstItem="JuN-gt-ugg" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="1E8-ob-Qg3"/>
                 <constraint firstItem="O8M-Xv-WWk" firstAttribute="leading" secondItem="JNd-Ot-DWv" secondAttribute="leading" id="CMB-ZP-JSi"/>
                 <constraint firstAttribute="bottom" secondItem="NcP-8S-j5g" secondAttribute="bottom" id="DKC-RN-imG"/>
                 <constraint firstItem="kSR-OB-ORh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="EQk-eU-NJ2"/>
+                <constraint firstItem="NcP-8S-j5g" firstAttribute="top" secondItem="JuN-gt-ugg" secondAttribute="bottom" id="GcB-cN-Dpm"/>
+                <constraint firstAttribute="bottom" secondItem="kSR-OB-ORh" secondAttribute="bottom" constant="20" id="Lha-J0-poG"/>
                 <constraint firstItem="MNP-HJ-xH4" firstAttribute="leading" secondItem="O8M-Xv-WWk" secondAttribute="leading" id="NX5-Bq-4JU"/>
                 <constraint firstAttribute="bottom" secondItem="O8M-Xv-WWk" secondAttribute="bottom" constant="261" id="OEp-If-6en"/>
                 <constraint firstAttribute="bottom" secondItem="MNP-HJ-xH4" secondAttribute="bottom" constant="209" id="P1d-UP-tXh"/>
                 <constraint firstItem="cZY-ZI-fNH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="100" id="Pbj-53-9HP"/>
                 <constraint firstItem="ykc-VT-xrB" firstAttribute="leading" secondItem="cZY-ZI-fNH" secondAttribute="leading" id="c97-yg-TNy"/>
+                <constraint firstItem="kSR-OB-ORh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="cYH-in-a6a"/>
                 <constraint firstItem="cZY-ZI-fNH" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="cmw-ek-fqy"/>
                 <constraint firstItem="NcP-8S-j5g" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="e1O-x0-e2W"/>
                 <constraint firstItem="NcP-8S-j5g" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="fSu-8c-iKW"/>
@@ -129,6 +139,7 @@
                 <outlet property="backButton" destination="jVL-e3-Jmb" id="y4g-32-AxK"/>
                 <outlet property="questionInputText" destination="cZY-ZI-fNH" id="0mJ-Jv-kfA"/>
                 <outlet property="setTimerButton" destination="kSR-OB-ORh" id="RcJ-2V-lTK"/>
+                <outlet property="timerLabel" destination="JuN-gt-ugg" id="0mw-ls-MBn"/>
                 <outlet property="timerScroller" destination="NcP-8S-j5g" id="vsd-GI-Of2"/>
             </connections>
             <point key="canvasLocation" x="429" y="306"/>

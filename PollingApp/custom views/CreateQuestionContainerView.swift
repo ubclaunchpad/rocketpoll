@@ -16,12 +16,11 @@ protocol CreateQuestionViewContainerDelegate {
 }
 
 class CreateQuestionContainerView: UIView {
+  @IBOutlet weak var timerLabel: UILabel!
   
   @IBOutlet weak var setTimerButton: UIButton!
   
   @IBOutlet weak var timerScroller: UIDatePicker!
-  
-  @IBOutlet weak var timerText: UITextField!
   
   @IBOutlet weak var backButton: UIButton!
   
