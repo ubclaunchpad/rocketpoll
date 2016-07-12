@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateQuestionViewController: UIViewController {
+class CreateQuestionViewController: UIViewController{
   
   var container: CreateQuestionContainerView?
   override func viewDidLoad() {

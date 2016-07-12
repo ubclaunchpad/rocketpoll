@@ -17,7 +17,12 @@ protocol CreateQuestionViewContainerDelegate {
 
 class CreateQuestionContainerView: UIView {
   
-  @IBOutlet weak var timerButton: UIButton!
+  @IBOutlet weak var setTimerButton: UIButton!
+  
+  @IBOutlet weak var timerScroller: UIDatePicker!
+  
+  @IBOutlet weak var timerText: UITextField!
+  
   @IBOutlet weak var backButton: UIButton!
   
   @IBOutlet weak var Submit: UIButton!
@@ -33,6 +38,9 @@ class CreateQuestionContainerView: UIView {
   
   @IBOutlet weak var Ans4: UITextField!
   
+  @IBAction func setTimerButtonPressed(sender: AnyObject) {
+    timerScroller.alpha = 1;
+  }
   
   @IBAction func SubmitPress(sender: AnyObject) {
     
@@ -60,11 +68,14 @@ class CreateQuestionContainerView: UIView {
   class func instanceFromNib(frame: CGRect) -> CreateQuestionContainerView {
     let view = UINib(nibName: "CreateQuestionContainerView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! CreateQuestionContainerView
     view.frame = frame
+    
     return view
   }
   
-  @IBAction func timerButtonPressed(sender: AnyObject) {
-  }
+  
+    
+ 
+ 
   
 }
 
