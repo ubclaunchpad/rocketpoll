@@ -38,6 +38,7 @@ class CreateQuestionContainerView: UIView {
   @IBOutlet weak var Ans4: UITextField!
   
   @IBAction func setTimerButtonPressed(sender: AnyObject) {
+    setTimerButton.alpha = 0;
     timerScroller.alpha = 1;
     timerScroller.addTarget(self, action:#selector(CreateQuestionContainerView.timerScrollerValChanged), forControlEvents: UIControlEvents.ValueChanged)
   }
@@ -74,10 +75,11 @@ class CreateQuestionContainerView: UIView {
   
   
   func timerScrollerValChanged(){
+    timerLabel.alpha = 1;
     let time: Double = timerScroller.countDownDuration - 7
     let hour: Int = Int(time)/3600
     let min: Int = (Int(time)%3600)/60
-    print(hour,min)
+    timerLabel.text = ("Hours: \(hour), Mins: \(min)")
   }
  
  
