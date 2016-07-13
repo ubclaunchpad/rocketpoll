@@ -10,7 +10,7 @@ import UIKit
 
 protocol CreateQuestionViewContainerDelegate {
   
-  func submitButtonPressed(question: QuestionText, answerArray: [AnswerText])
+  func submitButtonPressed(question: QuestionText, answerArray: [AnswerText], questionDuration: Double)
   func backButtonPressed()
   func checksInput (question:QuestionText, A1:AnswerText, A2:AnswerText, A3:AnswerText, A4:AnswerText, timerWasSet:Bool) -> Bool
 }
@@ -41,12 +41,13 @@ class CreateQuestionContainerView: UIView {
   
   var timerHasBeenSet = false
   
+  var time: Double = 0;
+  
   @IBAction func setTimerButtonPressed(sender: AnyObject) {
     doneButton.alpha = 1;
     Submit.alpha = 0
     setTimerButton.alpha = 0;
     timerScroller.alpha = 1;
-   // timerScroller.addTarget(self, action:#selector(CreateQuestionContainerView.timerScrollerValChanged), forControlEvents: UIControlEvents.ValueChanged)
   }
   
   @IBAction func SubmitPress(sender: AnyObject) {
@@ -62,7 +63,7 @@ class CreateQuestionContainerView: UIView {
     
     let Answers = [A1!, A2!, A3!, A4!];
     
-    delegate?.submitButtonPressed(question!,answerArray: Answers);
+    delegate?.submitButtonPressed(question!,answerArray: Answers, questionDuration: time);
     
     
   }
@@ -81,21 +82,26 @@ class CreateQuestionContainerView: UIView {
   
   //func timerScrollerValChanged(){
   //}
- 
+  
   @IBAction func doneButtonPressed(sender: AnyObject) {
     timerScroller.alpha = 0
     Submit.alpha = 1
     setTimerButton.alpha = 1
     timerHasBeenSet = true
     timerLabel.alpha = 1
-    let time: Double = timerScroller.countDownDuration - 7
+    time = timerScroller.countDownDuration - 7
     let hour: Int = Int(time)/3600
     let min: Int = (Int(time)%3600)/60
-    timerLabel.text = ("Hours: \(hour), Mins: \(min)")
+    if (hour == 0){
+      timerLabel.text = ("Mins: \(min)")
+    }else{
+      timerLabel.text = ("Hours: \(hour), Mins: \(min)")
+      
+    }
     doneButton.alpha = 0
   }
- 
- 
+  
+  
   
   
   
