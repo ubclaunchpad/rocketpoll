@@ -43,11 +43,14 @@ class CreateQuestionContainerView: UIView {
   
   var time: Double = 0;
   
+  let scrollerBackgroundColor = UIColor(red: 174/255, green: 222/255, blue: 244/255, alpha: 1)
+  
   @IBAction func setTimerButtonPressed(sender: AnyObject) {
     doneButton.alpha = 1;
     Submit.alpha = 0
     setTimerButton.alpha = 0;
     timerScroller.alpha = 1;
+    timerScroller.backgroundColor = scrollerBackgroundColor
   }
   
   @IBAction func SubmitPress(sender: AnyObject) {
