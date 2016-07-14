@@ -26,5 +26,19 @@ class StringUtilTest: XCTestCase {
         XCTAssertEqual("Poll ends in 5 hours", StringUtil.fillInString(UITimeRemaining.endsHours, time: 5))
         XCTAssertEqual("Poll ended a couple moments ago", StringUtil.fillInString(UITimeRemaining.endedMoments, time: 5))
     }
+  
+  func testCleanText(){
+    XCTAssertEqual("hello?", StringUtil.cleanText("hello?"))
+    XCTAssertEqual("hello", StringUtil.cleanText("hel[]lo"))
+    XCTAssertEqual("", StringUtil.cleanText(""))
+    XCTAssertEqual("123", StringUtil.cleanText("*123"))
+    XCTAssertEqual("hello there", StringUtil.cleanText("hello# there"))
+    XCTAssertEqual("a a a a", StringUtil.cleanText("a a a a "))
+  }
+  
+  func testCleanNameText(){
+    XCTAssertEqual("hello", StringUtil.cleanNameText("hello?"))
+    XCTAssertEqual("hello", StringUtil.cleanNameText(" hello!!!"))
+  }
 
 }

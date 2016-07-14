@@ -23,8 +23,12 @@ var currentUser:Author = ""; //TODO: this should persist on phone restart
 var okayNameCharacters : Set<Character> =
   Set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890".characters)
 
+
 var launchpadEmail:String = "@ubclaunchpad.com"
 var numberOfAnswers:String = "Number of users that answered: %1%"
+
+var charactersToAvoid : [Character] =
+  Array("#[]*".characters)
 
 enum Segues {
   static let toMainApp = "showMainApp"

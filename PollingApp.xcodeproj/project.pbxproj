@@ -13,10 +13,10 @@
 		521E4FF91C8B9D48004A8F52 /* PollUserViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521E4FF51C8B9D48004A8F52 /* PollUserViewContainer.swift */; };
 		521E4FFA1C8B9D48004A8F52 /* PollUserViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 521E4FF61C8B9D48004A8F52 /* PollUserViewContainer.xib */; };
 		52274E881D31ABB700A5BDD9 /* StringUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52274E871D31ABB700A5BDD9 /* StringUtil.swift */; };
-		52274E8A1D31ACDA00A5BDD9 /* StringUtilTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52274E891D31ACDA00A5BDD9 /* StringUtilTest.swift */; };
 		523FCD021C9BD84A007EA5E1 /* RoomsNearbyViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523FCD011C9BD84A007EA5E1 /* RoomsNearbyViewContainer.swift */; };
 		523FCD071C9BE1F3007EA5E1 /* RoomViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523FCD051C9BE1F3007EA5E1 /* RoomViewTableViewCell.swift */; };
 		523FCD081C9BE1F3007EA5E1 /* RoomViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 523FCD061C9BE1F3007EA5E1 /* RoomViewTableViewCell.xib */; };
+		52979A431D375C000066FCF2 /* StringUtilTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52979A421D375C000066FCF2 /* StringUtilTest.swift */; };
 		52A1795C1CB079E500BADA2A /* CampaignViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52A1795B1CB079E500BADA2A /* CampaignViewContainer.xib */; };
 		52C2C65F1C9A7700001779F5 /* RoomsNearbyViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52C2C65E1C9A7700001779F5 /* RoomsNearbyViewContainer.xib */; };
 		52D0395C1C989D8000367271 /* RoomsNearbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D0395B1C989D8000367271 /* RoomsNearbyViewController.swift */; };
@@ -94,10 +94,10 @@
 		521E4FF51C8B9D48004A8F52 /* PollUserViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollUserViewContainer.swift; sourceTree = "<group>"; };
 		521E4FF61C8B9D48004A8F52 /* PollUserViewContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PollUserViewContainer.xib; sourceTree = "<group>"; };
 		52274E871D31ABB700A5BDD9 /* StringUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtil.swift; sourceTree = "<group>"; };
-		52274E891D31ACDA00A5BDD9 /* StringUtilTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtilTest.swift; sourceTree = "<group>"; };
 		523FCD011C9BD84A007EA5E1 /* RoomsNearbyViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsNearbyViewContainer.swift; sourceTree = "<group>"; };
 		523FCD051C9BE1F3007EA5E1 /* RoomViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomViewTableViewCell.swift; sourceTree = "<group>"; };
 		523FCD061C9BE1F3007EA5E1 /* RoomViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomViewTableViewCell.xib; sourceTree = "<group>"; };
+		52979A421D375C000066FCF2 /* StringUtilTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtilTest.swift; sourceTree = "<group>"; };
 		52A1795B1CB079E500BADA2A /* CampaignViewContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CampaignViewContainer.xib; sourceTree = "<group>"; };
 		52C2C65E1C9A7700001779F5 /* RoomsNearbyViewContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomsNearbyViewContainer.xib; sourceTree = "<group>"; };
 		52D0395B1C989D8000367271 /* RoomsNearbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsNearbyViewController.swift; sourceTree = "<group>"; };
@@ -274,7 +274,7 @@
 				76B28C2F1C66C84B008407EE /* PollingAppTests.swift */,
 				76B28C311C66C84B008407EE /* Info.plist */,
 				C80EE1981D287D39005872DD /* TimerUtilTest.swift */,
-				52274E891D31ACDA00A5BDD9 /* StringUtilTest.swift */,
+				52979A421D375C000066FCF2 /* StringUtilTest.swift */,
 				43D5B3FF1D31BDF500A3EB5C /* MathUtilTest.swift */,
 			);
 			path = PollingAppTests;
@@ -772,7 +772,6 @@
 				76B28C1B1C66C84A008407EE /* CampaignsViewController.swift in Sources */,
 				C80396061C8CC790007C276F /* NameModelExtension.swift in Sources */,
 				76C150071C6FDF8E0066C0FE /* PollUserViewController.swift in Sources */,
-				76C150031C6FDE3E0066C0FE /* JoinRoomViewController.swift in Sources */,
 				52274E881D31ABB700A5BDD9 /* StringUtil.swift in Sources */,
 				D0659D2F1CB0767300D98EED /* AnswerAdminTableViewCell.swift in Sources */,
 				C80396001C8CB5FE007C276F /* ModelInterface.swift in Sources */,
@@ -787,7 +786,7 @@
 				76B28C301C66C84B008407EE /* PollingAppTests.swift in Sources */,
 				43D5B4001D31BDF500A3EB5C /* MathUtilTest.swift in Sources */,
 				C80EE1991D287D39005872DD /* TimerUtilTest.swift in Sources */,
-				52274E8A1D31ACDA00A5BDD9 /* StringUtilTest.swift in Sources */,
+				52979A431D375C000066FCF2 /* StringUtilTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
