@@ -2,7 +2,7 @@
 //  StringUtilTest.swift
 //  PollingApp
 //
-//  Created by Sherry Yuan on 2016-07-09.
+//  Created by Milton Leung on 2016-07-09.
 //  Copyright © 2016 Gabriel Uribe. All rights reserved.
 //
 
@@ -16,21 +16,15 @@ class StringUtilTest: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
-        }
+    func testFillinString() {
+        XCTAssertEqual("Poll ended 5 minutes ago", StringUtil.fillInString(UITimeRemaining.endedMinutes, time: 5))
+        XCTAssertEqual("Poll ends in 5 minutes", StringUtil.fillInString(UITimeRemaining.endsMinutes, time: 5))
+        XCTAssertEqual("Poll ended 1 hour ago", StringUtil.fillInString(UITimeRemaining.endedHour, time: 1))
+        XCTAssertEqual("Poll ended 5 hours ago", StringUtil.fillInString(UITimeRemaining.endedHours, time: 5))
+        XCTAssertEqual("Poll ends in 1 hour", StringUtil.fillInString(UITimeRemaining.endsHour, time: 1))
+        XCTAssertEqual("Poll ends in 5 hours", StringUtil.fillInString(UITimeRemaining.endsHours, time: 5))
+        XCTAssertEqual("Poll ends in 5 hours", StringUtil.fillInString(UITimeRemaining.endsHours, time: 5))
+        XCTAssertEqual("Poll ended a couple moments ago", StringUtil.fillInString(UITimeRemaining.endedMoments, time: 5))
     }
   
   func testCleanText(){
@@ -46,4 +40,5 @@ class StringUtilTest: XCTestCase {
     XCTAssertEqual("hello", StringUtil.cleanNameText("hello?"))
     XCTAssertEqual("hello", StringUtil.cleanNameText(" hello!!!"))
   }
+
 }
