@@ -97,11 +97,28 @@ extension ModelInterface: AnswerModelProtocol {
   }
   
   func setUserAnswer(currentTally: Int, answerID: AnswerID) -> Bool {
-    let currentTally = 1 + currentTally;
-    let sendTally = String(currentTally);
-    print(" has this many votes: \(currentTally)")
-    let fBD:FirebaseData = FirebaseData();
-    fBD.updateFirebaseDatabase("ANSWERS/AIDS/\(answerID as String)", targetNode: "tally", desiredValue: sendTally)
+    
+    let ref = FIRDatabase.database().reference();
+    ref.child("ANSWERS/AIDS/\(answerID as String)/tally").runTransactionBlock({
+      (currentData:FIRMutableData) -> FIRTransactionResult in
+      var value = currentData.value as? String
+      if (value == nil) {
+        value =  "0";
+        
+      } else {
+        let currentTally = Int(value!)! + 1;
+        let sendTally = String(currentTally);
+        currentData.value = sendTally
+        print(" has this many votes: \(currentTally)")
+      }
+      return FIRTransactionResult.successWithValue(currentData)
+    })
+    
+//    let currentTally = 1 + currentTally;
+//    let sendTally = String(currentTally);
+//    print(" has this many votes: \(currentTally)")
+//    let fBD:FirebaseData = FirebaseData();
+//    fBD.updateFirebaseDatabase("ANSWERS/AIDS/\(answerID as String)", targetNode: "tally", desiredValue: sendTally)
     return true
   }
   
