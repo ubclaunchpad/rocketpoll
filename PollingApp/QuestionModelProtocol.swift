@@ -11,7 +11,7 @@ import Foundation
 protocol QuestionModelProtocol {
   
   //MARK: - Setting Question Information -
-  func createNewQuestion(question: QuestionText) -> Question
+  func createNewQuestion(question: QuestionText, questionDuration: Int) -> Question
   
   //MARK: - Getting Question Information -
   

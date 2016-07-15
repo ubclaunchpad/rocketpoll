@@ -53,6 +53,18 @@ class TimerUtilTest: XCTestCase {
     XCTAssertEqual("2 Days Left", TimerUtil.totalSecondsToString(TimerUtil.secondsInADay*2))
   }
   
+  func testGetTextToShowInTimer() {
+    XCTAssertEqual("Hours: 5, Minutes: 5", TimerUtil.getTextToShowInTimer(18300))
+    XCTAssertEqual("Hours: 5, Minutes: 5", TimerUtil.getTextToShowInTimer(18303))
+    XCTAssertEqual("Hours: 5, Minutes: 4", TimerUtil.getTextToShowInTimer(18299))
+    XCTAssertEqual("Hours: 5, Minute: 1", TimerUtil.getTextToShowInTimer(18060))
+    XCTAssertEqual("Hour: 1, Minutes: 2", TimerUtil.getTextToShowInTimer(3720))
+    XCTAssertEqual("Hour: 1, Minute: 1", TimerUtil.getTextToShowInTimer(3719))
+    XCTAssertEqual("Minutes: 2", TimerUtil.getTextToShowInTimer(120))
+    XCTAssertEqual("Minute: 1", TimerUtil.getTextToShowInTimer(119))
+    XCTAssertEqual("Minute: 0", TimerUtil.getTextToShowInTimer(50))
+  }
+  
   func testPerformanceExample() {
     // This is an example of a performance test case.
     self.measureBlock {
