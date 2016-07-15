@@ -74,6 +74,5 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
       return true
     }
     return false
-  }
-  
+  }  
 }

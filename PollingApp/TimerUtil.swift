@@ -60,6 +60,36 @@ class TimerUtil {
       return "\(num)"
     }
   }
-
+  
+  static func getHourValueFromDurationInSeconds(seconds: Int) -> Int {
+    //Int(3.99) = 3
+    return Int(seconds/UITimeConstants.oneHourinSeconds)
+  }
+  
+  static func getMinuteValueFromDurationInSeconds(seconds: Int) -> Int {
+    //Int(3.99) = 3
+    return Int((seconds%UITimeConstants.oneHourinSeconds)/UITimeConstants.oneMinuteinSeconds)
+  }
+  
+  static func getTextToShowInTimer(seconds: Int) -> String {
+    let hour: Int = TimerUtil.getHourValueFromDurationInSeconds(seconds)
+    let min: Int = TimerUtil.getMinuteValueFromDurationInSeconds(seconds)
+    
+    var minString:String
+    if(min <= 1) {
+      minString = "\(StringUtil.fillInString(UITimeRemaining.timerMinute, time: min))"
+    } else {
+      minString = "\(StringUtil.fillInString(UITimeRemaining.timerMinutes, time: min))"
+    }
+    
+    var hourString:String
+    if(hour <= 1) {
+      hourString = "\(StringUtil.fillInString(UITimeRemaining.timerHour, time: hour))"
+    } else {
+      hourString = "\(StringUtil.fillInString(UITimeRemaining.timerHours, time: hour))"
+    }
+    
+    return hour == 0 ? minString : hourString + ", " + minString
+  }
 }
 

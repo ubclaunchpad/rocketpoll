@@ -12,7 +12,7 @@ protocol CreateQuestionViewContainerDelegate {
   
   func submitButtonPressed(question: QuestionText, answerArray: [AnswerText], questionDuration: Int)
   func backButtonPressed()
-  func checksInput (question:QuestionText, A1:AnswerText, A2:AnswerText, A3:AnswerText, A4:AnswerText, timerWasSet:Bool) -> Bool
+  func checksInput(question:QuestionText, A1:AnswerText, A2:AnswerText, A3:AnswerText, A4:AnswerText, timerWasSet:Bool) -> Bool
 }
 
 class CreateQuestionContainerView: UIView {
@@ -80,10 +80,6 @@ class CreateQuestionContainerView: UIView {
     return view
   }
   
-  
-  //func timerScrollerValChanged(){
-  //}
-  
   @IBAction func doneButtonPressed(sender: AnyObject) {
     timerScroller.alpha = 0
     Submit.alpha = 1
@@ -91,14 +87,7 @@ class CreateQuestionContainerView: UIView {
     timerHasBeenSet = true
     timerLabel.alpha = 1
     time = Int(timerScroller.countDownDuration) - 7
-    let hour: Int = time/3600
-    let min: Int = (time%3600)/60
-    if (hour == 0){
-      timerLabel.text = ("Mins: \(min)")
-    }else{
-      timerLabel.text = ("Hours: \(hour), Mins: \(min)")
-      
-    }
+    timerLabel.text = TimerUtil.getTextToShowInTimer(time)
     doneButton.alpha = 0
   }
   
