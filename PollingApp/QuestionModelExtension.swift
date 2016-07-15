@@ -12,10 +12,10 @@ import Firebase
 extension ModelInterface: QuestionModelProtocol {
   
   //MARK: - Setting Question Information -
-  func createNewQuestion(question: QuestionText, questionDuration: Double) -> Question {
+  func createNewQuestion(question: QuestionText, questionDuration: Int) -> Question {
     
     let timeStamp = NSDate().timeIntervalSince1970
-    let endStamp = NSDate().timeIntervalSince1970 + questionDuration
+    let endStamp = NSDate().timeIntervalSince1970 + Double(questionDuration)
     let QID = ["Author": "\(currentUser)","Question": question, "startTimeStamp": timeStamp, "endTimeStamp": endStamp]
     let fbd:FirebaseData = FirebaseData()
     let key = fbd.postToFirebaseWithKey("QUESTIONSCREEN", child: "QID", children: QID) as QuestionID

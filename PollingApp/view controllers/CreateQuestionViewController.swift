@@ -37,7 +37,7 @@ class CreateQuestionViewController: UIViewController{
 
 extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
   
-  func submitButtonPressed(question: QuestionText, answerArray: [AnswerID], questionDuration: Double){
+  func submitButtonPressed(question: QuestionText, answerArray: [AnswerID], questionDuration: Int){
     //TODO: move answerID generation in createNewQuestion(_)
     let questionObject = ModelInterface.sharedInstance.createNewQuestion(question, questionDuration: questionDuration)
     let answerIDs =  ModelInterface.sharedInstance.createAnswerIDs(

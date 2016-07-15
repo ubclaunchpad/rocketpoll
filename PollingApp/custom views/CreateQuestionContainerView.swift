@@ -10,7 +10,7 @@ import UIKit
 
 protocol CreateQuestionViewContainerDelegate {
   
-  func submitButtonPressed(question: QuestionText, answerArray: [AnswerText], questionDuration: Double)
+  func submitButtonPressed(question: QuestionText, answerArray: [AnswerText], questionDuration: Int)
   func backButtonPressed()
   func checksInput (question:QuestionText, A1:AnswerText, A2:AnswerText, A3:AnswerText, A4:AnswerText, timerWasSet:Bool) -> Bool
 }
@@ -41,16 +41,14 @@ class CreateQuestionContainerView: UIView {
   
   var timerHasBeenSet = false
   
-  var time: Double = 0;
-  
-  let scrollerBackgroundColor = UIColor(red: 174/255, green: 222/255, blue: 244/255, alpha: 1)
+  var time: Int = 0;
   
   @IBAction func setTimerButtonPressed(sender: AnyObject) {
     doneButton.alpha = 1;
     Submit.alpha = 0
     setTimerButton.alpha = 0;
     timerScroller.alpha = 1;
-    timerScroller.backgroundColor = scrollerBackgroundColor
+    timerScroller.backgroundColor = UIColor.whiteColor()
   }
   
   @IBAction func SubmitPress(sender: AnyObject) {
@@ -92,9 +90,9 @@ class CreateQuestionContainerView: UIView {
     setTimerButton.alpha = 1
     timerHasBeenSet = true
     timerLabel.alpha = 1
-    time = timerScroller.countDownDuration - 7
-    let hour: Int = Int(time)/3600
-    let min: Int = (Int(time)%3600)/60
+    time = Int(timerScroller.countDownDuration) - 7
+    let hour: Int = time/3600
+    let min: Int = (time%3600)/60
     if (hour == 0){
       timerLabel.text = ("Mins: \(min)")
     }else{
