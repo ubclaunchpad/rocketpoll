@@ -11,15 +11,15 @@ import Firebase
 
 class PollResultsViewController: UIViewController {
   private var correctAnswer: AnswerText = ""
-  private var correctAnswerId: AnswerID = ""
-  private var questionID:QuestionID = ""
   var totalNumberOfUserAnswers: Int = 0
   private var answerIDDictionary = [AnswerText: AnswerID]()
   private var answers: [AnswerText] = []
-  private var answerIDs: [AnswerID] = []
   private var NumResponsesPerAnswer: [Int] = []
- 
   
+  var questionText = ""
+  var questionID:QuestionID = ""
+  var answerIDs: [AnswerID] = []
+  var author = ""
   var container: PollResultsViewContainer?
   
   override func viewDidLoad() {
@@ -31,26 +31,24 @@ class PollResultsViewController: UIViewController {
     container = PollResultsViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
     view.addSubview(container!)
     
-    if (currentUser == selectedQuestion.author){
+    if (currentUser == author){
       container?.makeDeleteButtonVisisble()
     }else{
       container?.hideDeleteButton()
     }
     
     //TODO:IPA-125
-    questionID = ModelInterface.sharedInstance.getSelectedQuestion().QID
-    let questionText = ModelInterface.sharedInstance.getSelectedQuestion().questionText
-    answerIDs = []
-    answerIDs = ModelInterface.sharedInstance.getSelectedQuestion().AIDS
     ModelInterface.sharedInstance.processAnswerData(answerIDs) { (listofAllAnswers) in
       self.answerIDDictionary = [AnswerText: AnswerID]()
       self.answers = []
       self.NumResponsesPerAnswer = []
-
+      self.totalNumberOfUserAnswers = 0
+      self.correctAnswer = ""
+      
       self.fillInTheFields(listofAllAnswers)
       self.container?.delegate = self
       self.container?.setTotalNumberOfAnswers(self.totalNumberOfUserAnswers)
-      self.container?.setQuestionLabelText(questionText)
+      self.container?.setQuestionLabelText(self.questionText)
       self.container?.setAnswers(self.answers)
       self.container?.setCorrectAnswer(self.correctAnswer)
       self.container?.setNumberOfResponsesForAnswer(self.NumResponsesPerAnswer)
