@@ -34,10 +34,10 @@ class MathUtilTest: XCTestCase {
   }
   
   func testCalculatePercentage() {
-    //XCTAssertEqual(50.0, MathUtil.calculatePercentage(2, denom: 4))
-    //XCTAssertEqual(100.0, MathUtil.calculatePercentage(35, denom: 35))
-    //XCTAssertEqual(0, MathUtil.calculatePercentage(0, denom: 100))
-    //XCTAssertEqual(67.0, MathUtil.calculatePercentage(2, denom: 3))
+    XCTAssertEqual(50.0, MathUtil.calculatePercentage(2, denom: 4))
+    XCTAssertEqual(100.0, MathUtil.calculatePercentage(35, denom: 35))
+    XCTAssertEqual(0, MathUtil.calculatePercentage(0, denom: 100))
+    XCTAssertEqual(67.0, MathUtil.calculatePercentage(2, denom: 3))
   }
 
 }
