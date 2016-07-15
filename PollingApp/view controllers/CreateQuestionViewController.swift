@@ -62,11 +62,13 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
   }
   
   //TODO: IPA-120
+  
   func checksInput (question:String, A1:String, A2:String,  A3:String,A4:String, timerWasSet:Bool) -> Bool {
     if((question == "") || (A1 == "") || (A2 == "") || (A3 == "") || (A4 == "") || (timerWasSet == false)) {
-      let alert = UIAlertController(title: "Fill in the whole fields and ensure that timer has been set", message:"",
+      let alert = UIAlertController(title: "\(alertMessages.emptyQuestions)", message:"",
+
                                     preferredStyle: UIAlertControllerStyle.Alert)
-      alert.addAction(UIAlertAction(title: "Ok",
+      alert.addAction(UIAlertAction(title: "\(alertMessages.confirm)",
         style: UIAlertActionStyle.Default, handler: nil))
       self.presentViewController(alert, animated: true, completion: nil)
       return true

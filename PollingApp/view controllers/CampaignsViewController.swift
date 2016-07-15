@@ -142,20 +142,20 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
     if absDifference < UITimeConstants.moment {
       if difference > 0 {
         self.isExpired.append(true)
-        self.expiry.append("Poll ended a couple moments ago")
+        self.expiry.append("\(UITimeRemaining.endedMoments)")
       } else {
         self.isExpired.append(false)
-        self.expiry.append("Poll ends in a couple moments")
+        self.expiry.append("\(UITimeRemaining.endsMoments)")
       }
     }
     else if absDifference < UITimeConstants.oneHourinSeconds {
       let minutes = absDifference/UITimeConstants.oneMinuteinSeconds
       if difference > 0 {
         self.isExpired.append(true)
-        self.expiry.append("Poll ended \(minutes) minutes ago")
+        self.expiry.append("\(StringUtil.fillInString(UITimeRemaining.endedMinutes, time: minutes))")
       } else {
         self.isExpired.append(false)
-        self.expiry.append("Poll ends in \(minutes) minutes")
+        self.expiry.append("\(StringUtil.fillInString(UITimeRemaining.endsMinutes, time: minutes))")
       }
     }
     else if absDifference < UITimeConstants.oneDayinSeconds {
@@ -164,16 +164,16 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
         
         self.isExpired.append(true)
         if hours > 1 {
-          self.expiry.append("Poll ended \(hours) hours ago")
+          self.expiry.append("\(StringUtil.fillInString(UITimeRemaining.endedHours, time: hours))")
         } else {
-          self.expiry.append("Poll ended \(hours) hour ago")
+          self.expiry.append("\(StringUtil.fillInString(UITimeRemaining.endedHour, time: hours))")
         }
       } else {
         self.isExpired.append(false)
         if hours > 1 {
-          self.expiry.append("Poll ends in \(hours) hours")
+          self.expiry.append("\(StringUtil.fillInString(UITimeRemaining.endsHours, time: hours))")
         } else {
-          self.expiry.append("Poll ends in \(hours) hour")
+          self.expiry.append("\(StringUtil.fillInString(UITimeRemaining.endsHour, time: hours))")
         }
       }
     }
@@ -185,9 +185,9 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
       } else {
         self.isExpired.append(false)
         if days > 1 {
-          self.expiry.append("Poll ends in \(days) days")
+          self.expiry.append("\(StringUtil.fillInString(UITimeRemaining.endsDays, time: days))")
         } else {
-          self.expiry.append("Poll ends in \(days) day")
+          self.expiry.append("\(StringUtil.fillInString(UITimeRemaining.endsDay, time: days))")
         }
       }
       
