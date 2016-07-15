@@ -11,13 +11,14 @@ import UIKit
 
 protocol PollResultsViewContainerDelegate {
   func goBackToCampaign()
+  func presentConfirmationVaraible()
 }
 
 
 
 class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
-  
-  
+
+  @IBOutlet weak var deleteButton: UIButton!
   @IBOutlet weak var backButton: UIButton!
   @IBOutlet weak var resultsTableView: UITableView!
   @IBOutlet weak var questionLabel: UILabel!
@@ -56,7 +57,7 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     }
     
     if(totalNumberOfAnswers != 0){
-      let results:Double = Double(numberOfResponsesPerAnswer[indexPath.row])/Double(totalNumberOfAnswers)*100
+      let results:Double = MathUtil.convertTallyResultsToPercentage(Double(numberOfResponsesPerAnswer[indexPath.row]), denominator: Double(totalNumberOfAnswers))
       cell.setResults(results)
     }else{
       cell.setResults(0)
@@ -88,10 +89,22 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
   
   func setTotalNumberOfAnswers (totalNumOfAnswers:Int){
     totalNumberOfAnswers = totalNumOfAnswers
-    totalAnswersLabel.text = ("Number of users that answered: \(totalNumberOfAnswers)")
+    totalAnswersLabel.text = ("\(StringUtil.fillInString(numberOfAnswers, time: totalNumberOfAnswers))")
   }
   
   func setNumberOfResponsesForAnswer (NumResponses:[Int]){
     numberOfResponsesPerAnswer = NumResponses
+  }
+  
+  @IBAction func deleteButtonPressed(sender: AnyObject) {
+    delegate?.presentConfirmationVaraible()
+  }
+  
+  func makeDeleteButtonVisisble(){
+    deleteButton.alpha = 1
+  }
+  
+  func hideDeleteButton(){
+    deleteButton.alpha = 0
   }
 }

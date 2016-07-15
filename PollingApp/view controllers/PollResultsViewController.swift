@@ -31,6 +31,12 @@ class PollResultsViewController: UIViewController {
     container = PollResultsViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
     view.addSubview(container!)
     
+    if (currentUser == selectedQuestion.author){
+      container?.makeDeleteButtonVisisble()
+    }else{
+      container?.hideDeleteButton()
+    }
+    
     //TODO:IPA-125
     questionID = ModelInterface.sharedInstance.getSelectedQuestion().QID
     let questionText = ModelInterface.sharedInstance.getSelectedQuestion().questionText
@@ -67,6 +73,13 @@ class PollResultsViewController: UIViewController {
       self.NumResponsesPerAnswer.append(listofAllAnswers[i].tally)
     }
   }
+  
+  func deleteQuestion(){
+    ModelInterface.sharedInstance.stopTimer(questionID)
+    ModelInterface.sharedInstance.removeQuestion(questionID)
+    let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
+    performSegueWithIdentifier(nextRoom, sender: self)
+  }
 }
 
 extension PollResultsViewController: PollResultsViewContainerDelegate {
@@ -75,5 +88,15 @@ extension PollResultsViewController: PollResultsViewContainerDelegate {
     performSegueWithIdentifier(nextRoom, sender: self)
   }
   
+  func presentConfirmationVaraible() {
+    let deleteAlert = UIAlertController(title: "Confirmation", message: "Are you sure you want to delete your quesiton?", preferredStyle: UIAlertControllerStyle.Alert)
+    deleteAlert.addAction(UIAlertAction(title: "No", style: .Default, handler: { (action: UIAlertAction!) in deleteAlert.dismissViewControllerAnimated(true, completion: nil)
+    }))
+    deleteAlert.addAction(UIAlertAction(title: "Yes", style: .Cancel, handler: { (action: UIAlertAction!) in
+      self.deleteQuestion()
+    }))
+    presentViewController(deleteAlert, animated: true, completion: nil)
+  }
 }
+
 

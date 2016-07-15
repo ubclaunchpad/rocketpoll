@@ -31,10 +31,10 @@ class AnswerAdminTableViewCell: UITableViewCell {
   func setisCorrect(isCorrect: String) {
     //TODO: this should no be a magic string
     if isCorrect == "notCorrect" {
-      isaCorrectAnswer.text = "not Correct"
+      isaCorrectAnswer.text = "\(correct.notCorrect)"
     }
     else{
-      isaCorrectAnswer.text = "Correct"
+      isaCorrectAnswer.text = "\(correct.isCorrect)"
     }
   }
   
