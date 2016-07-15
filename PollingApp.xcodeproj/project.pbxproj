@@ -206,7 +206,7 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		521E4FF21C8B9CFD004A8F52 /* poll user views */ = {
+		521E4FF21C8B9CFD004A8F52 /* poll_user_views */ = {
 			isa = PBXGroup;
 			children = (
 				521E4FF51C8B9D48004A8F52 /* PollUserViewContainer.swift */,
@@ -214,10 +214,10 @@
 				6E705D4C1C9925160096AD36 /* AnswerViewTableViewCell.swift */,
 				6E705D4D1C9925160096AD36 /* AnswerViewTableViewCell.xib */,
 			);
-			name = "poll user views";
+			name = poll_user_views;
 			sourceTree = "<group>";
 		};
-		52C2C65B1C9A7395001779F5 /* room nearby views */ = {
+		52C2C65B1C9A7395001779F5 /* room_nearby_views */ = {
 			isa = PBXGroup;
 			children = (
 				523FCD051C9BE1F3007EA5E1 /* RoomViewTableViewCell.swift */,
@@ -225,7 +225,7 @@
 				52C2C65E1C9A7700001779F5 /* RoomsNearbyViewContainer.xib */,
 				523FCD011C9BD84A007EA5E1 /* RoomsNearbyViewContainer.swift */,
 			);
-			name = "room nearby views";
+			name = room_nearby_views;
 			sourceTree = "<group>";
 		};
 		76B28C0C1C66C84A008407EE = {
@@ -259,8 +259,8 @@
 				C80395FE1C8CB5A8007C276F /* Model */,
 				76B28C181C66C84A008407EE /* AppDelegate.swift */,
 				76B28C4B1C66CC75008407EE /* Constants.swift */,
-				76B28C4A1C66CAB3008407EE /* view controllers */,
-				76B28C4D1C66CF66008407EE /* custom views */,
+				76B28C4A1C66CAB3008407EE /* view_controllers */,
+				76B28C4D1C66CF66008407EE /* custom_views */,
 				76B28C1E1C66C84A008407EE /* Main.storyboard */,
 				76B28C211C66C84A008407EE /* Assets.xcassets */,
 				76B28C231C66C84A008407EE /* LaunchScreen.storyboard */,
@@ -291,7 +291,7 @@
 			path = PollingAppUITests;
 			sourceTree = "<group>";
 		};
-		76B28C4A1C66CAB3008407EE /* view controllers */ = {
+		76B28C4A1C66CAB3008407EE /* view_controllers */ = {
 			isa = PBXGroup;
 			children = (
 				76B28C481C66CAAA008407EE /* InputNameViewController.swift */,
@@ -302,24 +302,26 @@
 				76C150061C6FDF8E0066C0FE /* PollUserViewController.swift */,
 				76B28C1A1C66C84A008407EE /* CampaignsViewController.swift */,
 			);
+			name = view_controllers;
 			path = "view controllers";
 			sourceTree = "<group>";
 		};
-		76B28C4D1C66CF66008407EE /* custom views */ = {
+		76B28C4D1C66CF66008407EE /* custom_views */ = {
 			isa = PBXGroup;
 			children = (
-				52C2C65B1C9A7395001779F5 /* room nearby views */,
+				52C2C65B1C9A7395001779F5 /* room_nearby_views */,
 				D0659D201CB0681C00D98EED /* PollAdminView */,
-				521E4FF21C8B9CFD004A8F52 /* poll user views */,
+				521E4FF21C8B9CFD004A8F52 /* poll_user_views */,
 				D342961C1C792F7900C33920 /* pollresultsviews */,
-				D3D4593E1C6FE64D000ABD57 /* create question */,
-				76C150121C6FE1670066C0FE /* campaign views */,
-				76C150131C6FE17C0066C0FE /* room views */,
+				D3D4593E1C6FE64D000ABD57 /* create_question */,
+				76C150121C6FE1670066C0FE /* campaign_views */,
+				76C150131C6FE17C0066C0FE /* room_views */,
 			);
+			name = custom_views;
 			path = "custom views";
 			sourceTree = "<group>";
 		};
-		76C150121C6FE1670066C0FE /* campaign views */ = {
+		76C150121C6FE1670066C0FE /* campaign_views */ = {
 			isa = PBXGroup;
 			children = (
 				52EB17B61CB21CC300C40DBC /* CampaignViewTableViewCell.xib */,
@@ -327,16 +329,16 @@
 				76B28C521C66D0B0008407EE /* CampaignViewContainer.swift */,
 				52A1795B1CB079E500BADA2A /* CampaignViewContainer.xib */,
 			);
-			name = "campaign views";
+			name = campaign_views;
 			sourceTree = "<group>";
 		};
-		76C150131C6FE17C0066C0FE /* room views */ = {
+		76C150131C6FE17C0066C0FE /* room_views */ = {
 			isa = PBXGroup;
 			children = (
 				76C1500E1C6FE14C0066C0FE /* RoomViewContainer.swift */,
 				76C150101C6FE15F0066C0FE /* RoomViewContainer.xib */,
 			);
-			name = "room views";
+			name = room_views;
 			sourceTree = "<group>";
 		};
 		93EDD064CD7CD3580EA6A58B /* Frameworks */ = {
@@ -450,13 +452,13 @@
 			path = Firebase;
 			sourceTree = "<group>";
 		};
-		D3D4593E1C6FE64D000ABD57 /* create question */ = {
+		D3D4593E1C6FE64D000ABD57 /* create_question */ = {
 			isa = PBXGroup;
 			children = (
 				D3D4593A1C6FE626000ABD57 /* CreateQuestionContainerView.swift */,
 				D3D4593C1C6FE646000ABD57 /* CreateQuestionContainerView.xib */,
 			);
-			name = "create question";
+			name = create_question;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
