@@ -9,9 +9,9 @@
 import Foundation
 
 class TimerUtil {
-  static let secondsInADay = 86400
-  static let secondsInAnHour = 3600
-  static let secondsInAMinute = 60
+  static let secondsInADay = UITimeConstants.oneDayinSeconds
+  static let secondsInAnHour = UITimeConstants.oneHourinSeconds
+  static let secondsInAMinute = UITimeConstants.oneMinuteinSeconds
   
   static func totalSecondsToString(sec: Int) -> String {
     return sec < secondsInADay
