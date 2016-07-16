@@ -30,6 +30,8 @@ var numberOfAnswers:String = "Number of users that answered: %1%"
 var charactersToAvoid : [Character] =
   Array("#[]*".characters)
 
+var LPGreen:[Double] = [28/255, 165/255, 122/255]
+
 enum Segues {
   static let toMainApp = "showMainApp"
   static let toQuestionsScreen = "toQuestionsScreen"
