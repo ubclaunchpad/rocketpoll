@@ -15,20 +15,26 @@ final class PollAdminViewController: UIViewController {
   private var minutes = 0
   private var seconds = 0
   private var totalSeconds = 0
-  private var timerQuestion = 0.0
   private var timer = NSTimer()
-  private var questionID:QuestionID = ""
-  private var questionText:QuestionText = ""
   private var answerIDDictionary = [AnswerText: AnswerID]()
-  private var answers:[AnswerText] = []
   private var correctAnswers:[AnswerText] = []
   private var sumuserresults = 0;
-  private var answerIDs:[AnswerID] = []
   private var numsubmitforeachAns:[[NSString:Int]] = [[:]]
   private var tallyIDDictioanry = [AnswerText:String]()
- 
-  
   var container: PollAdminViewContainer?
+  
+  //Information to send to Poll Results View Controller
+  private var sendAIDS = [AnswerID]()
+  private var sendQuestionText = "";
+  private var sendQID = "";
+  
+  //Recieved information from a View Controller
+  var questionID:QuestionID = ""
+  var questionText:QuestionText = ""
+  var timerQuestion = 0.0
+  var answerIDs:[AnswerID] = []
+  var answers:[AnswerText] = []
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -38,18 +44,13 @@ final class PollAdminViewController: UIViewController {
   func addContainerToVC() {
     container = PollAdminViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
     view.addSubview(container!)
-    
-    answerIDs = []
-    answerIDs = ModelInterface.sharedInstance.getSelectedQuestion().AIDS
-    timerQuestion = ModelInterface.sharedInstance.getSelectedQuestion().endTimestamp
-    
+  
     ModelInterface.sharedInstance.processAnswerData(answerIDs, completionHandler: { (listofAllAnswers) in
       self.answerIDDictionary = [AnswerText: AnswerID]()
       self.answers = []
       self.correctAnswers = []
       self.fillInTheFields(listofAllAnswers)
       
-      self.questionID = ModelInterface.sharedInstance.getSelectedQuestion().QID
       self.container?.setTally(self.tallyIDDictioanry)
       
       self.container?.delegate = self
@@ -63,8 +64,6 @@ final class PollAdminViewController: UIViewController {
   }
   
   func fillInTheFields(listofAllAnswers: [Answer]) {
-    
-    self.questionText = ModelInterface.sharedInstance.getSelectedQuestion().questionText
     let size = listofAllAnswers.count
     for i in 0 ..< size  {
       let tempAnswer = listofAllAnswers[i].answerText
@@ -93,6 +92,9 @@ final class PollAdminViewController: UIViewController {
     } else {
       timer.invalidate()
       // TODO: SEGUE to next view
+      sendQID = questionID
+      sendQuestionText = questionText
+      sendAIDS = answerIDs
       let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
       performSegueWithIdentifier(nextRoom, sender: self)
     }
@@ -113,15 +115,26 @@ final class PollAdminViewController: UIViewController {
     ModelInterface.sharedInstance.removeQuestion(questionID)
     segueToCampaign()
   }
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if (segue.identifier == ModelInterface.sharedInstance.segueToResultsScreen()) {
+      let viewController:PollResultsViewController = segue.destinationViewController as! PollResultsViewController
+      viewController.questionID = sendQID
+      viewController.questionText = sendQuestionText
+      viewController.answerIDs = sendAIDS
+    }
+  }
 }
 
 extension PollAdminViewController: PollAdminViewContainerDelegate {
   
   func segueToResult() {
     ModelInterface.sharedInstance.stopTimer(questionID)
+    sendQID = questionID
+    sendQuestionText = questionText
+    sendAIDS = answerIDs
     let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
     performSegueWithIdentifier(nextRoom, sender: self)
-    //print("SegueToResult");
   }
   func displayConfirmationMessage() {
     let deleteAlert = UIAlertController(title: "Confirmation", message: "Are you sure you want to delete your quesiton?", preferredStyle: UIAlertControllerStyle.Alert)
