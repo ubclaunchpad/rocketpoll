@@ -10,6 +10,8 @@ import UIKit
 import FirebaseAuth
 
 class InputNameViewController: UIViewController {
+  var container: InputNameView?
+  
   @IBOutlet weak var nameTextField: UITextField!
   
   override func viewDidLoad() {
@@ -20,8 +22,18 @@ class InputNameViewController: UIViewController {
     
     view.addGestureRecognizer(tap)
     
+    addContainerToVC()
+    
     nameTextField.delegate = self
   }
+  
+  func addContainerToVC() {
+    container = InputNameView.instanceFromNib(
+      CGRectMake(0, 0, view.bounds.width, view.bounds.height))
+    //container?.delegate = self
+    view.addSubview(container!)
+  }
+
   
   @IBAction func submitButtonPressed(sender: AnyObject) {
     submitButton()
