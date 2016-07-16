@@ -39,6 +39,7 @@ class CreateQuestionContainerView: UIView {
   
   @IBOutlet weak var Ans4: UITextField!
   
+  @IBOutlet weak var tableView: UITableView!
   var timerHasBeenSet = false
   
   var time: Int = 0;
@@ -76,6 +77,8 @@ class CreateQuestionContainerView: UIView {
   class func instanceFromNib(frame: CGRect) -> CreateQuestionContainerView {
     let view = UINib(nibName: "CreateQuestionContainerView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! CreateQuestionContainerView
     view.frame = frame
+    view.tableView.delegate = view
+    view.tableView.dataSource = view
     
     return view
   }
@@ -90,11 +93,25 @@ class CreateQuestionContainerView: UIView {
     timerLabel.text = TimerUtil.getTextToShowInTimer(time)
     doneButton.alpha = 0
   }
+
+}
+
+extension CreateQuestionContainerView: UITableViewDelegate, UITableViewDataSource {
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let pollResultsCell = UINib(nibName: "AnswerTableViewCell", bundle: nil)
+    tableView.registerNib(pollResultsCell, forCellReuseIdentifier: "answerCell")
+    let cell = self.tableView.dequeueReusableCellWithIdentifier("answerCell", forIndexPath: indexPath) as! AnswerTableViewCell
+    
+    return cell
+  }
   
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return 6
+  }
   
-  
-  
-  
+  func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    return 60
+  }
 }
 
 
