@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 typealias QuestionID = String
 typealias QuestionText = String
@@ -29,6 +30,10 @@ var numberOfAnswers:String = "Number of users that answered: %1%"
 
 var charactersToAvoid : [Character] =
   Array("#[]*".characters)
+
+enum colors {
+  static let green = UIColor(red: 28/255.0, green: 165/255.0, blue: 122/255.0, alpha: 1)
+}
 
 enum Segues {
   static let toMainApp = "showMainApp"
