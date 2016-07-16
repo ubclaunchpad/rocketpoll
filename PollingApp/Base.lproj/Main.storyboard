@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Campaigns-->
@@ -165,31 +164,9 @@
                     <view key="view" contentMode="scaleToFill" id="loa-Yt-ywj">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TwO-j1-wh9">
-                                <rect key="frame" x="150" y="235" width="300" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WdX-I1-H6R">
-                                <rect key="frame" x="276" y="315" width="49" height="30"/>
-                                <state key="normal" title="Submit"/>
-                                <connections>
-                                    <action selector="submitButtonPressed:" destination="awl-lu-Pvw" eventType="touchUpInside" id="fs2-JP-bSx"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" red="0.90283133140000005" green="1" blue="0.83708174599999996" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="WdX-I1-H6R" firstAttribute="centerX" secondItem="loa-Yt-ywj" secondAttribute="centerX" id="CZS-LD-SOY"/>
-                            <constraint firstItem="WdX-I1-H6R" firstAttribute="top" secondItem="TwO-j1-wh9" secondAttribute="bottom" constant="50" id="VFE-3Y-Bh7"/>
-                            <constraint firstItem="TwO-j1-wh9" firstAttribute="centerX" secondItem="loa-Yt-ywj" secondAttribute="centerX" id="e6P-Wn-nCv"/>
-                            <constraint firstItem="TwO-j1-wh9" firstAttribute="width" secondItem="loa-Yt-ywj" secondAttribute="width" multiplier="0.5" id="xEL-pr-DNn"/>
-                            <constraint firstItem="TwO-j1-wh9" firstAttribute="centerY" secondItem="loa-Yt-ywj" secondAttribute="centerY" constant="-50" id="yyj-8e-7yo"/>
-                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="nameTextField" destination="TwO-j1-wh9" id="POz-gk-hMa"/>
                         <segue destination="9pv-A4-QxB" kind="show" identifier="showMainApp" id="r35-Ea-4Oc"/>
                     </connections>
                 </viewController>
