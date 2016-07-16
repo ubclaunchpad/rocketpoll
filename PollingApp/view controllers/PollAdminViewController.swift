@@ -21,19 +21,20 @@ final class PollAdminViewController: UIViewController {
   private var sumuserresults = 0;
   private var numsubmitforeachAns:[[NSString:Int]] = [[:]]
   private var tallyIDDictioanry = [AnswerText:String]()
+  var container: PollAdminViewContainer?
+  
+  //Information to send to Poll Results View Controller
   private var sendAIDS = [AnswerID]()
-  private var sendAuthor = ""
-  private var sendTime = 0.0
   private var sendQuestionText = "";
   private var sendQID = "";
   
-  
+  //Recieved information from a View Controller
   var questionID:QuestionID = ""
   var questionText:QuestionText = ""
   var timerQuestion = 0.0
   var answerIDs:[AnswerID] = []
   var answers:[AnswerText] = []
-  var container: PollAdminViewContainer?
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -134,7 +135,6 @@ extension PollAdminViewController: PollAdminViewContainerDelegate {
     sendAIDS = answerIDs
     let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
     performSegueWithIdentifier(nextRoom, sender: self)
-    //print("SegueToResult");
   }
   func displayConfirmationMessage() {
     let deleteAlert = UIAlertController(title: "Confirmation", message: "Are you sure you want to delete your quesiton?", preferredStyle: UIAlertControllerStyle.Alert)

@@ -15,11 +15,14 @@ class PollResultsViewController: UIViewController {
   private var answerIDDictionary = [AnswerText: AnswerID]()
   private var answers: [AnswerText] = []
   private var NumResponsesPerAnswer: [Int] = []
+  private var author = ""
   
+  // Recieved information 
   var questionText = ""
   var questionID:QuestionID = ""
   var answerIDs: [AnswerID] = []
-  var author = ""
+
+  
   var container: PollResultsViewContainer?
   
   override func viewDidLoad() {

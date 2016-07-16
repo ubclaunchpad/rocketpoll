@@ -21,9 +21,8 @@ class CampaignsViewController: UIViewController {
   private var expiry = [String]()
   private var isExpired = [Bool]()
   
-  
+  // Information to send other view controllers
   private var sendAIDS = [AnswerID]()
-  private var sendAuthor = ""
   private var sendTime = 0.0
   private var sendQuestionText = "";
   private var sendQID = "";
@@ -107,7 +106,7 @@ class CampaignsViewController: UIViewController {
     if (segue.identifier == ModelInterface.sharedInstance.segueToQuestion()) {
       let viewController:PollUserViewController = segue.destinationViewController as! PollUserViewController
       viewController.answerIDs = sendAIDS
-      viewController.questionID = sendQID;
+      viewController.questionID = sendQID
       viewController.questionText = sendQuestionText
     }
     
@@ -127,12 +126,13 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
   //IPA-129
   func questionSelected(question: QuestionText) {
     if let questionID = questionIDDictionary[question] {
+      let author = QIDToAuthorDictionary[questionID]!
       sendQuestionText = question
       sendAIDS = QIDToAIDSDictionary[questionID]!
-      sendAuthor = QIDToAuthorDictionary[questionID]!
+
       sendTime = QIDToTimeDictionary[questionID]!
       sendQID = questionID
-      if (sendAuthor == currentUser) {
+      if (author == currentUser) {
         let nextRoom = ModelInterface.sharedInstance.segueTotoPollAdminVCFromCampaign()
         performSegueWithIdentifier(nextRoom, sender: self)
         
@@ -152,7 +152,7 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
     if let questionID = questionIDDictionary[question] {
       sendQuestionText = question
       sendAIDS = QIDToAIDSDictionary[questionID]!
-      sendAuthor = QIDToAuthorDictionary[questionID]!
+      //sendAuthor = QIDToAuthorDictionary[questionID]!
       sendTime = QIDToTimeDictionary[questionID]!
       sendQID = questionID
       let nextRoom = ModelInterface.sharedInstance.segueToResultsScreen()

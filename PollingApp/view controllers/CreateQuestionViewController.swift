@@ -12,7 +12,6 @@ class CreateQuestionViewController: UIViewController{
   
   
   private var sendAIDS = [AnswerID]()
-  private var sendAuthor = ""
   private var sendTime = 0.0
   private var sendQuestionText = "";
   private var sendQID = "";

@@ -17,16 +17,20 @@ final class PollUserViewController: UIViewController {
   private var answerIDDictionary = [AnswerText: AnswerID]()
   private var tallyDictionary = [AnswerID: Int]()
   private var answers:[AnswerText] = []
+  var container: PollUserViewContainer?
+  
+  
+  
+  // Recieved infomration
   var questionText:QuestionText = ""
   var questionID:QuestionID = ""
   var answerIDs:[AnswerID] = []
-  var container: PollUserViewContainer?
   
+  
+  // Information to send to another view controller
   private var sendAIDS = [AnswerID]()
-  private var sendAuthor = ""
-  private var sendTime = 0.0
-  private var sendQuestionText = "";
-  private var sendQID = "";
+  private var sendQuestionText = ""
+  private var sendQID = ""
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -40,7 +44,6 @@ final class PollUserViewController: UIViewController {
     container = PollUserViewContainer.instanceFromNib(viewSize)
     view.addSubview(container!)
    
-//    self.answerIDs = ModelInterface.sharedInstance.getSelectedQuestion().AIDS
     ModelInterface.sharedInstance.processAnswerData(self.answerIDs) { (listofAllAnswers) in
       self.answerIDDictionary = [AnswerText: AnswerID]()
       self.tallyDictionary = [AnswerID: Int]()
@@ -63,8 +66,6 @@ final class PollUserViewController: UIViewController {
       self.answers.append(tempAnswer)
       self.tallyDictionary[listofAllAnswers[i].AID] = listofAllAnswers[i].tally
     }
-//    self.questionID = selectedQuestion.QID
-//    self.questionText = selectedQuestion.questionText
     
     setCountdown(questionID);
   }
