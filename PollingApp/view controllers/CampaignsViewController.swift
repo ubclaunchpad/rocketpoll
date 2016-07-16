@@ -21,6 +21,11 @@ class CampaignsViewController: UIViewController {
   private var expiry = [String]()
   private var isExpired = [Bool]()
   
+  // Information to send other view controllers
+  private var sendAIDS = [AnswerID]()
+  private var sendTime = 0.0
+  private var sendQuestionText = "";
+  private var sendQID = "";
   
   var container: CampaignViewContainer?
   
@@ -48,7 +53,7 @@ class CampaignsViewController: UIViewController {
     self.container?.setRoomNameTitle(roomName)
   }
   
-  
+
   func fillInTheFields (listofAllQuestions:[Question]) {
     let size = listofAllQuestions.count
     questionIDDictionary = [QuestionText: QuestionID]()
@@ -88,6 +93,32 @@ class CampaignsViewController: UIViewController {
       
     }
   }
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    switch segue.identifier!  {
+    case ModelInterface.sharedInstance.segueTotoPollAdminVCFromCampaign():
+      let viewController:PollAdminViewController = segue.destinationViewController as! PollAdminViewController
+      viewController.answerIDs = sendAIDS
+      viewController.questionText = sendQuestionText
+      viewController.questionID = sendQID
+      viewController.timerQuestion = sendTime
+      break
+    case ModelInterface.sharedInstance.segueToQuestion():
+      let viewController:PollUserViewController = segue.destinationViewController as! PollUserViewController
+      viewController.answerIDs = sendAIDS
+      viewController.questionID = sendQID
+      viewController.questionText = sendQuestionText
+      break
+    case ModelInterface.sharedInstance.segueToResultsScreen():
+      let viewController:PollResultsViewController = segue.destinationViewController as! PollResultsViewController
+      viewController.questionID = sendQID
+      viewController.questionText = sendQuestionText
+      viewController.answerIDs = sendAIDS
+      break
+    default: break
+    }
+  }
+  
 }
 
 
@@ -95,18 +126,17 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
   //IPA-129
   func questionSelected(question: QuestionText) {
     if let questionID = questionIDDictionary[question] {
-      print(question)
-      let AIDS = QIDToAIDSDictionary[questionID]!
       let author = QIDToAuthorDictionary[questionID]!
-      let time = QIDToTimeDictionary[questionID]!
+      sendQuestionText = question
+      sendAIDS = QIDToAIDSDictionary[questionID]!
+
+      sendTime = QIDToTimeDictionary[questionID]!
+      sendQID = questionID
       if (author == currentUser) {
-        ModelInterface.sharedInstance.setSelectedQuestion(AIDS, QID: questionID, questionText: question, author: author, time:time)
         let nextRoom = ModelInterface.sharedInstance.segueTotoPollAdminVCFromCampaign()
         performSegueWithIdentifier(nextRoom, sender: self)
         
       } else {
-        
-        ModelInterface.sharedInstance.setSelectedQuestion(AIDS, QID: questionID, questionText: question, author: author, time: time)
         let questionSegue = ModelInterface.sharedInstance.segueToQuestion()
         performSegueWithIdentifier(questionSegue, sender: self)
       }
@@ -120,10 +150,10 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
   
   func resultsButtonSelected(question: QuestionText) {
     if let questionID = questionIDDictionary[question] {
-      let AIDS = QIDToAIDSDictionary[questionID]!;
-      let author = QIDToAuthorDictionary[questionID]!;
-      let time = QIDToTimeDictionary[questionID]!;
-      ModelInterface.sharedInstance.setSelectedQuestion(AIDS, QID: questionID, questionText: question, author: author, time:time)
+      sendQuestionText = question
+      sendAIDS = QIDToAIDSDictionary[questionID]!
+      sendTime = QIDToTimeDictionary[questionID]!
+      sendQID = questionID
       let nextRoom = ModelInterface.sharedInstance.segueToResultsScreen()
       performSegueWithIdentifier(nextRoom, sender: self)
     }
@@ -192,8 +222,6 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
       }
       
     }
-    
-    
     
     return deleted;
     

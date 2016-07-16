@@ -10,6 +10,12 @@ import UIKit
 
 class CreateQuestionViewController: UIViewController{
   
+  
+  private var sendAIDS = [AnswerID]()
+  private var sendTime = 0.0
+  private var sendQuestionText = "";
+  private var sendQID = "";
+  
   var container: CreateQuestionContainerView?
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -33,6 +39,17 @@ class CreateQuestionViewController: UIViewController{
   func dismissKeyboards() {
     view.endEditing(true)
   }
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if (segue.identifier == ModelInterface.sharedInstance.segueToAdminScreen()) {
+      let viewController:PollAdminViewController = segue.destinationViewController as! PollAdminViewController
+      viewController.answerIDs = sendAIDS
+      viewController.questionText = sendQuestionText
+      viewController.questionID = sendQID
+      viewController.timerQuestion = sendTime
+    }
+  }
+  
+  
 }
 
 extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
@@ -45,13 +62,10 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
     questionObject.AIDS = answerIDs
     ModelInterface.sharedInstance.setCorrectAnswer(answerIDs[0], isCorrectAnswer: true);
     
-    ModelInterface.sharedInstance.setSelectedQuestion(
-      answerIDs,
-      QID: questionObject.QID,
-      questionText: question,
-      author: currentUser,
-      time: questionObject.endTimestamp)
-    
+    self.sendAIDS = answerIDs
+    self.sendQuestionText = question
+    self.sendQID = questionObject.QID
+    self.sendTime = questionObject.endTimestamp
     let nextRoom = ModelInterface.sharedInstance.segueToAdminScreen()
     performSegueWithIdentifier(nextRoom, sender: self)
   }
