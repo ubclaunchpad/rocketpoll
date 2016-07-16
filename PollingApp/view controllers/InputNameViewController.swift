@@ -22,6 +22,8 @@ class InputNameViewController: UIViewController {
     
     addContainerToVC()
     
+    container?.backgroundColor = colors.green
+    
   }
   
   func checkChars(name: String) { //TODO: move this into a utils classs.

@@ -16,7 +16,9 @@ protocol InputNameViewDelegate {
 
 class InputNameView: UIView {
   
-  @IBOutlet weak var sumbitButton: UIButton!
+  
+ 
+  @IBOutlet weak var submitButton: UIButton!
   @IBOutlet weak var inputNameTextField: UITextField!
   
   var delegate: InputNameViewDelegate?
