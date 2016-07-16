@@ -24,6 +24,7 @@ class InputNameViewController: UIViewController {
   }
   
   @IBAction func submitButtonPressed(sender: AnyObject) {
+    Log.debug("Submit button pressed")
     submitButton()
   }
   func submitButton () {
