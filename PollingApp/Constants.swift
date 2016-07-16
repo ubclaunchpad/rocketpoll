@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 typealias QuestionID = String
 typealias QuestionText = String
@@ -29,6 +30,10 @@ var numberOfAnswers:String = "Number of users that answered: %1%"
 
 var charactersToAvoid : [Character] =
   Array("#[]*".characters)
+
+enum colors {
+  static let green = UIColor(red: 28/255.0, green: 165/255.0, blue: 122/255.0, alpha: 1)
+}
 
 enum Segues {
   static let toMainApp = "showMainApp"
@@ -53,31 +58,35 @@ enum UITimeConstants {
 }
 
 enum UIDaysRemaining {
-    static let singularDay = "Day Left"
-    static let pluralDay = "Days Left"
+  static let singularDay = "Day Left"
+  static let pluralDay = "Days Left"
 }
 
 enum UITimeRemaining {
-    static let endedMoments = "Poll ended a couple moments ago"
-    static let endsMoments = "Poll ends in a couple moments"
-    static let endedMinutes = "Poll ended %1% minutes ago"
-    static let endsMinutes = "Poll ends in %1% minutes"
-    static let endedHour = "Poll ended %1% hour ago"
-    static let endsHour = "Poll ends in %1% hour"
-    static let endedHours = "Poll ended %1% hours ago"
-    static let endsHours = "Poll ends in %1% hours"
-    static let endsDays = "Poll ends in %1% days"
-    static let endsDay = "Poll ends in %1% day"
+  static let endedMoments = "Poll ended a couple moments ago"
+  static let endsMoments = "Poll ends in a couple moments"
+  static let endedMinutes = "Poll ended %1% minutes ago"
+  static let endsMinutes = "Poll ends in %1% minutes"
+  static let endedHour = "Poll ended %1% hour ago"
+  static let endsHour = "Poll ends in %1% hour"
+  static let endedHours = "Poll ended %1% hours ago"
+  static let endsHours = "Poll ends in %1% hours"
+  static let endsDays = "Poll ends in %1% days"
+  static let endsDay = "Poll ends in %1% day"
+  static let timerMinutes = "Minutes: %1%"
+  static let timerMinute = "Minute: %1%"
+  static let timerHours = "Hours: %1%"
+  static let timerHour = "Hour: %1%"
 }
 
 enum alertMessages {
-    static let invalid = "Invalid Name"
-    static let empty = "Please enter your name"
-    static let emptyQuestions = "Please fill in all fields"
-    static let confirm = "OK"
+  static let invalid = "Invalid Name"
+  static let empty = "Please enter your name"
+  static let emptyQuestions = "Please fill in all fields and set timer"
+  static let confirm = "OK"
 }
 
 enum correct {
-    static let isCorrect = "Correct"
-    static let notCorrect = "not Correct"
+  static let isCorrect = "Correct"
+  static let notCorrect = "not Correct"
 }

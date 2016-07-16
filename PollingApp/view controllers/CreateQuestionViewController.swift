@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateQuestionViewController: UIViewController {
+class CreateQuestionViewController: UIViewController{
   
   var container: CreateQuestionContainerView?
   override func viewDidLoad() {
@@ -37,9 +37,9 @@ class CreateQuestionViewController: UIViewController {
 
 extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
   
-  func submitButtonPressed(question: QuestionText, answerArray: [AnswerID]){
+  func submitButtonPressed(question: QuestionText, answerArray: [AnswerID], questionDuration: Int){
     //TODO: move answerID generation in createNewQuestion(_)
-    let questionObject = ModelInterface.sharedInstance.createNewQuestion(question)
+    let questionObject = ModelInterface.sharedInstance.createNewQuestion(question, questionDuration: questionDuration)
     let answerIDs =  ModelInterface.sharedInstance.createAnswerIDs(
       questionObject.QID, answerText: answerArray)
     questionObject.AIDS = answerIDs
@@ -62,9 +62,11 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
   }
   
   //TODO: IPA-120
-  func checksInput (question:String, A1:String, A2:String,  A3:String,A4:String) -> Bool {
-    if((question == "") || (A1 == "") || (A2 == "") || (A3 == "") || (A4 == "") ) {
-      let alert = UIAlertController(title: "\(alertMessages.empty)", message:"",
+  
+  func checksInput (question:String, A1:String, A2:String,  A3:String,A4:String, timerWasSet:Bool) -> Bool {
+    if((question == "") || (A1 == "") || (A2 == "") || (A3 == "") || (A4 == "") || (timerWasSet == false)) {
+      let alert = UIAlertController(title: "\(alertMessages.emptyQuestions)", message:"",
+
                                     preferredStyle: UIAlertControllerStyle.Alert)
       alert.addAction(UIAlertAction(title: "\(alertMessages.confirm)",
         style: UIAlertActionStyle.Default, handler: nil))
@@ -72,6 +74,5 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
       return true
     }
     return false
-  }
-  
+  }  
 }

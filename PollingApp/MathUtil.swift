@@ -10,7 +10,7 @@ import Foundation
 
 
 class MathUtil  {
-  static func convertTallyResultsToPercentage (numerator :Double, denominator:Double) ->  Double{
+  static func convertTallyResultsToPercentage (numerator: Double, denominator: Double) ->  Double{
     let percent = Double(round((Double(numerator/denominator * 100)) * 10 / 10))
     return percent
   }
