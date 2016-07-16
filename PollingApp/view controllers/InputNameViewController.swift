@@ -57,6 +57,8 @@ extension InputNameViewController: InputNameViewDelegate {
   }
   
   func submit (name: String){
+    Log.debug("Submit button pressed")
+    
     checkChars(name)
     
     if ModelInterface.sharedInstance.isValidName(name) == false {

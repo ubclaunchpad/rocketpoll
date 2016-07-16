@@ -57,6 +57,9 @@
 		C80396161C8CE15E007C276F /* QuestionModelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80396151C8CE15E007C276F /* QuestionModelExtension.swift */; };
 		C80396191C8CE2FE007C276F /* AnswerModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80396181C8CE2FE007C276F /* AnswerModelProtocol.swift */; };
 		C803961B1C8CE6D0007C276F /* AnswerModelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C803961A1C8CE6D0007C276F /* AnswerModelExtension.swift */; };
+		C805755B1D3AD5D3009A44DE /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C805755A1D3AD5D3009A44DE /* Log.swift */; };
+		C805755D1D3ADB93009A44DE /* URLUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C805755C1D3ADB93009A44DE /* URLUtil.swift */; };
+		C805755F1D3ADC10009A44DE /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C805755E1D3ADC10009A44DE /* DateUtil.swift */; };
 		C80EE1971D287417005872DD /* TimerUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80EE1961D287417005872DD /* TimerUtil.swift */; };
 		C80EE1991D287D39005872DD /* TimerUtilTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80EE1981D287D39005872DD /* TimerUtilTest.swift */; };
 		D0659D221CB068F600D98EED /* PollAdminViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0659D211CB068F600D98EED /* PollAdminViewContainer.xib */; };
@@ -153,6 +156,9 @@
 		C80396151C8CE15E007C276F /* QuestionModelExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionModelExtension.swift; sourceTree = "<group>"; };
 		C80396181C8CE2FE007C276F /* AnswerModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerModelProtocol.swift; sourceTree = "<group>"; };
 		C803961A1C8CE6D0007C276F /* AnswerModelExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerModelExtension.swift; sourceTree = "<group>"; };
+		C805755A1D3AD5D3009A44DE /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		C805755C1D3ADB93009A44DE /* URLUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLUtil.swift; sourceTree = "<group>"; };
+		C805755E1D3ADC10009A44DE /* DateUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		C80EE1961D287417005872DD /* TimerUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerUtil.swift; sourceTree = "<group>"; };
 		C80EE1981D287D39005872DD /* TimerUtilTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerUtilTest.swift; sourceTree = "<group>"; };
 		C985ED9000D18F78D6CB685A /* Pods-PollingAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PollingAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PollingAppUITests/Pods-PollingAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -432,6 +438,9 @@
 				C80EE1961D287417005872DD /* TimerUtil.swift */,
 				52274E871D31ABB700A5BDD9 /* StringUtil.swift */,
 				D07A88F01D319E360071FB6A /* MathUtil.swift */,
+				C805755A1D3AD5D3009A44DE /* Log.swift */,
+				C805755C1D3ADB93009A44DE /* URLUtil.swift */,
+				C805755E1D3ADC10009A44DE /* DateUtil.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -759,7 +768,9 @@
 			files = (
 				76B28C531C66D0B0008407EE /* CampaignViewContainer.swift in Sources */,
 				76B28C4F1C66CF8B008407EE /* CampaignViewTableViewCell.swift in Sources */,
+				C805755B1D3AD5D3009A44DE /* Log.swift in Sources */,
 				C80396161C8CE15E007C276F /* QuestionModelExtension.swift in Sources */,
+				C805755F1D3ADC10009A44DE /* DateUtil.swift in Sources */,
 				6E3D7BED1CA4A243001E685B /* PollResultsTableViewCell.swift in Sources */,
 				D0B241CA1D10F9E8006DD380 /* Answer.swift in Sources */,
 				C80EE1971D287417005872DD /* TimerUtil.swift in Sources */,
@@ -789,6 +800,7 @@
 				76B28C191C66C84A008407EE /* AppDelegate.swift in Sources */,
 				C80396021C8CB73D007C276F /* TimerModelExtension.swift in Sources */,
 				76B28C1B1C66C84A008407EE /* CampaignsViewController.swift in Sources */,
+				C805755D1D3ADB93009A44DE /* URLUtil.swift in Sources */,
 				C80396061C8CC790007C276F /* NameModelExtension.swift in Sources */,
 				6E23109C1D3AD8BF008BEADC /* InputNameView.swift in Sources */,
 				76C150071C6FDF8E0066C0FE /* PollUserViewController.swift in Sources */,
