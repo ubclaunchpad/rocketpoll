@@ -9,8 +9,13 @@
 
 import UIKit
 
+protocol InputNameViewDelegate {
+  
+}
+
 class InputNameView: UIView {
   
+  var delegate: InputNameViewDelegate?
   
   class func instanceFromNib(frame: CGRect) -> InputNameView {
     let view = UINib(nibName: "InputNameView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! InputNameView

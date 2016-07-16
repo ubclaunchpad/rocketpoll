@@ -30,7 +30,7 @@ class InputNameViewController: UIViewController {
   func addContainerToVC() {
     container = InputNameView.instanceFromNib(
       CGRectMake(0, 0, view.bounds.width, view.bounds.height))
-    //container?.delegate = self
+    container?.delegate = self
     view.addSubview(container!)
   }
 
@@ -81,5 +81,9 @@ extension InputNameViewController: UITextFieldDelegate {
       self.presentViewController(alert, animated: true, completion: nil)
     }
   }
+}
+
+extension InputNameViewController: InputNameViewDelegate {
+
 }
 
