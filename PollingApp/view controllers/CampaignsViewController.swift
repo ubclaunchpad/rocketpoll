@@ -95,28 +95,28 @@ class CampaignsViewController: UIViewController {
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if (segue.identifier == ModelInterface.sharedInstance.segueTotoPollAdminVCFromCampaign()) {
+    switch segue.identifier!  {
+    case ModelInterface.sharedInstance.segueTotoPollAdminVCFromCampaign():
       let viewController:PollAdminViewController = segue.destinationViewController as! PollAdminViewController
       viewController.answerIDs = sendAIDS
       viewController.questionText = sendQuestionText
       viewController.questionID = sendQID
       viewController.timerQuestion = sendTime
-    }
-    
-    if (segue.identifier == ModelInterface.sharedInstance.segueToQuestion()) {
+      break
+    case ModelInterface.sharedInstance.segueToQuestion():
       let viewController:PollUserViewController = segue.destinationViewController as! PollUserViewController
       viewController.answerIDs = sendAIDS
       viewController.questionID = sendQID
       viewController.questionText = sendQuestionText
-    }
-    
-    if (segue.identifier == ModelInterface.sharedInstance.segueToResultsScreen()) {
+      break
+    case ModelInterface.sharedInstance.segueToResultsScreen():
       let viewController:PollResultsViewController = segue.destinationViewController as! PollResultsViewController
       viewController.questionID = sendQID
       viewController.questionText = sendQuestionText
       viewController.answerIDs = sendAIDS
+      break
+    default: break
     }
-    
   }
   
 }
@@ -152,7 +152,6 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
     if let questionID = questionIDDictionary[question] {
       sendQuestionText = question
       sendAIDS = QIDToAIDSDictionary[questionID]!
-      //sendAuthor = QIDToAuthorDictionary[questionID]!
       sendTime = QIDToTimeDictionary[questionID]!
       sendQID = questionID
       let nextRoom = ModelInterface.sharedInstance.segueToResultsScreen()
