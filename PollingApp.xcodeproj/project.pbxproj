@@ -17,8 +17,7 @@
 		523FCD071C9BE1F3007EA5E1 /* RoomViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523FCD051C9BE1F3007EA5E1 /* RoomViewTableViewCell.swift */; };
 		523FCD081C9BE1F3007EA5E1 /* RoomViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 523FCD061C9BE1F3007EA5E1 /* RoomViewTableViewCell.xib */; };
 		52478AAA1D3AF64A00379745 /* AnswerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52478AA91D3AF64A00379745 /* AnswerTableViewCell.xib */; };
-		52478AAC1D3AF7B000379745 /* AnswerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52478AAB1D3AF7B000379745 /* AnswerTableViewCell.swift */; };
-		52478AA41D3ADE7500379745 /* AnswerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52478AA31D3ADE7500379745 /* AnswerTableViewCell.swift */; };
+		52478AB01D3B1DE400379745 /* AnswerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52478AAF1D3B1DE400379745 /* AnswerTableViewCell.swift */; };
 		52979A431D375C000066FCF2 /* StringUtilTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52979A421D375C000066FCF2 /* StringUtilTest.swift */; };
 		52A1795C1CB079E500BADA2A /* CampaignViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52A1795B1CB079E500BADA2A /* CampaignViewContainer.xib */; };
 		52C2C65F1C9A7700001779F5 /* RoomsNearbyViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52C2C65E1C9A7700001779F5 /* RoomsNearbyViewContainer.xib */; };
@@ -101,8 +100,7 @@
 		523FCD051C9BE1F3007EA5E1 /* RoomViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomViewTableViewCell.swift; sourceTree = "<group>"; };
 		523FCD061C9BE1F3007EA5E1 /* RoomViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomViewTableViewCell.xib; sourceTree = "<group>"; };
 		52478AA91D3AF64A00379745 /* AnswerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerTableViewCell.xib; sourceTree = "<group>"; };
-		52478AAB1D3AF7B000379745 /* AnswerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerTableViewCell.swift; sourceTree = "<group>"; };
-		52478AA31D3ADE7500379745 /* AnswerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerTableViewCell.swift; sourceTree = "<group>"; };
+		52478AAF1D3B1DE400379745 /* AnswerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerTableViewCell.swift; sourceTree = "<group>"; };
 		52979A421D375C000066FCF2 /* StringUtilTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtilTest.swift; sourceTree = "<group>"; };
 		52A1795B1CB079E500BADA2A /* CampaignViewContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CampaignViewContainer.xib; sourceTree = "<group>"; };
 		52C2C65E1C9A7700001779F5 /* RoomsNearbyViewContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomsNearbyViewContainer.xib; sourceTree = "<group>"; };
@@ -462,8 +460,7 @@
 			isa = PBXGroup;
 			children = (
 				52478AA91D3AF64A00379745 /* AnswerTableViewCell.xib */,
-				52478AAB1D3AF7B000379745 /* AnswerTableViewCell.swift */,
-				52478AA31D3ADE7500379745 /* AnswerTableViewCell.swift */,
+				52478AAF1D3B1DE400379745 /* AnswerTableViewCell.swift */,
 				D3D4593A1C6FE626000ABD57 /* CreateQuestionContainerView.swift */,
 				D3D4593C1C6FE646000ABD57 /* CreateQuestionContainerView.xib */,
 			);
@@ -753,8 +750,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				76B28C531C66D0B0008407EE /* CampaignViewContainer.swift in Sources */,
-				52478AAC1D3AF7B000379745 /* AnswerTableViewCell.swift in Sources */,
-				52478AA41D3ADE7500379745 /* AnswerTableViewCell.swift in Sources */,
 				76B28C4F1C66CF8B008407EE /* CampaignViewTableViewCell.swift in Sources */,
 				C80396161C8CE15E007C276F /* QuestionModelExtension.swift in Sources */,
 				6E3D7BED1CA4A243001E685B /* PollResultsTableViewCell.swift in Sources */,
@@ -776,6 +771,7 @@
 				D3D4593B1C6FE626000ABD57 /* CreateQuestionContainerView.swift in Sources */,
 				D0659D241CB06AAD00D98EED /* PollAdminViewContainer.swift in Sources */,
 				C80396191C8CE2FE007C276F /* AnswerModelProtocol.swift in Sources */,
+				52478AB01D3B1DE400379745 /* AnswerTableViewCell.swift in Sources */,
 				D34296211C792F9C00C33920 /* PollResultsViewContainer.swift in Sources */,
 				C803960A1C8CC7F0007C276F /* NameModelProtocol.swift in Sources */,
 				6E705D4E1C9925160096AD36 /* AnswerViewTableViewCell.swift in Sources */,

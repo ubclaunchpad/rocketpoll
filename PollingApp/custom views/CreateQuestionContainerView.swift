@@ -15,7 +15,7 @@ protocol CreateQuestionViewContainerDelegate {
   func checksInput(question:QuestionText, A1:AnswerText, A2:AnswerText, A3:AnswerText, A4:AnswerText, timerWasSet:Bool) -> Bool
 }
 
-class CreateQuestionContainerView: UIView, UITableViewDelegate, UITableViewDataSource {
+class CreateQuestionContainerView: UIView {
   @IBOutlet weak var timerLabel: UILabel!
   
   @IBOutlet weak var doneButton: UIButton!
@@ -85,31 +85,6 @@ class CreateQuestionContainerView: UIView, UITableViewDelegate, UITableViewDataS
     return view
   }
   
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//    return questions.count
-    return 3
-  }
-  
-  func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//    if section < headerTitles.count {
-//      return headerTitles[section]
-//    }
-    
-    return "Question"
-  }
-  
-  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
-//    let ip = indexPath
-//    cell.textLabel?.text = Data1[ip.row] as String
-    return cell
-  }
-
-  
-  func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return 60
-  }
-  
   @IBAction func doneButtonPressed(sender: AnyObject) {
     timerScroller.alpha = 0
     Submit.alpha = 1
@@ -133,7 +108,7 @@ extension CreateQuestionContainerView: UITableViewDelegate, UITableViewDataSourc
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 6
+    return 4
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
