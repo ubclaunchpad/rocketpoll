@@ -22,7 +22,7 @@
                         <action selector="submitButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="sdg-z6-fr1"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sPs-SP-rWv">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Please enter you name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sPs-SP-rWv">
                     <rect key="frame" x="150" y="246" width="300" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="300" id="afA-4E-sYe"/>
@@ -33,8 +33,8 @@
                         <action selector="textFieldPressed:" destination="iN0-l3-epB" eventType="editingDidBegin" id="pRU-vo-sah"/>
                     </connections>
                 </textField>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rocket" translatesAutoresizingMaskIntoConstraints="NO" id="YFn-r5-Qla">
-                    <rect key="frame" x="259" y="56" width="82" height="141.5"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="rocket" translatesAutoresizingMaskIntoConstraints="NO" id="YFn-r5-Qla">
+                    <rect key="frame" x="259" y="56" width="82" height="142"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="141" id="2lH-cC-kWi"/>
                         <constraint firstAttribute="width" constant="82" id="Uv7-Ld-uWb"/>
