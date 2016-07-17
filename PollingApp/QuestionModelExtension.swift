@@ -25,19 +25,6 @@ extension ModelInterface: QuestionModelProtocol {
     return sendQuestion
   }
   
-  func getSelectedQuestion() -> Question  {
-    return selectedQuestion
-  }
-  
-  func setSelectedQuestion(AIDS: [AnswerID], QID: QuestionID, questionText: QuestionText, author: Author, time: Double) {
-    selectedQuestion.QID = QID
-    selectedQuestion.AIDS = AIDS
-    selectedQuestion.questionText = questionText
-    selectedQuestion.author = author
-    selectedQuestion.endTimestamp = time
-  }
-  
-  
   func processQuestionData(completionHandler: (listofAllQuestions: [Question]) -> ()){
     let ref =  FIRDatabase.database().reference();
     ref.child("QUESTIONSCREEN").observeEventType(.Value, withBlock: { (snapshot) in
