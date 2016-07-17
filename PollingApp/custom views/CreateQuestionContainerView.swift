@@ -10,9 +10,9 @@ import UIKit
 
 protocol CreateQuestionViewContainerDelegate {
   
-  func submitButtonPressed(question: QuestionText, answerArray: [AnswerText], questionDuration: Int)
+  func submitButtonPressed(question: QuestionText, answerArray: [AnswerID], correctAnswer: Int, questionDuration: Int)
   func backButtonPressed()
-  func checksInput(question:QuestionText, A1:AnswerText, A2:AnswerText, A3:AnswerText, A4:AnswerText, timerWasSet:Bool) -> Bool
+  func checksInput (question:String, A1:String, A2:String, A3:String, A4:String, correctAnswer:Int, timerWasSet:Bool) -> Bool
 }
 
 class CreateQuestionContainerView: UIView {
@@ -40,7 +40,7 @@ class CreateQuestionContainerView: UIView {
   
   var answerIdentifier:[Int] = [1, 2, 3, 4]
   var answers = [Int: String]()
-  var correctAnswer:Int?
+  var correctAnswer:Int = 0
   
   @IBAction func setTimerButtonPressed(sender: AnyObject) {
     doneButton.alpha = 1;
@@ -57,13 +57,13 @@ class CreateQuestionContainerView: UIView {
     let A3 = answers[3]
     let A4 = answers[4]
     
-    if ((delegate?.checksInput(question!, A1: A1!, A2: A2!, A3: A3!, A4: A4!, timerWasSet:timerHasBeenSet)) == true) {
+    if ((delegate?.checksInput(question!, A1: A1!, A2: A2!, A3: A3!, A4: A4!, correctAnswer: correctAnswer, timerWasSet:timerHasBeenSet)) == true) {
       return
     }
     
     let Answers = [A1!, A2!, A3!, A4!];
     
-    delegate?.submitButtonPressed(question!,answerArray: Answers, questionDuration: time);
+    delegate?.submitButtonPressed(question!,answerArray: Answers, correctAnswer: correctAnswer, questionDuration: time);
     
     
   }
