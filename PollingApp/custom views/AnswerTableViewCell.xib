@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -14,26 +16,39 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lov-Ml-D0A">
-                        <rect key="frame" x="27.5" y="7" width="265" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="265" id="MWl-KH-Tun"/>
-                        </constraints>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter an answer" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lov-Ml-D0A">
+                        <rect key="frame" x="11" y="7" width="208" height="30"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                     </textField>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m4L-1j-h6c">
+                        <rect key="frame" x="284" y="8" width="28" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="28" id="d0a-xA-m4U"/>
+                            <constraint firstAttribute="width" constant="28" id="hQF-we-nM6"/>
+                        </constraints>
+                        <state key="normal" image="SetIncorrect"/>
+                        <connections>
+                            <action selector="correct:" destination="Elw-sH-RzM" eventType="touchUpInside" id="tj9-By-Ucf"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="Lov-Ml-D0A" firstAttribute="width" secondItem="WMb-Sz-Kjr" secondAttribute="width" multiplier="0.65" id="71w-aA-4kU"/>
+                    <constraint firstItem="Lov-Ml-D0A" firstAttribute="leading" secondItem="WMb-Sz-Kjr" secondAttribute="leadingMargin" constant="3" id="VDI-tH-YUi"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="m4L-1j-h6c" secondAttribute="trailing" id="X7C-mE-jPm"/>
                     <constraint firstItem="Lov-Ml-D0A" firstAttribute="centerY" secondItem="WMb-Sz-Kjr" secondAttribute="centerY" id="YqB-cM-mE6"/>
+                    <constraint firstItem="m4L-1j-h6c" firstAttribute="centerY" secondItem="WMb-Sz-Kjr" secondAttribute="centerY" id="iGk-Ok-IV0"/>
                 </constraints>
             </tableViewCellContentView>
-            <constraints>
-                <constraint firstItem="Lov-Ml-D0A" firstAttribute="centerX" secondItem="Elw-sH-RzM" secondAttribute="centerX" id="6au-0b-vEL"/>
-            </constraints>
             <connections>
                 <outlet property="answerField" destination="Lov-Ml-D0A" id="vNB-BG-EaU"/>
+                <outlet property="correctButton" destination="m4L-1j-h6c" id="LPq-1b-QrC"/>
             </connections>
             <point key="canvasLocation" x="395" y="256"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="SetIncorrect" width="156" height="156"/>
+    </resources>
 </document>

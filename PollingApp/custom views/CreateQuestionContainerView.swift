@@ -32,14 +32,6 @@ class CreateQuestionContainerView: UIView {
   
   @IBOutlet weak var questionInputText: UITextField!
   
-  @IBOutlet weak var Ans1: UITextField!
-  
-  @IBOutlet weak var Ans2: UITextField!
-  
-  @IBOutlet weak var Ans3: UITextField!
-  
-  @IBOutlet weak var Ans4: UITextField!
-  
   @IBOutlet weak var tableView: UITableView!
   
   var timerHasBeenSet = false
@@ -48,6 +40,7 @@ class CreateQuestionContainerView: UIView {
   
   var answerIdentifier:[Int] = [1, 2, 3, 4]
   var answers = [Int: String]()
+  var correctAnswer:Int?
   
   @IBAction func setTimerButtonPressed(sender: AnyObject) {
     doneButton.alpha = 1;
@@ -87,7 +80,7 @@ class CreateQuestionContainerView: UIView {
     view.frame = frame
     view.tableView.delegate = view
     view.tableView.dataSource = view
-    view.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+    view.tableView.separatorColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2 )
 
     return view
   }
@@ -111,7 +104,16 @@ extension CreateQuestionContainerView: AnswerTableViewCellDelegate {
     answers[identifier] = answer
     print(answer)
   }
-
+  
+  func updateCorrectAnswer(identifier: Int) {
+    for cell in tableView.visibleCells {
+      let answerCell = cell as! AnswerTableViewCell
+      if answerCell.identifier != identifier {
+        answerCell.isCorrect = false
+      }
+    }
+    correctAnswer = identifier
+  }
   
 }
 
@@ -123,6 +125,7 @@ extension CreateQuestionContainerView: UITableViewDelegate, UITableViewDataSourc
     cell.identifier = answerIdentifier[indexPath.item]
     cell.delegate = self
     cell.answerField.delegate = cell
+    cell.isCorrect = false
     return cell
   }
   
