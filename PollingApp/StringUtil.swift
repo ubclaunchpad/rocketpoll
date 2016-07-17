@@ -32,4 +32,10 @@ class StringUtil {
       NSCharacterSet.whitespaceCharacterSet())
     return trimmedString
   }
+  
+  static func trimString(text: String) -> String {
+    let trimmedString = text.stringByTrimmingCharactersInSet(
+      NSCharacterSet.whitespaceCharacterSet())
+    return trimmedString
+  }
 }

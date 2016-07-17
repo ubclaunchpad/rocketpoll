@@ -46,6 +46,9 @@ class CreateQuestionContainerView: UIView {
   
   var time: Int = 0;
   
+  var answerIdentifier:[Int] = [1, 2, 3, 4]
+  var answers = [Int: String]()
+  
   @IBAction func setTimerButtonPressed(sender: AnyObject) {
     doneButton.alpha = 1;
     Submit.alpha = 0
@@ -56,10 +59,10 @@ class CreateQuestionContainerView: UIView {
   
   @IBAction func SubmitPress(sender: AnyObject) {
     let question = questionInputText.text;
-    let A1 = Ans1.text;
-    let A2 = Ans2.text;
-    let A3 = Ans3.text;
-    let A4 = Ans4.text;
+    let A1 = answers[1]
+    let A2 = answers[2]
+    let A3 = answers[3]
+    let A4 = answers[4]
     
     if ((delegate?.checksInput(question!, A1: A1!, A2: A2!, A3: A3!, A4: A4!, timerWasSet:timerHasBeenSet)) == true) {
       return
@@ -71,6 +74,9 @@ class CreateQuestionContainerView: UIView {
     
     
   }
+  
+  
+    
   @IBAction func backButtonPressed(sender: AnyObject) {
     delegate?.backButtonPressed()
   }
@@ -81,7 +87,8 @@ class CreateQuestionContainerView: UIView {
     view.frame = frame
     view.tableView.delegate = view
     view.tableView.dataSource = view
-    
+    view.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+
     return view
   }
   
@@ -98,12 +105,24 @@ class CreateQuestionContainerView: UIView {
 
 }
 
+extension CreateQuestionContainerView: AnswerTableViewCellDelegate {
+  
+  func updateAnswer(identifier: Int, answer: String) {
+    answers[identifier] = answer
+    print(answer)
+  }
+
+  
+}
+
 extension CreateQuestionContainerView: UITableViewDelegate, UITableViewDataSource {
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let pollResultsCell = UINib(nibName: "AnswerTableViewCell", bundle: nil)
     tableView.registerNib(pollResultsCell, forCellReuseIdentifier: "answerCell")
     let cell = self.tableView.dequeueReusableCellWithIdentifier("answerCell", forIndexPath: indexPath) as! AnswerTableViewCell
-    
+    cell.identifier = answerIdentifier[indexPath.item]
+    cell.delegate = self
+    cell.answerField.delegate = cell
     return cell
   }
   

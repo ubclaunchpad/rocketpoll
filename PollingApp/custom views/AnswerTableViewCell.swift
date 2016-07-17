@@ -9,6 +9,20 @@
 import Foundation
 import UIKit
 
-class AnswerTableViewCell: UITableViewCell {
+protocol AnswerTableViewCellDelegate {
+  func updateAnswer(identifier: Int, answer: String)
+}
+
+class AnswerTableViewCell: UITableViewCell, UITextFieldDelegate {
+  @IBOutlet weak var answerField: UITextField!
+  var identifier:Int?
+  var delegate:AnswerTableViewCellDelegate?
   
+  func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+    let answer = StringUtil.trimString(textField.text!)
+    if answer != "" && ModelInterface.sharedInstance.isValidName(answer){
+      delegate?.updateAnswer(identifier!, answer: answer)
+    }
+    return true
+  }
 }
