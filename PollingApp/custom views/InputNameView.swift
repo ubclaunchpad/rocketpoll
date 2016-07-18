@@ -11,13 +11,10 @@ import UIKit
 
 protocol InputNameViewDelegate {
   func submit (name: String)
-  func sendTextField(inputNameTextField: UITextField)
 }
 
 class InputNameView: UIView {
   
-  
- 
   @IBOutlet weak var submitButton: UIButton!
   @IBOutlet weak var inputNameTextField: UITextField!
   
@@ -27,9 +24,6 @@ class InputNameView: UIView {
     let view = UINib(nibName: "InputNameView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! InputNameView
     view.frame = frame
     return view
-  }
-  @IBAction func textFieldPressed(sender: AnyObject) {
-  delegate?.sendTextField(inputNameTextField)
   }
 
   @IBAction func submitButtonPressed(sender: AnyObject) {

@@ -29,9 +29,6 @@
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
-                    <connections>
-                        <action selector="textFieldPressed:" destination="iN0-l3-epB" eventType="editingDidBegin" id="pRU-vo-sah"/>
-                    </connections>
                 </textField>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="rocket" translatesAutoresizingMaskIntoConstraints="NO" id="YFn-r5-Qla">
                     <rect key="frame" x="259" y="56" width="82" height="142"/>

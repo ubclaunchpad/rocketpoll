@@ -23,6 +23,7 @@ class InputNameViewController: UIViewController {
     addContainerToVC()
     
     container?.backgroundColor = colors.green
+    container?.inputNameTextField.delegate = container
     
   }
   
@@ -51,10 +52,6 @@ class InputNameViewController: UIViewController {
 
 
 extension InputNameViewController: InputNameViewDelegate {
-  
-  func sendTextField(inputNameTextField: UITextField) {
-    inputNameTextField.delegate = container
-  }
   
   func submit (name: String){
     Log.debug("Submit button pressed")
