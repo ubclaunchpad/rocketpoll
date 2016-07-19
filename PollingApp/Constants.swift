@@ -82,6 +82,10 @@ enum alertMessages {
   static let empty = "Please enter your name"
   static let emptyQuestions = "Please fill in all fields and set timer"
   static let confirm = "OK"
+  static let yes = "YES"
+  static let no = "NO"
+  static let confirmName = "Pleaes confirm that your name is "
+  static let nameMessage = "You will not be able to change your name at a later time"
 }
 
 enum correct {

@@ -10,7 +10,7 @@
 import UIKit
 
 protocol InputNameViewDelegate {
-  func submit (name: String)
+  func displayConfirmationMessage (name: String)
 }
 
 class InputNameView: UIView {
@@ -28,8 +28,7 @@ class InputNameView: UIView {
 
   @IBAction func submitButtonPressed(sender: AnyObject) {
     let name = inputNameTextField.text
-    delegate?.submit(name!)
-    
+    delegate?.displayConfirmationMessage(name!)
   }
   
 }

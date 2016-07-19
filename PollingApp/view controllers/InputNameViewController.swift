@@ -26,6 +26,31 @@ class InputNameViewController: UIViewController {
     container?.inputNameTextField.delegate = container
   }
   
+  func submit (name: String){
+    
+    checkChars(name)
+    
+    if ModelInterface.sharedInstance.isValidName(name) == false {
+      let alert = UIAlertController(title: "\(alertMessages.invalid)", message:"",
+                                    preferredStyle: UIAlertControllerStyle.Alert)
+      alert.addAction(UIAlertAction(title: "\(alertMessages.confirm)",
+        style: UIAlertActionStyle.Default, handler: nil))
+      self.presentViewController(alert, animated: true, completion: nil)
+      
+    }
+    
+    let udid = UIDevice.currentDevice().identifierForVendor?.UUIDString
+    
+    FIRAuth.auth()?.createUserWithEmail("\(name)\(launchpadEmail)", password: udid!) { (user, error) in
+      if error != nil {
+        print("User name is taken")
+      }
+    }
+    currentUser = name
+    let segueName = ModelInterface.sharedInstance.setUserName(name)
+    performSegueWithIdentifier(segueName, sender: self)
+  }
+  
   // MARK: - Helper methods
   func checkChars(name: String) { //TODO: move this into a utils classs.
     if name.characters.count == 0 {
@@ -50,31 +75,16 @@ class InputNameViewController: UIViewController {
 // MARK: - InputeNameView Delegate -
 
 extension InputNameViewController: InputNameViewDelegate {
-  
-  func submit (name: String){
+  func displayConfirmationMessage (name: String) {
+    self.dismissKeyboard()
     Log.debug("Submit button pressed")
-    
-    checkChars(name)
-    
-    if ModelInterface.sharedInstance.isValidName(name) == false {
-      let alert = UIAlertController(title: "\(alertMessages.invalid)", message:"",
-                                    preferredStyle: UIAlertControllerStyle.Alert)
-      alert.addAction(UIAlertAction(title: "\(alertMessages.confirm)",
-        style: UIAlertActionStyle.Default, handler: nil))
-      self.presentViewController(alert, animated: true, completion: nil)
-      
-    }
-    
-    let udid = UIDevice.currentDevice().identifierForVendor?.UUIDString
-    
-    FIRAuth.auth()?.createUserWithEmail("\(name)\(launchpadEmail)", password: udid!) { (user, error) in
-      if error != nil {
-        print("User name is taken")
-      }
-    }
-    currentUser = name
-    let segueName = ModelInterface.sharedInstance.setUserName(name)
-    performSegueWithIdentifier(segueName, sender: self)
+    let confirmAlert = UIAlertController(title: "\(alertMessages.confirmName)\(name)", message: "\(alertMessages.nameMessage)", preferredStyle: UIAlertControllerStyle.Alert)
+    confirmAlert.addAction(UIAlertAction(title: "\(alertMessages.no)", style: .Default, handler: { (action: UIAlertAction!) in confirmAlert.dismissViewControllerAnimated(true, completion: nil)
+    }))
+    confirmAlert.addAction(UIAlertAction(title: "\(alertMessages.yes)", style: .Cancel, handler: { (action: UIAlertAction!) in
+      self.submit(name)
+    }))
+    presentViewController(confirmAlert, animated: true, completion: nil)
   }
 }
 
@@ -83,7 +93,8 @@ extension InputNameViewController: InputNameViewDelegate {
 extension InputNameView: UITextFieldDelegate {
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     let name = inputNameTextField.text
-    delegate?.submit(name!)
+    delegate?.displayConfirmationMessage(name!)
     return false
   }
 }
+
