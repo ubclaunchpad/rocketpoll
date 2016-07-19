@@ -24,9 +24,9 @@ class InputNameViewController: UIViewController {
     
     container?.backgroundColor = colors.green
     container?.inputNameTextField.delegate = container
-    
   }
   
+  // MARK: - Helper methods
   func checkChars(name: String) { //TODO: move this into a utils classs.
     if name.characters.count == 0 {
       let alert = UIAlertController(title: "\(alertMessages.empty)", message:"", preferredStyle: UIAlertControllerStyle.Alert)
@@ -41,15 +41,13 @@ class InputNameViewController: UIViewController {
     container?.delegate = self
     view.addSubview(container!)
   }
-
-  // MARK: - Helper methods
+  
   func dismissKeyboard() {
     view.endEditing(true)
   }
 }
 
 // MARK: - InputeNameView Delegate -
-
 
 extension InputNameViewController: InputNameViewDelegate {
   
@@ -79,6 +77,8 @@ extension InputNameViewController: InputNameViewDelegate {
     performSegueWithIdentifier(segueName, sender: self)
   }
 }
+
+// MARK: - UITextField Delegate -
 
 extension InputNameView: UITextFieldDelegate {
   func textFieldShouldReturn(textField: UITextField) -> Bool {
