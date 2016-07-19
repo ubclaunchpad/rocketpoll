@@ -86,6 +86,8 @@ enum alertMessages {
   static let no = "NO"
   static let confirmName = "Pleaes confirm that your name is "
   static let nameMessage = "You will not be able to change your name at a later time"
+  static let confirmation = "Confirmation"
+  static let confirmationMessage = "Are you sure you want to delete your quesiton?"
 }
 
 enum correct {
