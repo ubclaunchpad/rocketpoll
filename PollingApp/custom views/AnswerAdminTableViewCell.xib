@@ -39,22 +39,20 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uh0-16-zii">
-                        <rect key="frame" x="282" y="22" width="84" height="20"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SetCorrect" translatesAutoresizingMaskIntoConstraints="NO" id="DvS-eL-spJ">
+                        <rect key="frame" x="431" y="15" width="28" height="28"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="84" id="eSZ-1d-Q55"/>
+                            <constraint firstAttribute="width" constant="28" id="urz-nX-ng8"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Kz3-wi-tfR" firstAttribute="top" secondItem="2AQ-LO-jKk" secondAttribute="bottom" constant="5" id="4D3-Zb-Gxo"/>
+                    <constraint firstItem="DvS-eL-spJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="CPU-4i-RHG"/>
+                    <constraint firstAttribute="trailing" secondItem="DvS-eL-spJ" secondAttribute="trailing" constant="59" id="MoS-sK-U4e"/>
                     <constraint firstItem="2AQ-LO-jKk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="15" id="PG4-UX-5Bn"/>
                     <constraint firstItem="Ncb-xM-ZX2" firstAttribute="leading" secondItem="2AQ-LO-jKk" secondAttribute="leading" id="Q8K-pq-4m3"/>
-                    <constraint firstItem="Uh0-16-zii" firstAttribute="top" secondItem="2AQ-LO-jKk" secondAttribute="bottom" constant="-7" id="XLC-xB-tva"/>
-                    <constraint firstItem="Uh0-16-zii" firstAttribute="trailing" secondItem="2AQ-LO-jKk" secondAttribute="trailing" constant="-108" id="eOQ-mw-AIu"/>
+                    <constraint firstItem="DvS-eL-spJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="T11-1Q-gWw"/>
                     <constraint firstItem="Kz3-wi-tfR" firstAttribute="leading" secondItem="Ncb-xM-ZX2" secondAttribute="trailing" constant="8" symbolic="YES" id="lsg-qj-DL9"/>
                     <constraint firstItem="2AQ-LO-jKk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="phB-ZZ-9WN"/>
                     <constraint firstItem="Kz3-wi-tfR" firstAttribute="baseline" secondItem="Ncb-xM-ZX2" secondAttribute="baseline" id="tCU-bo-p7u"/>
@@ -63,9 +61,12 @@
             <connections>
                 <outlet property="Tally" destination="Kz3-wi-tfR" id="jyO-ma-4ey"/>
                 <outlet property="answerlabel" destination="2AQ-LO-jKk" id="KbQ-td-dxK"/>
-                <outlet property="isaCorrectAnswer" destination="Uh0-16-zii" id="RSQ-wh-qJI"/>
+                <outlet property="isCorrect" destination="DvS-eL-spJ" id="Hzj-H5-UqJ"/>
             </connections>
             <point key="canvasLocation" x="-17" y="169"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="SetCorrect" width="158" height="158"/>
+    </resources>
 </document>

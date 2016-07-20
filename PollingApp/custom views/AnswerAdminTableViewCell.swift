@@ -11,11 +11,13 @@ import UIKit
 class AnswerAdminTableViewCell: UITableViewCell {
   
   @IBOutlet weak var answerlabel: UILabel!
-  @IBOutlet weak var isaCorrectAnswer: UILabel!
+
+  @IBOutlet weak var isCorrect: UIImageView!
+ 
   @IBOutlet weak var Tally: UILabel!
   
   let colour = UIColor(red: 0, green: 0, blue: 1, alpha: 0.5);
-  let resetColour = UIColor(red:0, green: 0, blue: 0, alpha:0);
+  let newImg: UIImage? = UIImage(named: "SetIncorrect")
   override func awakeFromNib() {
     super.awakeFromNib()
   }
@@ -32,11 +34,9 @@ class AnswerAdminTableViewCell: UITableViewCell {
   }
   func setisCorrect(isCorrect: String) {
     //TODO: this should no be a magic string
+    
     if isCorrect == "notCorrect" {
-      isaCorrectAnswer.text = "\(correct.notCorrect)"
-    }
-    else{
-      isaCorrectAnswer.text = "\(correct.isCorrect)"
+        self.isCorrect.image = newImg
     }
   }
   
