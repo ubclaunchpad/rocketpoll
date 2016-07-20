@@ -43,8 +43,9 @@ final class PollAdminViewController: UIViewController {
   }
   
   func addContainerToVC() {
-   
+  
   container = PollAdminViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
+    container?.AnswerTable.tableFooterView = UIView()
     ModelInterface.sharedInstance.processAnswerData(answerIDs, completionHandler: { (listofAllAnswers) in
       self.view.addSubview(self.container!)
       self.answerIDDictionary = [AnswerText: AnswerID]()

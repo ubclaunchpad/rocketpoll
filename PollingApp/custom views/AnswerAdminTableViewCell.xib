@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="518" height="58"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="518" height="57.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="518" height="58"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="254" verticalCompressionResistancePriority="752" text="Answer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2AQ-LO-jKk">
@@ -25,7 +25,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kz3-wi-tfR">
-                        <rect key="frame" x="71" y="34" width="42" height="20"/>
+                        <rect key="frame" x="71" y="34" width="80" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="JDQ-S8-zSC"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -47,14 +50,14 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="Kz3-wi-tfR" firstAttribute="top" secondItem="2AQ-LO-jKk" secondAttribute="bottom" constant="5" id="4D3-Zb-Gxo"/>
                     <constraint firstItem="2AQ-LO-jKk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="15" id="PG4-UX-5Bn"/>
                     <constraint firstItem="Ncb-xM-ZX2" firstAttribute="leading" secondItem="2AQ-LO-jKk" secondAttribute="leading" id="Q8K-pq-4m3"/>
                     <constraint firstItem="Uh0-16-zii" firstAttribute="top" secondItem="2AQ-LO-jKk" secondAttribute="bottom" constant="-7" id="XLC-xB-tva"/>
-                    <constraint firstItem="Kz3-wi-tfR" firstAttribute="top" secondItem="2AQ-LO-jKk" secondAttribute="bottom" constant="5" id="Yeo-kV-Jbu"/>
-                    <constraint firstItem="Kz3-wi-tfR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="71" id="chc-9s-tCF"/>
                     <constraint firstItem="Uh0-16-zii" firstAttribute="trailing" secondItem="2AQ-LO-jKk" secondAttribute="trailing" constant="-108" id="eOQ-mw-AIu"/>
-                    <constraint firstItem="Ncb-xM-ZX2" firstAttribute="baseline" secondItem="Kz3-wi-tfR" secondAttribute="baseline" id="mr4-VI-5EN"/>
+                    <constraint firstItem="Kz3-wi-tfR" firstAttribute="leading" secondItem="Ncb-xM-ZX2" secondAttribute="trailing" constant="8" symbolic="YES" id="lsg-qj-DL9"/>
                     <constraint firstItem="2AQ-LO-jKk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="phB-ZZ-9WN"/>
+                    <constraint firstItem="Kz3-wi-tfR" firstAttribute="baseline" secondItem="Ncb-xM-ZX2" secondAttribute="baseline" id="tCU-bo-p7u"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
