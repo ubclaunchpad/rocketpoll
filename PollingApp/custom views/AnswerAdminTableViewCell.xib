@@ -61,7 +61,7 @@
             <connections>
                 <outlet property="Tally" destination="Kz3-wi-tfR" id="jyO-ma-4ey"/>
                 <outlet property="answerlabel" destination="2AQ-LO-jKk" id="KbQ-td-dxK"/>
-                <outlet property="isCorrect" destination="DvS-eL-spJ" id="Hzj-H5-UqJ"/>
+                <outlet property="isCorrectImage" destination="DvS-eL-spJ" id="6rU-zv-Eyc"/>
             </connections>
             <point key="canvasLocation" x="-17" y="169"/>
         </tableViewCell>

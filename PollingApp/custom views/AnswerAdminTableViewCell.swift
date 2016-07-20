@@ -12,12 +12,12 @@ class AnswerAdminTableViewCell: UITableViewCell {
   
   @IBOutlet weak var answerlabel: UILabel!
 
-  @IBOutlet weak var isCorrect: UIImageView!
+  @IBOutlet weak var isCorrectImage: UIImageView!
  
   @IBOutlet weak var Tally: UILabel!
   
   let colour = UIColor(red: 0, green: 0, blue: 1, alpha: 0.5);
-  let newImg: UIImage? = UIImage(named: "SetIncorrect")
+  let incorrectImage: UIImage? = UIImage(named: "SetIncorrect")
   override func awakeFromNib() {
     super.awakeFromNib()
   }
@@ -36,7 +36,7 @@ class AnswerAdminTableViewCell: UITableViewCell {
     //TODO: this should no be a magic string
     
     if isCorrect == "notCorrect" {
-        self.isCorrect.image = newImg
+        self.isCorrectImage.image = incorrectImage
     }
   }
   
