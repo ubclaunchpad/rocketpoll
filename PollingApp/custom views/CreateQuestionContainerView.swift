@@ -123,7 +123,6 @@ extension CreateQuestionContainerView: UITableViewDelegate, UITableViewDataSourc
     let cell = self.tableView.dequeueReusableCellWithIdentifier("answerCell", forIndexPath: indexPath) as! AnswerTableViewCell
     cell.identifier = answerIdentifier[indexPath.item]
     cell.delegate = self
-    cell.answerField.delegate = cell
     cell.isCorrect = false
     cell.answerField.addTarget(cell, action: #selector(AnswerTableViewCell.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
     return cell
