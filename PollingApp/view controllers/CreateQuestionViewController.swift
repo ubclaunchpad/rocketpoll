@@ -54,13 +54,13 @@ class CreateQuestionViewController: UIViewController{
 
 extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
   
-  func submitButtonPressed(question: QuestionText, answerArray: [AnswerID], questionDuration: Int){
+  func submitButtonPressed(question: QuestionText, answerArray: [AnswerID], correctAnswer: Int, questionDuration: Int){
     //TODO: move answerID generation in createNewQuestion(_)
     let questionObject = ModelInterface.sharedInstance.createNewQuestion(question, questionDuration: questionDuration)
     let answerIDs =  ModelInterface.sharedInstance.createAnswerIDs(
       questionObject.QID, answerText: answerArray)
     questionObject.AIDS = answerIDs
-    ModelInterface.sharedInstance.setCorrectAnswer(answerIDs[0], isCorrectAnswer: true);
+    ModelInterface.sharedInstance.setCorrectAnswer(answerIDs[correctAnswer - 1], isCorrectAnswer: true);
     
     self.sendAIDS = answerIDs
     self.sendQuestionText = question
@@ -77,8 +77,8 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
   
   //TODO: IPA-120
   
-  func checksInput (question:String, A1:String, A2:String,  A3:String,A4:String, timerWasSet:Bool) -> Bool {
-    if((question == "") || (A1 == "") || (A2 == "") || (A3 == "") || (A4 == "") || (timerWasSet == false)) {
+  func checksInput (question:QuestionText, A1:AnswerText, A2:AnswerText,  A3:AnswerText, A4:AnswerText, correctAnswer:Int, timerWasSet:Bool) -> Bool {
+    if((question == "") || (A1 == "") || (A2 == "") || (A3 == "") || (A4 == "") || (timerWasSet == false)) || correctAnswer == 0 {
       let alert = UIAlertController(title: "\(alertMessages.emptyQuestions)", message:"",
 
                                     preferredStyle: UIAlertControllerStyle.Alert)
