@@ -14,6 +14,8 @@ class AnswerAdminTableViewCell: UITableViewCell {
   @IBOutlet weak var isaCorrectAnswer: UILabel!
   @IBOutlet weak var Tally: UILabel!
   
+  let colour = UIColor(red: 0, green: 0, blue: 1, alpha: 0.5);
+  let resetColour = UIColor(red:0, green: 0, blue: 0, alpha:0);
   override func awakeFromNib() {
     super.awakeFromNib()
   }
@@ -40,6 +42,21 @@ class AnswerAdminTableViewCell: UITableViewCell {
   
   func SetTallyLabel (tally: String) {
     self.Tally.text = tally
+  }
+  func setBarGraph (result:Double) {
+    
+    
+    let r = CGFloat(result/100);
+    var frame: CGRect = self.frame
+    
+    frame.size.width = frame.size.width*r //The 0.66 is the percentage as a decimal
+    frame.origin.y = self.frame.size.height - frame.size.height //adjust where it should start
+    let bg1: UIView = UIView(frame: frame)
+    bg1.backgroundColor = colour
+    self.addSubview(bg1)
+    
+
+
   }
   
   

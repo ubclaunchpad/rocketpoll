@@ -21,6 +21,7 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
   private var answers:[AnswerText] = []
   private var correctAnswers:[AnswerText] = []
   private var tallyIDDictionary = [AnswerText:String]()
+  private var totalNumberOfAnswers: Int = 0;
   
   @IBOutlet weak var question: UILabel!
   @IBOutlet weak var timer: UILabel!
@@ -74,7 +75,9 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
   func updateTimerLabel(timerString: String) {
     timer.text = timerString
   }
-    
+  func setTotalNumberOfAnswers (totalNumOfAnswers:Int){
+    totalNumberOfAnswers = totalNumOfAnswers
+  }
   
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -85,17 +88,28 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
     let nib_name = UINib(nibName: "AnswerAdminTableViewCell", bundle:nil)
     tableView.registerNib(nib_name, forCellReuseIdentifier: "answeradminCell")
     let cell = self.AnswerTable.dequeueReusableCellWithIdentifier("answeradminCell", forIndexPath: indexPath) as! AnswerAdminTableViewCell
+    
     cell.setAnswerText(answers[indexPath.row]);
     cell.setisCorrect(correctAnswers[indexPath.row]);
     cell.SetTallyLabel(tallyIDDictionary[answers[indexPath.row]]!)
     if (correctAnswers[indexPath.row] == "notCorrect") {
-      cell.changeCorrectAnswerColor();
+      //cell.changeCorrectAnswerColor();
     }
+    
+    if(totalNumberOfAnswers != 0){
+      
+      let results:Double = MathUtil.convertTallyResultsToPercentage(Double(tallyIDDictionary[answers[indexPath.row]]!)!, denominator: Double(totalNumberOfAnswers))
+      cell.setBarGraph(results)
+    }else{
+      cell.setBarGraph(0)
+    }
+    
     return cell
   }
   
+  
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return 150
+    return 75
     //TODO: set tableView Cell size based on content size
   }
   
