@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 
 class InputNameViewController: UIViewController {
-  @IBOutlet weak var nameTextField: UITextField!
+  var container: InputNameView?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -20,17 +20,17 @@ class InputNameViewController: UIViewController {
     
     view.addGestureRecognizer(tap)
     
-    nameTextField.delegate = self
+    addContainerToVC()
+    
+    container?.backgroundColor = colors.green
+    container?.inputNameTextField.delegate = container
   }
   
-  @IBAction func submitButtonPressed(sender: AnyObject) {
-    Log.debug("Submit button pressed")
-    submitButton()
-  }
-  func submitButton () {
-    checkChars()
+  func submit (name: String){
     
-    if ModelInterface.sharedInstance.isValidName(nameTextField.text!) == false {
+    checkChars(name)
+    
+    if ModelInterface.sharedInstance.isValidName(name) == false {
       let alert = UIAlertController(title: "\(alertMessages.invalid)", message:"",
                                     preferredStyle: UIAlertControllerStyle.Alert)
       alert.addAction(UIAlertAction(title: "\(alertMessages.confirm)",
@@ -41,34 +41,60 @@ class InputNameViewController: UIViewController {
     
     let udid = UIDevice.currentDevice().identifierForVendor?.UUIDString
     
-    FIRAuth.auth()?.createUserWithEmail("\(nameTextField.text!)\(launchpadEmail)", password: udid!) { (user, error) in
+    FIRAuth.auth()?.createUserWithEmail("\(name)\(launchpadEmail)", password: udid!) { (user, error) in
       if error != nil {
         print("User name is taken")
       }
     }
-    currentUser = nameTextField.text!
-    let segueName = ModelInterface.sharedInstance.setUserName(nameTextField.text!)
+    currentUser = name
+    let segueName = ModelInterface.sharedInstance.setUserName(name)
     performSegueWithIdentifier(segueName, sender: self)
   }
+  
   // MARK: - Helper methods
+  func checkChars(name: String) { //TODO: move this into a utils classs.
+    if name.characters.count == 0 {
+      let alert = UIAlertController(title: "\(alertMessages.empty)", message:"", preferredStyle: UIAlertControllerStyle.Alert)
+      alert.addAction(UIAlertAction(title: "\(alertMessages.confirm)", style: UIAlertActionStyle.Default, handler: nil))
+      self.presentViewController(alert, animated: true, completion: nil)
+    }
+  }
+  
+  func addContainerToVC() {
+    container = InputNameView.instanceFromNib(
+      CGRectMake(0, 0, view.bounds.width, view.bounds.height))
+    container?.delegate = self
+    view.addSubview(container!)
+  }
+  
   func dismissKeyboard() {
     view.endEditing(true)
   }
 }
 
-// MARK: - UITextFieldDelegate -
-extension InputNameViewController: UITextFieldDelegate {
-  func textFieldShouldReturn(textField: UITextField) -> Bool {
-    submitButton()
-    return false
+// MARK: - InputeNameView Delegate -
+
+extension InputNameViewController: InputNameViewDelegate {
+  func displayConfirmationMessage (name: String) {
+    self.dismissKeyboard()
+    Log.debug("Submit button pressed")
+    let confirmAlert = UIAlertController(title: "\(alertMessages.confirmName)\(name)", message: "\(alertMessages.nameMessage)", preferredStyle: UIAlertControllerStyle.Alert)
+    confirmAlert.addAction(UIAlertAction(title: "\(alertMessages.no)", style: .Default, handler: { (action: UIAlertAction!) in confirmAlert.dismissViewControllerAnimated(true, completion: nil)
+    }))
+    confirmAlert.addAction(UIAlertAction(title: "\(alertMessages.yes)", style: .Cancel, handler: { (action: UIAlertAction!) in
+      self.submit(name)
+    }))
+    presentViewController(confirmAlert, animated: true, completion: nil)
   }
-  
-  func checkChars() { //TODO: move this into a utils classs.
-    if nameTextField.text?.characters.count == 0 {
-      let alert = UIAlertController(title: "\(alertMessages.empty)", message:"", preferredStyle: UIAlertControllerStyle.Alert)
-      alert.addAction(UIAlertAction(title: "\(alertMessages.confirm)", style: UIAlertActionStyle.Default, handler: nil))
-      self.presentViewController(alert, animated: true, completion: nil)
-    }
+}
+
+// MARK: - UITextField Delegate -
+
+extension InputNameView: UITextFieldDelegate {
+  func textFieldShouldReturn(textField: UITextField) -> Bool {
+    let name = inputNameTextField.text
+    delegate?.displayConfirmationMessage(name!)
+    return false
   }
 }
 
