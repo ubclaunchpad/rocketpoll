@@ -140,10 +140,10 @@ extension PollAdminViewController: PollAdminViewContainerDelegate {
     performSegueWithIdentifier(nextRoom, sender: self)
   }
   func displayConfirmationMessage() {
-    let deleteAlert = UIAlertController(title: "Confirmation", message: "Are you sure you want to delete your quesiton?", preferredStyle: UIAlertControllerStyle.Alert)
-    deleteAlert.addAction(UIAlertAction(title: "No", style: .Default, handler: { (action: UIAlertAction!) in deleteAlert.dismissViewControllerAnimated(true, completion: nil)
+    let deleteAlert = UIAlertController(title: "\(alertMessages.confirmation)", message: "\(alertMessages.confirmationMessage)", preferredStyle: UIAlertControllerStyle.Alert)
+    deleteAlert.addAction(UIAlertAction(title: "\(alertMessages.no)", style: .Default, handler: { (action: UIAlertAction!) in deleteAlert.dismissViewControllerAnimated(true, completion: nil)
     }))
-    deleteAlert.addAction(UIAlertAction(title: "Yes", style: .Cancel, handler: { (action: UIAlertAction!) in
+    deleteAlert.addAction(UIAlertAction(title: "\(alertMessages.yes)", style: .Cancel, handler: { (action: UIAlertAction!) in
       self.deleteQuestion()
     }))
     presentViewController(deleteAlert, animated: true, completion: nil)
