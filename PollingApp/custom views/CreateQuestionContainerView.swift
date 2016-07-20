@@ -125,6 +125,7 @@ extension CreateQuestionContainerView: UITableViewDelegate, UITableViewDataSourc
     cell.delegate = self
     cell.answerField.delegate = cell
     cell.isCorrect = false
+    cell.answerField.addTarget(cell, action: #selector(AnswerTableViewCell.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
     return cell
   }
   
