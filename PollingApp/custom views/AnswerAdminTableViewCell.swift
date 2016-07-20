@@ -45,6 +45,11 @@ class AnswerAdminTableViewCell: UITableViewCell {
   }
   func setBarGraph (result:Double) {
     
+    for view in self.subviews{
+      if (view.backgroundColor == colour) {
+        view.removeFromSuperview()
+      }
+    }
     
     let r = CGFloat(result/100);
     var frame: CGRect = self.frame
