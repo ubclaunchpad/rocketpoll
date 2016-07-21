@@ -33,6 +33,7 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     view.frame = frame
     view.tableView.delegate = view
     view.tableView.dataSource = view
+   
     
     return view
   }
@@ -63,6 +64,7 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     let cell = self.tableView.dequeueReusableCellWithIdentifier("answerCell", forIndexPath: indexPath) as! AnswerViewTableViewCell
     cell.setAnswerText(answers[indexPath.row])
     cell.delegate = self
+    self.tableView.separatorColor = UIColor.grayColor()
     return cell
   }
   @IBAction func backButtonPressed(sender: AnyObject) {

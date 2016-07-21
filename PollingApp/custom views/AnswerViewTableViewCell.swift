@@ -19,7 +19,6 @@ class AnswerViewTableViewCell: UITableViewCell {
   @IBAction func cellAnswerButtonPressed(sender: AnyObject) {
     if let selectedAnswer = sender.currentTitle {
       delegate?.answerSelected(selectedAnswer!)
-      
     }
   }
   

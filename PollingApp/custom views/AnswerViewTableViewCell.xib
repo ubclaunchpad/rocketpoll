@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -11,25 +11,28 @@
             <rect key="frame" x="0.0" y="0.0" width="491" height="150"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="491" height="149.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="491" height="149"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="K3g-GA-E6l">
-                        <rect key="frame" x="-0.5" y="0.5" width="491" height="119"/>
+                        <rect key="frame" x="0.0" y="8" width="492" height="119"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <state key="normal" title="Button"/>
                         <connections>
                             <action selector="cellAnswerButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="KO0-Vn-Zb9"/>
                         </connections>
                     </button>
                 </subviews>
+                <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="0.0" colorSpace="calibratedRGB"/>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="0.25646642739999997" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="K3g-GA-E6l" firstAttribute="height" secondItem="KGk-i7-Jjw" secondAttribute="height" id="7bD-eL-nle"/>
                 <constraint firstItem="K3g-GA-E6l" firstAttribute="centerY" secondItem="KGk-i7-Jjw" secondAttribute="centerY" id="Ksq-Ap-5dI"/>
                 <constraint firstItem="K3g-GA-E6l" firstAttribute="width" secondItem="KGk-i7-Jjw" secondAttribute="width" id="iXp-8L-alj"/>
                 <constraint firstItem="K3g-GA-E6l" firstAttribute="centerX" secondItem="KGk-i7-Jjw" secondAttribute="centerX" id="pp2-OY-3Ve"/>
             </constraints>
+            <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
                 <outlet property="answerButton" destination="K3g-GA-E6l" id="8FF-nZ-AYj"/>
             </connections>
