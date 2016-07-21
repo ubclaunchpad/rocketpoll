@@ -78,7 +78,7 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
     totalNumberOfAnswers = totalNumOfAnswers
   }
   
-  
+  // returns an approiate number of rows depending on the section
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if (section == 0 ) {
       return 1
@@ -108,8 +108,10 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
     cell.SetTallyLabel(tallyIDDictionary[answers[indexPath.row]]!)
     
     if (totalNumberOfAnswers != 0) {
+      let tally = tallyIDDictionary[answers[indexPath.row]]!
+      
       let results:Double = MathUtil.convertTallyResultsToPercentage(
-        Double(tallyIDDictionary[answers[indexPath.row]]!)!,
+        Double(tally)!,
         denominator: Double(totalNumberOfAnswers))
       
       cell.setBarGraph(results)
