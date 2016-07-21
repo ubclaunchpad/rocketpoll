@@ -43,7 +43,7 @@
                     <rect key="frame" x="258" y="16" width="107" height="30"/>
                     <color key="backgroundColor" red="0.88915304884848489" green="0.0" blue="0.057615777327698292" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="Delete">
-                        <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="deleteButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="2YV-t1-ejf"/>
