@@ -107,4 +107,14 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
   func hideDeleteButton(){
     deleteButton.alpha = 0
   }
+  
+  func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    return "Answers"
+  }
+
+  
+  func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    return 1
+  }
+
 }
