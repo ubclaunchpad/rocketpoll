@@ -52,7 +52,7 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     let cell = self.resultsTableView.dequeueReusableCellWithIdentifier("resultsCell", forIndexPath: indexPath) as! PollResultsTableViewCell
     cell.setAnswerText(answers[indexPath.row])
     
-    if(answers[indexPath.row] == correctAnswer){
+    if(answers[indexPath.row] != correctAnswer){
       cell.changeCorrectAnswerColor()
     }
     

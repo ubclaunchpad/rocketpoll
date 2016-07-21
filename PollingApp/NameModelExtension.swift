@@ -13,15 +13,13 @@ extension ModelInterface: NameModelProtocol {
   
   // TODO: Check if udid exists
   func setUserName(name: String, s:Bool) -> SegueName {
-    
+    let udid = UIDevice.currentDevice().identifierForVendor!.UUIDString
+    currentID  = udid
     if (s) {
       return Segues.toMainApp
     }
     
     let ref =  FIRDatabase.database().reference();
-    
-    let udid = UIDevice.currentDevice().identifierForVendor!.UUIDString
-    currentID  = udid
     ref.queryEqualToValue(udid)
     
     let post = ["UserName": name,

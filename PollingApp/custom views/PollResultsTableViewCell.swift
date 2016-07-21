@@ -11,9 +11,10 @@ import UIKit
 class PollResultsTableViewCell: UITableViewCell{
   
   @IBOutlet weak var answerLabel: UILabel!
+  @IBOutlet weak var incorrectImage: UIImageView!
   
   @IBOutlet weak var resultsLabel: UILabel!
-  
+  let infoCorrectImage: UIImage? = UIImage(named: "SetIncorrect")
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
@@ -30,7 +31,9 @@ class PollResultsTableViewCell: UITableViewCell{
   }
   
   func changeCorrectAnswerColor (){
-    self.backgroundColor = UIColor.greenColor()
+      self.incorrectImage.image = infoCorrectImage
+    
+
   }
   
   //IPA-132
