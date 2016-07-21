@@ -18,12 +18,11 @@ class PollResultsViewController: UIViewController {
   private var yourAnswerID = ""
   private var yourAnswerText = ""
   private var author = ""
-  
-  // Recieved information 
+  // Recieved information
   var questionText = ""
   var questionID:QuestionID = ""
   var answerIDs: [AnswerID] = []
-
+  
   
   var container: PollResultsViewContainer?
   
@@ -50,23 +49,26 @@ class PollResultsViewController: UIViewController {
       self.totalNumberOfUserAnswers = 0
       self.correctAnswer = ""
       
-     
+      
       ModelInterface.sharedInstance.findYourAnswer(self.questionID) { (yourAnswer) in
         self.yourAnswerID = yourAnswer
         self.fillInTheFields(listofAllAnswers)
         print(self.yourAnswerText)
+        print(self.answers)
+        print("asdfasfasdfadsfadsfadsfadsfadsfadsfadsfadsf")
         self.container?.delegate = self
         self.container?.setTotalNumberOfAnswers(self.totalNumberOfUserAnswers)
         self.container?.setQuestionLabelText(self.questionText)
         self.container?.setAnswers(self.answers)
         self.container?.setCorrectAnswer(self.correctAnswer)
         self.container?.setNumberOfResponsesForAnswer(self.NumResponsesPerAnswer)
+         self.container?.setYourAnswer(self.yourAnswerText)
         self.container?.resultsTableView.reloadData()
         self.container?.setTotalNumberOfAnswers(self.totalNumberOfUserAnswers)
-
+        
       }
       
-          }
+    }
   }
   
   func fillInTheFields (listofAllAnswers: [Answer]) {
@@ -76,15 +78,19 @@ class PollResultsViewController: UIViewController {
       if (listofAllAnswers[i].AID == yourAnswerID) {
         yourAnswerText = listofAllAnswers[i].answerText
       }
-      self.answerIDDictionary[tempAnswer] = self.answerIDs[i]
+      
       self.answers.append(tempAnswer)
+      self.answerIDDictionary[tempAnswer] = self.answerIDs[i]
+      
       if (listofAllAnswers[i].isCorrect == true ) {
         self.correctAnswer = listofAllAnswers[i].answerText
       }
       self.totalNumberOfUserAnswers += listofAllAnswers[i].tally
       
       self.NumResponsesPerAnswer.append(listofAllAnswers[i].tally)
+      
     }
+    
   }
   
   func deleteQuestion(){

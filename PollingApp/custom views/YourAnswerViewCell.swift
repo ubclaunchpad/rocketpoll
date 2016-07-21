@@ -12,12 +12,26 @@ import UIKit
 
 class YourAnswerViewCell: UITableViewCell {
   
+  @IBOutlet weak var results: UILabel!
+  @IBOutlet weak var correctAnswer: UIImageView!
+  @IBOutlet weak var yourAnswerLabel: UILabel!
+  let infoCorrectImage: UIImage? = UIImage(named: "SetIncorrect")
   override func awakeFromNib() {
     super.awakeFromNib()
   }
   override func setSelected(selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
     
+  }
+  func changeCorrectAnswerColor (){
+    self.correctAnswer.image = infoCorrectImage
+  }
+  func setYourAnswer (yourAnswer:String){
+    yourAnswerLabel.text = yourAnswer
+  }
+  //IPA-132
+  func setResult (result:Double){
+    results.text = ("\(result)%")
   }
   
 }
