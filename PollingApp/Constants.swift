@@ -31,6 +31,7 @@ var charactersToAvoid : [Character] =
 
 enum colors {
   static let green = UIColor(red: 28/255.0, green: 165/255.0, blue: 122/255.0, alpha: 1)
+  static let barGraphColour = UIColor(red: 0, green: 0, blue: 1, alpha: 0.5)
 }
 
 enum Segues {
@@ -93,4 +94,12 @@ enum alertMessages {
 enum correct {
   static let isCorrect = "Correct"
   static let notCorrect = "not Correct"
+}
+
+enum imageNames {
+  static let setIncorrect = "SetIncorrect"
+}
+
+enum cellDimensions {
+  static let pollAdminCellHeight:CGFloat = 58
 }

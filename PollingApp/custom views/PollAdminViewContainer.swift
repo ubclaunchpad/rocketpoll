@@ -22,7 +22,6 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
   private var correctAnswers:[AnswerText] = []
   private var tallyIDDictionary = [AnswerText:String]()
   private var totalNumberOfAnswers: Int = 0;
-  private var one = true;
   private var question:QuestionText = ""
   @IBOutlet weak var timer: UILabel!
   @IBOutlet weak var AnswerTable: UITableView!
@@ -81,7 +80,10 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
   
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return ((section == 0) ? 1 : answers.count)
+    if (section == 0 ) {
+      return 1
+    }
+    return  answers.count
     
   }
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -93,41 +95,39 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
       let cell = self.AnswerTable.dequeueReusableCellWithIdentifier("question", forIndexPath: indexPath) as! QuestionViewCell
       cell.setQuestionLabel(question)
       return cell
-
+      
     }
     
     let nib_name = UINib(nibName: "AnswerAdminTableViewCell", bundle:nil)
     tableView.registerNib(nib_name, forCellReuseIdentifier: "answeradminCell")
     
     let cell = self.AnswerTable.dequeueReusableCellWithIdentifier("answeradminCell", forIndexPath: indexPath) as! AnswerAdminTableViewCell
-    (cell).setAnswerText(answers[indexPath.row]);
-    (cell).setisCorrect(correctAnswers[indexPath.row]);
-    (cell).SetTallyLabel(tallyIDDictionary[answers[indexPath.row]]!)
-    if (correctAnswers[indexPath.row] == "notCorrect") {
-      //cell.changeCorrectAnswerColor();
-    }
-    if(totalNumberOfAnswers != 0){
+    
+    cell.setAnswerText(answers[indexPath.row])
+    cell.setisCorrect(correctAnswers[indexPath.row])
+    cell.SetTallyLabel(tallyIDDictionary[answers[indexPath.row]]!)
+    
+    if (totalNumberOfAnswers != 0) {
+      let results:Double = MathUtil.convertTallyResultsToPercentage(
+        Double(tallyIDDictionary[answers[indexPath.row]]!)!,
+        denominator: Double(totalNumberOfAnswers))
       
-      let results:Double = MathUtil.convertTallyResultsToPercentage(Double(tallyIDDictionary[answers[indexPath.row]]!)!, denominator: Double(totalNumberOfAnswers))
-      (cell).setBarGraph(results)
+      cell.setBarGraph(results)
     }else{
-      (cell ).setBarGraph(0)
+      cell.setBarGraph(0)
     }
     return cell
     
   }
   
-  
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return 58
-    //TODO: set tableView Cell size based on content size
+    return cellDimensions.pollAdminCellHeight
   }
   
   func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
     if (section == 0) {
       return "Question"
     }
-    
     return "Answers"
   }
   

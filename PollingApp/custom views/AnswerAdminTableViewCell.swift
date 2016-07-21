@@ -16,8 +16,8 @@ class AnswerAdminTableViewCell: UITableViewCell {
  
   @IBOutlet weak var Tally: UILabel!
   
-  let colour = UIColor(red: 0, green: 0, blue: 1, alpha: 0.5);
-  let incorrectImage: UIImage? = UIImage(named: "SetIncorrect")
+  let incorrectImage: UIImage? = UIImage(named: imageNames.setIncorrect)
+  
   override func awakeFromNib() {
     super.awakeFromNib()
   }
@@ -35,7 +35,7 @@ class AnswerAdminTableViewCell: UITableViewCell {
   func setisCorrect(isCorrect: String) {
     //TODO: this should no be a magic string
     
-    if isCorrect == "notCorrect" {
+    if isCorrect == UIStringConstants.notCorrect {
         self.isCorrectImage.image = incorrectImage
     }
   }
@@ -43,25 +43,24 @@ class AnswerAdminTableViewCell: UITableViewCell {
   func SetTallyLabel (tally: String) {
     self.Tally.text = tally
   }
+  
   func setBarGraph (result:Double) {
     
     for view in self.subviews{
-      if (view.backgroundColor == colour) {
+      if (view.backgroundColor == colors.barGraphColour) {
         view.removeFromSuperview()
       }
     }
     
-    let r = CGFloat(result/100);
+    let percentage = CGFloat(result/100);
     var frame: CGRect = self.frame
     
-    frame.size.width = frame.size.width*r //The 0.66 is the percentage as a decimal
-    frame.origin.y = self.frame.size.height - frame.size.height //adjust where it should start
-    let bg1: UIView = UIView(frame: frame)
-    bg1.backgroundColor = colour
-    self.addSubview(bg1)
-    
-
-
+    frame.size.width = frame.size.width * percentage
+    frame.origin.y = self.frame.size.height - frame.size.height
+    let barGraph: UIView = UIView(frame: frame)
+    barGraph.backgroundColor = colors.barGraphColour
+    self.addSubview(barGraph)
+  
   }
   
   
