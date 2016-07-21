@@ -21,6 +21,7 @@ final class PollAdminViewController: UIViewController {
   private var sumuserresults = 0;
   private var numsubmitforeachAns:[[NSString:Int]] = [[:]]
   private var tallyIDDictioanry = [AnswerText:String]()
+  var totalNumberOfUserAnswers: Int = 0
   var container: PollAdminViewContainer?
   
   //Information to send to Poll Results View Controller
@@ -42,18 +43,20 @@ final class PollAdminViewController: UIViewController {
   }
   
   func addContainerToVC() {
-    container = PollAdminViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
-    view.addSubview(container!)
   
+  container = PollAdminViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
+    container?.AnswerTable.tableFooterView = UIView()
     ModelInterface.sharedInstance.processAnswerData(answerIDs, completionHandler: { (listofAllAnswers) in
+      self.view.addSubview(self.container!)
       self.answerIDDictionary = [AnswerText: AnswerID]()
       self.answers = []
       self.correctAnswers = []
+      self.totalNumberOfUserAnswers = 0
       self.fillInTheFields(listofAllAnswers)
       
-      self.container?.setTally(self.tallyIDDictioanry)
-      
       self.container?.delegate = self
+      self.container?.setTally(self.tallyIDDictioanry)
+      self.container?.setTotalNumberOfAnswers(self.totalNumberOfUserAnswers)
       self.container?.setQuestionText(self.questionText)
       self.container?.setAnswers(self.answers)
       self.container?.setCorrectAnswers(self.correctAnswers)
@@ -70,6 +73,7 @@ final class PollAdminViewController: UIViewController {
       self.answerIDDictionary[tempAnswer] = self.answerIDs[i]
       self.answers.append(tempAnswer)
       self.tallyIDDictioanry[tempAnswer] = String(listofAllAnswers[i].tally);
+      self.totalNumberOfUserAnswers += listofAllAnswers[i].tally
       if (listofAllAnswers[i].isCorrect) {
         self.correctAnswers.append(tempAnswer)
       }
