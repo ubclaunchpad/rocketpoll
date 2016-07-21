@@ -17,8 +17,8 @@ typealias Author = String
 typealias SegueName = String
 typealias RoomID = String
 
-var currentUser:Author = ""; //TODO: this should persist on phone restart
-
+var currentUser:Author = "" //TODO: this should persist on phone restart
+var currentID  = ""
 var okayNameCharacters : Set<Character> =
   Set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890".characters)
 

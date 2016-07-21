@@ -15,6 +15,8 @@ class PollResultsViewController: UIViewController {
   private var answerIDDictionary = [AnswerText: AnswerID]()
   private var answers: [AnswerText] = []
   private var NumResponsesPerAnswer: [Int] = []
+  private var yourAnswerID = ""
+  private var yourAnswerText = ""
   private var author = ""
   
   // Recieved information 
@@ -48,22 +50,32 @@ class PollResultsViewController: UIViewController {
       self.totalNumberOfUserAnswers = 0
       self.correctAnswer = ""
       
-      self.fillInTheFields(listofAllAnswers)
-      self.container?.delegate = self
-      self.container?.setTotalNumberOfAnswers(self.totalNumberOfUserAnswers)
-      self.container?.setQuestionLabelText(self.questionText)
-      self.container?.setAnswers(self.answers)
-      self.container?.setCorrectAnswer(self.correctAnswer)
-      self.container?.setNumberOfResponsesForAnswer(self.NumResponsesPerAnswer)
-      self.container?.resultsTableView.reloadData()
-      self.container?.setTotalNumberOfAnswers(self.totalNumberOfUserAnswers)
-    }
+     
+      ModelInterface.sharedInstance.findYourAnswer(self.questionID) { (yourAnswer) in
+        self.yourAnswerID = yourAnswer
+        self.fillInTheFields(listofAllAnswers)
+        print(self.yourAnswerText)
+        self.container?.delegate = self
+        self.container?.setTotalNumberOfAnswers(self.totalNumberOfUserAnswers)
+        self.container?.setQuestionLabelText(self.questionText)
+        self.container?.setAnswers(self.answers)
+        self.container?.setCorrectAnswer(self.correctAnswer)
+        self.container?.setNumberOfResponsesForAnswer(self.NumResponsesPerAnswer)
+        self.container?.resultsTableView.reloadData()
+        self.container?.setTotalNumberOfAnswers(self.totalNumberOfUserAnswers)
+
+      }
+      
+          }
   }
   
   func fillInTheFields (listofAllAnswers: [Answer]) {
     let size = listofAllAnswers.count
     for i in 0 ..< size  {
       let tempAnswer = listofAllAnswers[i].answerText
+      if (listofAllAnswers[i].AID == yourAnswerID) {
+        yourAnswerText = listofAllAnswers[i].answerText
+      }
       self.answerIDDictionary[tempAnswer] = self.answerIDs[i]
       self.answers.append(tempAnswer)
       if (listofAllAnswers[i].isCorrect == true ) {

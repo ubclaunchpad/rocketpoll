@@ -12,17 +12,20 @@ import Firebase
 extension ModelInterface: NameModelProtocol {
   
   // TODO: Check if udid exists
-  func setUserName(name: String) -> SegueName {
+  func setUserName(name: String, s:Bool) -> SegueName {
+    
+    if (s) {
+      return Segues.toMainApp
+    }
     
     let ref =  FIRDatabase.database().reference();
     
     let udid = UIDevice.currentDevice().identifierForVendor!.UUIDString
-    
+    currentID  = udid
     ref.queryEqualToValue(udid)
     
     let post = ["UserName": name,
-                "ListOfQuestion": "",
-                "QuestionsAnswered": ""];
+                "QuestionsAnswered": ["DEFAULTQID":"DEFAULTAID"]];
     let childUpdates = ["/Users/\(udid)": post]
     
     ref.updateChildValues(childUpdates)

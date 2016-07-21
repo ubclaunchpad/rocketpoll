@@ -49,8 +49,23 @@ extension ModelInterface: AnswerModelProtocol {
     }
     
   }
-  
-  
+  func findYourAnswer(questionID:QuestionID,completionHandler: (yourAnswer:AnswerID) -> ()) {
+    let ref =  FIRDatabase.database().reference();
+    ref.child("Users").child(currentID).child("QuestionsAnswered").child(questionID).observeEventType(.Value, withBlock: { (snapshot) in
+      var sendAnswerID = ""
+      if (snapshot.value as? [String : AnyObject]) != nil {
+        let answerNode = snapshot.value as! [String : AnyObject]
+        sendAnswerID = answerNode["AID"] as! String
+         completionHandler(yourAnswer: sendAnswerID )
+      } else {
+        completionHandler(yourAnswer: sendAnswerID )
+
+      }
+    
+    }) { (error) in
+      print(error.localizedDescription)
+    }
+  }
   func parseAIDNodeAndItsChildren(data:NSDictionary,selectedAnswerIDs:[AnswerID]) -> [Answer] {
     var sendAnswerData = [Answer]()
     for (AID, children) in data {
@@ -102,7 +117,7 @@ extension ModelInterface: AnswerModelProtocol {
     ref.child("ANSWERS/AIDS/\(answerID as String)/tally").runTransactionBlock({
       (currentData:FIRMutableData) -> FIRTransactionResult in
       let value = currentData.value as? String
-      if (value == nil) {
+      if (value != nil) {
         let currentTally = Int(value!)! + 1;
         let sendTally = String(currentTally);
         currentData.value = sendTally
@@ -113,6 +128,12 @@ extension ModelInterface: AnswerModelProtocol {
     return true
   }
   
+  func  rememberAnswer (questionID:QuestionID, answerID:AnswerID) -> Bool {
+    let ref = FIRDatabase.database().reference()
+    let child = [questionID : ["AID": answerID]];
+    ref.child("Users").child(currentID).child("QuestionsAnswered").updateChildValues(child)
+    return true
+  }
   //MARK: - Get Answer Information -
   func isCorrectAnswer(answerId: AnswerID) -> Bool {
     return true

@@ -40,15 +40,17 @@ class InputNameViewController: UIViewController {
     }
     
     let udid = UIDevice.currentDevice().identifierForVendor?.UUIDString
-    
+    var s = false ;
     FIRAuth.auth()?.createUserWithEmail("\(name)\(launchpadEmail)", password: udid!) { (user, error) in
       if error != nil {
         print("User name is taken")
+        s = true
       }
+      currentUser = name
+      let segueName = ModelInterface.sharedInstance.setUserName(name, s: s)
+      self.performSegueWithIdentifier(segueName, sender: self)
     }
-    currentUser = name
-    let segueName = ModelInterface.sharedInstance.setUserName(name)
-    performSegueWithIdentifier(segueName, sender: self)
+    
   }
   
   // MARK: - Helper methods

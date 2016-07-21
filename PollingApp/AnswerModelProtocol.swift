@@ -17,6 +17,9 @@ protocol AnswerModelProtocol {
   func setUserAnswer(currentTally: Int, answerID: AnswerID) -> Bool
   func processAnswerData(selectedAnswerIDs:[AnswerID],completionHandler: (listofAllAnswers: [Answer]) -> ())
   
+  func  rememberAnswer (questionID:QuestionID, answerID:AnswerID) -> Bool 
+  
+  func findYourAnswer(questionID:QuestionID,completionHandler: (yourAnswer:AnswerID) -> ())
   
   //Mark: Helper Methods -
   func parseAIDNodeAndItsChildren(data:NSDictionary, selectedAnswerIDs:[AnswerID]) -> [Answer]
