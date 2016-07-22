@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AnswerViewTableViewCell" customModule="PollingApp" customModuleProvider="target"/>
@@ -14,26 +15,31 @@
                 <rect key="frame" x="0.0" y="0.0" width="491" height="149"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="K3g-GA-E6l">
-                        <rect key="frame" x="0.0" y="8" width="492" height="119"/>
-                        <state key="normal" title="Button"/>
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="K3g-GA-E6l">
+                        <rect key="frame" x="30" y="8" width="428" height="119"/>
+                        <state key="normal" title="Button">
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
                         <connections>
                             <action selector="cellAnswerButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="KO0-Vn-Zb9"/>
                         </connections>
                     </button>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="K3g-GA-E6l" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="9" id="F7K-AV-UIa"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="K3g-GA-E6l" secondAttribute="trailing" constant="9" id="uaS-On-SUU"/>
+                </constraints>
             </tableViewCellContentView>
             <constraints>
-                <constraint firstItem="K3g-GA-E6l" firstAttribute="height" secondItem="KGk-i7-Jjw" secondAttribute="height" id="7bD-eL-nle"/>
-                <constraint firstItem="K3g-GA-E6l" firstAttribute="centerY" secondItem="KGk-i7-Jjw" secondAttribute="centerY" id="Ksq-Ap-5dI"/>
-                <constraint firstItem="K3g-GA-E6l" firstAttribute="width" secondItem="KGk-i7-Jjw" secondAttribute="width" id="iXp-8L-alj"/>
-                <constraint firstItem="K3g-GA-E6l" firstAttribute="centerX" secondItem="KGk-i7-Jjw" secondAttribute="centerX" id="pp2-OY-3Ve"/>
+                <constraint firstItem="K3g-GA-E6l" firstAttribute="centerY" secondItem="KGk-i7-Jjw" secondAttribute="centerY" id="Cxm-TY-l5s"/>
+                <constraint firstItem="K3g-GA-E6l" firstAttribute="height" secondItem="KGk-i7-Jjw" secondAttribute="height" id="IyD-Ap-FYF"/>
+                <constraint firstItem="K3g-GA-E6l" firstAttribute="centerX" secondItem="KGk-i7-Jjw" secondAttribute="centerX" id="pTg-Zt-S13"/>
             </constraints>
             <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
                 <outlet property="answerButton" destination="K3g-GA-E6l" id="8FF-nZ-AYj"/>
             </connections>
-            <point key="canvasLocation" x="343.5" y="170.5"/>
+            <point key="canvasLocation" x="343.5" y="170"/>
         </tableViewCell>
     </objects>
 </document>

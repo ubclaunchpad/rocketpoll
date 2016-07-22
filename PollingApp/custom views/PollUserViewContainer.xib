@@ -31,10 +31,6 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qnC-wG-dm1">
-                    <rect key="frame" x="0.0" y="342" width="600" height="258"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DDv-YN-nRk">
                     <rect key="frame" x="9" y="32" width="35" height="38"/>
                     <constraints>
@@ -51,7 +47,7 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total: 12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HBb-9o-vpN">
                     <rect key="frame" x="463" y="35" width="107" height="35"/>
                     <fontDescription key="fontDescription" type="system" pointSize="29"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Test" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMY-gA-wC6">
@@ -63,7 +59,7 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nuz-zV-FDx">
                     <rect key="frame" x="16" y="97" width="87" height="24"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KXd-ka-8pO">
@@ -83,9 +79,13 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Answers:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ev3-OR-hAO">
                     <rect key="frame" x="9" y="272" width="124" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" delaysContentTouches="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jpn-Uw-qq2">
+                    <rect key="frame" x="8" y="324" width="240" height="170"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -93,30 +93,31 @@
                 <constraint firstItem="uMY-gA-wC6" firstAttribute="leading" secondItem="Nuz-zV-FDx" secondAttribute="leading" id="14X-Fm-eka"/>
                 <constraint firstItem="JUl-rh-oju" firstAttribute="leading" secondItem="DDv-YN-nRk" secondAttribute="trailing" multiplier="2.2" constant="-40" id="2K8-UO-ZAF"/>
                 <constraint firstItem="ejh-bR-UCY" firstAttribute="top" secondItem="tGM-h6-LwC" secondAttribute="bottom" id="4PX-YM-Qb0"/>
+                <constraint firstAttribute="bottom" secondItem="Jpn-Uw-qq2" secondAttribute="bottom" id="68f-bH-ote"/>
                 <constraint firstItem="uMY-gA-wC6" firstAttribute="top" secondItem="KXd-ka-8pO" secondAttribute="bottom" constant="4" id="AR3-HO-L2n"/>
                 <constraint firstItem="Nuz-zV-FDx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="Acs-Sp-eFE"/>
                 <constraint firstItem="DDv-YN-nRk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="9" id="DtF-Nm-A05"/>
                 <constraint firstAttribute="trailing" secondItem="HBb-9o-vpN" secondAttribute="trailing" constant="30" id="I2X-VF-EoL"/>
-                <constraint firstAttribute="trailing" secondItem="qnC-wG-dm1" secondAttribute="trailing" id="JI6-wO-lyg"/>
+                <constraint firstAttribute="trailing" secondItem="Jpn-Uw-qq2" secondAttribute="trailing" id="Jh7-5K-fWD"/>
                 <constraint firstItem="JUl-rh-oju" firstAttribute="bottom" secondItem="DDv-YN-nRk" secondAttribute="bottom" id="OhO-rQ-FBD"/>
-                <constraint firstItem="qnC-wG-dm1" firstAttribute="top" secondItem="Ev3-OR-hAO" secondAttribute="bottom" constant="4" id="QpK-av-FYu"/>
                 <constraint firstItem="tGM-h6-LwC" firstAttribute="top" secondItem="KXd-ka-8pO" secondAttribute="bottom" id="TAM-dg-cku"/>
                 <constraint firstItem="KXd-ka-8pO" firstAttribute="top" secondItem="b0K-DX-cbg" secondAttribute="bottom" id="YnU-B5-dsq"/>
-                <constraint firstAttribute="bottom" secondItem="qnC-wG-dm1" secondAttribute="bottom" id="e3X-yU-F5X"/>
                 <constraint firstItem="Ev3-OR-hAO" firstAttribute="top" secondItem="ejh-bR-UCY" secondAttribute="bottom" constant="8" id="fOF-af-6Ko"/>
+                <constraint firstItem="Jpn-Uw-qq2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="fdV-Db-jHo"/>
                 <constraint firstAttribute="trailing" secondItem="uMY-gA-wC6" secondAttribute="trailing" constant="16" id="flf-yr-NCi"/>
                 <constraint firstItem="HBb-9o-vpN" firstAttribute="bottom" secondItem="DDv-YN-nRk" secondAttribute="bottom" id="kup-B2-OcW"/>
                 <constraint firstItem="Ev3-OR-hAO" firstAttribute="leading" secondItem="Nuz-zV-FDx" secondAttribute="leading" id="lb9-ZK-8Ma"/>
                 <constraint firstItem="b0K-DX-cbg" firstAttribute="top" secondItem="HBb-9o-vpN" secondAttribute="bottom" constant="21" id="luS-7H-tVG"/>
+                <constraint firstItem="Jpn-Uw-qq2" firstAttribute="top" secondItem="Ev3-OR-hAO" secondAttribute="bottom" constant="4" id="nhi-ae-slv"/>
                 <constraint firstItem="Nuz-zV-FDx" firstAttribute="top" secondItem="DDv-YN-nRk" secondAttribute="bottom" constant="27" id="okQ-70-szV"/>
-                <constraint firstItem="qnC-wG-dm1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="w2D-F8-ylp"/>
                 <constraint firstItem="DDv-YN-nRk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="32" id="xtg-S5-M2X"/>
             </constraints>
             <connections>
                 <outlet property="backButton" destination="DDv-YN-nRk" id="1Po-AX-G3j"/>
                 <outlet property="question" destination="uMY-gA-wC6" id="pjI-A5-J4r"/>
-                <outlet property="tableView" destination="qnC-wG-dm1" id="eOk-QO-Vyw"/>
+                <outlet property="tableView" destination="Jpn-Uw-qq2" id="hKP-tx-eeR"/>
                 <outlet property="timerLabel" destination="JUl-rh-oju" id="XrN-L3-1MM"/>
+                <outlet property="totalLabel" destination="HBb-9o-vpN" id="Gmj-ga-7Hh"/>
             </connections>
         </view>
     </objects>

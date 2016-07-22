@@ -19,7 +19,7 @@ class AnswerViewTableViewCell: UITableViewCell {
   @IBAction func cellAnswerButtonPressed(sender: AnyObject) {
     if let selectedAnswer = sender.currentTitle {
       delegate?.answerSelected(selectedAnswer!)
-      self.backgroundColor = colors.lightGreen
+      //self.backgroundColor = colors.lightGreen
     }
   }
   
@@ -34,7 +34,6 @@ class AnswerViewTableViewCell: UITableViewCell {
   
   override func setSelected(selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
-    // Configure the view for the selected state
   }
   
 }
