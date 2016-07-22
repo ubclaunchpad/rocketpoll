@@ -56,6 +56,7 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
       let cell = self.resultsTableView.dequeueReusableCellWithIdentifier("question", forIndexPath: indexPath) as! QuestionResultViewCell
       cell.displayQuestion(questionText)
       return cell
+    
     } else if  indexPath.section == 1 {
       
       
@@ -64,12 +65,15 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
       let cell = self.resultsTableView.dequeueReusableCellWithIdentifier("resultsCell", forIndexPath: indexPath) as! PollResultsTableViewCell
       if yourAnswer != "" {
         cell.setAnswerText(yourAnswer)
-        
         if(totalNumberOfAnswers != 0){
           let results:Double = MathUtil.convertTallyResultsToPercentage(Double(yourAnswerNumOfRespones), denominator: Double(totalNumberOfAnswers))
           cell.setResults(results)
+          cell.setBarGraph(results)
+          cell.SetTallyLabel(String(yourAnswerNumOfRespones))
         }else{
           cell.setResults(0)
+          cell.setBarGraph(0)
+           cell.SetTallyLabel(String(0))
         }
         if yourAnswer == correctAnswer {
           cell.changeCorrectAnswerColor()
@@ -92,8 +96,12 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     if(totalNumberOfAnswers != 0){
       let results:Double = MathUtil.convertTallyResultsToPercentage(Double(numberOfResponsesPerAnswer[indexPath.row]), denominator: Double(totalNumberOfAnswers))
       cell.setResults(results)
+      cell.setBarGraph(results)
+      cell.SetTallyLabel(String(numberOfResponsesPerAnswer[indexPath.row]))
     }else{
       cell.setResults(0)
+      cell.setBarGraph(0)
+       cell.SetTallyLabel(String(0))
     }
     
     return cell
