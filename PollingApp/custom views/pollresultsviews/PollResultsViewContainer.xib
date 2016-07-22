@@ -12,22 +12,18 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZFL-iT-IRe">
-                    <rect key="frame" x="0.0" y="50" width="600" height="519"/>
+                    <rect key="frame" x="0.0" y="81" width="600" height="519"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="519" id="enw-yJ-5gm"/>
                     </constraints>
                 </tableView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EXa-dg-5Z1">
-                    <rect key="frame" x="270" y="14" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="URp-5x-pE6">
                     <rect key="frame" x="14" y="14" width="117" height="34"/>
                     <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="0.25702069256756754" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstAttribute="height" constant="34" id="CWW-rN-gTB"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="117" id="NIA-mQ-qVX"/>
                         <constraint firstAttribute="width" constant="117" id="hDc-II-KP4"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -46,15 +42,21 @@
                         <action selector="deleteButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="2YV-t1-ejf"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EXa-dg-5Z1">
+                    <rect key="frame" x="270" y="47" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="URp-5x-pE6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="14" id="6is-W4-Sqa"/>
-                <constraint firstItem="ZFL-iT-IRe" firstAttribute="top" secondItem="URp-5x-pE6" secondAttribute="bottom" constant="2" id="FFg-fG-axT"/>
+                <constraint firstItem="ZFL-iT-IRe" firstAttribute="top" secondItem="URp-5x-pE6" secondAttribute="bottom" constant="33" id="FFg-fG-axT"/>
                 <constraint firstItem="URp-5x-pE6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="14" id="GRI-6A-Y3S"/>
-                <constraint firstAttribute="bottom" secondItem="ZFL-iT-IRe" secondAttribute="bottom" constant="31" id="Ign-p8-07x"/>
-                <constraint firstItem="ZFL-iT-IRe" firstAttribute="top" secondItem="EXa-dg-5Z1" secondAttribute="bottom" constant="15" id="J37-Sr-jdG"/>
-                <constraint firstItem="ZFL-iT-IRe" firstAttribute="top" secondItem="vQW-j8-7ca" secondAttribute="bottom" constant="2" id="evl-oF-A7T"/>
+                <constraint firstAttribute="bottom" secondItem="ZFL-iT-IRe" secondAttribute="bottom" id="Ign-p8-07x"/>
+                <constraint firstItem="ZFL-iT-IRe" firstAttribute="top" secondItem="EXa-dg-5Z1" secondAttribute="bottom" constant="13" id="J37-Sr-jdG"/>
+                <constraint firstItem="ZFL-iT-IRe" firstAttribute="top" secondItem="vQW-j8-7ca" secondAttribute="bottom" constant="33" id="evl-oF-A7T"/>
                 <constraint firstItem="EXa-dg-5Z1" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-9" id="iLQ-g4-DUw"/>
                 <constraint firstAttribute="trailing" secondItem="vQW-j8-7ca" secondAttribute="trailing" constant="156" id="kG8-AV-hTY"/>
                 <constraint firstItem="ZFL-iT-IRe" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="m0I-RQ-fzP"/>

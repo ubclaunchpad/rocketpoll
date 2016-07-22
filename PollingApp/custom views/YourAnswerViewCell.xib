@@ -21,7 +21,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SetCorrect" translatesAutoresizingMaskIntoConstraints="NO" id="d86-Dn-xHo">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SetIncorrect" translatesAutoresizingMaskIntoConstraints="NO" id="d86-Dn-xHo">
                         <rect key="frame" x="510" y="12" width="28" height="28"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="28" id="C4m-Vl-0a1"/>
@@ -54,6 +54,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="SetCorrect" width="158" height="158"/>
+        <image name="SetIncorrect" width="156" height="156"/>
     </resources>
 </document>

@@ -57,23 +57,24 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
       cell.displayQuestion(questionText)
       return cell
     } else if  indexPath.section == 1 {
-      let nib_name = UINib(nibName: "YourAnswerViewCell", bundle:nil)
-      tableView.registerNib(nib_name, forCellReuseIdentifier: "youranswer")
       
-      let cell = self.resultsTableView.dequeueReusableCellWithIdentifier("youranswer", forIndexPath: indexPath) as! YourAnswerViewCell
+      
+      let pollResultsCell = UINib(nibName: "PollResultsTableViewCell", bundle: nil)
+      tableView.registerNib(pollResultsCell, forCellReuseIdentifier: "resultsCell")
+      let cell = self.resultsTableView.dequeueReusableCellWithIdentifier("resultsCell", forIndexPath: indexPath) as! PollResultsTableViewCell
       if yourAnswer != "" {
-        cell.setYourAnswer(yourAnswer)
+        cell.setAnswerText(yourAnswer)
+        
         if(totalNumberOfAnswers != 0){
           let results:Double = MathUtil.convertTallyResultsToPercentage(Double(yourAnswerNumOfRespones), denominator: Double(totalNumberOfAnswers))
-          cell.setResult(results)
+          cell.setResults(results)
         }else{
-          cell.setResult(0)
+          cell.setResults(0)
         }
-        if yourAnswer != correctAnswer {
+        if yourAnswer == correctAnswer {
           cell.changeCorrectAnswerColor()
         }
       }
-      
       
       return cell
       
@@ -84,7 +85,7 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     let cell = self.resultsTableView.dequeueReusableCellWithIdentifier("resultsCell", forIndexPath: indexPath) as! PollResultsTableViewCell
     cell.setAnswerText(answers[indexPath.row])
     print(answers[indexPath.row])
-    if(answers[indexPath.row] != correctAnswer){
+    if(answers[indexPath.row] == correctAnswer){
       cell.changeCorrectAnswerColor()
     }
     
@@ -99,10 +100,20 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if (section == 0 || section == 1 ) {
-      return 1
+    var numberOfRows = 0;
+    if (section == 0) {
+      numberOfRows = 1
+    } else if (section == 1 ) {
+      if (yourAnswer != "") {
+        numberOfRows = 1;
+      } else  {
+        numberOfRows = 0;
+      }
+    } else {
+      numberOfRows  = answers.count
     }
-    return  answers.count
+    
+    return numberOfRows
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -139,8 +150,6 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
       }
     }
     
-    
-    
   }
   
   func setNumberOfResponsesForAnswer (NumResponses:[Int]){
@@ -159,14 +168,26 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     deleteButton.alpha = 0
   }
   
-  func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+  func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
+    var sectionName = ""
     if section == 0 {
-      return "Question"
+      sectionName = "Question"
     } else if section == 1 {
-      return "Your Answer"
+      
+      if (yourAnswer != "") {
+        sectionName = "Your Answer"
+      } else {
+        sectionName = "You didn't answer"
+      }
+    } else {
+      if (yourAnswer != "") {
+        sectionName = "Other Answers"
+      } else {
+        sectionName = "Answers"
+      }
     }
     
-    return "Answers"
+    return sectionName
   }
   
   

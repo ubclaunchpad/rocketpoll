@@ -98,6 +98,7 @@ enum correct {
 
 enum imageNames {
   static let setIncorrect = "SetIncorrect"
+  static let setCorrect = "SetCorrect"
 }
 
 enum cellDimensions {

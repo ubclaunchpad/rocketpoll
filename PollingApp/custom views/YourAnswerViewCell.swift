@@ -15,7 +15,7 @@ class YourAnswerViewCell: UITableViewCell {
   @IBOutlet weak var results: UILabel!
   @IBOutlet weak var correctAnswer: UIImageView!
   @IBOutlet weak var yourAnswerLabel: UILabel!
-  let infoCorrectImage: UIImage? = UIImage(named: "SetIncorrect")
+  let CorrectImage: UIImage? = UIImage(named: imageNames.setCorrect)
   override func awakeFromNib() {
     super.awakeFromNib()
   }
@@ -24,7 +24,7 @@ class YourAnswerViewCell: UITableViewCell {
     
   }
   func changeCorrectAnswerColor (){
-    self.correctAnswer.image = infoCorrectImage
+    self.correctAnswer.image = CorrectImage
   }
   func setYourAnswer (yourAnswer:String){
     yourAnswerLabel.text = yourAnswer
