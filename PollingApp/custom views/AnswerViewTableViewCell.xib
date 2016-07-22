@@ -16,16 +16,13 @@
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="K3g-GA-E6l">
                         <rect key="frame" x="0.0" y="8" width="492" height="119"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <state key="normal" title="Button"/>
                         <connections>
                             <action selector="cellAnswerButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="KO0-Vn-Zb9"/>
                         </connections>
                     </button>
                 </subviews>
-                <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="0.0" colorSpace="calibratedRGB"/>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="K3g-GA-E6l" firstAttribute="height" secondItem="KGk-i7-Jjw" secondAttribute="height" id="7bD-eL-nle"/>
                 <constraint firstItem="K3g-GA-E6l" firstAttribute="centerY" secondItem="KGk-i7-Jjw" secondAttribute="centerY" id="Ksq-Ap-5dI"/>

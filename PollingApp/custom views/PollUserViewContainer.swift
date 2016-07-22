@@ -75,12 +75,10 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     return 75
     //TODO: set tableView Cell size based on content size
   }
-  
 }
 
 extension PollUserViewContainer: AnswerViewTableViewCellDelegate {
   func answerSelected(answer: AnswerText) {
     delegate?.answerSelected(answer)
-    
   }
 }
