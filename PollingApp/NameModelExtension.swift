@@ -12,10 +12,10 @@ import Firebase
 extension ModelInterface: NameModelProtocol {
   
   // TODO: Check if udid exists
-  func setUserName(name: String, s:Bool) -> SegueName {
+  func setUserName(name: String, isUsernameTaken:Bool) -> SegueName {
     let udid = UIDevice.currentDevice().identifierForVendor!.UUIDString
     currentID  = udid
-    if (s) {
+    if (isUsernameTaken) {
       return Segues.toMainApp
     }
     
