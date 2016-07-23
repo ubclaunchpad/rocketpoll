@@ -40,7 +40,6 @@ class InputNameViewController: UIViewController {
     }
     
     let udid = UIDevice.currentDevice().identifierForVendor?.UUIDString
-
     var userID:String?
     FIRAuth.auth()?.createUserWithEmail("\(name)\(launchpadEmail)", password: udid!) { (user, error) in
       if error == nil {
@@ -57,7 +56,7 @@ class InputNameViewController: UIViewController {
       }
       currentUser = name
     
-    }    
+    }
     performSegueWithIdentifier(Segues.toMainApp, sender: self)
   }
   
