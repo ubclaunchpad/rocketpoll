@@ -32,9 +32,9 @@ class PollResultsTableViewCell: UITableViewCell{
   }
   
   func changeCorrectAnswerColor (){
-      self.incorrectImage.image = CorrectImage
+    self.incorrectImage.image = CorrectImage
     
-
+    
   }
   
   //IPA-132
@@ -62,5 +62,4 @@ class PollResultsTableViewCell: UITableViewCell{
     self.addSubview(barGraph)
     
   }
-
 }
