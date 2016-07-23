@@ -26,18 +26,6 @@ class InputNameViewController: UIViewController {
     container?.inputNameTextField.delegate = container
   }
   
-//  override func viewDidAppear(animated: Bool) {
-//    
-//    let username = NSUserDefaults.standardUserDefaults().stringForKey("username")
-//    let password = NSUserDefaults.standardUserDefaults().stringForKey("password")
-//    if username != nil && password != nil {
-//      currentUser = username!
-//      let segueName = ModelInterface.sharedInstance.setUserName(username!)
-//      performSegueWithIdentifier(segueName, sender: self)
-//    }
-//
-//  }
-  
   func submit (name: String){
     
     checkChars(name)
@@ -65,8 +53,7 @@ class InputNameViewController: UIViewController {
     }
     currentUser = name
     
-    performSegueWithIdentifier(
-      Segues.toMainApp, sender: self)
+    performSegueWithIdentifier(Segues.toMainApp, sender: self)
   }
   
   // MARK: - Helper methods

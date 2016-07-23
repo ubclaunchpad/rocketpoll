@@ -8,7 +8,7 @@
         <!--Campaigns-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="CampaignsViewController" customModule="PollingApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Campaigns" id="9pv-A4-QxB" customClass="CampaignsViewController" customModule="PollingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cdY-3H-JBS"/>
                         <viewControllerLayoutGuide type="bottom" id="6ho-2F-uIZ"/>
