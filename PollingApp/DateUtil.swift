@@ -27,8 +27,7 @@ extension NSDate {
   
   func timeStamp() -> String {
     let formatter = NSDateFormatter()
-    formatter.timeStyle = .LongStyle
-    let timeString = formatter.stringFromDate(self)
-    return timeString
+    formatter.dateFormat = "HH:mm:ss.SSS"
+    return formatter.stringFromDate(self)
   }
 }

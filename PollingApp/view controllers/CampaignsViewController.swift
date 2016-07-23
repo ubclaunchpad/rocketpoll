@@ -32,6 +32,7 @@ class CampaignsViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     addContainerToVC()
+    Log.debug("loaded campaign view")
   }
   
   override func didReceiveMemoryWarning() {
