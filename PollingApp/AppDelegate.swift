@@ -27,9 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       currentUser = username!
       self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
       
-      var storyboard = UIStoryboard(name: "Main", bundle: nil)
+      let storyboard = UIStoryboard(name: "Main", bundle: nil)
       
-      var initialViewController = storyboard.instantiateViewControllerWithIdentifier("Campaigns") as! UIViewController
+      let initialViewController = storyboard.instantiateViewControllerWithIdentifier("Campaigns") as! UIViewController
       
       self.window?.rootViewController = initialViewController
       self.window?.makeKeyAndVisible()
