@@ -178,6 +178,7 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
   
   func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
     var sectionName = ""
+
     if section == 0 {
       sectionName = "Question"
     } else if section == 1 {

@@ -43,14 +43,15 @@ class PollResultsViewController: UIViewController {
     
     //TODO:IPA-125
     ModelInterface.sharedInstance.processAnswerData(answerIDs) { (listofAllAnswers) in
-      self.answerIDDictionary = [AnswerText: AnswerID]()
-      self.answers = []
-      self.NumResponsesPerAnswer = []
-      self.totalNumberOfUserAnswers = 0
-      self.correctAnswer = ""
-      
+     
+  
       
       ModelInterface.sharedInstance.findYourAnswer(self.questionID) { (yourAnswer) in
+        self.answerIDDictionary = [AnswerText: AnswerID]()
+        self.answers = []
+        self.NumResponsesPerAnswer = []
+        self.totalNumberOfUserAnswers = 0
+        self.correctAnswer = ""
         self.yourAnswerID = yourAnswer
         self.fillInTheFields(listofAllAnswers)
         print(self.yourAnswerText)
