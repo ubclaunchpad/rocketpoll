@@ -26,6 +26,18 @@ class InputNameViewController: UIViewController {
     container?.inputNameTextField.delegate = container
   }
   
+//  override func viewDidAppear(animated: Bool) {
+//    
+//    let username = NSUserDefaults.standardUserDefaults().stringForKey("username")
+//    let password = NSUserDefaults.standardUserDefaults().stringForKey("password")
+//    if username != nil && password != nil {
+//      currentUser = username!
+//      let segueName = ModelInterface.sharedInstance.setUserName(username!)
+//      performSegueWithIdentifier(segueName, sender: self)
+//    }
+//
+//  }
+  
   func submit (name: String){
     
     checkChars(name)
@@ -40,15 +52,21 @@ class InputNameViewController: UIViewController {
     }
     
     let udid = UIDevice.currentDevice().identifierForVendor?.UUIDString
-    
+    var userID:String?
     FIRAuth.auth()?.createUserWithEmail("\(name)\(launchpadEmail)", password: udid!) { (user, error) in
-      if error != nil {
+      if error == nil {
+        NSUserDefaults.standardUserDefaults().setObject("\(name)", forKey: "username")
+        NSUserDefaults.standardUserDefaults().setObject("\(udid)", forKey: "password")
+        userID = user?.uid
+        ModelInterface.sharedInstance.setUserName(name, userID: userID!)
+      } else {
         print("User name is taken")
       }
     }
     currentUser = name
-    let segueName = ModelInterface.sharedInstance.setUserName(name)
-    performSegueWithIdentifier(segueName, sender: self)
+    
+    performSegueWithIdentifier(
+      Segues.toMainApp, sender: self)
   }
   
   // MARK: - Helper methods
