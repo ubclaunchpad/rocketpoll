@@ -10,6 +10,7 @@
 
 import UIKit
 
+//TODO: IPA-128. Also delete form Main Storyboard
 class JoinRoomViewController: UIViewController {
   
   var container: RoomViewContainer?
@@ -20,7 +21,6 @@ class JoinRoomViewController: UIViewController {
   }
   
   func setup() {
-    // add your container class to view
     container = RoomViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
     view.addSubview(container!)
   }

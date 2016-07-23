@@ -11,24 +11,26 @@ import UIKit
 
 protocol PollResultsViewContainerDelegate {
   func goBackToCampaign()
+  func presentConfirmationVaraible()
 }
 
 
 
 class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
-  
 
+  @IBOutlet weak var deleteButton: UIButton!
   @IBOutlet weak var backButton: UIButton!
   @IBOutlet weak var resultsTableView: UITableView!
   @IBOutlet weak var questionLabel: UILabel!
   @IBOutlet weak var totalAnswersLabel: UILabel!
+  
   private var answers: [AnswerText] = []
   private var correctAnswer: AnswerText = ""
   private var totalNumberOfAnswers: Int = 0;
   private var numberOfResponsesPerAnswer: [Int] = [];
   
   var delegate: PollResultsViewContainerDelegate?
-
+  
   class func instanceFromNib(frame: CGRect) -> PollResultsViewContainer {
     let view = UINib(nibName: "PollResultsViewContainer", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PollResultsViewContainer
     view.frame = frame
@@ -38,11 +40,12 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     return view
   }
   
-
+  
   @IBAction func backButtonPressed(sender: AnyObject) {
     delegate?.goBackToCampaign()
   }
-
+  
+  //TODO:IPA-132 Move this logic to VC or model
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let pollResultsCell = UINib(nibName: "PollResultsTableViewCell", bundle: nil)
     tableView.registerNib(pollResultsCell, forCellReuseIdentifier: "resultsCell")
@@ -54,7 +57,7 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     }
     
     if(totalNumberOfAnswers != 0){
-      let results:Double = Double(numberOfResponsesPerAnswer[indexPath.row])/Double(totalNumberOfAnswers)*100
+      let results:Double = MathUtil.convertTallyResultsToPercentage(Double(numberOfResponsesPerAnswer[indexPath.row]), denominator: Double(totalNumberOfAnswers))
       cell.setResults(results)
     }else{
       cell.setResults(0)
@@ -86,10 +89,22 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
   
   func setTotalNumberOfAnswers (totalNumOfAnswers:Int){
     totalNumberOfAnswers = totalNumOfAnswers
-    totalAnswersLabel.text = ("Number of users that answered: \(totalNumberOfAnswers)")
+    totalAnswersLabel.text = ("\(StringUtil.fillInString(numberOfAnswers, time: totalNumberOfAnswers))")
   }
   
   func setNumberOfResponsesForAnswer (NumResponses:[Int]){
     numberOfResponsesPerAnswer = NumResponses
+  }
+  
+  @IBAction func deleteButtonPressed(sender: AnyObject) {
+    delegate?.presentConfirmationVaraible()
+  }
+  
+  func makeDeleteButtonVisisble(){
+    deleteButton.alpha = 1
+  }
+  
+  func hideDeleteButton(){
+    deleteButton.alpha = 0
   }
 }

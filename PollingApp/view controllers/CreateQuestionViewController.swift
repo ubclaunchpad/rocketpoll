@@ -8,68 +8,85 @@
 
 import UIKit
 
-
-class CreateQuestionViewController: UIViewController {
+class CreateQuestionViewController: UIViewController{
+  
+  
+  private var sendAIDS = [AnswerID]()
+  private var sendTime = 0.0
+  private var sendQuestionText = "";
+  private var sendQID = "";
+  
+  var container: CreateQuestionContainerView?
+  override func viewDidLoad() {
+    super.viewDidLoad()
     
-    var container: CreateQuestionContainerView?
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CreateQuestionViewController.dismissKeyboards))
-        view.addGestureRecognizer(tap)
-        
-        setup()
+    let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+      target: self,
+      action: #selector(CreateQuestionViewController.dismissKeyboards))
+    view.addGestureRecognizer(tap)
+    
+    addContainerToVC()
+  }
+  
+  //MARK: - Helper Functions
+  func addContainerToVC() {
+    container = CreateQuestionContainerView.instanceFromNib(
+      CGRectMake(0, 0, view.bounds.width, view.bounds.height))
+    container?.delegate = self
+    view.addSubview(container!)
+  }
+  
+  func dismissKeyboards() {
+    view.endEditing(true)
+  }
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if (segue.identifier == ModelInterface.sharedInstance.segueToAdminScreen()) {
+      let viewController:PollAdminViewController = segue.destinationViewController as! PollAdminViewController
+      viewController.answerIDs = sendAIDS
+      viewController.questionText = sendQuestionText
+      viewController.questionID = sendQID
+      viewController.timerQuestion = sendTime
     }
-    
-    func setup() {
-        // add your container class to view
-        container = CreateQuestionContainerView.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
-        container?.delegate = self
-        view.addSubview(container!)
-    }
-    
-    
-    func dismissKeyboards() {
-        view.endEditing(true)
-    }
-    
+  }
+  
+  
 }
 
 extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
+  
+  func submitButtonPressed(question: QuestionText, answerArray: [AnswerID], correctAnswer: Int, questionDuration: Int){
+    //TODO: move answerID generation in createNewQuestion(_)
+    let questionObject = ModelInterface.sharedInstance.createNewQuestion(question, questionDuration: questionDuration)
+    let answerIDs =  ModelInterface.sharedInstance.createAnswerIDs(
+      questionObject.QID, answerText: answerArray)
+    questionObject.AIDS = answerIDs
+    ModelInterface.sharedInstance.setCorrectAnswer(answerIDs[correctAnswer - 1], isCorrectAnswer: true);
     
-    
-    func submitButtonPressed(question: QuestionText, answerArray: [AnswerID] ) {
-        
-        
-        //sends question string to firebase. firebase generates unique id corresponding to question
-        let questionID = ModelInterface.sharedInstance.setNewQuestion(question)
-        let answerIDs =  ModelInterface.sharedInstance.setAnswerIDS(questionID, answerText: answerArray)
-        
-        ModelInterface.sharedInstance.setCorrectAnswer(answerIDs[0], isCorrectAnswer: true);
-        
-        ModelInterface.sharedInstance.setSelectedQuestion(answerIDs, QID: questionID, questionText: question, author: "Jon")
-        
-        let nextRoom = ModelInterface.sharedInstance.segueToAdminScreen()
-        performSegueWithIdentifier(nextRoom, sender: self)
-        
-        
+    self.sendAIDS = answerIDs
+    self.sendQuestionText = question
+    self.sendQID = questionObject.QID
+    self.sendTime = questionObject.endTimestamp
+    let nextRoom = ModelInterface.sharedInstance.segueToAdminScreen()
+    performSegueWithIdentifier(nextRoom, sender: self)
+  }
+  
+  func backButtonPressed() {
+    let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
+    performSegueWithIdentifier(nextRoom, sender: self)
+  }
+  
+  //TODO: IPA-120
+  
+  func checksInput (question:QuestionText, A1:AnswerText, A2:AnswerText,  A3:AnswerText, A4:AnswerText, correctAnswer:Int, timerWasSet:Bool) -> Bool {
+    if((question == "") || (A1 == "") || (A2 == "") || (A3 == "") || (A4 == "") || (timerWasSet == false)) || correctAnswer == 0 {
+      let alert = UIAlertController(title: "\(alertMessages.emptyQuestions)", message:"",
+
+                                    preferredStyle: UIAlertControllerStyle.Alert)
+      alert.addAction(UIAlertAction(title: "\(alertMessages.confirm)",
+        style: UIAlertActionStyle.Default, handler: nil))
+      self.presentViewController(alert, animated: true, completion: nil)
+      return true
     }
-    func backButtonPressed() {
-        
-        let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
-        performSegueWithIdentifier(nextRoom, sender: self)
-    }
-    
-    func checksInput (question:String, A1:String, A2:String,  A3:String,A4:String) -> Bool {
-        if((question == "") || (A1 == "") || (A2 == "") || (A3 == "") || (A4 == "") ) {
-            let alert = UIAlertController(title: "Fill in the whole fields", message:"",
-                                          preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Ok",
-                style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
-            return true
-        }
-        return false
-    }
-    
+    return false
+  }  
 }

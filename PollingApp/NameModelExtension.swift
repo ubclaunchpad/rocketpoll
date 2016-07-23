@@ -12,10 +12,10 @@ import Firebase
 extension ModelInterface: NameModelProtocol {
   
   // TODO: Check if udid exists
-  func setUserName(name: String) -> SegueName {
+  func setUserName(name: String, userID: String) {
     
     let ref =  FIRDatabase.database().reference();
-
+    
     let udid = UIDevice.currentDevice().identifierForVendor!.UUIDString
     
     ref.queryEqualToValue(udid)
@@ -23,10 +23,27 @@ extension ModelInterface: NameModelProtocol {
     let post = ["UserName": name,
                 "ListOfQuestion": "",
                 "QuestionsAnswered": ""];
-    let childUpdates = ["/Users/\(udid)": post]
+    let childUpdates = ["/Users/\(userID)": post]
     
     ref.updateChildValues(childUpdates)
-    
-    return Segues.toMainApp
+
   }
+  
+  func cleanName(name: String) -> String {
+    let strippedString = String(
+      name.characters.filter {okayNameCharacters.contains($0)})
+    let trimmedString = strippedString.stringByTrimmingCharactersInSet(
+      NSCharacterSet.whitespaceCharacterSet())
+    return trimmedString
+  }
+  
+  func isValidName(name:String) -> Bool {
+    for char in name.characters {
+      if (!okayNameCharacters.contains(char)) {
+        return false
+      }
+    }
+    return true
+  }
+  
 }

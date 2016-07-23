@@ -9,35 +9,59 @@
 import UIKit
 
 class AnswerAdminTableViewCell: UITableViewCell {
-
   
-    @IBOutlet weak var answerlabel: UILabel!
-    
-    @IBOutlet weak var isaCorrectAnswer: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+  @IBOutlet weak var answerlabel: UILabel!
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+  @IBOutlet weak var isCorrectImage: UIImageView!
+ 
+  @IBOutlet weak var Tally: UILabel!
+  
+  let incorrectImage: UIImage? = UIImage(named: imageNames.setIncorrect)
+  
+  override func awakeFromNib() {
+    super.awakeFromNib()
+  }
+  
+  override func setSelected(selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
+  }
+  
+  func setAnswerText(answer: AnswerText){
+    answerlabel.text = answer
+  }
+  func changeCorrectAnswerColor (){
+    self.backgroundColor = UIColor.redColor()
+  }
+  func setisCorrect(isCorrect: String) {
+    //TODO: this should no be a magic string
+    
+    if isCorrect == UIStringConstants.notCorrect {
+        self.isCorrectImage.image = incorrectImage
+    }
+  }
+  
+  func SetTallyLabel (tally: String) {
+    self.Tally.text = tally
+  }
+  
+  func setBarGraph (result:Double) {
+    
+    for view in self.subviews{
+      if (view.backgroundColor == colors.barGraphColour) {
+        view.removeFromSuperview()
+      }
     }
     
-    func setAnswerText(answer: AnswerText){
-        answerlabel.text = answer
-    }
+    let percentage = CGFloat(result/100);
+    var frame: CGRect = self.frame
     
-    func setisCorrect(isCorrect: String) {
-        if isCorrect == "notCorrect" {
-           isaCorrectAnswer.text = "not Correct"
-        }
-        else{
-            isaCorrectAnswer.text = "Correct"
-        }
-    }
-    
-    
+    frame.size.width = frame.size.width * percentage
+    frame.origin.y = self.frame.size.height - frame.size.height
+    let barGraph: UIView = UIView(frame: frame)
+    barGraph.backgroundColor = colors.barGraphColour
+    self.addSubview(barGraph)
+  
+  }
+  
+  
 }
