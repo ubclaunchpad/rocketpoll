@@ -10,7 +10,7 @@ import Foundation
 
 protocol NameModelProtocol {
   
-  func setUserName(name: String, isUsernameTaken: Bool) -> SegueName
+  func setUserName(name: String, userID: String)
   
   func cleanName(name: String) -> String
 }

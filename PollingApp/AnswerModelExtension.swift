@@ -45,10 +45,11 @@ extension ModelInterface: AnswerModelProtocol {
       completionHandler(listofAllAnswers: sendAnswerData)
       
     }) { (error) in
-      print(error.localizedDescription)
+      Log.error(error.localizedDescription)
     }
     
   }
+  
   func findYourAnswer(questionID:QuestionID,completionHandler: (yourAnswer:AnswerID) -> ()) {
     let ref =  FIRDatabase.database().reference();
     ref.child("Users").child(currentID).child("QuestionsAnswered").child(questionID).observeEventType(.Value, withBlock: { (snapshot) in
@@ -56,16 +57,17 @@ extension ModelInterface: AnswerModelProtocol {
       if (snapshot.value as? [String : AnyObject]) != nil {
         let answerNode = snapshot.value as! [String : AnyObject]
         sendAnswerID = answerNode["AID"] as! String
-         completionHandler(yourAnswer: sendAnswerID )
+        completionHandler(yourAnswer: sendAnswerID )
       } else {
         completionHandler(yourAnswer: sendAnswerID )
-
+        
       }
-    
+      
     }) { (error) in
-      print(error.localizedDescription)
+      Log.error(error.localizedDescription)
     }
   }
+  
   func parseAIDNodeAndItsChildren(data:NSDictionary,selectedAnswerIDs:[AnswerID]) -> [Answer] {
     var sendAnswerData = [Answer]()
     for (AID, children) in data {
@@ -75,7 +77,7 @@ extension ModelInterface: AnswerModelProtocol {
         sendAnswerData.append(tempAnswer)
       }
     }
-    return  sendAnswerData
+    return sendAnswerData
     
   }
   
@@ -131,7 +133,9 @@ extension ModelInterface: AnswerModelProtocol {
   func  rememberAnswer (questionID:QuestionID, answerID:AnswerID) -> Bool {
     let ref = FIRDatabase.database().reference()
     let child = [questionID : ["AID": answerID]];
-    ref.child("Users").child(currentID).child("QuestionsAnswered").updateChildValues(child)
+    print("DFGHJKYTVBHJCRYTVGBHIUNCRYDBGIUTYCRDFTVUBGYIUTCYRDBGITUFGVBYITUVFGY")
+    let userID = currentID
+    ref.child("Users").child("\(userID)/QuestionsAnswered").updateChildValues(child)
     return true
   }
   //MARK: - Get Answer Information -

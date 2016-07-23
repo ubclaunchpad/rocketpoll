@@ -18,6 +18,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Override point for customization after application launch.
     FIRApp.configure()
+    
+    
+    
+    let username = NSUserDefaults.standardUserDefaults().stringForKey("username")
+    let password = NSUserDefaults.standardUserDefaults().stringForKey("password")
+    let ID =  NSUserDefaults.standardUserDefaults().stringForKey("userID")
+    if username != nil && password != nil {
+      currentUser = username!
+      currentID = ID!
+      self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+      
+      let storyboard = UIStoryboard(name: "Main", bundle: nil)
+      
+      let initialViewController = storyboard.instantiateViewControllerWithIdentifier("Campaigns") as! UIViewController
+      
+      self.window?.rootViewController = initialViewController
+      self.window?.makeKeyAndVisible()
+    }
+    
     return true
   }
   
