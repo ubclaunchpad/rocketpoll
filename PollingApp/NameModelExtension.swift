@@ -17,12 +17,10 @@ extension ModelInterface: NameModelProtocol {
     let ref =  FIRDatabase.database().reference();
     
     let udid = UIDevice.currentDevice().identifierForVendor!.UUIDString
-    
+  
     ref.queryEqualToValue(udid)
     
-    let post = ["UserName": name,
-                "ListOfQuestion": "",
-                "QuestionsAnswered": ""];
+    let post = ["UserName": name];
     let childUpdates = ["/Users/\(userID)": post]
     
     ref.updateChildValues(childUpdates)

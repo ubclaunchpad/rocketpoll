@@ -68,6 +68,8 @@
 		D0659D241CB06AAD00D98EED /* PollAdminViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0659D231CB06AAD00D98EED /* PollAdminViewContainer.swift */; };
 		D0659D2F1CB0767300D98EED /* AnswerAdminTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0659D2D1CB0767300D98EED /* AnswerAdminTableViewCell.swift */; };
 		D0659D301CB0767300D98EED /* AnswerAdminTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0659D2E1CB0767300D98EED /* AnswerAdminTableViewCell.xib */; };
+		D06C7EE51D40A25B0099EB8C /* QuestionResultViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06C7EE41D40A25B0099EB8C /* QuestionResultViewCell.swift */; };
+		D06C7EEB1D40A30D0099EB8C /* QuestionResultViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C7EEA1D40A30D0099EB8C /* QuestionResultViewCell.xib */; };
 		D07A88F11D319E360071FB6A /* MathUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07A88F01D319E360071FB6A /* MathUtil.swift */; };
 		D0B241C81D10EF29006DD380 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B241C71D10EF29006DD380 /* Question.swift */; };
 		D0B241CA1D10F9E8006DD380 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B241C91D10F9E8006DD380 /* Answer.swift */; };
@@ -172,6 +174,8 @@
 		D0659D231CB06AAD00D98EED /* PollAdminViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollAdminViewContainer.swift; sourceTree = "<group>"; };
 		D0659D2D1CB0767300D98EED /* AnswerAdminTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerAdminTableViewCell.swift; sourceTree = "<group>"; };
 		D0659D2E1CB0767300D98EED /* AnswerAdminTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerAdminTableViewCell.xib; sourceTree = "<group>"; };
+		D06C7EE41D40A25B0099EB8C /* QuestionResultViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionResultViewCell.swift; sourceTree = "<group>"; };
+		D06C7EEA1D40A30D0099EB8C /* QuestionResultViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionResultViewCell.xib; sourceTree = "<group>"; };
 		D07A88F01D319E360071FB6A /* MathUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathUtil.swift; sourceTree = "<group>"; };
 		D0B241C71D10EF29006DD380 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		D0B241C91D10F9E8006DD380 /* Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
@@ -473,6 +477,8 @@
 				6E04B3DD1CDEB4FA003408AB /* PollResultsViewContainer.xib */,
 				6E3D7BEB1CA4A243001E685B /* PollResultsTableViewCell.swift */,
 				6E3D7BEC1CA4A243001E685B /* PollResultsTableViewCell.xib */,
+				D06C7EE41D40A25B0099EB8C /* QuestionResultViewCell.swift */,
+				D06C7EEA1D40A30D0099EB8C /* QuestionResultViewCell.xib */,
 			);
 			name = pollresultsviews;
 			sourceTree = "<group>";
@@ -572,7 +578,6 @@
 				TargetAttributes = {
 					76B28C141C66C84A008407EE = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = AX2D84BZ47;
 						DevelopmentTeam = 6YRR84HQ57;
 					};
 					76B28C2A1C66C84B008407EE = {
@@ -623,6 +628,7 @@
 				52478AAA1D3AF64A00379745 /* AnswerTableViewCell.xib in Resources */,
 				52C2C65F1C9A7700001779F5 /* RoomsNearbyViewContainer.xib in Resources */,
 				6E23109A1D3AD880008BEADC /* InputNameView.xib in Resources */,
+				D06C7EEB1D40A30D0099EB8C /* QuestionResultViewCell.xib in Resources */,
 				D0659D301CB0767300D98EED /* AnswerAdminTableViewCell.xib in Resources */,
 				76B28C251C66C84A008407EE /* LaunchScreen.storyboard in Resources */,
 				D3D4593D1C6FE646000ABD57 /* CreateQuestionContainerView.xib in Resources */,
@@ -788,6 +794,7 @@
 				C805755F1D3ADC10009A44DE /* DateUtil.swift in Sources */,
 				6E3D7BED1CA4A243001E685B /* PollResultsTableViewCell.swift in Sources */,
 				D0B241CA1D10F9E8006DD380 /* Answer.swift in Sources */,
+				D06C7EE51D40A25B0099EB8C /* QuestionResultViewCell.swift in Sources */,
 				C80EE1971D287417005872DD /* TimerUtil.swift in Sources */,
 				76C150091C6FDFCC0066C0FE /* CreateQuestionViewController.swift in Sources */,
 				C80396141C8CD869007C276F /* QuestionModelProtocol.swift in Sources */,

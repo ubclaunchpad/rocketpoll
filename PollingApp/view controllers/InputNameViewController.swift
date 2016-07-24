@@ -46,13 +46,17 @@ class InputNameViewController: UIViewController {
         NSUserDefaults.standardUserDefaults().setObject("\(name)", forKey: "username")
         NSUserDefaults.standardUserDefaults().setObject("\(udid)", forKey: "password")
         userID = user?.uid
+        currentID = (user?.uid)!
+        print(currentID)
+        NSUserDefaults.standardUserDefaults().setObject("\(userID!)", forKey: "userID")
         ModelInterface.sharedInstance.setUserName(name, userID: userID!)
       } else {
         print("User name is taken")
+       
       }
-    }
-    currentUser = name
+      currentUser = name
     
+    }
     performSegueWithIdentifier(Segues.toMainApp, sender: self)
   }
   
