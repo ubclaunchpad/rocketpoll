@@ -55,8 +55,7 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
       return cell
       
     } else if  indexPath.section == 1 && yourAnswer != "" {
-      
-      
+  
       let pollResultsCell = UINib(nibName: "PollResultsTableViewCell", bundle: nil)
       tableView.registerNib(pollResultsCell, forCellReuseIdentifier: "resultsCell")
       let cell = self.resultsTableView.dequeueReusableCellWithIdentifier("resultsCell", forIndexPath: indexPath) as! PollResultsTableViewCell
