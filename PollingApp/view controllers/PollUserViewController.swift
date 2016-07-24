@@ -131,11 +131,17 @@ final class PollUserViewController: UIViewController {
 extension PollUserViewController: PollUserViewContainerDelegate {
   func answerSelected(answer: AnswerText) {
     if let selectedAnswerID = answerIDDictionary[answer] {
-      let tally = tallyDictionary[selectedAnswerID]!
-      ModelInterface.sharedInstance.setUserAnswer(tally, answerID: selectedAnswerID)
-      ModelInterface.sharedInstance.rememberAnswer(questionID, answerID: selectedAnswerID)
-      let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
-      performSegueWithIdentifier(nextRoom, sender: self)
+      ModelInterface.sharedInstance.rememberAnswer(questionID, answerID: selectedAnswerID) { (DontAllowRevoting) in
+        if (DontAllowRevoting) {
+          let confirmAlert = UIAlertController(title: "Not Allowed", message: alertMessages.noRevoting, preferredStyle: UIAlertControllerStyle.Alert)
+          confirmAlert.addAction(UIAlertAction(title: alertMessages.confirm, style: .Default, handler: { (action: UIAlertAction!) in confirmAlert.dismissViewControllerAnimated(true, completion: nil)
+          }))
+          self.presentViewController(confirmAlert, animated: true, completion: nil)
+        } else {
+          let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
+          self.performSegueWithIdentifier(nextRoom, sender: self)
+        }
+      }
     }
   }
   func backButtonPushed() {
