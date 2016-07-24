@@ -33,6 +33,7 @@ var charactersToAvoid : [Character] =
 enum colors {
   static let green = UIColor(red: 28/255.0, green: 165/255.0, blue: 122/255.0, alpha: 1)
   static let lightGreen = UIColor(red: 226/255.0, green: 250/255.0, blue: 218/255.0, alpha: 1)
+  static let barGraphColour = UIColor(red: 0, green: 0, blue: 1, alpha: 0.5)
 }
 
 enum Segues {
@@ -63,16 +64,16 @@ enum UIDaysRemaining {
 }
 
 enum UITimeRemaining {
-  static let endedMoments = "Poll ended a couple moments ago"
-  static let endsMoments = "Poll ends in a couple moments"
-  static let endedMinutes = "Poll ended %1% minutes ago"
-  static let endsMinutes = "Poll ends in %1% minutes"
-  static let endedHour = "Poll ended %1% hour ago"
-  static let endsHour = "Poll ends in %1% hour"
-  static let endedHours = "Poll ended %1% hours ago"
-  static let endsHours = "Poll ends in %1% hours"
-  static let endsDays = "Poll ends in %1% days"
-  static let endsDay = "Poll ends in %1% day"
+  static let endedMoments = "Ended a couple moments ago"
+  static let endsMoments = "Ends in a couple moments"
+  static let endedMinutes = "Ended %1% minutes ago"
+  static let endsMinutes = "%1% minutes"
+  static let endedHour = "Ended %1% hour ago"
+  static let endsHour = "%1% hour"
+  static let endedHours = "Ended %1% hours ago"
+  static let endsHours = "%1% hours"
+  static let endsDays = "%1% days"
+  static let endsDay = "%1% day"
   static let timerMinutes = "Minutes: %1%"
   static let timerMinute = "Minute: %1%"
   static let timerHours = "Hours: %1%"
@@ -95,4 +96,12 @@ enum alertMessages {
 enum correct {
   static let isCorrect = "Correct"
   static let notCorrect = "not Correct"
+}
+
+enum imageNames {
+  static let setIncorrect = "SetIncorrect"
+}
+
+enum cellDimensions {
+  static let pollAdminCellHeight:CGFloat = 58
 }

@@ -102,7 +102,7 @@ extension ModelInterface: AnswerModelProtocol {
     ref.child("ANSWERS/AIDS/\(answerID as String)/tally").runTransactionBlock({
       (currentData:FIRMutableData) -> FIRTransactionResult in
       let value = currentData.value as? String
-      if (value == nil) {
+      if (value != nil) {
         let currentTally = Int(value!)! + 1;
         let sendTally = String(currentTally);
         currentData.value = sendTally

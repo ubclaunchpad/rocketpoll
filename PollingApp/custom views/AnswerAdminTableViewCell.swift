@@ -11,8 +11,12 @@ import UIKit
 class AnswerAdminTableViewCell: UITableViewCell {
   
   @IBOutlet weak var answerlabel: UILabel!
-  @IBOutlet weak var isaCorrectAnswer: UILabel!
+
+  @IBOutlet weak var isCorrectImage: UIImageView!
+ 
   @IBOutlet weak var Tally: UILabel!
+  
+  let incorrectImage: UIImage? = UIImage(named: imageNames.setIncorrect)
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -30,16 +34,33 @@ class AnswerAdminTableViewCell: UITableViewCell {
   }
   func setisCorrect(isCorrect: String) {
     //TODO: this should no be a magic string
-    if isCorrect == "notCorrect" {
-      isaCorrectAnswer.text = "\(correct.notCorrect)"
-    }
-    else{
-      isaCorrectAnswer.text = "\(correct.isCorrect)"
+    
+    if isCorrect == UIStringConstants.notCorrect {
+        self.isCorrectImage.image = incorrectImage
     }
   }
   
   func SetTallyLabel (tally: String) {
     self.Tally.text = tally
+  }
+  
+  func setBarGraph (result:Double) {
+    
+    for view in self.subviews{
+      if (view.backgroundColor == colors.barGraphColour) {
+        view.removeFromSuperview()
+      }
+    }
+    
+    let percentage = CGFloat(result/100);
+    var frame: CGRect = self.frame
+    
+    frame.size.width = frame.size.width * percentage
+    frame.origin.y = self.frame.size.height - frame.size.height
+    let barGraph: UIView = UIView(frame: frame)
+    barGraph.backgroundColor = colors.barGraphColour
+    self.addSubview(barGraph)
+  
   }
   
   

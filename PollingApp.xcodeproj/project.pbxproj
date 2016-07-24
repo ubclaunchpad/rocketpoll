@@ -71,6 +71,8 @@
 		D07A88F11D319E360071FB6A /* MathUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07A88F01D319E360071FB6A /* MathUtil.swift */; };
 		D0B241C81D10EF29006DD380 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B241C71D10EF29006DD380 /* Question.swift */; };
 		D0B241CA1D10F9E8006DD380 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B241C91D10F9E8006DD380 /* Answer.swift */; };
+		D0E32CE91D3F374800E2CE71 /* QuestionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0E32CE81D3F374800E2CE71 /* QuestionViewCell.xib */; };
+		D0E32CEB1D3F37AD00E2CE71 /* QuestionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E32CEA1D3F37AD00E2CE71 /* QuestionViewCell.swift */; };
 		D34296211C792F9C00C33920 /* PollResultsViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D342961E1C792F9C00C33920 /* PollResultsViewContainer.swift */; };
 		D34296261C79308900C33920 /* FirebaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34296251C79308900C33920 /* FirebaseData.swift */; };
 		D3D4593B1C6FE626000ABD57 /* CreateQuestionContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D4593A1C6FE626000ABD57 /* CreateQuestionContainerView.swift */; };
@@ -173,6 +175,8 @@
 		D07A88F01D319E360071FB6A /* MathUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathUtil.swift; sourceTree = "<group>"; };
 		D0B241C71D10EF29006DD380 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		D0B241C91D10F9E8006DD380 /* Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
+		D0E32CE81D3F374800E2CE71 /* QuestionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionViewCell.xib; sourceTree = "<group>"; };
+		D0E32CEA1D3F37AD00E2CE71 /* QuestionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewCell.swift; sourceTree = "<group>"; };
 		D342961E1C792F9C00C33920 /* PollResultsViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PollResultsViewContainer.swift; path = pollresultsviews/PollResultsViewContainer.swift; sourceTree = "<group>"; };
 		D34296251C79308900C33920 /* FirebaseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseData.swift; sourceTree = "<group>"; };
 		D3D4593A1C6FE626000ABD57 /* CreateQuestionContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateQuestionContainerView.swift; sourceTree = "<group>"; };
@@ -456,6 +460,8 @@
 				D0659D2D1CB0767300D98EED /* AnswerAdminTableViewCell.swift */,
 				D0659D2E1CB0767300D98EED /* AnswerAdminTableViewCell.xib */,
 				D0659D231CB06AAD00D98EED /* PollAdminViewContainer.swift */,
+				D0E32CE81D3F374800E2CE71 /* QuestionViewCell.xib */,
+				D0E32CEA1D3F37AD00E2CE71 /* QuestionViewCell.swift */,
 			);
 			name = PollAdminView;
 			sourceTree = "<group>";
@@ -611,6 +617,7 @@
 				6E3D7BEE1CA4A243001E685B /* PollResultsTableViewCell.xib in Resources */,
 				52EB17B71CB21CC300C40DBC /* CampaignViewTableViewCell.xib in Resources */,
 				521E4FFA1C8B9D48004A8F52 /* PollUserViewContainer.xib in Resources */,
+				D0E32CE91D3F374800E2CE71 /* QuestionViewCell.xib in Resources */,
 				6E705D4F1C9925160096AD36 /* AnswerViewTableViewCell.xib in Resources */,
 				76C150111C6FE15F0066C0FE /* RoomViewContainer.xib in Resources */,
 				52478AAA1D3AF64A00379745 /* AnswerTableViewCell.xib in Resources */,
@@ -793,6 +800,7 @@
 				C803960D1C8CC8F7007C276F /* RoomModelProtocol.swift in Sources */,
 				D07A88F11D319E360071FB6A /* MathUtil.swift in Sources */,
 				D0B241C81D10EF29006DD380 /* Question.swift in Sources */,
+				D0E32CEB1D3F37AD00E2CE71 /* QuestionViewCell.swift in Sources */,
 				C803961B1C8CE6D0007C276F /* AnswerModelExtension.swift in Sources */,
 				76C1500D1C6FE0550066C0FE /* PollResultsViewController.swift in Sources */,
 				D3D4593B1C6FE626000ABD57 /* CreateQuestionContainerView.swift in Sources */,
