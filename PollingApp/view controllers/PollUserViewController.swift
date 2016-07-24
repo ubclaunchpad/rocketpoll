@@ -9,6 +9,7 @@
 import UIKit
 
 final class PollUserViewController: UIViewController {
+  private var totalTally = 0;
   private var hours = 0
   private var minutes = 0
   private var seconds = 0
@@ -54,7 +55,7 @@ final class PollUserViewController: UIViewController {
       self.container?.setAnswers(self.answers)
       self.container?.delegate = self
       self.container?.tableView.reloadData()
-      
+      self.container?.setTotal(self.totalTally)
     }
   }
   
@@ -65,6 +66,7 @@ final class PollUserViewController: UIViewController {
       self.answerIDDictionary[tempAnswer] = listofAllAnswers[i].AID
       self.answers.append(tempAnswer)
       self.tallyDictionary[listofAllAnswers[i].AID] = listofAllAnswers[i].tally
+      totalTally += listofAllAnswers[i].tally
     }
     
     setCountdown(questionID);
@@ -134,8 +136,6 @@ extension PollUserViewController: PollUserViewContainerDelegate {
       let tally = tallyDictionary[selectedAnswerID]!;
       print("Answer:\(answer) HAD this many votes: \(tally)")
       ModelInterface.sharedInstance.setUserAnswer(tally, answerID: selectedAnswerID)
-      let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
-      performSegueWithIdentifier(nextRoom, sender: self)
     }
   }
   func backButtonPushed() {

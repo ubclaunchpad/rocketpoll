@@ -14,8 +14,11 @@ protocol PollUserViewContainerDelegate {
 }
 
 class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
-  @IBOutlet weak var tableView: UITableView!
+  
   @IBOutlet weak var backButton: UIButton!
+  @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var totalLabel: UILabel!
+
   
   private var answers:[AnswerText] = []
   
@@ -33,11 +36,13 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     view.frame = frame
     view.tableView.delegate = view
     view.tableView.dataSource = view
-    
     return view
   }
+  func setTotal(tally: Int) {
+    totalLabel.text = ("\(StringUtil.fillInString(tallyString, time: tally))")
+  }
   
-  func setAnswers(Answers: [AnswerText]){
+  func setAnswers(Answers: [AnswerText]) {
     answers = Answers
     
   }
@@ -63,6 +68,9 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     let cell = self.tableView.dequeueReusableCellWithIdentifier("answerCell", forIndexPath: indexPath) as! AnswerViewTableViewCell
     cell.setAnswerText(answers[indexPath.row])
     cell.delegate = self
+    self.tableView.separatorColor = UIColor.grayColor()
+    cell.selectionStyle = .Blue
+    self.tableView.allowsSelection = true
     return cell
   }
   @IBAction func backButtonPressed(sender: AnyObject) {
@@ -73,12 +81,10 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     return 75
     //TODO: set tableView Cell size based on content size
   }
-  
 }
 
 extension PollUserViewContainer: AnswerViewTableViewCellDelegate {
   func answerSelected(answer: AnswerText) {
     delegate?.answerSelected(answer)
-    
   }
 }
