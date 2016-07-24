@@ -13,9 +13,6 @@ protocol PollResultsViewContainerDelegate {
   func goBackToCampaign()
   func presentConfirmationVaraible()
 }
-
-
-
 class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
   
   @IBOutlet weak var deleteButton: UIButton!
@@ -78,10 +75,7 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
       if yourAnswer == correctAnswer {
         cell.changeCorrectAnswerColor()
       }
-      
-      
       return cell
-      
     }
     
     let pollResultsCell = UINib(nibName: "PollResultsTableViewCell", bundle: nil)
@@ -148,16 +142,14 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
   
   func setYourAnswer (yourAnswer:String) {
     self.yourAnswer = yourAnswer
-    
-    for (var i = 0 ; i < answers.count ; i += 1) {
+    for i in 0...answers.count-1  {
       if (answers[i] == yourAnswer) {
         yourAnswerNumOfRespones = numberOfResponsesPerAnswer[i]
         answers.removeAtIndex(i)
         numberOfResponsesPerAnswer.removeAtIndex(i)
-        break;
+        break
       }
     }
-    
   }
   
   func setNumberOfResponsesForAnswer (NumResponses:[Int]){
@@ -181,7 +173,7 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     if section == 0 {
       sectionName = "Question"
     } else if section == 1 {
-      
+  
       if (yourAnswer != "") {
         sectionName = "Your Answer"
       } else {
