@@ -53,13 +53,11 @@ extension ModelInterface: AnswerModelProtocol {
   func findYourAnswer(questionID:QuestionID,completionHandler: (yourAnswer:AnswerID) -> ()) {
     let ref =  FIRDatabase.database().reference();
     ref.child("Users").child(currentID).child("QuestionsAnswered").child(questionID).observeEventType(.Value, withBlock: { (snapshot) in
-      var sendAnswerID = ""
-      if (snapshot.value as? [String : AnyObject]) != nil {
-        let answerNode = snapshot.value as! [String : AnyObject]
-        sendAnswerID = answerNode["AID"] as! String
-        completionHandler(yourAnswer: sendAnswerID )
+      if (snapshot.value as? String) != nil {
+        let answerNode = snapshot.value as! String
+        completionHandler(yourAnswer: answerNode)
       } else {
-        completionHandler(yourAnswer: sendAnswerID )
+        completionHandler(yourAnswer:"")
         
       }
       
@@ -85,7 +83,6 @@ extension ModelInterface: AnswerModelProtocol {
     var sendTally = 0;
     var sendIsCorrect = false;
     var sendAnswerText = "";
-    
     for (key,value) in data {
       let keyAsString = key as! String
       switch keyAsString {
@@ -132,10 +129,8 @@ extension ModelInterface: AnswerModelProtocol {
   
   func  rememberAnswer (questionID:QuestionID, answerID:AnswerID) -> Bool {
     let ref = FIRDatabase.database().reference()
-    let child = [questionID : ["AID": answerID]];
-    print("DFGHJKYTVBHJCRYTVGBHIUNCRYDBGIUTYCRDFTVUBGYIUTCYRDBGITUFGVBYITUVFGY")
-    let userID = currentID
-    ref.child("Users").child("\(userID)/QuestionsAnswered").updateChildValues(child)
+    let child = [questionID :  answerID]
+    ref.child("Users").child("\(currentID)/QuestionsAnswered").updateChildValues(child)
     return true
   }
   //MARK: - Get Answer Information -
