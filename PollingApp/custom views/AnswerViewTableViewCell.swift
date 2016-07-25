@@ -10,7 +10,7 @@ import UIKit
 
 protocol AnswerViewTableViewCellDelegate{
   func answerSelected(answer: AnswerText)
-  func changeCellBackgroundColor(identifier: String)
+  func changeCellBackgroundColor(identifier: Int)
 }
 
 class AnswerViewTableViewCell: UITableViewCell {
@@ -20,8 +20,7 @@ class AnswerViewTableViewCell: UITableViewCell {
   @IBAction func cellAnswerButtonPressed(sender: AnyObject) {
     if let selectedAnswer = sender.currentTitle {
       delegate?.answerSelected(selectedAnswer!)
-      delegate?.changeCellBackgroundColor(self.reuseIdentifier!)
-      self.backgroundColor = colors.lightGreen
+      delegate?.changeCellBackgroundColor(self.tag)
     }
   }
   

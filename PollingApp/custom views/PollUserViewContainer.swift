@@ -23,7 +23,7 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
   private var answers:[AnswerText] = []
   var selectedAnswer: AnswerText = ""
   var delegate: PollUserViewContainerDelegate?
-  var previousCell = AnswerViewTableViewCell()
+  var previousCellID:Int = 0
   
   
   @IBOutlet weak var question: UILabel!
@@ -59,16 +59,14 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     return answers.count
     
   }
-  func getPreviousQuestionPressed() -> AnswerViewTableViewCell {
-  return previousCell
-  }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let nib_name = UINib(nibName: "AnswerViewTableViewCell", bundle:nil)
-    tableView.registerNib(nib_name, forCellReuseIdentifier: "answerCell\(indexPath)")
-    let cell = self.tableView.dequeueReusableCellWithIdentifier("answerCell\(indexPath)", forIndexPath: indexPath) as! AnswerViewTableViewCell
+    tableView.registerNib(nib_name, forCellReuseIdentifier: "answerCell\(indexPath.row)")
+    let cell = self.tableView.dequeueReusableCellWithIdentifier("answerCell\(indexPath.row)", forIndexPath: indexPath) as! AnswerViewTableViewCell
     cell.setAnswerText(answers[indexPath.row])
     cell.delegate = self
+    cell.tag = 1000 + indexPath.row
     self.tableView.separatorColor = UIColor.grayColor()
     cell.selectionStyle = .Blue
     self.tableView.allowsSelection = true
@@ -88,8 +86,13 @@ extension PollUserViewContainer: AnswerViewTableViewCellDelegate {
   func answerSelected(answer: AnswerText) {
     delegate?.answerSelected(answer)
   }
-  func changeCellBackgroundColor(identifier: String) {
-    let cell = self.tableView.dequeueReusableCellWithIdentifier(identifier)
-    cell?.backgroundColor = colors.green
+  func changeCellBackgroundColor(identifier: Int) {
+    if (previousCellID != 0){
+      let previousCell = self.tableView.viewWithTag(previousCellID)
+      previousCell?.backgroundColor = UIColor.whiteColor()
+    }
+    previousCellID = identifier
+    let cell = self.tableView.viewWithTag(identifier)
+    cell?.backgroundColor = colors.lightGreen
   }
 }
