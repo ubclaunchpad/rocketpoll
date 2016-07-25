@@ -26,9 +26,9 @@ final class PollUserViewController: UIViewController {
   
   
   // Recieved infomration
-  var questionText:QuestionText = ""
-  var questionID:QuestionID = ""
-  var answerIDs:[AnswerID] = []
+  var questionText: QuestionText = ""
+  var questionID: QuestionID = ""
+  var answerIDs: [AnswerID] = []
   
   
   // Information to send to another view controller
@@ -58,6 +58,7 @@ final class PollUserViewController: UIViewController {
       if (self.shouldUpdateTally){
         self.container?.setTotal(self.totalTally)
       }
+      self.setCountdown(self.questionID)
     }
     
   }
@@ -71,7 +72,6 @@ final class PollUserViewController: UIViewController {
       self.tallyDictionary[listofAllAnswers[i].AID] = listofAllAnswers[i].tally
       totalTally += listofAllAnswers[i].tally
     }
-    setCountdown(questionID);
   }
   
   func createTimer(startingTime: Int) {

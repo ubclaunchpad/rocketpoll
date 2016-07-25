@@ -23,9 +23,9 @@ var okayNameCharacters : Set<Character> =
   Set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890".characters)
 
 
-var launchpadEmail:String = "@ubclaunchpad.com"
-var numberOfAnswers:String = "Number of users that answered: %1%"
-var tallyString:String = "Tally: %1%"
+var launchpadEmail: String = "@ubclaunchpad.com"
+var numberOfAnswers: String = "Number of users that answered: %1%"
+var tallyString: String = "Tally: %1%"
 
 var charactersToAvoid : [Character] =
   Array("#[]*".characters)
