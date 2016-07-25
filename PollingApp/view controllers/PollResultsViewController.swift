@@ -15,13 +15,14 @@ class PollResultsViewController: UIViewController {
   private var answerIDDictionary = [AnswerText: AnswerID]()
   private var answers: [AnswerText] = []
   private var NumResponsesPerAnswer: [Int] = []
+  private var yourAnswerID = ""
+  private var yourAnswerText = ""
   private var author = ""
-  
-  // Recieved information 
+  // Recieved information
   var questionText = ""
   var questionID:QuestionID = ""
   var answerIDs: [AnswerID] = []
-
+  
   
   var container: PollResultsViewContainer?
   
@@ -42,21 +43,26 @@ class PollResultsViewController: UIViewController {
     
     //TODO:IPA-125
     ModelInterface.sharedInstance.processAnswerData(answerIDs) { (listofAllAnswers) in
-      self.answerIDDictionary = [AnswerText: AnswerID]()
-      self.answers = []
-      self.NumResponsesPerAnswer = []
-      self.totalNumberOfUserAnswers = 0
-      self.correctAnswer = ""
+      ModelInterface.sharedInstance.findYourAnswer(self.questionID) { (yourAnswer) in
+        self.answerIDDictionary = [AnswerText: AnswerID]()
+        self.answers = []
+        self.NumResponsesPerAnswer = []
+        self.totalNumberOfUserAnswers = 0
+        self.correctAnswer = ""
+        self.yourAnswerID = yourAnswer
+        self.fillInTheFields(listofAllAnswers)
+        self.container?.delegate = self
+        self.container?.setTotalNumberOfAnswers(self.totalNumberOfUserAnswers)
+        self.container?.setQuestionLabelText(self.questionText)
+        self.container?.setAnswers(self.answers)
+        self.container?.setCorrectAnswer(self.correctAnswer)
+        self.container?.setNumberOfResponsesForAnswer(self.NumResponsesPerAnswer)
+         self.container?.setYourAnswer(self.yourAnswerText)
+        self.container?.resultsTableView.reloadData()
+        self.container?.setTotalNumberOfAnswers(self.totalNumberOfUserAnswers)
+        
+      }
       
-      self.fillInTheFields(listofAllAnswers)
-      self.container?.delegate = self
-      self.container?.setTotalNumberOfAnswers(self.totalNumberOfUserAnswers)
-      self.container?.setQuestionLabelText(self.questionText)
-      self.container?.setAnswers(self.answers)
-      self.container?.setCorrectAnswer(self.correctAnswer)
-      self.container?.setNumberOfResponsesForAnswer(self.NumResponsesPerAnswer)
-      self.container?.resultsTableView.reloadData()
-      self.container?.setTotalNumberOfAnswers(self.totalNumberOfUserAnswers)
     }
   }
   
@@ -64,15 +70,22 @@ class PollResultsViewController: UIViewController {
     let size = listofAllAnswers.count
     for i in 0 ..< size  {
       let tempAnswer = listofAllAnswers[i].answerText
-      self.answerIDDictionary[tempAnswer] = self.answerIDs[i]
+      if (listofAllAnswers[i].AID == yourAnswerID) {
+        yourAnswerText = listofAllAnswers[i].answerText
+      }
+      
       self.answers.append(tempAnswer)
+      self.answerIDDictionary[tempAnswer] = self.answerIDs[i]
+      
       if (listofAllAnswers[i].isCorrect == true ) {
         self.correctAnswer = listofAllAnswers[i].answerText
       }
       self.totalNumberOfUserAnswers += listofAllAnswers[i].tally
       
       self.NumResponsesPerAnswer.append(listofAllAnswers[i].tally)
+      
     }
+    
   }
   
   func deleteQuestion(){

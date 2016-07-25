@@ -23,8 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let username = NSUserDefaults.standardUserDefaults().stringForKey("username")
     let password = NSUserDefaults.standardUserDefaults().stringForKey("password")
+    let ID =  NSUserDefaults.standardUserDefaults().stringForKey("userID")
     if username != nil && password != nil {
       currentUser = username!
+      currentID = ID!
       self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
       
       let storyboard = UIStoryboard(name: "Main", bundle: nil)

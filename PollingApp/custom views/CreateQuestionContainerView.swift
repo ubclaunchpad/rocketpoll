@@ -68,7 +68,7 @@ class CreateQuestionContainerView: UIView {
   }
   
   
-    
+  
   @IBAction func backButtonPressed(sender: AnyObject) {
     delegate?.backButtonPressed()
   }
@@ -80,7 +80,7 @@ class CreateQuestionContainerView: UIView {
     view.tableView.delegate = view
     view.tableView.dataSource = view
     view.tableView.separatorColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2 )
-
+    
     return view
   }
   
@@ -95,7 +95,7 @@ class CreateQuestionContainerView: UIView {
     doneButton.alpha = 0
     setTimerButton.setTitle("\(TimerUtil.formatSecondsToHHMMSS(time))", forState: UIControlState.Normal)
   }
-
+  
 }
 
 extension CreateQuestionContainerView: AnswerTableViewCellDelegate {
@@ -115,6 +115,9 @@ extension CreateQuestionContainerView: AnswerTableViewCellDelegate {
     correctAnswer = identifier
   }
   
+  func deselectAnswer(identifier: Int) {
+    correctAnswer = 0
+  }
 }
 
 extension CreateQuestionContainerView: UITableViewDelegate, UITableViewDataSource {
