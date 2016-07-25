@@ -21,10 +21,9 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
 
   
   private var answers:[AnswerText] = []
-  
   var selectedAnswer: AnswerText = ""
-  
   var delegate: PollUserViewContainerDelegate?
+  var previousCell = AnswerViewTableViewCell()
   
   
   @IBOutlet weak var question: UILabel!
@@ -44,7 +43,6 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
   
   func setAnswers(Answers: [AnswerText]) {
     answers = Answers
-    
   }
   func setQuestionText(questionText: QuestionText) {
     question.text = questionText
@@ -61,11 +59,14 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     return answers.count
     
   }
+  func getPreviousQuestionPressed() -> AnswerViewTableViewCell {
+  return previousCell
+  }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let nib_name = UINib(nibName: "AnswerViewTableViewCell", bundle:nil)
-    tableView.registerNib(nib_name, forCellReuseIdentifier: "answerCell")
-    let cell = self.tableView.dequeueReusableCellWithIdentifier("answerCell", forIndexPath: indexPath) as! AnswerViewTableViewCell
+    tableView.registerNib(nib_name, forCellReuseIdentifier: "answerCell\(indexPath)")
+    let cell = self.tableView.dequeueReusableCellWithIdentifier("answerCell\(indexPath)", forIndexPath: indexPath) as! AnswerViewTableViewCell
     cell.setAnswerText(answers[indexPath.row])
     cell.delegate = self
     self.tableView.separatorColor = UIColor.grayColor()
@@ -86,5 +87,9 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
 extension PollUserViewContainer: AnswerViewTableViewCellDelegate {
   func answerSelected(answer: AnswerText) {
     delegate?.answerSelected(answer)
+  }
+  func changeCellBackgroundColor(identifier: String) {
+    let cell = self.tableView.dequeueReusableCellWithIdentifier(identifier)
+    cell?.backgroundColor = colors.green
   }
 }
