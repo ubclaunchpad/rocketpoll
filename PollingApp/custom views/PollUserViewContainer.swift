@@ -68,8 +68,7 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     cell.delegate = self
     cell.tag = 1000 + indexPath.row
     self.tableView.separatorColor = UIColor.grayColor()
-    cell.selectionStyle = .Blue
-    self.tableView.allowsSelection = true
+    self.tableView.allowsSelection = false
     return cell
   }
   @IBAction func backButtonPressed(sender: AnyObject) {
