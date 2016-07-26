@@ -14,14 +14,16 @@ protocol PollUserViewContainerDelegate {
 }
 
 class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
-  @IBOutlet weak var tableView: UITableView!
+  
   @IBOutlet weak var backButton: UIButton!
+  @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var totalLabel: UILabel!
+
   
   private var answers:[AnswerText] = []
-  
   var selectedAnswer: AnswerText = ""
-  
   var delegate: PollUserViewContainerDelegate?
+  var previousCellID:Int = 0
   
   
   @IBOutlet weak var question: UILabel!
@@ -33,13 +35,14 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     view.frame = frame
     view.tableView.delegate = view
     view.tableView.dataSource = view
-    
     return view
   }
+  func setTotal(tally: Int) {
+    totalLabel.text = ("\(StringUtil.fillInString(tallyString, time: tally))")
+  }
   
-  func setAnswers(Answers: [AnswerText]){
+  func setAnswers(Answers: [AnswerText]) {
     answers = Answers
-    
   }
   func setQuestionText(questionText: QuestionText) {
     question.text = questionText
@@ -59,10 +62,13 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let nib_name = UINib(nibName: "AnswerViewTableViewCell", bundle:nil)
-    tableView.registerNib(nib_name, forCellReuseIdentifier: "answerCell")
-    let cell = self.tableView.dequeueReusableCellWithIdentifier("answerCell", forIndexPath: indexPath) as! AnswerViewTableViewCell
+    tableView.registerNib(nib_name, forCellReuseIdentifier: "answerCell\(indexPath.row)")
+    let cell = self.tableView.dequeueReusableCellWithIdentifier("answerCell\(indexPath.row)", forIndexPath: indexPath) as! AnswerViewTableViewCell
     cell.setAnswerText(answers[indexPath.row])
     cell.delegate = self
+    cell.tag = 1000 + indexPath.row
+    self.tableView.separatorColor = UIColor.grayColor()
+    self.tableView.allowsSelection = false
     return cell
   }
   @IBAction func backButtonPressed(sender: AnyObject) {
@@ -73,12 +79,19 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     return 75
     //TODO: set tableView Cell size based on content size
   }
-  
 }
 
 extension PollUserViewContainer: AnswerViewTableViewCellDelegate {
   func answerSelected(answer: AnswerText) {
     delegate?.answerSelected(answer)
-    
+  }
+  func changeCellBackgroundColor(identifier: Int) {
+    if (previousCellID != 0){
+      let previousCell = self.tableView.viewWithTag(previousCellID)
+      previousCell?.backgroundColor = UIColor.whiteColor()
+    }
+    previousCellID = identifier
+    let cell = self.tableView.viewWithTag(identifier)
+    cell?.backgroundColor = colors.lightGreen
   }
 }
