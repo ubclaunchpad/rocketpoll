@@ -49,7 +49,7 @@ final class PollUserViewController: UIViewController {
       self.answerIDDictionary = [AnswerText: AnswerID]()
       self.tallyDictionary = [AnswerID: Int]()
       self.answers = []
-      self.resetTally()
+      self.totalTally = 0
       self.fillInTheFields(listofAllAnswers)
       self.container?.setQuestionText(self.questionText)
       self.container?.setAnswers(self.answers)
@@ -81,9 +81,6 @@ final class PollUserViewController: UIViewController {
       selector: (#selector(PollUserViewController.updateTimer)),
       userInfo: nil,
       repeats: true)
-  }
-  func resetTally() {
-    totalTally = 0;
   }
   
   func updateTimer() {
@@ -141,8 +138,10 @@ extension PollUserViewController: PollUserViewContainerDelegate {
     }
   }
   func backButtonPushed() {
-    ModelInterface.sharedInstance.setUserAnswer(tally, answerID: chosenAnswerID)
-    ModelInterface.sharedInstance.rememberAnswer(questionID, answerID: chosenAnswerID)
+    if (chosenAnswerID != "") {
+      ModelInterface.sharedInstance.setUserAnswer(tally, answerID: chosenAnswerID)
+      ModelInterface.sharedInstance.rememberAnswer(questionID, answerID: chosenAnswerID)
+    }
     let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
     performSegueWithIdentifier(nextRoom, sender: self)
   }
