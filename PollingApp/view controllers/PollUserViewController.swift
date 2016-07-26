@@ -15,7 +15,6 @@ final class PollUserViewController: UIViewController {
   private var minutes = 0
   private var seconds = 0
   private var totalSeconds = 0
-  private var shouldUpdateTally = true
   private var timer = NSTimer()
   private var answerIDDictionary = [AnswerText: AnswerID]()
   private var tallyDictionary = [AnswerID: Int]()
@@ -50,16 +49,15 @@ final class PollUserViewController: UIViewController {
       self.answerIDDictionary = [AnswerText: AnswerID]()
       self.tallyDictionary = [AnswerID: Int]()
       self.answers = []
+      self.resetTally()
       self.fillInTheFields(listofAllAnswers)
       self.container?.setQuestionText(self.questionText)
       self.container?.setAnswers(self.answers)
       self.container?.delegate = self
       self.container?.tableView.reloadData()
-      if (self.shouldUpdateTally){
-        self.container?.setTotal(self.totalTally)
-      }
-      self.setCountdown(self.questionID)
+      self.container?.setTotal(self.totalTally)
     }
+    self.setCountdown(self.questionID)
     
   }
   
@@ -83,6 +81,9 @@ final class PollUserViewController: UIViewController {
       selector: (#selector(PollUserViewController.updateTimer)),
       userInfo: nil,
       repeats: true)
+  }
+  func resetTally() {
+    totalTally = 0;
   }
   
   func updateTimer() {
@@ -140,7 +141,6 @@ extension PollUserViewController: PollUserViewContainerDelegate {
     }
   }
   func backButtonPushed() {
-    shouldUpdateTally = false
     ModelInterface.sharedInstance.setUserAnswer(tally, answerID: chosenAnswerID)
     ModelInterface.sharedInstance.rememberAnswer(questionID, answerID: chosenAnswerID)
     let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
