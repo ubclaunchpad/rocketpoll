@@ -10,6 +10,7 @@ import UIKit
 
 protocol AnswerViewTableViewCellDelegate{
   func answerSelected(answer: AnswerText)
+  func changeCellBackgroundColor(identifier: Int)
 }
 
 class AnswerViewTableViewCell: UITableViewCell {
@@ -19,7 +20,7 @@ class AnswerViewTableViewCell: UITableViewCell {
   @IBAction func cellAnswerButtonPressed(sender: AnyObject) {
     if let selectedAnswer = sender.currentTitle {
       delegate?.answerSelected(selectedAnswer!)
-      
+      delegate?.changeCellBackgroundColor(self.tag)
     }
   }
   
@@ -34,7 +35,7 @@ class AnswerViewTableViewCell: UITableViewCell {
   
   override func setSelected(selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
-    // Configure the view for the selected state
   }
-  
 }
+
+

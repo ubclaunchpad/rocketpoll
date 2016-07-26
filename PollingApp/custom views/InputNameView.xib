@@ -54,6 +54,6 @@
         </view>
     </objects>
     <resources>
-        <image name="rocket" width="44" height="78"/>
+        <image name="rocket" width="89" height="157"/>
     </resources>
 </document>
