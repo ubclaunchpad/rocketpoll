@@ -22,13 +22,10 @@ final class PollUserViewController: UIViewController {
   private var chosenAnswerID: AnswerID = "";
   var container: PollUserViewContainer?
   
-  
-  
   // Recieved infomration
   var questionText: QuestionText = ""
   var questionID: QuestionID = ""
   var answerIDs: [AnswerID] = []
-  
   
   // Information to send to another view controller
   private var sendAIDS = [AnswerID]()
