@@ -60,7 +60,7 @@ class CreateQuestionContainerView: UIView {
     
     if ((delegate?.checksInput(question, A1: A1, A2: A2, A3: A3, A4: A4, correctAnswer: correctAnswer, timerWasSet:timerHasBeenSet)) == true) {
       return
-    } else if ((delegate?.checkDuplicateAnswer([A1!, A2!, A3!, A4!])) != nil) {
+    } else if ((delegate?.checkDuplicateAnswer([A1!, A2!, A3!, A4!])) == true) {
       return
     }
     
