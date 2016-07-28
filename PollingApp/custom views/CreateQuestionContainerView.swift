@@ -12,7 +12,9 @@ protocol CreateQuestionViewContainerDelegate {
   
   func submitButtonPressed(question: QuestionText, answerArray: [AnswerID], correctAnswer: Int, questionDuration: Int)
   func backButtonPressed()
-  func checksInput (question:QuestionText?, A1:AnswerText?, A2:AnswerText?,  A3:AnswerText?, A4:AnswerText?, correctAnswer:Int, timerWasSet:Bool) -> Bool}
+  func checksInput (question:QuestionText?, A1:AnswerText?, A2:AnswerText?,  A3:AnswerText?, A4:AnswerText?, correctAnswer:Int, timerWasSet:Bool) -> Bool
+  func checkDuplicateAnswer(answers: [String]) -> Bool
+}
 
 class CreateQuestionContainerView: UIView {
   @IBOutlet weak var timerLabel: UILabel!
@@ -57,6 +59,8 @@ class CreateQuestionContainerView: UIView {
     let A4 = answers[4]
     
     if ((delegate?.checksInput(question, A1: A1, A2: A2, A3: A3, A4: A4, correctAnswer: correctAnswer, timerWasSet:timerHasBeenSet)) == true) {
+      return
+    } else if ((delegate?.checkDuplicateAnswer([A1!, A2!, A3!, A4!])) != nil) {
       return
     }
     

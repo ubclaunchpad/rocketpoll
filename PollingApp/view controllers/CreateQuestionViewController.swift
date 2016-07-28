@@ -88,5 +88,18 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
       return true
     }
     return false
-  }  
+  }
+  
+  func checkDuplicateAnswer(answers: [String]) -> Bool {
+    if !StringUtil.uniqueString(answers) {
+      let alert = UIAlertController(title: "\(alertMessages.duplicateAnswer)", message:"",
+                                    
+                                    preferredStyle: UIAlertControllerStyle.Alert)
+      alert.addAction(UIAlertAction(title: "\(alertMessages.confirm)",
+        style: UIAlertActionStyle.Default, handler: nil))
+      self.presentViewController(alert, animated: true, completion: nil)
+      return true
+    }
+    return false
+  }
 }
