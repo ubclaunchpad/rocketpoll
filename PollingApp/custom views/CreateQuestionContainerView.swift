@@ -33,6 +33,7 @@ class CreateQuestionContainerView: UIView {
   
   @IBOutlet weak var tableView: UITableView!
   
+  @IBOutlet weak var setTimerView: UIView!
   var timerHasBeenSet = false
   
   var time: Int = 0;
@@ -41,12 +42,20 @@ class CreateQuestionContainerView: UIView {
   var answers = [Int: String]()
   var correctAnswer:Int = 0
   
+  var currentTimeAway:Int = 1
+  var endTime:NSDate = NSDate()
+  
+  @IBOutlet weak var endTimerLabel: UILabel!
+  
   @IBAction func setTimerButtonPressed(sender: AnyObject) {
-    doneButton.alpha = 1;
-    Submit.alpha = 0
-    setTimerButton.alpha = 0;
-    timerScroller.alpha = 1;
-    timerScroller.backgroundColor = UIColor.whiteColor()
+//    doneButton.alpha = 1;
+//    Submit.alpha = 0
+//    setTimerButton.alpha = 0;
+//    timerScroller.alpha = 1;
+//    timerScroller.backgroundColor = UIColor.whiteColor()
+    setTimerView.hidden = false
+    
+    endTimerLabel.text = "Question will end in "
   }
   
   @IBAction func SubmitPress(sender: AnyObject) {
@@ -67,6 +76,9 @@ class CreateQuestionContainerView: UIView {
     
   }
   
+  @IBAction func changeTime(sender: UIButton) {
+    
+  }
   
   
   @IBAction func backButtonPressed(sender: AnyObject) {
