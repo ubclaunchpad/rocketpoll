@@ -43,7 +43,7 @@ class CreateQuestionContainerView: UIView {
   var correctAnswer:Int = 0
   
   var currentTimeAway:Int = 1
-  var endTime:NSDate = NSDate()
+  var endTime:NSDate?
   
   @IBOutlet weak var endTimerLabel: UILabel!
   
@@ -55,7 +55,9 @@ class CreateQuestionContainerView: UIView {
 //    timerScroller.backgroundColor = UIColor.whiteColor()
     setTimerView.hidden = false
     
-    endTimerLabel.text = "Question will end in "
+    endTime = calendar.dateByAddingUnit(.Minute, value: currentTimeAway, toDate: NSDate(), options: [])!
+    
+    setEndTimerLabel()
   }
   
   @IBAction func SubmitPress(sender: AnyObject) {
@@ -77,7 +79,12 @@ class CreateQuestionContainerView: UIView {
   }
   
   @IBAction func changeTime(sender: UIButton) {
-    
+    currentTimeAway += setTimerValues[sender.tag]
+    if currentTimeAway < 0 {
+      currentTimeAway = 0
+    }
+    endTime = calendar.dateByAddingUnit(.Minute, value: currentTimeAway, toDate: NSDate(), options: [])!
+    setEndTimerLabel()
   }
   
   
@@ -85,6 +92,33 @@ class CreateQuestionContainerView: UIView {
     delegate?.backButtonPressed()
   }
   
+  func setEndTimerLabel() {
+    let hour = currentTimeAway / 60
+    let minute = currentTimeAway % 60
+    let date = endTime!.timeStampAMPM()
+    
+    if currentTimeAway >= UITimeConstants.oneHourinMinutes {
+      if hour > 1 {
+        if minute == 1 {
+          endTimerLabel.text = StringUtil.fillInString(UITimeRemaining.timerTextHoursMinute, time1: hour, time2: minute, date: date)
+        } else {
+          endTimerLabel.text = StringUtil.fillInString(UITimeRemaining.timerTextHoursMinutes, time1: hour, time2: minute, date: date)
+        }
+      } else if hour == 1{
+        if minute == 1 {
+          endTimerLabel.text = StringUtil.fillInString(UITimeRemaining.timerTextHourMinute, time1: hour, time2: minute, date: date)
+        } else {
+          endTimerLabel.text = StringUtil.fillInString(UITimeRemaining.timerTextHourMinutes, time1: hour, time2: minute, date: date)
+        }
+      }
+    } else {
+      if minute > 1 {
+        endTimerLabel.text = StringUtil.fillInString(UITimeRemaining.timerTextMinutes, time: minute, date: date)
+      } else if minute == 1 {
+        endTimerLabel.text = StringUtil.fillInString(UITimeRemaining.timerTextMinute, time: minute, date: date)
+      }
+    }
+  }
   
   class func instanceFromNib(frame: CGRect) -> CreateQuestionContainerView {
     let view = UINib(nibName: "CreateQuestionContainerView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! CreateQuestionContainerView
