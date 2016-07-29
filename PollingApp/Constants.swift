@@ -88,7 +88,7 @@ enum UITimeRemaining {
   static let timerTextHourMinutes = "Question will end in %1% hour and %2% minutes, at %3%"
   static let timerTextHoursMinutes = "Question will end in %1% hours and %2% minutes, at %3%"
   static let timerTextMinutes = "Question will end in %1% minutes, at %2%"
-  static let timerTextMinute = "Question will end in %1% minutes, at %2%"
+  static let timerTextMinute = "Question will end in %1% minute, at %2%"
 }
 
 enum alertMessages {
