@@ -12,7 +12,7 @@ protocol CreateQuestionViewContainerDelegate {
   
   func submitButtonPressed(question: QuestionText, answerArray: [AnswerID], correctAnswer: Int, questionDuration: Int)
   func backButtonPressed()
-  func checksInput (question:QuestionText?, A1:AnswerText?, A2:AnswerText?,  A3:AnswerText?, A4:AnswerText?, correctAnswer:Int, timerWasSet:Bool) -> Bool}
+  func checksInput (question:QuestionText?, answerStrings:[AnswerText?], correctAnswer:Int, timerWasSet:Bool) -> Bool}
 
 class CreateQuestionContainerView: UIView {
   @IBOutlet weak var timerLabel: UILabel!
@@ -55,8 +55,15 @@ class CreateQuestionContainerView: UIView {
     let A2 = answers[2]
     let A3 = answers[3]
     let A4 = answers[4]
+    var answerStrings = [AnswerText?]()
     
-    if ((delegate?.checksInput(question, A1: A1, A2: A2, A3: A3, A4: A4, correctAnswer: correctAnswer, timerWasSet:timerHasBeenSet)) == true) {
+    for index in 1...answers.count{
+      if answers[index] != nil {
+        answerStrings[index-1] = answers[index]
+      }
+    }
+    
+    if ((delegate?.checksInput(question, answerStrings:answerStrings, correctAnswer: correctAnswer, timerWasSet:timerHasBeenSet)) == true) {
       return
     }
     

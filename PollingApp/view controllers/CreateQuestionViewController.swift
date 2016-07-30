@@ -77,8 +77,11 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
   
   //TODO: IPA-120
   
-  func checksInput (question:QuestionText?, A1:AnswerText?, A2:AnswerText?,  A3:AnswerText?, A4:AnswerText?, correctAnswer:Int, timerWasSet:Bool) -> Bool {
-    if((question == nil) || (A1 == nil) || (A2 == nil) || (A3 == nil) || (A4 == nil) || (timerWasSet == false)) || correctAnswer == 0 {
+  func checksInput (question:QuestionText?, answerStrings:[AnswerText?], correctAnswer:Int, timerWasSet:Bool) -> Bool {
+    if((question == nil) ||
+      checkIfNil(answerStrings) ||
+      (timerWasSet == false)) ||
+      correctAnswer == 0 {
       let alert = UIAlertController(title: "\(alertMessages.emptyQuestions)", message:"",
 
                                     preferredStyle: UIAlertControllerStyle.Alert)
@@ -88,5 +91,14 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
       return true
     }
     return false
-  }  
+  }
+  
+  func checkIfNil(answers:[AnswerText?]) -> Bool{
+    for index in 0...answers.count-1 {
+      if answers[index] == nil {
+        return false;
+      }
+    }
+    return true;
+  }
 }
