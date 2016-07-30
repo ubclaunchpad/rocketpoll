@@ -50,4 +50,12 @@ class StringUtil {
       NSCharacterSet.whitespaceCharacterSet())
     return trimmedString
   }
+  
+  static func uniqueString(texts: [String]) -> Bool {
+    var uniqueStrings = Set<String>()
+    for text in texts {
+      uniqueStrings.insert(text)
+    }
+    return texts.count == uniqueStrings.count
+  }
 }

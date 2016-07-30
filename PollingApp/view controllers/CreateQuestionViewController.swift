@@ -101,9 +101,22 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
     }
     return false
   }
+  
   func shiftView() {
     UIView.animateWithDuration(0.2, animations: {
       self.view.window?.frame.origin.y = -90
     })
+  
+  func checkDuplicateAnswer(answers: [String]) -> Bool {
+    if !StringUtil.uniqueString(answers) {
+      let alert = UIAlertController(title: "\(alertMessages.duplicateAnswer)", message:"",
+                                    
+                                    preferredStyle: UIAlertControllerStyle.Alert)
+      alert.addAction(UIAlertAction(title: "\(alertMessages.confirm)",
+        style: UIAlertActionStyle.Default, handler: nil))
+      self.presentViewController(alert, animated: true, completion: nil)
+      return true
+    }
+    return false
   }
 }
