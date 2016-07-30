@@ -155,28 +155,6 @@ class CreateQuestionContainerView: UIView {
       }
       endTimerLabel.setTitle(StringUtil.fillInString(labelString!, time: minute, date: date), forState: .Normal)
     }
-    
-//    if currentTimeAway >= UITimeConstants.oneHourinMinutes {
-//      if hour > 1 {
-//        if minute == 1 {
-//          endTimerLabel.setTitle(StringUtil.fillInString(UITimeRemaining.timerTextHoursMinute, time1: hour, time2: minute, date: date), forState: .Normal)
-//        } else {
-//          endTimerLabel.setTitle(StringUtil.fillInString(UITimeRemaining.timerTextHoursMinutes, time1: hour, time2: minute, date: date), forState: .Normal)
-//        }
-//      } else if hour == 1{
-//        if minute == 1 {
-//          endTimerLabel.setTitle(StringUtil.fillInString(UITimeRemaining.timerTextHourMinute, time1: hour, time2: minute, date: date), forState: .Normal)
-//        } else {
-//          endTimerLabel.setTitle(StringUtil.fillInString(UITimeRemaining.timerTextHourMinutes, time1: hour, time2: minute, date: date), forState: .Normal)
-//        }
-//      }
-//    } else {
-//      if minute > 1 {
-//        endTimerLabel.setTitle(StringUtil.fillInString(UITimeRemaining.timerTextMinutes, time: minute, date: date), forState: .Normal)
-//      } else if minute == 1 {
-//        endTimerLabel.setTitle(StringUtil.fillInString(UITimeRemaining.timerTextMinute, time: minute, date: date), forState: .Normal)
-//      }
-//    }
   }
   
   func hideTimerView() {
