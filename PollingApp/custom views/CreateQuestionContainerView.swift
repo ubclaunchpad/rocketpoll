@@ -77,7 +77,7 @@ class CreateQuestionContainerView: UIView {
   
   @IBAction func changeTime(sender: UIButton) {
     currentTimeAway += setTimerValues[sender.tag]
-    if currentTimeAway < 0 {
+    if currentTimeAway == 0 {
       currentTimeAway = 1
     }
     endTime = calendar.dateByAddingUnit(.Minute, value: currentTimeAway, toDate: NSDate(), options: [])!
