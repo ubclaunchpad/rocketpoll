@@ -30,4 +30,13 @@ extension NSDate {
     formatter.dateFormat = "HH:mm:ss.SSS"
     return formatter.stringFromDate(self)
   }
+  
+  func timeStampAMPM() -> String {
+    let formatter = NSDateFormatter()
+    formatter.dateFormat = "h:mm a"
+    formatter.AMSymbol = "AM"
+    formatter.PMSymbol = "PM"
+    
+    return formatter.stringFromDate(self)
+  }
 }

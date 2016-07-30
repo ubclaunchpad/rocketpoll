@@ -14,6 +14,19 @@ class StringUtil {
     return returnString
   }
   
+  static func fillInString(message: String, time: Int, date: String) -> String {
+    let tempString = message.stringByReplacingOccurrencesOfString("%1%", withString:  "\(time)")
+    let returnString = tempString.stringByReplacingOccurrencesOfString("%2%", withString: "\(date)")
+    return returnString
+  }
+  
+  static func fillInString(message: String, time1: Int, time2: Int, date:String) -> String {
+    let tempString = message.stringByReplacingOccurrencesOfString("%1%", withString:  "\(time1)")
+    let tempString2 = tempString.stringByReplacingOccurrencesOfString("%2%", withString: "\(time2)")
+    let returnString = tempString2.stringByReplacingOccurrencesOfString("%3%", withString: "\(date)")
+    return returnString
+  }
+  
   static func cleanNameText(name: String) -> String {
     let strippedString = String(
       name.characters.filter {okayNameCharacters.contains($0)})
