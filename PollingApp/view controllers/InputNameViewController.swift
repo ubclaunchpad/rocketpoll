@@ -50,14 +50,14 @@ class InputNameViewController: UIViewController {
         print(currentID)
         NSUserDefaults.standardUserDefaults().setObject("\(userID!)", forKey: "userID")
         ModelInterface.sharedInstance.setUserName(name, userID: userID!)
+        currentUser = name
+        self.performSegueWithIdentifier(Segues.toMainApp, sender: self)
       } else {
-        print("User name is taken")
-       
+        let alert = UIAlertController(title: alertMessages.usernameIsTaken, message:"", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: alertMessages.confirm, style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
       }
-      currentUser = name
-    
     }
-    performSegueWithIdentifier(Segues.toMainApp, sender: self)
   }
   
   // MARK: - Helper methods

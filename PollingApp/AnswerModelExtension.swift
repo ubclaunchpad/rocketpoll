@@ -110,14 +110,19 @@ extension ModelInterface: AnswerModelProtocol {
     return true
   }
   
-  func setUserAnswer(currentTally: Int, answerID: AnswerID) -> Bool {
+  func setUserAnswer(answerID: AnswerID, increase: Bool) -> Bool {
     
     let ref = FIRDatabase.database().reference();
     ref.child("ANSWERS/AIDS/\(answerID as String)/tally").runTransactionBlock({
       (currentData:FIRMutableData) -> FIRTransactionResult in
       let value = currentData.value as? String
       if (value != nil) {
-        let currentTally = Int(value!)! + 1;
+        var currentTally = 0
+        if (increase) {
+          currentTally = Int(value!)! + 1;
+        } else {
+          currentTally = Int(value!)! - 1;
+        }
         let sendTally = String(currentTally);
         currentData.value = sendTally
       }
@@ -127,11 +132,32 @@ extension ModelInterface: AnswerModelProtocol {
     return true
   }
   
-  func  rememberAnswer (questionID:QuestionID, answerID:AnswerID) -> Bool {
+  func  rememberAnswer (questionID:QuestionID, answerID:AnswerID, completionHandler: (DontAllowRevoting: Bool) -> ()) {
     let ref = FIRDatabase.database().reference()
     let child = [questionID :  answerID]
-    ref.child("Users").child("\(currentID)/QuestionsAnswered").updateChildValues(child)
-    return true
+    ref.child("Users").child("\(currentID)/QuestionsAnswered").observeSingleEventOfType(FIRDataEventType.Value, withBlock: { (snapshot) in
+      if !(snapshot.childSnapshotForPath(questionID).exists()) {
+        ref.child("Users").child("\(currentID)/QuestionsAnswered").updateChildValues(child)
+        self.setUserAnswer(answerID, increase: true)
+        completionHandler(DontAllowRevoting: false )
+        return
+        
+      } else if (snapshot.childSnapshotForPath(questionID).value as! String != answerID) {
+        
+        let oldAnswerID = snapshot.childSnapshotForPath(questionID).value as! String
+        self.setUserAnswer(oldAnswerID, increase: false)
+        ref.child("Users").child("\(currentID)/QuestionsAnswered").updateChildValues(child)
+        self.setUserAnswer(answerID, increase: true)
+        completionHandler(DontAllowRevoting: false )
+        return
+      } else {
+        
+        completionHandler(DontAllowRevoting: true)
+        return
+      }
+      
+    })
+    
   }
   //MARK: - Get Answer Information -
   func isCorrectAnswer(answerId: AnswerID) -> Bool {

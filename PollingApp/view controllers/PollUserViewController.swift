@@ -22,13 +22,10 @@ final class PollUserViewController: UIViewController {
   private var chosenAnswerID: AnswerID = "";
   var container: PollUserViewContainer?
   
-  
-  
   // Recieved infomration
   var questionText: QuestionText = ""
   var questionID: QuestionID = ""
   var answerIDs: [AnswerID] = []
-  
   
   // Information to send to another view controller
   private var sendAIDS = [AnswerID]()
@@ -139,10 +136,22 @@ extension PollUserViewController: PollUserViewContainerDelegate {
   }
   func backButtonPushed() {
     if (chosenAnswerID != "") {
-      ModelInterface.sharedInstance.setUserAnswer(tally, answerID: chosenAnswerID)
-      ModelInterface.sharedInstance.rememberAnswer(questionID, answerID: chosenAnswerID)
+      ModelInterface.sharedInstance.rememberAnswer(questionID, answerID: chosenAnswerID) { (DontAllowRevoting) in
+        if (DontAllowRevoting) {
+          let confirmAlert = UIAlertController(title: alertMessages.noRevoting, message:"", preferredStyle: UIAlertControllerStyle.Alert)
+          confirmAlert.addAction(UIAlertAction(title: alertMessages.confirm, style: .Default, handler: { (action: UIAlertAction!) in confirmAlert.dismissViewControllerAnimated(true, completion: nil)
+          }))
+          self.presentViewController(confirmAlert, animated: true, completion: nil)
+        } else {
+          let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
+          self.performSegueWithIdentifier(nextRoom, sender: self)
+        }
+        
+      }
+    } else {
+      let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
+      self.performSegueWithIdentifier(nextRoom, sender: self)
     }
-    let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
-    performSegueWithIdentifier(nextRoom, sender: self)
+  
   }
 }

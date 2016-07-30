@@ -14,10 +14,10 @@ protocol AnswerModelProtocol {
   func createAnswerIDs(questionID:QuestionID, answerText:[AnswerText]) -> [String]
   //MARK: Setting Answer Information -
   func setCorrectAnswer(answerId: AnswerID, isCorrectAnswer: Bool) -> Bool
-  func setUserAnswer(currentTally: Int, answerID: AnswerID) -> Bool
+  func setUserAnswer (answerID: AnswerID, increase:Bool) -> Bool
   func processAnswerData(selectedAnswerIDs:[AnswerID],completionHandler: (listofAllAnswers: [Answer]) -> ())
   
-  func  rememberAnswer (questionID:QuestionID, answerID:AnswerID) -> Bool 
+  func rememberAnswer (questionID:QuestionID, answerID:AnswerID, completionHandler : (DontAllowRevoting: Bool) -> ())
   
   func findYourAnswer(questionID:QuestionID,completionHandler: (yourAnswer:AnswerID) -> ())
   
