@@ -27,7 +27,7 @@ class CreateQuestionViewController: UIViewController{
     
     addContainerToVC()
     
-    container?.setEndTimerLabel()
+    stringFromQuestionDuration(1, endTime: NSDate(), setButtonTitle: (container?.setEndTimerButtonTitle)!)
     container?.endTimerLabel.titleLabel?.textAlignment = NSTextAlignment.Center
   }
   
@@ -51,6 +51,9 @@ class CreateQuestionViewController: UIViewController{
   func dismissKeyboards() {
     view.endEditing(true)
   }
+  
+  
+  
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if (segue.identifier == ModelInterface.sharedInstance.segueToAdminScreen()) {
       let viewController:PollAdminViewController = segue.destinationViewController as! PollAdminViewController
@@ -119,5 +122,74 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
       return true
     }
     return false
+  }
+  
+  func stringFromQuestionDuration(currentTimeAway: Int, endTime: NSDate, setButtonTitle: (String) -> ()) {
+    let day = currentTimeAway / UITimeConstants.oneDayinMinutes
+    let hour = (currentTimeAway % UITimeConstants.oneDayinMinutes) / UITimeConstants.oneHourinMinutes
+    let minute = currentTimeAway % UITimeConstants.oneHourinMinutes
+    let date = endTime.timeStampAMPM()
+    
+    var dateState:[Bool] = DateUtil.findDateState(day, hour: hour, minute: minute)
+    if day == 0 {
+      dateState.removeFirst()
+      if hour == 0 {
+        dateState.removeFirst()
+      }
+    }
+    
+    var labelString:String?
+    
+    if dateState.count == 3 {
+      switch dateState {
+      case let dateState where dateState == [true, true, true]:
+        labelString = UITimeRemaining.timerTextDayHourMinute
+      case let dateState where dateState == [true, false, true]:
+        labelString = UITimeRemaining.timerTextDayHoursMinute
+      case let dateState where dateState == [true, true, false]:
+        labelString = UITimeRemaining.timerTextDayHourMinutes
+      case let dateState where dateState == [true, false, false]:
+        labelString = UITimeRemaining.timerTextDayHoursMinutes
+      case let dateState where dateState == [false, true, true]:
+        labelString = UITimeRemaining.timerTextDaysHourMinute
+      case let dateState where dateState == [false, false, true]:
+        labelString = UITimeRemaining.timerTextDaysHoursMinute
+      case let dateState where dateState == [false, true, false]:
+        labelString = UITimeRemaining.timerTextDaysHourMinutes
+      case let dateState where dateState == [false, false, false]:
+        labelString = UITimeRemaining.timerTextDaysHoursMinutes
+      default: break
+      }
+      if day > 1 {
+        let detailedDate = endTime.detailedTimeStamp()
+        setButtonTitle(StringUtil.fillInString(labelString!, time1: day, time2: hour, time3: minute, date: detailedDate))
+      } else {
+        setButtonTitle(StringUtil.fillInString(labelString!, time1: day, time2: hour, time3: minute, date: date))
+        
+      }
+    } else if dateState.count == 2 {
+      switch dateState {
+      case let dateState where dateState == [true, true]:
+        labelString = UITimeRemaining.timerTextHourMinute
+      case let dateState where dateState == [false, true]:
+        labelString = UITimeRemaining.timerTextHoursMinute
+      case let dateState where dateState == [true, false]:
+        labelString = UITimeRemaining.timerTextHourMinutes
+      case let dateState where dateState == [false, false]:
+        labelString = UITimeRemaining.timerTextHoursMinutes
+      default: break
+      }
+      setButtonTitle(StringUtil.fillInString(labelString!, time1: hour, time2: minute, date: date))
+    } else if dateState.count == 1 {
+      switch dateState {
+      case let dateState where dateState == [true]:
+        labelString = UITimeRemaining.timerTextMinute
+      case let dateState where dateState == [false]:
+        labelString = UITimeRemaining.timerTextMinutes
+      default: break
+      }
+      setButtonTitle(StringUtil.fillInString(labelString!, time: minute, date: date))
+    }
+    
   }
 }
