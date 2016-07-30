@@ -106,6 +106,7 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
     UIView.animateWithDuration(0.2, animations: {
       self.view.window?.frame.origin.y = -90
     })
+  }
   
   func checkDuplicateAnswer(answers: [String]) -> Bool {
     if !StringUtil.uniqueString(answers) {
