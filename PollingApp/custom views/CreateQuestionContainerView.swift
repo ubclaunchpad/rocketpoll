@@ -12,19 +12,16 @@ protocol CreateQuestionViewContainerDelegate {
   
   func submitButtonPressed(question: QuestionText, answerArray: [AnswerID], correctAnswer: Int, questionDuration: Int)
   func backButtonPressed()
-  func checksInput (question:QuestionText?, A1:AnswerText?, A2:AnswerText?,  A3:AnswerText?, A4:AnswerText?, correctAnswer:Int, timerWasSet:Bool) -> Bool
+  func checksInput (question:QuestionText?, A1:AnswerText?, A2:AnswerText?,  A3:AnswerText?, A4:AnswerText?, correctAnswer:Int) -> Bool
+  func shiftView()
   func checkDuplicateAnswer(answers: [String]) -> Bool
+
 }
 
 class CreateQuestionContainerView: UIView {
-  @IBOutlet weak var timerLabel: UILabel!
-  
-  @IBOutlet weak var doneButton: UIButton!
   
   @IBOutlet weak var setTimerButton: UIButton!
-  
-  @IBOutlet weak var timerScroller: UIDatePicker!
-  
+
   @IBOutlet weak var backButton: UIButton!
   
   @IBOutlet weak var Submit: UIButton!
@@ -35,7 +32,7 @@ class CreateQuestionContainerView: UIView {
   
   @IBOutlet weak var tableView: UITableView!
   
-  var timerHasBeenSet = false
+  @IBOutlet weak var setTimerView: UIView!
   
   var time: Int = 0;
   
@@ -43,12 +40,17 @@ class CreateQuestionContainerView: UIView {
   var answers = [Int: String]()
   var correctAnswer:Int = 0
   
+  var currentTimeAway:Int = 1
+  var endTime:NSDate?
+  
+  @IBOutlet weak var endTimerLabel: UIButton!
+  
   @IBAction func setTimerButtonPressed(sender: AnyObject) {
-    doneButton.alpha = 1;
-    Submit.alpha = 0
-    setTimerButton.alpha = 0;
-    timerScroller.alpha = 1;
-    timerScroller.backgroundColor = UIColor.whiteColor()
+
+    setTimerView.hidden = false
+    
+    delegate?.shiftView()
+    setEndTimerLabel()
   }
   
   @IBAction func SubmitPress(sender: AnyObject) {
@@ -58,25 +60,65 @@ class CreateQuestionContainerView: UIView {
     let A3 = answers[3]
     let A4 = answers[4]
     
-    if ((delegate?.checksInput(question, A1: A1, A2: A2, A3: A3, A4: A4, correctAnswer: correctAnswer, timerWasSet:timerHasBeenSet)) == true) {
+    if ((delegate?.checksInput(question, A1: A1, A2: A2, A3: A3, A4: A4, correctAnswer: correctAnswer)) == true) {
       return
     } else if ((delegate?.checkDuplicateAnswer([A1!, A2!, A3!, A4!])) == true) {
       return
     }
     
     let Answers = [A1!, A2!, A3!, A4!];
+    time = currentTimeAway
     
     delegate?.submitButtonPressed(question!,answerArray: Answers, correctAnswer: correctAnswer, questionDuration: time);
     
     
   }
   
+  @IBAction func changeTime(sender: UIButton) {
+    currentTimeAway += setTimerValues[sender.tag]
+    if currentTimeAway < 0 {
+      currentTimeAway = 1
+    }
+    setEndTimerLabel()
+  }
   
   
   @IBAction func backButtonPressed(sender: AnyObject) {
     delegate?.backButtonPressed()
   }
   
+  func setEndTimerLabel() {
+    endTime = calendar.dateByAddingUnit(.Minute, value: currentTimeAway, toDate: NSDate(), options: [])!
+    let hour = currentTimeAway / UITimeConstants.oneHourinMinutes
+    let minute = currentTimeAway % UITimeConstants.oneHourinMinutes
+    let date = endTime!.timeStampAMPM()
+    
+    if currentTimeAway >= UITimeConstants.oneHourinMinutes {
+      if hour > 1 {
+        if minute == 1 {
+          endTimerLabel.setTitle(StringUtil.fillInString(UITimeRemaining.timerTextHoursMinute, time1: hour, time2: minute, date: date), forState: .Normal)
+        } else {
+          endTimerLabel.setTitle(StringUtil.fillInString(UITimeRemaining.timerTextHoursMinutes, time1: hour, time2: minute, date: date), forState: .Normal)
+        }
+      } else if hour == 1{
+        if minute == 1 {
+          endTimerLabel.setTitle(StringUtil.fillInString(UITimeRemaining.timerTextHourMinute, time1: hour, time2: minute, date: date), forState: .Normal)
+        } else {
+          endTimerLabel.setTitle(StringUtil.fillInString(UITimeRemaining.timerTextHourMinutes, time1: hour, time2: minute, date: date), forState: .Normal)
+        }
+      }
+    } else {
+      if minute > 1 {
+        endTimerLabel.setTitle(StringUtil.fillInString(UITimeRemaining.timerTextMinutes, time: minute, date: date), forState: .Normal)
+      } else if minute == 1 {
+        endTimerLabel.setTitle(StringUtil.fillInString(UITimeRemaining.timerTextMinute, time: minute, date: date), forState: .Normal)
+      }
+    }
+  }
+  
+  func hideTimerView() {
+    setTimerView.hidden = true
+  }
   
   class func instanceFromNib(frame: CGRect) -> CreateQuestionContainerView {
     let view = UINib(nibName: "CreateQuestionContainerView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! CreateQuestionContainerView
@@ -86,18 +128,6 @@ class CreateQuestionContainerView: UIView {
     view.tableView.separatorColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2 )
     
     return view
-  }
-  
-  @IBAction func doneButtonPressed(sender: AnyObject) {
-    timerScroller.alpha = 0
-    Submit.alpha = 1
-    setTimerButton.alpha = 1
-    timerHasBeenSet = true
-    timerLabel.alpha = 1
-    time = Int(timerScroller.countDownDuration) - 7
-    timerLabel.text = TimerUtil.getTextToShowInTimer(time)
-    doneButton.alpha = 0
-    setTimerButton.setTitle("\(TimerUtil.formatSecondsToHHMMSS(time))", forState: UIControlState.Normal)
   }
   
 }

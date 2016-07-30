@@ -26,6 +26,18 @@ class CreateQuestionViewController: UIViewController{
     view.addGestureRecognizer(tap)
     
     addContainerToVC()
+    
+    container?.setEndTimerLabel()
+    container?.endTimerLabel.titleLabel?.textAlignment = NSTextAlignment.Center
+  }
+  
+  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    if self.view.window?.frame.origin.y != 0 {
+      UIView.animateWithDuration(0.2, animations: {
+        self.view.window?.frame.origin.y = 0
+      })
+      self.container!.hideTimerView()
+    }
   }
   
   //MARK: - Helper Functions
@@ -77,8 +89,8 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
   
   //TODO: IPA-120
   
-  func checksInput (question:QuestionText?, A1:AnswerText?, A2:AnswerText?,  A3:AnswerText?, A4:AnswerText?, correctAnswer:Int, timerWasSet:Bool) -> Bool {
-    if((question == nil) || (A1 == nil) || (A2 == nil) || (A3 == nil) || (A4 == nil) || (timerWasSet == false)) || correctAnswer == 0 {
+  func checksInput (question:QuestionText?, A1:AnswerText?, A2:AnswerText?,  A3:AnswerText?, A4:AnswerText?, correctAnswer:Int) -> Bool {
+    if((question == nil) || (A1 == nil) || (A2 == nil) || (A3 == nil) || (A4 == nil)) || correctAnswer == 0 {
       let alert = UIAlertController(title: "\(alertMessages.emptyQuestions)", message:"",
 
                                     preferredStyle: UIAlertControllerStyle.Alert)
@@ -88,6 +100,12 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
       return true
     }
     return false
+  }
+  
+  func shiftView() {
+    UIView.animateWithDuration(0.2, animations: {
+      self.view.window?.frame.origin.y = -90
+    })
   }
   
   func checkDuplicateAnswer(answers: [String]) -> Bool {
