@@ -67,6 +67,7 @@ class CreateQuestionContainerView: UIView {
     }
     
     let Answers = [A1!, A2!, A3!, A4!];
+    time = currentTimeAway
     
     delegate?.submitButtonPressed(question!,answerArray: Answers, correctAnswer: correctAnswer, questionDuration: time);
     
@@ -88,8 +89,8 @@ class CreateQuestionContainerView: UIView {
   
   func setEndTimerLabel() {
     endTime = calendar.dateByAddingUnit(.Minute, value: currentTimeAway, toDate: NSDate(), options: [])!
-    let hour = currentTimeAway / 60
-    let minute = currentTimeAway % 60
+    let hour = currentTimeAway / UITimeConstants.oneHourinMinutes
+    let minute = currentTimeAway % UITimeConstants.oneHourinMinutes
     let date = endTime!.timeStampAMPM()
     
     if currentTimeAway >= UITimeConstants.oneHourinMinutes {
