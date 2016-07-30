@@ -30,4 +30,31 @@ extension NSDate {
     formatter.dateFormat = "HH:mm:ss.SSS"
     return formatter.stringFromDate(self)
   }
+  
+  func timeStampAMPM() -> String {
+    let formatter = NSDateFormatter()
+    formatter.dateFormat = "h:mm a"
+    formatter.AMSymbol = "AM"
+    formatter.PMSymbol = "PM"
+    
+    return formatter.stringFromDate(self)
+  }
+  
+  func detailedTimeStamp() -> String {
+    let formatter = NSDateFormatter()
+    formatter.dateFormat = "h:mm a 'on' EEEE, MMM d"
+    formatter.AMSymbol = "AM"
+    formatter.PMSymbol = "PM"
+    
+    
+    return formatter.stringFromDate(self)
+  }
+}
+
+class DateUtil {
+  
+  static func findDateState(day:Int, hour:Int, minute:Int) -> [Bool] {
+    return [day == 1, hour == 1, minute == 1]
+  }
+  
 }
