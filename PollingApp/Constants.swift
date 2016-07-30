@@ -30,6 +30,10 @@ var tallyString: String = "Tally: %1%"
 var charactersToAvoid : [Character] =
   Array("#[]*".characters)
 
+let setTimerValues:[Int] = [1, -1, 5, -5, 15, -15, 60, -60]
+
+let calendar = NSCalendar.currentCalendar()
+
 enum colors {
   static let green = UIColor(red: 28/255.0, green: 165/255.0, blue: 122/255.0, alpha: 1)
   static let lightGreen = UIColor(red: 226/255.0, green: 250/255.0, blue: 218/255.0, alpha: 1)
@@ -55,6 +59,8 @@ enum UITimeConstants {
   static let oneDayinSeconds = 86400
   static let oneHourinSeconds = 3600
   static let oneMinuteinSeconds = 60
+  static let oneHourinMinutes = 60
+  static let oneDayinMinutes = 1440
   static let moment = 300
 }
 
@@ -78,6 +84,22 @@ enum UITimeRemaining {
   static let timerMinute = "Minute: %1%"
   static let timerHours = "Hours: %1%"
   static let timerHour = "Hour: %1%"
+  static let timerTextDayHourMinute = "Question will end in %1% day, %2% hour and %3% minute, at %4%"
+  static let timerTextDayHoursMinutes = "Question will end in %1% day, %2% hours and %3% minutes, at %4%"
+  static let timerTextDayHoursMinute = "Question will end in %1% day, %2% hours and %3% minute, at %4%"
+  static let timerTextDayHourMinutes = "Question will end in %1% day, %2% hour and %3% minutes, at %4%"
+  
+  static let timerTextDaysHourMinute = "Question will end in %1% days, %2% hour and %3% minute, at %4%"
+  static let timerTextDaysHoursMinutes = "Question will end in %1% days, %2% hours and %3% minutes, at %4%"
+  static let timerTextDaysHoursMinute = "Question will end in %1% days, %2% hours and %3% minute, at %4%"
+  static let timerTextDaysHourMinutes = "Question will end in %1% days, %2% hour and %3% minutes, at %4%"
+  
+  static let timerTextHourMinute = "Question will end in %1% hour and %2% minute, at %3%"
+  static let timerTextHoursMinute = "Question will end in %1% hours and %2% minute, at %3%"
+  static let timerTextHourMinutes = "Question will end in %1% hour and %2% minutes, at %3%"
+  static let timerTextHoursMinutes = "Question will end in %1% hours and %2% minutes, at %3%"
+  static let timerTextMinutes = "Question will end in %1% minutes, at %2%"
+  static let timerTextMinute = "Question will end in %1% minute, at %2%"
 }
 
 enum alertMessages {

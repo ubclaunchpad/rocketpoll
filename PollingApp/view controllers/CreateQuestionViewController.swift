@@ -26,6 +26,18 @@ class CreateQuestionViewController: UIViewController{
     view.addGestureRecognizer(tap)
     
     addContainerToVC()
+    
+    stringFromQuestionDuration(1, endTime: NSDate(), setButtonTitle: (container?.setEndTimerButtonTitle)!)
+    container?.endTimerLabel.titleLabel?.textAlignment = NSTextAlignment.Center
+  }
+  
+  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    if self.view.window?.frame.origin.y != 0 {
+      UIView.animateWithDuration(0.2, animations: {
+        self.view.window?.frame.origin.y = 0
+      })
+      self.container!.hideTimerView()
+    }
   }
   
   //MARK: - Helper Functions
@@ -39,6 +51,7 @@ class CreateQuestionViewController: UIViewController{
   func dismissKeyboards() {
     view.endEditing(true)
   }
+  
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if (segue.identifier == ModelInterface.sharedInstance.segueToAdminScreen()) {
       let viewController:PollAdminViewController = segue.destinationViewController as! PollAdminViewController
@@ -48,8 +61,6 @@ class CreateQuestionViewController: UIViewController{
       viewController.timerQuestion = sendTime
     }
   }
-  
-  
 }
 
 extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
@@ -77,8 +88,8 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
   
   //TODO: IPA-120
   
-  func checksInput (question:QuestionText?, A1:AnswerText?, A2:AnswerText?,  A3:AnswerText?, A4:AnswerText?, correctAnswer:Int, timerWasSet:Bool) -> Bool {
-    if((question == nil) || (A1 == nil) || (A2 == nil) || (A3 == nil) || (A4 == nil) || (timerWasSet == false)) || correctAnswer == 0 {
+  func checksInput (question:QuestionText?, A1:AnswerText?, A2:AnswerText?,  A3:AnswerText?, A4:AnswerText?, correctAnswer:Int) -> Bool {
+    if((question == nil) || (A1 == nil) || (A2 == nil) || (A3 == nil) || (A4 == nil)) || correctAnswer == 0 {
       let alert = UIAlertController(title: "\(alertMessages.emptyQuestions)", message:"",
 
                                     preferredStyle: UIAlertControllerStyle.Alert)
@@ -88,6 +99,12 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
       return true
     }
     return false
+  }
+  
+  func shiftView() {
+    UIView.animateWithDuration(0.2, animations: {
+      self.view.window?.frame.origin.y = -90
+    })
   }
   
   func checkDuplicateAnswer(answers: [String]) -> Bool {
@@ -101,5 +118,74 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
       return true
     }
     return false
+  }
+  
+  func stringFromQuestionDuration(currentTimeAway: Int, endTime: NSDate, setButtonTitle: (String) -> ()) {
+    let day = currentTimeAway / UITimeConstants.oneDayinMinutes
+    let hour = (currentTimeAway % UITimeConstants.oneDayinMinutes) / UITimeConstants.oneHourinMinutes
+    let minute = currentTimeAway % UITimeConstants.oneHourinMinutes
+    let date = endTime.timeStampAMPM()
+    
+    var dateState:[Bool] = DateUtil.findDateState(day, hour: hour, minute: minute)
+    if day == 0 {
+      dateState.removeFirst()
+      if hour == 0 {
+        dateState.removeFirst()
+      }
+    }
+    
+    var labelString:String?
+    
+    if dateState.count == 3 {
+      switch dateState {
+      case let dateState where dateState == [true, true, true]:
+        labelString = UITimeRemaining.timerTextDayHourMinute
+      case let dateState where dateState == [true, false, true]:
+        labelString = UITimeRemaining.timerTextDayHoursMinute
+      case let dateState where dateState == [true, true, false]:
+        labelString = UITimeRemaining.timerTextDayHourMinutes
+      case let dateState where dateState == [true, false, false]:
+        labelString = UITimeRemaining.timerTextDayHoursMinutes
+      case let dateState where dateState == [false, true, true]:
+        labelString = UITimeRemaining.timerTextDaysHourMinute
+      case let dateState where dateState == [false, false, true]:
+        labelString = UITimeRemaining.timerTextDaysHoursMinute
+      case let dateState where dateState == [false, true, false]:
+        labelString = UITimeRemaining.timerTextDaysHourMinutes
+      case let dateState where dateState == [false, false, false]:
+        labelString = UITimeRemaining.timerTextDaysHoursMinutes
+      default: break
+      }
+      if day > 1 {
+        let detailedDate = endTime.detailedTimeStamp()
+        setButtonTitle(StringUtil.fillInString(labelString!, time1: day, time2: hour, time3: minute, date: detailedDate))
+      } else {
+        setButtonTitle(StringUtil.fillInString(labelString!, time1: day, time2: hour, time3: minute, date: date))
+        
+      }
+    } else if dateState.count == 2 {
+      switch dateState {
+      case let dateState where dateState == [true, true]:
+        labelString = UITimeRemaining.timerTextHourMinute
+      case let dateState where dateState == [false, true]:
+        labelString = UITimeRemaining.timerTextHoursMinute
+      case let dateState where dateState == [true, false]:
+        labelString = UITimeRemaining.timerTextHourMinutes
+      case let dateState where dateState == [false, false]:
+        labelString = UITimeRemaining.timerTextHoursMinutes
+      default: break
+      }
+      setButtonTitle(StringUtil.fillInString(labelString!, time1: hour, time2: minute, date: date))
+    } else if dateState.count == 1 {
+      switch dateState {
+      case let dateState where dateState == [true]:
+        labelString = UITimeRemaining.timerTextMinute
+      case let dateState where dateState == [false]:
+        labelString = UITimeRemaining.timerTextMinutes
+      default: break
+      }
+      setButtonTitle(StringUtil.fillInString(labelString!, time: minute, date: date))
+    }
+    
   }
 }
