@@ -37,9 +37,14 @@ class CreateQuestionContainerView: UIView {
   
   var time: Int = 0;
   
+  var answerIdentifierIndex = 4
+  
   var answerIdentifier:[Int] = [1, 2, 3, 4]
   var answers = [Int: String]()
   var correctAnswer:Int = 0
+  
+  var answerStrings = [AnswerText?]()
+  var unwrappedAnswerStrings = [AnswerText]()
   
   @IBAction func setTimerButtonPressed(sender: AnyObject) {
     doneButton.alpha = 1;
@@ -47,19 +52,42 @@ class CreateQuestionContainerView: UIView {
     setTimerButton.alpha = 0;
     timerScroller.alpha = 1;
     timerScroller.backgroundColor = UIColor.whiteColor()
+    timerScroller.layer.zPosition = 1
+    doneButton.layer.zPosition = 1
   }
   
-  @IBAction func SubmitPress(sender: AnyObject) {
-    let question = questionInputText.text;
-    let A1 = answers[1]
-    let A2 = answers[2]
-    let A3 = answers[3]
-    let A4 = answers[4]
-    var answerStrings = [AnswerText?]()
+    @IBAction func AddAnswerButtonPressed(sender: UIButton) {
+      answerIdentifierIndex += 1
+      answerIdentifier.append(answerIdentifierIndex)
+      dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        self.tableView.reloadData()
+      })
     
-    for index in 1...answers.count{
-      if answers[index] != nil {
-        answerStrings[index-1] = answers[index]
+    }
+    
+    
+  @IBAction func DeleteAnswerButtonPressed(sender: AnyObject) {
+    
+    if answerIdentifierIndex > 2 {
+      answerIdentifier.removeLast()
+    
+
+      answerIdentifierIndex -= 1
+      dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        self.tableView.reloadData()
+      })
+    }
+  }
+
+  @IBAction func SubmitPress(sender: AnyObject) {
+    let question = questionInputText.text
+    var answerStrings = [AnswerText?]()
+    var unwrappedAnswerStrings = [AnswerText]()
+    
+    if answers.count > 1{
+      for index in 1...answerIdentifierIndex {
+        answerStrings.append(answers[index])
+        unwrappedAnswerStrings.append(answers[index]!)
       }
     }
     
@@ -67,9 +95,7 @@ class CreateQuestionContainerView: UIView {
       return
     }
     
-    let Answers = [A1!, A2!, A3!, A4!];
-    
-    delegate?.submitButtonPressed(question!,answerArray: Answers, correctAnswer: correctAnswer, questionDuration: time);
+    delegate?.submitButtonPressed(question!,answerArray: unwrappedAnswerStrings, correctAnswer: correctAnswer, questionDuration: time);
     
     
   }
@@ -140,7 +166,7 @@ extension CreateQuestionContainerView: UITableViewDelegate, UITableViewDataSourc
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 4
+    return answerIdentifier.count
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

@@ -94,11 +94,13 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
   }
   
   func checkIfNil(answers:[AnswerText?]) -> Bool{
-    for index in 0...answers.count-1 {
-      if answers[index] == nil {
-        return false;
+    if answers.count > 0{
+      for index in 0...answers.count-1 {
+        if answers[index] == nil {
+          return true;
+        }
       }
     }
-    return true;
+    return false;
   }
 }
