@@ -89,31 +89,94 @@ class CreateQuestionContainerView: UIView {
   
   func setEndTimerLabel() {
     endTime = calendar.dateByAddingUnit(.Minute, value: currentTimeAway, toDate: NSDate(), options: [])!
-    let hour = currentTimeAway / UITimeConstants.oneHourinMinutes
+    let day = currentTimeAway / UITimeConstants.oneDayinMinutes
+    let hour = (currentTimeAway % UITimeConstants.oneDayinMinutes) / UITimeConstants.oneHourinMinutes
     let minute = currentTimeAway % UITimeConstants.oneHourinMinutes
     let date = endTime!.timeStampAMPM()
     
-    if currentTimeAway >= UITimeConstants.oneHourinMinutes {
-      if hour > 1 {
-        if minute == 1 {
-          endTimerLabel.setTitle(StringUtil.fillInString(UITimeRemaining.timerTextHoursMinute, time1: hour, time2: minute, date: date), forState: .Normal)
-        } else {
-          endTimerLabel.setTitle(StringUtil.fillInString(UITimeRemaining.timerTextHoursMinutes, time1: hour, time2: minute, date: date), forState: .Normal)
-        }
-      } else if hour == 1{
-        if minute == 1 {
-          endTimerLabel.setTitle(StringUtil.fillInString(UITimeRemaining.timerTextHourMinute, time1: hour, time2: minute, date: date), forState: .Normal)
-        } else {
-          endTimerLabel.setTitle(StringUtil.fillInString(UITimeRemaining.timerTextHourMinutes, time1: hour, time2: minute, date: date), forState: .Normal)
-        }
-      }
-    } else {
-      if minute > 1 {
-        endTimerLabel.setTitle(StringUtil.fillInString(UITimeRemaining.timerTextMinutes, time: minute, date: date), forState: .Normal)
-      } else if minute == 1 {
-        endTimerLabel.setTitle(StringUtil.fillInString(UITimeRemaining.timerTextMinute, time: minute, date: date), forState: .Normal)
+    var dateState:[Bool] = DateUtil.findDateState(day, hour: hour, minute: minute)
+    if day == 0 {
+      dateState.removeFirst()
+      if hour == 0 {
+        dateState.removeFirst()
       }
     }
+    
+    
+    var labelString:String?
+    
+    if dateState.count == 3 {
+      switch dateState {
+      case let dateState where dateState == [true, true, true]:
+        labelString = UITimeRemaining.timerTextDayHourMinute
+      case let dateState where dateState == [true, false, true]:
+        labelString = UITimeRemaining.timerTextDayHoursMinute
+      case let dateState where dateState == [true, true, false]:
+        labelString = UITimeRemaining.timerTextDayHourMinutes
+      case let dateState where dateState == [true, false, false]:
+        labelString = UITimeRemaining.timerTextDayHoursMinutes
+      case let dateState where dateState == [false, true, true]:
+        labelString = UITimeRemaining.timerTextDaysHourMinute
+      case let dateState where dateState == [false, false, true]:
+        labelString = UITimeRemaining.timerTextDaysHoursMinute
+      case let dateState where dateState == [false, true, false]:
+        labelString = UITimeRemaining.timerTextDaysHourMinutes
+      case let dateState where dateState == [false, false, false]:
+        labelString = UITimeRemaining.timerTextDaysHoursMinutes
+      default: break
+      }
+      if day > 1 {
+        let detailedDate = endTime!.detailedTimeStamp()
+        endTimerLabel.setTitle(StringUtil.fillInString(labelString!, time1: day, time2: hour, time3: minute, date: detailedDate), forState: .Normal)
+      } else {
+        endTimerLabel.setTitle(StringUtil.fillInString(labelString!, time1: day, time2: hour, time3: minute, date: date), forState: .Normal)
+
+      }
+    } else if dateState.count == 2 {
+      switch dateState {
+      case let dateState where dateState == [true, true]:
+        labelString = UITimeRemaining.timerTextHourMinute
+      case let dateState where dateState == [false, true]:
+        labelString = UITimeRemaining.timerTextHoursMinute
+      case let dateState where dateState == [true, false]:
+        labelString = UITimeRemaining.timerTextHourMinutes
+      case let dateState where dateState == [false, false]:
+        labelString = UITimeRemaining.timerTextHoursMinutes
+      default: break
+      }
+      endTimerLabel.setTitle(StringUtil.fillInString(labelString!, time1: hour, time2: minute, date: date), forState: .Normal)
+    } else if dateState.count == 1 {
+      switch dateState {
+      case let dateState where dateState == [true]:
+        labelString = UITimeRemaining.timerTextMinute
+      case let dateState where dateState == [false]:
+        labelString = UITimeRemaining.timerTextMinutes
+      default: break
+      }
+      endTimerLabel.setTitle(StringUtil.fillInString(labelString!, time: minute, date: date), forState: .Normal)
+    }
+    
+//    if currentTimeAway >= UITimeConstants.oneHourinMinutes {
+//      if hour > 1 {
+//        if minute == 1 {
+//          endTimerLabel.setTitle(StringUtil.fillInString(UITimeRemaining.timerTextHoursMinute, time1: hour, time2: minute, date: date), forState: .Normal)
+//        } else {
+//          endTimerLabel.setTitle(StringUtil.fillInString(UITimeRemaining.timerTextHoursMinutes, time1: hour, time2: minute, date: date), forState: .Normal)
+//        }
+//      } else if hour == 1{
+//        if minute == 1 {
+//          endTimerLabel.setTitle(StringUtil.fillInString(UITimeRemaining.timerTextHourMinute, time1: hour, time2: minute, date: date), forState: .Normal)
+//        } else {
+//          endTimerLabel.setTitle(StringUtil.fillInString(UITimeRemaining.timerTextHourMinutes, time1: hour, time2: minute, date: date), forState: .Normal)
+//        }
+//      }
+//    } else {
+//      if minute > 1 {
+//        endTimerLabel.setTitle(StringUtil.fillInString(UITimeRemaining.timerTextMinutes, time: minute, date: date), forState: .Normal)
+//      } else if minute == 1 {
+//        endTimerLabel.setTitle(StringUtil.fillInString(UITimeRemaining.timerTextMinute, time: minute, date: date), forState: .Normal)
+//      }
+//    }
   }
   
   func hideTimerView() {
