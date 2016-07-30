@@ -52,8 +52,6 @@ class CreateQuestionViewController: UIViewController{
     view.endEditing(true)
   }
   
-  
-  
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if (segue.identifier == ModelInterface.sharedInstance.segueToAdminScreen()) {
       let viewController:PollAdminViewController = segue.destinationViewController as! PollAdminViewController
@@ -63,8 +61,6 @@ class CreateQuestionViewController: UIViewController{
       viewController.timerQuestion = sendTime
     }
   }
-  
-  
 }
 
 extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
