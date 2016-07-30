@@ -70,6 +70,11 @@ class InputNameViewController: UIViewController {
   }
   
   func addContainerToVC() {
+    Log.debug("this is debug")
+    Log.info("this is info")
+    Log.warn("this is warn")
+    Log.error("this is error")
+    Log.test("this is test")
     container = InputNameView.instanceFromNib(
       CGRectMake(0, 0, view.bounds.width, view.bounds.height))
     container?.delegate = self

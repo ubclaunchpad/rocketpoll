@@ -109,3 +109,19 @@ enum imageNames {
 enum cellDimensions {
   static let pollAdminCellHeight:CGFloat = 58
 }
+
+/**
+ A log level of debug will print out all levels above it.
+ So a log level of WARN will print out WARN, ERROR, and TEST
+ */
+enum LogLevel {
+  static let lvl = LogLevelChoices.DEBUG
+}
+
+enum LogLevelChoices {
+  static let DEBUG = 1
+  static let INFO = 2
+  static let WARN = 3
+  static let ERROR = 4
+  static let TEST = 5
+}
