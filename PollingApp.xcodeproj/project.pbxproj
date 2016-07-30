@@ -64,6 +64,7 @@
 		C805755F1D3ADC10009A44DE /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C805755E1D3ADC10009A44DE /* DateUtil.swift */; };
 		C80EE1971D287417005872DD /* TimerUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80EE1961D287417005872DD /* TimerUtil.swift */; };
 		C80EE1991D287D39005872DD /* TimerUtilTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80EE1981D287D39005872DD /* TimerUtilTest.swift */; };
+		D0574C081D4D53EC00FEDF99 /* FirebaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0574C071D4D53EC00FEDF99 /* FirebaseTest.swift */; };
 		D0659D221CB068F600D98EED /* PollAdminViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0659D211CB068F600D98EED /* PollAdminViewContainer.xib */; };
 		D0659D241CB06AAD00D98EED /* PollAdminViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0659D231CB06AAD00D98EED /* PollAdminViewContainer.swift */; };
 		D0659D2F1CB0767300D98EED /* AnswerAdminTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0659D2D1CB0767300D98EED /* AnswerAdminTableViewCell.swift */; };
@@ -170,6 +171,7 @@
 		C80EE1961D287417005872DD /* TimerUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerUtil.swift; sourceTree = "<group>"; };
 		C80EE1981D287D39005872DD /* TimerUtilTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerUtilTest.swift; sourceTree = "<group>"; };
 		C985ED9000D18F78D6CB685A /* Pods-PollingAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PollingAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PollingAppUITests/Pods-PollingAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		D0574C071D4D53EC00FEDF99 /* FirebaseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseTest.swift; sourceTree = "<group>"; };
 		D0659D211CB068F600D98EED /* PollAdminViewContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PollAdminViewContainer.xib; sourceTree = "<group>"; };
 		D0659D231CB06AAD00D98EED /* PollAdminViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollAdminViewContainer.swift; sourceTree = "<group>"; };
 		D0659D2D1CB0767300D98EED /* AnswerAdminTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerAdminTableViewCell.swift; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 				C80EE1981D287D39005872DD /* TimerUtilTest.swift */,
 				52979A421D375C000066FCF2 /* StringUtilTest.swift */,
 				43D5B3FF1D31BDF500A3EB5C /* MathUtilTest.swift */,
+				D0574C071D4D53EC00FEDF99 /* FirebaseTest.swift */,
 			);
 			path = PollingAppTests;
 			sourceTree = "<group>";
@@ -841,6 +844,7 @@
 			files = (
 				76B28C301C66C84B008407EE /* PollingAppTests.swift in Sources */,
 				43D5B4001D31BDF500A3EB5C /* MathUtilTest.swift in Sources */,
+				D0574C081D4D53EC00FEDF99 /* FirebaseTest.swift in Sources */,
 				C80EE1991D287D39005872DD /* TimerUtilTest.swift in Sources */,
 				52979A431D375C000066FCF2 /* StringUtilTest.swift in Sources */,
 			);
