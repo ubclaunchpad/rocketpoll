@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CampaignViewTableViewCellDelegate {
-  func resultsButtonSelected(question: QuestionText)
+  func resultsButtonSelected(question: Question)
 }
 
 class CampaignViewTableViewCell: UITableViewCell {
@@ -22,7 +22,7 @@ class CampaignViewTableViewCell: UITableViewCell {
   @IBOutlet weak var expiry: UILabel!
   
   private var isExpired:Bool?
-  
+  private var question:Question?
   
   @IBAction func buttonPressed(sender: AnyObject) {
     if isExpired == false {
@@ -30,7 +30,7 @@ class CampaignViewTableViewCell: UITableViewCell {
         //delegate?.questionSelected(senderTitle!)
       }
     } else {
-      delegate?.resultsButtonSelected((button.titleLabel?.text)!)
+      delegate?.resultsButtonSelected(question!)
     }
   }
   
@@ -39,7 +39,7 @@ class CampaignViewTableViewCell: UITableViewCell {
     // Initialization code
   }
   @IBAction func resultsButtonPressed(sender: AnyObject) {
-    delegate?.resultsButtonSelected((button.titleLabel?.text)!)
+    delegate?.resultsButtonSelected(question!)
   }
   
   func hideResultsLabel(expired: Bool){
@@ -50,6 +50,10 @@ class CampaignViewTableViewCell: UITableViewCell {
     }
   }
   
+  func setFieldQuestion (question: Question) {
+    self.question = question
+  }
+
   func setQuestionText(questionName: QuestionText) {
     button.setTitle(questionName, forState: UIControlState.Normal)
   }

@@ -11,7 +11,7 @@ import UIKit
 protocol CampaignViewContainerDelegate {
   func questionSelected(question: Question)
   func newQuestionSelected()
-  func resultsButtonSelected(question:QuestionText)
+  func resultsButtonSelected(question: Question)
   func refreshQuestions()
 }
 
@@ -101,7 +101,7 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
       cell.setAuthorText( templistQuestions[indexPath.row].author)
     }
     cell.setExpiryMessage( templistQuestions[indexPath.row].expireMessage)
-    cell.setIsExpired(templistQuestions[indexPath.row].isExpired)
+    cell.setFieldQuestion(templistQuestions[indexPath.row])
     
      cell.hideResultsLabel(templistQuestions[indexPath.row].isExpired)
     
@@ -133,9 +133,9 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     if (section == 0) {
       return "Questions You Created"
     } else if (section == 1) {
-      return "Answered Question"
+      return "Questions You Answered"
     } else if (section == 2) {
-      return "Unanswered Question"
+      return "Unanswered Questions"
     } else {
       return "Expired Questions"
     }
@@ -147,7 +147,7 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
 }
 
 extension CampaignViewContainer: CampaignViewTableViewCellDelegate {
-  func resultsButtonSelected(question:String) {
+  func resultsButtonSelected(question: Question) {
     delegate?.resultsButtonSelected(question)
   }
   
