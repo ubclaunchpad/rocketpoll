@@ -42,8 +42,12 @@ class CampaignViewTableViewCell: UITableViewCell {
     delegate?.resultsButtonSelected((button.titleLabel?.text)!)
   }
   
-  func hideResultsLabel(){
-    resultsButton.alpha = 0;
+  func hideResultsLabel(expired: Bool){
+    if (expired) {
+      resultsButton.alpha = 1;
+    } else {
+      resultsButton.alpha = 0;
+    }
   }
   
   func setQuestionText(questionName: QuestionText) {
@@ -63,6 +67,8 @@ class CampaignViewTableViewCell: UITableViewCell {
   func setAnsweredBackground(isAnswered: Bool) {
     if isAnswered {
       self.backgroundColor = UIColor.lightGrayColor()
+    } else {
+        self.backgroundColor = UIColor.clearColor()
     }
   }
   

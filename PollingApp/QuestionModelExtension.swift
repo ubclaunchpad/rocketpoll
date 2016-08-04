@@ -86,8 +86,22 @@ extension ModelInterface: QuestionModelProtocol {
   }
   
   
-  func getListOfQuestionsUserCreated() -> [QuestionID] {
-    return ["Q1", "Q2", "Q3"]
+  func getListOfQuestionsUserAnswered(completionHandler: (listOfAnsweredQIDs: [QuestionID]) -> ()) {
+    let ref =  FIRDatabase.database().reference();
+    ref.child("Users/\(currentID)/QuestionsAnswered").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+      if (snapshot.value as? [String : AnyObject]) != nil  {
+        let answeredQuestions = snapshot.value as? [String : AnyObject]
+        var listOfAnsweredQIDs = [QuestionID]()
+        for (key, _) in answeredQuestions! {
+            listOfAnsweredQIDs.append(key)
+        }
+        completionHandler(listOfAnsweredQIDs: listOfAnsweredQIDs)
+      } else {
+        completionHandler(listOfAnsweredQIDs: [QuestionID]())
+      }
+    }) { (error) in
+      print(error.localizedDescription)
+    }
   }
   
   func isQuestionAnswered(questionId: QuestionID) -> Bool {

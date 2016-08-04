@@ -13,9 +13,12 @@ class CampaignsViewController: UIViewController {
   
   
   private var questionsAnswered = [Bool]()
+  
+  private var listOfYourQuestions = [Question]()
+  private var listOfAnsweredQuestions = [Question]()
   private var listOfQuestions = [Question]()
   private var listOfExpiredQuestions = [Question]()
-  private var listOfYourQuestions = [Question]()
+ 
   
   // Information to send other view controllers
   private var sendAIDS = [AnswerID]()
@@ -41,7 +44,10 @@ class CampaignsViewController: UIViewController {
       CGRectMake(0, 0, view.bounds.width, view.bounds.height))
     view.addSubview(container!)
     ModelInterface.sharedInstance.processQuestionData { (listofAllQuestions) in
-      self.fillInTheFields(listofAllQuestions)
+      ModelInterface.sharedInstance.getListOfQuestionsUserAnswered({ (listOfAnsweredQIDs) in
+        self.fillInTheFields(listofAllQuestions, listOfAnsweredQIDs:listOfAnsweredQIDs)
+      })
+      
     }
     let roomID = ModelInterface.sharedInstance.getCurrentRoomID()
     let roomName = ModelInterface.sharedInstance.getRoomName(roomID)
@@ -51,15 +57,20 @@ class CampaignsViewController: UIViewController {
   }
   
   
-  func fillInTheFields (listofAllQuestions:[Question]) {
+  func fillInTheFields (listofAllQuestions:[Question], listOfAnsweredQIDs: [QuestionID] ) {
+   
+    listOfYourQuestions.removeAll()
+    listOfAnsweredQuestions.removeAll()
     listOfQuestions.removeAll()
     listOfExpiredQuestions.removeAll()
-    listOfYourQuestions.removeAll()
-    let size = listofAllQuestions.count
     
+    let size = listofAllQuestions.count
     for i in 0 ..< size  {
       if (listofAllQuestions[i].author == currentUser) {
         listOfYourQuestions.append(listofAllQuestions[i])
+      }
+      if (listOfAnsweredQIDs.contains(listofAllQuestions[i].QID)) {
+        listOfAnsweredQuestions.append(listofAllQuestions[i])
       }
       
       if setExpirationDate(listofAllQuestions[i]) == false {
@@ -68,11 +79,10 @@ class CampaignsViewController: UIViewController {
     }
     
     self.container?.delegate = self
-    self.container?.setQuestions(listOfQuestions)
-    self.container?.setExpiredQuestions(listOfExpiredQuestions)
     self.container?.setYourQuestions(listOfYourQuestions)
-    self.container?.setQuestionAnswered(self.questionsAnswered)
-    
+    self.container?.setAnsweredQuestion(listOfAnsweredQuestions)
+    self.container?.setQuestions(listOfQuestions)
+    self.container?.setExpiredQuestions(listOfExpiredQuestions)    
     self.container?.tableView.reloadData()
   }
   
@@ -163,10 +173,17 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
         if (!listOfYourQuestions.contains(question)) {
           listOfExpiredQuestions.append(question)
         }
+        
+        if (!listOfAnsweredQuestions.contains(question) ){
+           listOfExpiredQuestions.append(question)
+        }
+        
       } else {
         question.isExpired = false
         question.expireMessage = UITimeRemaining.endsMoments
-        listOfQuestions.append(question)
+        if (!listOfYourQuestions.contains(question)) {
+          listOfQuestions.append(question)
+        }
       }
     }
     else if absDifference < UITimeConstants.oneHourinSeconds {
@@ -174,13 +191,18 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
       if difference > 0 {
         question.isExpired = true
         question.expireMessage = StringUtil.fillInString(UITimeRemaining.endedMinutes, time: minutes)
-        if (!listOfYourQuestions.contains(question)) {
+        if (!listOfYourQuestions.contains(question) && !listOfAnsweredQuestions.contains(question) ) {
           listOfExpiredQuestions.append(question)
         }
+        
+      
+        
       } else {
         question.isExpired = false
         question.expireMessage = StringUtil.fillInString(UITimeRemaining.endsMinutes, time: minutes)
-        listOfQuestions.append(question)
+        if (!listOfYourQuestions.contains(question)) {
+          listOfQuestions.append(question)
+        }
       }
     }
     else if absDifference < UITimeConstants.oneDayinSeconds {
@@ -192,9 +214,10 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
         } else {
           question.expireMessage = StringUtil.fillInString(UITimeRemaining.endedHour, time: hours)
         }
-        if (!listOfYourQuestions.contains(question)) {
+        if (!listOfYourQuestions.contains(question) && !listOfAnsweredQuestions.contains(question)) {
           listOfExpiredQuestions.append(question)
         }
+      
       } else {
         question.isExpired = false
         if hours > 1 {
@@ -205,6 +228,7 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
         if (!listOfYourQuestions.contains(question)) {
           listOfQuestions.append(question)
         }
+        
       }
     }
     else {
@@ -219,7 +243,9 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
         } else {
           question.expireMessage = StringUtil.fillInString(UITimeRemaining.endsDay, time: days)
         }
-        listOfQuestions.append(question)
+        if (!listOfAnsweredQuestions.contains(question) && !listOfYourQuestions.contains(question)){
+          listOfQuestions.append(question)
+        }        
       }
       
     }
@@ -228,9 +254,11 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
   }
   
   func refreshQuestions() {
+   
+    listOfYourQuestions.removeAll()
+    listOfAnsweredQuestions.removeAll()
     listOfQuestions.removeAll()
     listOfExpiredQuestions.removeAll()
-    listOfYourQuestions.removeAll()
     addContainerToVC()
   }
   

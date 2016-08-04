@@ -26,8 +26,7 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
   private var questions:[Question] = []
   private var expiredQuestions:[Question] = []
   private var yourQuestions:[Question] = []
-  private var questionsAnswered:[Bool] = []
-  
+  private var answeredQuestions:[Question] = []
   
   var delegate: CampaignViewContainerDelegate?
   
@@ -47,10 +46,6 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     roomName.text = name;
   }
   
-  func setQuestionAnswered(questions: [Bool]) {
-    questionsAnswered = questions
-  }
-  
   func setQuestions(questions: [Question]) {
     self.questions = questions
   }
@@ -62,10 +57,16 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     self.yourQuestions = yourQuestions
   }
   
+  func setAnsweredQuestion(answeredQuestions : [Question]) {
+    self.answeredQuestions = answeredQuestions
+  }
+  
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if (section == 0) {
       return yourQuestions.count
     } else if (section == 1) {
+      return answeredQuestions.count
+    }else if (section == 2) {
       return questions.count
     } else {
       return expiredQuestions.count
@@ -78,19 +79,21 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     tableView.registerNib(nib_name, forCellReuseIdentifier: "campaignCell")
     let cell = self.tableView.dequeueReusableCellWithIdentifier("campaignCell", forIndexPath: indexPath) as! CampaignViewTableViewCell
     cell.delegate = self
+    
     var templistQuestions = [Question]()
     
     if (indexPath.section == 0) {
       templistQuestions = yourQuestions
-    } else if (indexPath.section == 1)  {
+    } else if (indexPath.section == 1) {
+      templistQuestions = answeredQuestions
+    } else if (indexPath.section == 2)  {
       templistQuestions = questions
     } else {
       templistQuestions = expiredQuestions
     }
     
-    
     cell.setQuestionText( templistQuestions[indexPath.row].questionText)
-    cell.setAnsweredBackground(questionsAnswered[indexPath.row])
+    cell.setAnsweredBackground(templistQuestions[indexPath.row].isExpired)
     
     if (templistQuestions[indexPath.row].author == currentUser) {
       cell.setAuthorText("Yours")
@@ -100,9 +103,9 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     cell.setExpiryMessage( templistQuestions[indexPath.row].expireMessage)
     cell.setIsExpired(templistQuestions[indexPath.row].isExpired)
     
-    if(!questionsAnswered[indexPath.row]){
-      cell.hideResultsLabel()
-    }
+     cell.hideResultsLabel(templistQuestions[indexPath.row].isExpired)
+    
+    
     
     return cell
   }
@@ -116,6 +119,8 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     if indexPath.section == 0 {
        selectedQuestion = yourQuestions[indexPath.row]
     } else if indexPath.section == 1 {
+      selectedQuestion = answeredQuestions[indexPath.row]
+    } else if indexPath.section == 2 {
       selectedQuestion = questions[indexPath.row]
     } else {
       selectedQuestion = expiredQuestions[indexPath.row]
@@ -126,19 +131,19 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
   
   func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
     if (section == 0) {
-      return "Question You Created"
+      return "Questions You Created"
     } else if (section == 1) {
-      return "Question"
+      return "Answered Question"
+    } else if (section == 2) {
+      return "Unanswered Question"
     } else {
-      return "ExpiredQuestion"
+      return "Expired Questions"
     }
   }
   
-  
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return 3
+    return 4
   }
-  
 }
 
 extension CampaignViewContainer: CampaignViewTableViewCellDelegate {
