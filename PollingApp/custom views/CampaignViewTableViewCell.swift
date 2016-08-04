@@ -9,7 +9,6 @@
 import UIKit
 
 protocol CampaignViewTableViewCellDelegate {
-  func questionSelected(question: QuestionText)
   func resultsButtonSelected(question: QuestionText)
 }
 
@@ -28,7 +27,7 @@ class CampaignViewTableViewCell: UITableViewCell {
   @IBAction func buttonPressed(sender: AnyObject) {
     if isExpired == false {
       if let senderTitle = sender.currentTitle {
-        delegate?.questionSelected(senderTitle!)
+        //delegate?.questionSelected(senderTitle!)
       }
     } else {
       delegate?.resultsButtonSelected((button.titleLabel?.text)!)

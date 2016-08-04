@@ -11,21 +11,15 @@ import Firebase
 
 class CampaignsViewController: UIViewController {
   
-  private var questionIDDictionary = [QuestionText: QuestionID]()
-  private var QIDToAIDSDictionary = [QuestionID:[AnswerID]]()
-  private var QIDToAuthorDictionary = [QuestionID: Author]()
-  private var QIDToTimeDictionary = [QuestionID: Double]()
-  private var questions = [QuestionText]();
-  private var authors = [Author]();
-  private var questionsAnswered = [Bool]();
-  private var expiry = [String]()
-  private var isExpired = [Bool]()
   
+  private var questionsAnswered = [Bool]()
+  private var listOfQuestions = [Question]()
+  private var listOfExpiredQuestions = [Question]()
   // Information to send other view controllers
   private var sendAIDS = [AnswerID]()
   private var sendTime = 0.0
-  private var sendQuestionText = "";
-  private var sendQID = "";
+  private var sendQuestionText = ""
+  private var sendQID = ""
   
   var container: CampaignViewContainer?
   
@@ -54,45 +48,25 @@ class CampaignsViewController: UIViewController {
     self.container?.setRoomNameTitle(roomName)
   }
   
-
+  
   func fillInTheFields (listofAllQuestions:[Question]) {
+    listOfQuestions.removeAll()
+    listOfExpiredQuestions.removeAll()
     let size = listofAllQuestions.count
-    questionIDDictionary = [QuestionText: QuestionID]()
-    QIDToAIDSDictionary = [QuestionID:[AnswerID]]()
-    QIDToAuthorDictionary = [QuestionID: Author]()
-    QIDToTimeDictionary = [QuestionID: Double]()
-    questions = [QuestionText]();
-    authors = [Author]();
-    questionsAnswered = [Bool]();
-    expiry = [String]()
-    isExpired = [Bool]()
-    
     
     for i in 0 ..< size  {
-      let tempQuestionID = listofAllQuestions[i].QID;
-      let time = listofAllQuestions[i].endTimestamp
       
-      if setExpirationDate(time, QID: tempQuestionID) == false {
-        self.questions.append(listofAllQuestions[i].questionText)
-        self.authors.append(listofAllQuestions[i].author)
+      if setExpirationDate(listofAllQuestions[i]) == false {
         self.questionsAnswered.append(true)
-        self.questionIDDictionary[listofAllQuestions[i].questionText] = listofAllQuestions[i].QID
-        self.QIDToAIDSDictionary[listofAllQuestions[i].QID] = listofAllQuestions[i].AIDS
-        self.QIDToAuthorDictionary[listofAllQuestions[i].QID] = listofAllQuestions[i].author
-        self.QIDToTimeDictionary[listofAllQuestions[i].QID] = listofAllQuestions[i].endTimestamp
       }
-      if i == size - 1 {
-        self.container?.setExpiryMessages(self.expiry)
-        self.container?.setIsExpired(self.isExpired)
-        self.container?.setAuthors(self.authors)
-        self.container?.delegate = self
-        self.container?.setQuestions(self.questions)
-        self.container?.setQuestionAnswered(self.questionsAnswered)
-        
-        self.container?.tableView.reloadData()
-      }
-      
     }
+    
+    self.container?.setQuestions(listOfQuestions)
+    self.container?.setExpiredQuestions(listOfExpiredQuestions)
+    self.container?.delegate = self
+    self.container?.setQuestionAnswered(self.questionsAnswered)
+    
+    self.container?.tableView.reloadData()
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -125,23 +99,28 @@ class CampaignsViewController: UIViewController {
 
 extension CampaignsViewController: CampaignViewContainerDelegate {
   //IPA-129
-  func questionSelected(question: QuestionText) {
-    if let questionID = questionIDDictionary[question] {
-      let author = QIDToAuthorDictionary[questionID]!
-      sendQuestionText = question
-      sendAIDS = QIDToAIDSDictionary[questionID]!
-
-      sendTime = QIDToTimeDictionary[questionID]!
-      sendQID = questionID
-      if (author == currentUser) {
-        let nextRoom = ModelInterface.sharedInstance.segueTotoPollAdminVCFromCampaign()
-        performSegueWithIdentifier(nextRoom, sender: self)
-        
-      } else {
+  func questionSelected(question: Question) {
+    
+    let author = question.author
+    sendQuestionText = question.questionText
+    sendAIDS = question.AIDS
+    
+    sendTime = question.endTimestamp
+    sendQID = question.QID
+    if (author == currentUser) {
+      let nextRoom = ModelInterface.sharedInstance.segueTotoPollAdminVCFromCampaign()
+      performSegueWithIdentifier(nextRoom, sender: self)
+      
+    } else {
+      if (!question.isExpired) {
         let questionSegue = ModelInterface.sharedInstance.segueToQuestion()
         performSegueWithIdentifier(questionSegue, sender: self)
+      } else {
+        let nextRoom = ModelInterface.sharedInstance.segueToResultsScreen()
+        performSegueWithIdentifier(nextRoom, sender: self)
       }
     }
+    
   }
   
   func newQuestionSelected() {
@@ -150,93 +129,92 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
   }
   
   func resultsButtonSelected(question: QuestionText) {
-    if let questionID = questionIDDictionary[question] {
-      sendQuestionText = question
-      sendAIDS = QIDToAIDSDictionary[questionID]!
-      sendTime = QIDToTimeDictionary[questionID]!
-      sendQID = questionID
-      let nextRoom = ModelInterface.sharedInstance.segueToResultsScreen()
-      performSegueWithIdentifier(nextRoom, sender: self)
-    }
+    //    if let questionID = questionIDDictionary[question] {
+    //      sendQuestionText = question
+    //      sendAIDS = QIDToAIDSDictionary[questionID]!
+    //      sendTime = QIDToTimeDictionary[questionID]!
+    //      sendQID = questionID
+    //      let nextRoom = ModelInterface.sharedInstance.segueToResultsScreen()
+    //      performSegueWithIdentifier(nextRoom, sender: self)
+    //    }
   }
   
-  func setExpirationDate (time:Double, QID:QuestionID) -> Bool {
+  func setExpirationDate (question:Question) -> Bool {
     var deleted = false
-    guard time > 0 else {
+    guard question.endTimestamp > 0 else {
       return deleted
     }
     
     let currentTime = Int(NSDate().timeIntervalSince1970)
-    let difference = currentTime - Int(time)
+    let difference = currentTime - Int(question.endTimestamp)
     let absDifference = abs(difference)
     
     if absDifference < UITimeConstants.moment {
       if difference > 0 {
-        self.isExpired.append(true)
-        self.expiry.append("\(UITimeRemaining.endedMoments)")
+        question.isExpired = true
+        question.expireMessage = UITimeRemaining.endedMoments
+        listOfExpiredQuestions.append(question)
       } else {
-        self.isExpired.append(false)
-        self.expiry.append("\(UITimeRemaining.endsMoments)")
+        question.isExpired = false
+        question.expireMessage = UITimeRemaining.endsMoments
+        listOfQuestions.append(question)
       }
     }
     else if absDifference < UITimeConstants.oneHourinSeconds {
       let minutes = absDifference/UITimeConstants.oneMinuteinSeconds
       if difference > 0 {
-        self.isExpired.append(true)
-        self.expiry.append("\(StringUtil.fillInString(UITimeRemaining.endedMinutes, time: minutes))")
+        question.isExpired = true
+        question.expireMessage = StringUtil.fillInString(UITimeRemaining.endedMinutes, time: minutes)
+        listOfExpiredQuestions.append(question)
       } else {
-        self.isExpired.append(false)
-        self.expiry.append("\(StringUtil.fillInString(UITimeRemaining.endsMinutes, time: minutes))")
+        question.isExpired = false
+        question.expireMessage = StringUtil.fillInString(UITimeRemaining.endsMinutes, time: minutes)
+        listOfQuestions.append(question)
       }
     }
     else if absDifference < UITimeConstants.oneDayinSeconds {
       let hours = Int(absDifference/UITimeConstants.oneHourinSeconds)
       if difference > 0 {
-        
-        self.isExpired.append(true)
+        question.isExpired = true
         if hours > 1 {
-          self.expiry.append("\(StringUtil.fillInString(UITimeRemaining.endedHours, time: hours))")
+          question.expireMessage = StringUtil.fillInString(UITimeRemaining.endedHours, time: hours)
         } else {
-          self.expiry.append("\(StringUtil.fillInString(UITimeRemaining.endedHour, time: hours))")
+          question.expireMessage = StringUtil.fillInString(UITimeRemaining.endedHour, time: hours)
         }
+        listOfExpiredQuestions.append(question)
       } else {
-        self.isExpired.append(false)
+        question.isExpired = false
         if hours > 1 {
-          self.expiry.append("\(StringUtil.fillInString(UITimeRemaining.endsHours, time: hours))")
+          question.expireMessage = StringUtil.fillInString(UITimeRemaining.endsHours, time: hours)
         } else {
-          self.expiry.append("\(StringUtil.fillInString(UITimeRemaining.endsHour, time: hours))")
+          question.expireMessage = StringUtil.fillInString(UITimeRemaining.endsHour, time: hours)
         }
+        listOfQuestions.append(question)
       }
     }
     else {
       let days = Int(absDifference/UITimeConstants.oneDayinSeconds)
       if difference > 0 {
         deleted = true
-        ModelInterface.sharedInstance.removeQuestion(QID)
+        ModelInterface.sharedInstance.removeQuestion(question.QID)
       } else {
-        self.isExpired.append(false)
+        question.isExpired = false
         if days > 1 {
-          self.expiry.append("\(StringUtil.fillInString(UITimeRemaining.endsDays, time: days))")
+          question.expireMessage = StringUtil.fillInString(UITimeRemaining.endsDays, time: days)
         } else {
-          self.expiry.append("\(StringUtil.fillInString(UITimeRemaining.endsDay, time: days))")
+          question.expireMessage = StringUtil.fillInString(UITimeRemaining.endsDay, time: days)
         }
+        listOfQuestions.append(question)
       }
       
     }
-    
     return deleted;
     
   }
   
   func refreshQuestions() {
-    questionIDDictionary.removeAll()
-    QIDToAIDSDictionary.removeAll()
-    QIDToAuthorDictionary.removeAll()
-    questions.removeAll()
-    authors.removeAll()
-    questionsAnswered.removeAll()
-    expiry.removeAll()
-    isExpired.removeAll()
+    listOfQuestions.removeAll()
+    listOfExpiredQuestions.removeAll()
     addContainerToVC()
   }
   
