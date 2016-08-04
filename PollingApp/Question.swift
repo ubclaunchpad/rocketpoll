@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Question {
+public class Question: Equatable {
   
   var QID = ""
   var AIDS = [AnswerID]()
@@ -28,5 +28,8 @@ class Question {
     self.questionText = questionText
     self.endTimestamp = endTimestamp
   }
-  
+}
+
+public func == (lhs: Question, rhs: Question) -> Bool {
+  return lhs.QID == rhs.QID
 }

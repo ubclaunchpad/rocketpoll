@@ -15,6 +15,8 @@ class CampaignsViewController: UIViewController {
   private var questionsAnswered = [Bool]()
   private var listOfQuestions = [Question]()
   private var listOfExpiredQuestions = [Question]()
+  private var listOfYourQuestions = [Question]()
+  
   // Information to send other view controllers
   private var sendAIDS = [AnswerID]()
   private var sendTime = 0.0
@@ -52,18 +54,23 @@ class CampaignsViewController: UIViewController {
   func fillInTheFields (listofAllQuestions:[Question]) {
     listOfQuestions.removeAll()
     listOfExpiredQuestions.removeAll()
+    listOfYourQuestions.removeAll()
     let size = listofAllQuestions.count
     
     for i in 0 ..< size  {
+      if (listofAllQuestions[i].author == currentUser) {
+        listOfYourQuestions.append(listofAllQuestions[i])
+      }
       
       if setExpirationDate(listofAllQuestions[i]) == false {
         self.questionsAnswered.append(true)
       }
     }
     
+    self.container?.delegate = self
     self.container?.setQuestions(listOfQuestions)
     self.container?.setExpiredQuestions(listOfExpiredQuestions)
-    self.container?.delegate = self
+    self.container?.setYourQuestions(listOfYourQuestions)
     self.container?.setQuestionAnswered(self.questionsAnswered)
     
     self.container?.tableView.reloadData()
@@ -153,7 +160,9 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
       if difference > 0 {
         question.isExpired = true
         question.expireMessage = UITimeRemaining.endedMoments
-        listOfExpiredQuestions.append(question)
+        if (!listOfYourQuestions.contains(question)) {
+          listOfExpiredQuestions.append(question)
+        }
       } else {
         question.isExpired = false
         question.expireMessage = UITimeRemaining.endsMoments
@@ -165,7 +174,9 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
       if difference > 0 {
         question.isExpired = true
         question.expireMessage = StringUtil.fillInString(UITimeRemaining.endedMinutes, time: minutes)
-        listOfExpiredQuestions.append(question)
+        if (!listOfYourQuestions.contains(question)) {
+          listOfExpiredQuestions.append(question)
+        }
       } else {
         question.isExpired = false
         question.expireMessage = StringUtil.fillInString(UITimeRemaining.endsMinutes, time: minutes)
@@ -181,7 +192,9 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
         } else {
           question.expireMessage = StringUtil.fillInString(UITimeRemaining.endedHour, time: hours)
         }
-        listOfExpiredQuestions.append(question)
+        if (!listOfYourQuestions.contains(question)) {
+          listOfExpiredQuestions.append(question)
+        }
       } else {
         question.isExpired = false
         if hours > 1 {
@@ -189,7 +202,9 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
         } else {
           question.expireMessage = StringUtil.fillInString(UITimeRemaining.endsHour, time: hours)
         }
-        listOfQuestions.append(question)
+        if (!listOfYourQuestions.contains(question)) {
+          listOfQuestions.append(question)
+        }
       }
     }
     else {
@@ -215,6 +230,7 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
   func refreshQuestions() {
     listOfQuestions.removeAll()
     listOfExpiredQuestions.removeAll()
+    listOfYourQuestions.removeAll()
     addContainerToVC()
   }
   

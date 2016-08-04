@@ -25,8 +25,9 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
   }
   private var questions:[Question] = []
   private var expiredQuestions:[Question] = []
+  private var yourQuestions:[Question] = []
   private var questionsAnswered:[Bool] = []
-
+  
   
   var delegate: CampaignViewContainerDelegate?
   
@@ -51,19 +52,24 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
   }
   
   func setQuestions(questions: [Question]) {
-   self.questions = questions
+    self.questions = questions
   }
   
   func setExpiredQuestions (expiredQuestions: [Question]) {
     self.expiredQuestions = expiredQuestions
   }
+  func setYourQuestions(yourQuestions: [Question]) {
+    self.yourQuestions = yourQuestions
+  }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if (section == 0) {
+      return yourQuestions.count
+    } else if (section == 1) {
       return questions.count
+    } else {
+      return expiredQuestions.count
     }
-    
-    return expiredQuestions.count
   }
   
   
@@ -75,8 +81,10 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     var templistQuestions = [Question]()
     
     if (indexPath.section == 0) {
+      templistQuestions = yourQuestions
+    } else if (indexPath.section == 1)  {
       templistQuestions = questions
-    } else  {
+    } else {
       templistQuestions = expiredQuestions
     }
     
@@ -106,6 +114,8 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     var selectedQuestion:Question
     if indexPath.section == 0 {
+       selectedQuestion = yourQuestions[indexPath.row]
+    } else if indexPath.section == 1 {
       selectedQuestion = questions[indexPath.row]
     } else {
       selectedQuestion = expiredQuestions[indexPath.row]
@@ -116,14 +126,17 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
   
   func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
     if (section == 0) {
+      return "Question You Created"
+    } else if (section == 1) {
       return "Question"
+    } else {
+      return "ExpiredQuestion"
     }
-    return "ExpiredQuestion"
   }
   
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return 2
+    return 3
   }
   
 }
@@ -132,5 +145,5 @@ extension CampaignViewContainer: CampaignViewTableViewCellDelegate {
   func resultsButtonSelected(question:String) {
     delegate?.resultsButtonSelected(question)
   }
-
+  
 }
