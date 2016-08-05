@@ -9,7 +9,7 @@
 import Foundation
 
 
-public class Answer {
+class Answer {
   var AID:AnswerID = ""
   var answerText:AnswerText = ""
   var isCorrect = false

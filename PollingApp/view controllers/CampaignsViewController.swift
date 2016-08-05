@@ -131,8 +131,8 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
     sendTime = question.endTimestamp
     sendQID = question.QID
     if (author == currentUser) {
-      let nextRoom = ModelInterface.sharedInstance.segueTotoPollAdminVCFromCampaign()
-      performSegueWithIdentifier(nextRoom, sender: self)
+      let segueToPollAdmin = ModelInterface.sharedInstance.segueTotoPollAdminVCFromCampaign()
+      performSegueWithIdentifier(segueToPollAdmin, sender: self)
       
     } else {
       let questionSegue = ModelInterface.sharedInstance.segueToQuestion()

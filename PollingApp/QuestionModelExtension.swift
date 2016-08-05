@@ -37,7 +37,7 @@ extension ModelInterface: QuestionModelProtocol {
       }
       
     }) { (error) in
-      print(error.localizedDescription)
+      Log.error(error.localizedDescription)
     }
   }
   
@@ -49,7 +49,6 @@ extension ModelInterface: QuestionModelProtocol {
       let tempQuestion = self.parseQuestionNodeInformation(information, QID:QID as! QuestionID)
       sendQuestion.append(tempQuestion);
     }
-    
     return sendQuestion
   }
   
@@ -100,7 +99,7 @@ extension ModelInterface: QuestionModelProtocol {
         completionHandler(listOfAnsweredQIDs: [QuestionID]())
       }
     }) { (error) in
-      print(error.localizedDescription)
+      Log.error(error.localizedDescription)
     }
   }
   

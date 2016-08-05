@@ -25,7 +25,10 @@ class CampaignViewTableViewCell: UITableViewCell {
   private var question:Question?
   
   @IBAction func buttonPressed(sender: AnyObject) {
-    if question?.isExpired == false {
+    guard question != nil else {
+      return
+    }
+    if question!.isExpired == false {
       if let senderTitle = sender.currentTitle {
         delegate?.questionSelected(question!)
       }
@@ -39,7 +42,9 @@ class CampaignViewTableViewCell: UITableViewCell {
     // Initialization code
   }
   @IBAction func resultsButtonPressed(sender: AnyObject) {
-    delegate?.resultsButtonSelected(question!)
+    if question != nil {
+      delegate?.resultsButtonSelected(question!)
+    }
   }
   
   func hideResultsLabel(expired: Bool){

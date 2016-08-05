@@ -63,16 +63,16 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     switch section {
-      case 0:
-        return yourQuestions.count
-      case 1:
-        return answeredQuestions.count
-      case 2:
-        return unansweredQuestions.count
-      case 3:
-        return expiredQuestions.count
-      default:
-        return 0
+    case 0:
+      return yourQuestions.count
+    case 1:
+      return answeredQuestions.count
+    case 2:
+      return unansweredQuestions.count
+    case 3:
+      return expiredQuestions.count
+    default:
+      return 0
     }
   }
   
@@ -118,38 +118,12 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     return 90
   }
   
-//  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//    var selectedQuestion:Question
-//    if indexPath.section == 0 {
-//      selectedQuestion = yourQuestions[indexPath.row]
-//    } else if indexPath.section == 1 {
-//      selectedQuestion = answeredQuestions[indexPath.row]
-//    } else if indexPath.section == 2 {
-//      selectedQuestion = unansweredQuestions[indexPath.row]
-//    } else {
-//      selectedQuestion = expiredQuestions[indexPath.row]
-//    }
-//    
-//    delegate?.questionSelected(selectedQuestion)
-//  }
-  
   func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    switch section {
-      case 0:
-        return "Questions You Created"
-      case 1:
-        return "Questions You Answered"
-      case 2:
-        return "Unanswered Questions"
-      case 3:
-        return "Expired Questions"
-      default:
-        return ""
-    }
+   return CampaginSection.sectionNames[section]
   }
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return 4
+    return  CampaginSection.sectionNames.count
   }
 }
 

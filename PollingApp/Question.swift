@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Question: NSObject {
+class Question: NSObject {
   
   var QID = ""
   var AIDS = [AnswerID]()
@@ -29,7 +29,10 @@ public class Question: NSObject {
     self.endTimestamp = endTimestamp
   }
   
-  override public func isEqual(object: AnyObject?) -> Bool {
+  override internal func isEqual(object: AnyObject?) -> Bool {
+    if (object == nil) {
+      return false
+    }
     if let object = object as? Question {
       return QID == object.QID
     } else {
@@ -37,7 +40,7 @@ public class Question: NSObject {
     }
   }
   
-  override public var hash: Int {
+  override internal var hash: Int {
     return QID.hashValue
   }
 }
