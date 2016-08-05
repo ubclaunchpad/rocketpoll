@@ -118,20 +118,20 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     return 90
   }
   
-  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    var selectedQuestion:Question
-    if indexPath.section == 0 {
-      selectedQuestion = yourQuestions[indexPath.row]
-    } else if indexPath.section == 1 {
-      selectedQuestion = answeredQuestions[indexPath.row]
-    } else if indexPath.section == 2 {
-      selectedQuestion = unansweredQuestions[indexPath.row]
-    } else {
-      selectedQuestion = expiredQuestions[indexPath.row]
-    }
-    
-    delegate?.questionSelected(selectedQuestion)
-  }
+//  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//    var selectedQuestion:Question
+//    if indexPath.section == 0 {
+//      selectedQuestion = yourQuestions[indexPath.row]
+//    } else if indexPath.section == 1 {
+//      selectedQuestion = answeredQuestions[indexPath.row]
+//    } else if indexPath.section == 2 {
+//      selectedQuestion = unansweredQuestions[indexPath.row]
+//    } else {
+//      selectedQuestion = expiredQuestions[indexPath.row]
+//    }
+//    
+//    delegate?.questionSelected(selectedQuestion)
+//  }
   
   func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
     switch section {
@@ -156,6 +156,9 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
 extension CampaignViewContainer: CampaignViewTableViewCellDelegate {
   func resultsButtonSelected(question: Question) {
     delegate?.resultsButtonSelected(question)
+  }
+  func questionSelected(question: Question) {
+    delegate?.questionSelected(question)
   }
   
 }

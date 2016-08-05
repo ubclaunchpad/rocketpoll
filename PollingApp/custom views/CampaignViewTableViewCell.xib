@@ -68,8 +68,8 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f0s-dH-4Su">
-                        <rect key="frame" x="457" y="51" width="126" height="20"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <rect key="frame" x="442" y="51" width="150" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -83,9 +83,9 @@
                     <constraint firstItem="Yex-pJ-v2Z" firstAttribute="leading" secondItem="R8E-hd-k7b" secondAttribute="leadingMargin" constant="32" id="Uyd-fF-uKb"/>
                     <constraint firstItem="JZP-87-fuP" firstAttribute="centerY" secondItem="1KI-Cl-Kvj" secondAttribute="centerY" constant="15" id="epb-Xy-eeZ"/>
                     <constraint firstItem="GCl-Wp-SKT" firstAttribute="top" secondItem="R8E-hd-k7b" secondAttribute="topMargin" constant="-10" id="fkR-Wu-jSw"/>
-                    <constraint firstItem="f0s-dH-4Su" firstAttribute="leading" secondItem="JZP-87-fuP" secondAttribute="trailing" constant="-73" id="l26-z7-tdh"/>
+                    <constraint firstItem="f0s-dH-4Su" firstAttribute="leading" secondItem="JZP-87-fuP" secondAttribute="trailing" constant="-88" id="l26-z7-tdh"/>
                     <constraint firstItem="Yex-pJ-v2Z" firstAttribute="centerY" secondItem="dBB-ax-fk0" secondAttribute="centerY" id="lDi-GZ-dGa"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="f0s-dH-4Su" secondAttribute="trailing" constant="9" id="oyH-cg-t1z"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="f0s-dH-4Su" secondAttribute="trailing" id="oyH-cg-t1z"/>
                     <constraint firstItem="JZP-87-fuP" firstAttribute="top" secondItem="R8E-hd-k7b" secondAttribute="topMargin" constant="22" id="rFe-zG-90g"/>
                     <constraint firstAttribute="bottomMargin" secondItem="GCl-Wp-SKT" secondAttribute="bottom" constant="43" id="sor-ZT-7QZ"/>
                     <constraint firstItem="dBB-ax-fk0" firstAttribute="leading" secondItem="1KI-Cl-Kvj" secondAttribute="leading" id="tGw-8F-l0c"/>

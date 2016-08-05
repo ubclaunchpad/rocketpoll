@@ -10,6 +10,7 @@ import UIKit
 
 protocol CampaignViewTableViewCellDelegate {
   func resultsButtonSelected(question: Question)
+  func questionSelected(question:Question)
 }
 
 class CampaignViewTableViewCell: UITableViewCell {
@@ -21,13 +22,12 @@ class CampaignViewTableViewCell: UITableViewCell {
   @IBOutlet weak var resultsButton: UIButton!
   @IBOutlet weak var expiry: UILabel!
   
-  private var isExpired:Bool?
   private var question:Question?
   
   @IBAction func buttonPressed(sender: AnyObject) {
-    if isExpired == false {
+    if question?.isExpired == false {
       if let senderTitle = sender.currentTitle {
-        //delegate?.questionSelected(senderTitle!)
+        delegate?.questionSelected(question!)
       }
     } else {
       delegate?.resultsButtonSelected(question!)
@@ -53,7 +53,7 @@ class CampaignViewTableViewCell: UITableViewCell {
   func setFieldQuestion (question: Question) {
     self.question = question
   }
-
+  
   func setQuestionText(questionName: QuestionText) {
     button.setTitle(questionName, forState: UIControlState.Normal)
   }
@@ -63,20 +63,18 @@ class CampaignViewTableViewCell: UITableViewCell {
     self.author.adjustsFontSizeToFitWidth = false
     self.author.lineBreakMode = NSLineBreakMode.ByClipping
   }
+  
   func setExpiryMessage(expiry: String) {
     self.expiry.text = expiry
     self.expiry.adjustsFontSizeToFitWidth = false
     self.expiry.lineBreakMode = NSLineBreakMode.ByClipping
-  }
-  func setIsExpired(expired: Bool) {
-    isExpired = expired
   }
   
   func setAnsweredBackground(isAnswered: Bool) {
     if isAnswered {
       self.backgroundColor = UIColor.lightGrayColor()
     } else {
-        self.backgroundColor = UIColor.clearColor()
+      self.backgroundColor = UIColor.clearColor()
     }
   }
   

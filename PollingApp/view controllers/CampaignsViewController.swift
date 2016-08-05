@@ -135,17 +135,12 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
       performSegueWithIdentifier(nextRoom, sender: self)
       
     } else {
-      if (!question.isExpired) {
-        let questionSegue = ModelInterface.sharedInstance.segueToQuestion()
-        performSegueWithIdentifier(questionSegue, sender: self)
-      } else {
-        let nextRoom = ModelInterface.sharedInstance.segueToResultsScreen()
-        performSegueWithIdentifier(nextRoom, sender: self)
-      }
+      let questionSegue = ModelInterface.sharedInstance.segueToQuestion()
+      performSegueWithIdentifier(questionSegue, sender: self)
     }
     
   }
-
+  
   func newQuestionSelected() {
     let newQuestionSegue = ModelInterface.sharedInstance.segueToCreateNewQuestion()
     performSegueWithIdentifier(newQuestionSegue, sender: self)
