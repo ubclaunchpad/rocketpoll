@@ -72,9 +72,18 @@ class CampaignsViewController: UIViewController {
       if (listOfAnsweredQIDs.contains(listofAllQuestions[i].QID)) {
         listOfAnsweredQuestions.append(listofAllQuestions[i])
       }
+      let tempQuestion = DateUtil.setExpirationDate(listofAllQuestions[i])
       
-      if setExpirationDate(listofAllQuestions[i]) == false {
-        self.questionsAnswered.append(true)
+      if (!tempQuestion.isExpired &&
+        !listOfYourQuestions.contains(tempQuestion) &&
+        !listOfAnsweredQuestions.contains(tempQuestion)) {
+        listOfUnansweredQuestions.append(tempQuestion)
+      }
+      
+      if (tempQuestion.isExpired &&
+        !listOfYourQuestions.contains(tempQuestion) &&
+        !listOfAnsweredQuestions.contains(tempQuestion)) {
+        listOfExpiredQuestions.append(tempQuestion)
       }
     }
     
@@ -136,7 +145,7 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
     }
     
   }
-  
+
   func newQuestionSelected() {
     let newQuestionSegue = ModelInterface.sharedInstance.segueToCreateNewQuestion()
     performSegueWithIdentifier(newQuestionSegue, sender: self)
@@ -150,94 +159,6 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
     let nextRoom = ModelInterface.sharedInstance.segueToResultsScreen()
     performSegueWithIdentifier(nextRoom, sender: self)
   }
-  
-  func setExpirationDate (question:Question) -> Bool {
-    var deleted = false
-    guard question.endTimestamp > 0 else {
-      return deleted
-    }
-    
-    let currentTime = Int(NSDate().timeIntervalSince1970)
-    let difference = currentTime - Int(question.endTimestamp)
-    let absDifference = abs(difference)
-    
-    if absDifference < UITimeConstants.moment {
-      if difference > 0 {
-        question.isExpired = true
-        question.expireMessage = UITimeRemaining.endedMoments
-        if (!listOfYourQuestions.contains(question) && !listOfAnsweredQuestions.contains(question)) {
-          listOfExpiredQuestions.append(question)
-        }
-        
-      } else {
-        question.isExpired = false
-        question.expireMessage = UITimeRemaining.endsMoments
-        if (!listOfYourQuestions.contains(question) && !listOfAnsweredQuestions.contains(question)) {
-          listOfUnansweredQuestions.append(question)
-        }
-      }
-    }
-    else if absDifference < UITimeConstants.oneHourinSeconds {
-      let minutes = absDifference/UITimeConstants.oneMinuteinSeconds
-      if difference > 0 {
-        question.isExpired = true
-        question.expireMessage = StringUtil.fillInString(UITimeRemaining.endedMinutes, time: minutes)
-        if (!listOfYourQuestions.contains(question) && !listOfAnsweredQuestions.contains(question)) {
-          listOfExpiredQuestions.append(question)
-        }
-      } else {
-        question.isExpired = false
-        question.expireMessage = StringUtil.fillInString(UITimeRemaining.endsMinutes, time: minutes)
-        if (!listOfYourQuestions.contains(question) && !listOfAnsweredQuestions.contains(question)) {
-          listOfUnansweredQuestions.append(question)
-        }
-      }
-    }
-    else if absDifference < UITimeConstants.oneDayinSeconds {
-      let hours = Int(absDifference/UITimeConstants.oneHourinSeconds)
-      if difference > 0 {
-        question.isExpired = true
-        if hours > 1 {
-          question.expireMessage = StringUtil.fillInString(UITimeRemaining.endedHours, time: hours)
-        } else {
-          question.expireMessage = StringUtil.fillInString(UITimeRemaining.endedHour, time: hours)
-        }
-        if (!listOfYourQuestions.contains(question) && !listOfAnsweredQuestions.contains(question)) {
-          listOfExpiredQuestions.append(question)
-        }
-      } else {
-        question.isExpired = false
-        if hours > 1 {
-          question.expireMessage = StringUtil.fillInString(UITimeRemaining.endsHours, time: hours)
-        } else {
-          question.expireMessage = StringUtil.fillInString(UITimeRemaining.endsHour, time: hours)
-        }
-        if (!listOfYourQuestions.contains(question) && !listOfAnsweredQuestions.contains(question)) {
-          listOfUnansweredQuestions.append(question)
-        }
-      }
-    }
-    else {
-      let days = Int(absDifference/UITimeConstants.oneDayinSeconds)
-      if difference > 0 {
-        deleted = true
-        ModelInterface.sharedInstance.removeQuestion(question.QID)
-      } else {
-        question.isExpired = false
-        if days > 1 {
-          question.expireMessage = StringUtil.fillInString(UITimeRemaining.endsDays, time: days)
-        } else {
-          question.expireMessage = StringUtil.fillInString(UITimeRemaining.endsDay, time: days)
-        }
-        if (!listOfAnsweredQuestions.contains(question) && !listOfYourQuestions.contains(question)){
-          listOfUnansweredQuestions.append(question)
-        }
-      }
-    }
-    return deleted;
-    
-  }
-  
   func refreshQuestions() {
     listOfYourQuestions.removeAll()
     listOfAnsweredQuestions.removeAll()

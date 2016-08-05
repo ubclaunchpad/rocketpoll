@@ -60,9 +60,13 @@ class CampaignViewTableViewCell: UITableViewCell {
   
   func setAuthorText(author:Author) {
     self.author.text = author;
+    self.author.adjustsFontSizeToFitWidth = false
+    self.author.lineBreakMode = NSLineBreakMode.ByClipping
   }
   func setExpiryMessage(expiry: String) {
     self.expiry.text = expiry
+    self.expiry.adjustsFontSizeToFitWidth = false
+    self.expiry.lineBreakMode = NSLineBreakMode.ByClipping
   }
   func setIsExpired(expired: Bool) {
     isExpired = expired
