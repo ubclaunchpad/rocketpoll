@@ -82,14 +82,17 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     
     var templistQuestions = [Question]()
     
-    if (indexPath.section == 0) {
-      templistQuestions = yourQuestions
-    } else if (indexPath.section == 1) {
-      templistQuestions = answeredQuestions
-    } else if (indexPath.section == 2)  {
-      templistQuestions = questions
-    } else {
-      templistQuestions = expiredQuestions
+    switch indexPath.section {
+      case 0:
+        templistQuestions = yourQuestions
+      case 1:
+        templistQuestions = answeredQuestions
+      case 2:
+        templistQuestions = questions
+      case 3:
+        templistQuestions = expiredQuestions
+      default:
+        break
     }
     
     cell.setQuestionText( templistQuestions[indexPath.row].questionText)
@@ -103,10 +106,8 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     cell.setExpiryMessage( templistQuestions[indexPath.row].expireMessage)
     cell.setFieldQuestion(templistQuestions[indexPath.row])
     
-     cell.hideResultsLabel(templistQuestions[indexPath.row].isExpired)
-    
-    
-    
+    cell.hideResultsLabel(templistQuestions[indexPath.row].isExpired)
+  
     return cell
   }
   
@@ -117,7 +118,7 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     var selectedQuestion:Question
     if indexPath.section == 0 {
-       selectedQuestion = yourQuestions[indexPath.row]
+      selectedQuestion = yourQuestions[indexPath.row]
     } else if indexPath.section == 1 {
       selectedQuestion = answeredQuestions[indexPath.row]
     } else if indexPath.section == 2 {
@@ -130,14 +131,17 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
   }
   
   func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    if (section == 0) {
-      return "Questions You Created"
-    } else if (section == 1) {
-      return "Questions You Answered"
-    } else if (section == 2) {
-      return "Unanswered Questions"
-    } else {
-      return "Expired Questions"
+    switch section {
+      case 0:
+        return "Questions You Created"
+      case 1:
+        return "Questions You Answered"
+      case 2:
+        return "Unanswered Questions"
+      case 3:
+        return "Expired Questions"
+      default:
+        return ""
     }
   }
   
