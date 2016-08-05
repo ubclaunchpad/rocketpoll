@@ -23,7 +23,7 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
   @IBAction func refresh(sender: AnyObject) {
     delegate?.refreshQuestions()
   }
-  private var questions:[Question] = []
+  private var unansweredQuestions:[Question] = []
   private var expiredQuestions:[Question] = []
   private var yourQuestions:[Question] = []
   private var answeredQuestions:[Question] = []
@@ -46,8 +46,8 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     roomName.text = name;
   }
   
-  func setQuestions(questions: [Question]) {
-    self.questions = questions
+  func setUnansweredQuestions(unansweredQuestions: [Question]) {
+    self.unansweredQuestions = unansweredQuestions
   }
   
   func setExpiredQuestions (expiredQuestions: [Question]) {
@@ -62,17 +62,19 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if (section == 0) {
-      return yourQuestions.count
-    } else if (section == 1) {
-      return answeredQuestions.count
-    }else if (section == 2) {
-      return questions.count
-    } else {
-      return expiredQuestions.count
+    switch section {
+      case 0:
+        return yourQuestions.count
+      case 1:
+        return answeredQuestions.count
+      case 2:
+        return unansweredQuestions.count
+      case 3:
+        return expiredQuestions.count
+      default:
+        return 0
     }
   }
-  
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let nib_name = UINib(nibName: "CampaignViewTableViewCell", bundle: nil)
@@ -88,7 +90,7 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
       case 1:
         templistQuestions = answeredQuestions
       case 2:
-        templistQuestions = questions
+        templistQuestions = unansweredQuestions
       case 3:
         templistQuestions = expiredQuestions
       default:
@@ -103,6 +105,7 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     } else {
       cell.setAuthorText( templistQuestions[indexPath.row].author)
     }
+    
     cell.setExpiryMessage( templistQuestions[indexPath.row].expireMessage)
     cell.setFieldQuestion(templistQuestions[indexPath.row])
     
@@ -122,7 +125,7 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     } else if indexPath.section == 1 {
       selectedQuestion = answeredQuestions[indexPath.row]
     } else if indexPath.section == 2 {
-      selectedQuestion = questions[indexPath.row]
+      selectedQuestion = unansweredQuestions[indexPath.row]
     } else {
       selectedQuestion = expiredQuestions[indexPath.row]
     }
