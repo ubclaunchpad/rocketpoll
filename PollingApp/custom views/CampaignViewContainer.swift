@@ -9,9 +9,9 @@
 import UIKit
 
 protocol CampaignViewContainerDelegate {
-  func questionSelected(question: QuestionText)
+  func questionSelected(question: Question)
   func newQuestionSelected()
-  func resultsButtonSelected(question:QuestionText)
+  func resultsButtonSelected(question: Question)
   func refreshQuestions()
 }
 
@@ -23,11 +23,10 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
   @IBAction func refresh(sender: AnyObject) {
     delegate?.refreshQuestions()
   }
-  private var questions:[QuestionText] = []
-  private var questionsAnswered:[Bool] = []
-  private var authors:[Author] = []
-  private var expiry:[String] = []
-  private var isExpired:[Bool] = []
+  private var unansweredQuestions:[Question] = []
+  private var expiredQuestions:[Question] = []
+  private var yourQuestions:[Question] = []
+  private var answeredQuestions:[Question] = []
   
   var delegate: CampaignViewContainerDelegate?
   
@@ -47,64 +46,93 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     roomName.text = name;
   }
   
-  func setQuestions(questionNames: [QuestionText]) {
-    questions = questionNames
+  func setUnansweredQuestions(unansweredQuestions: [Question]) {
+    self.unansweredQuestions = unansweredQuestions
   }
   
-  func setQuestionAnswered(questions: [Bool]) {
-    questionsAnswered = questions
+  func setExpiredQuestions (expiredQuestions: [Question]) {
+    self.expiredQuestions = expiredQuestions
+  }
+  func setYourQuestions(yourQuestions: [Question]) {
+    self.yourQuestions = yourQuestions
   }
   
-  func setAuthors (authors:[Author]) {
-    self.authors = authors;
-  }
-  func setExpiryMessages(expiry: [String]) {
-    self.expiry = expiry
-  }
-  func setIsExpired(expired: [Bool]) {
-    isExpired = expired
+  func setAnsweredQuestion(answeredQuestions : [Question]) {
+    self.answeredQuestions = answeredQuestions
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return questions.count
+    switch section {
+    case 0:
+      return yourQuestions.count
+    case 1:
+      return answeredQuestions.count
+    case 2:
+      return unansweredQuestions.count
+    case 3:
+      return expiredQuestions.count
+    default:
+      return 0
+    }
   }
-  
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let nib_name = UINib(nibName: "CampaignViewTableViewCell", bundle: nil)
     tableView.registerNib(nib_name, forCellReuseIdentifier: "campaignCell")
     let cell = self.tableView.dequeueReusableCellWithIdentifier("campaignCell", forIndexPath: indexPath) as! CampaignViewTableViewCell
     cell.delegate = self
-    cell.setQuestionText(questions[indexPath.row])
-    cell.setAnsweredBackground(questionsAnswered[indexPath.row])
-    if (authors[indexPath.row] == currentUser) {
-      cell.setAuthorText("Yours")
-    } else {
-      cell.setAuthorText(authors[indexPath.row])
-    }
-    cell.setExpiryMessage(expiry[indexPath.row])
-    cell.setIsExpired(isExpired[indexPath.row])
-    if(!questionsAnswered[indexPath.row]){
-      cell.hideResultsLabel()
+    
+    var templistQuestions = [Question]()
+    
+    switch indexPath.section {
+      case 0:
+        templistQuestions = yourQuestions
+      case 1:
+        templistQuestions = answeredQuestions
+      case 2:
+        templistQuestions = unansweredQuestions
+      case 3:
+        templistQuestions = expiredQuestions
+      default:
+        break
     }
     
+    cell.setQuestionText( templistQuestions[indexPath.row].questionText)
+    cell.setAnsweredBackground(templistQuestions[indexPath.row].isExpired)
+    
+    if (templistQuestions[indexPath.row].author == currentUser) {
+      cell.setAuthorText("Yours")
+    } else {
+      cell.setAuthorText( templistQuestions[indexPath.row].author)
+    }
+    
+    cell.setExpiryMessage( templistQuestions[indexPath.row].expireMessage)
+    cell.setFieldQuestion(templistQuestions[indexPath.row])
+    
+    cell.hideResultsLabel(templistQuestions[indexPath.row].isExpired)
+  
     return cell
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     return 90
   }
+  
+  func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+   return CampaginSection.sectionNames[section]
+  }
+  
+  func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    return  CampaginSection.sectionNames.count
+  }
 }
 
 extension CampaignViewContainer: CampaignViewTableViewCellDelegate {
-  func resultsButtonSelected(question:String) {
+  func resultsButtonSelected(question: Question) {
     delegate?.resultsButtonSelected(question)
   }
-  
-  func questionSelected(question: String) {
-    print(question)
+  func questionSelected(question: Question) {
     delegate?.questionSelected(question)
-    
   }
   
 }

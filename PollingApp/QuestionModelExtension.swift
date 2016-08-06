@@ -15,7 +15,7 @@ extension ModelInterface: QuestionModelProtocol {
   func createNewQuestion(question: QuestionText, questionDuration: Int) -> Question {
     
     let timeStamp = NSDate().timeIntervalSince1970
-    let endStamp = NSDate().timeIntervalSince1970 + Double(questionDuration)
+    let endStamp = NSDate().timeIntervalSince1970 + Double(questionDuration * UITimeConstants.oneMinuteinSeconds)
     let QID = ["Author": "\(currentUser)","Question": question, "startTimeStamp": timeStamp, "endTimeStamp": endStamp]
     let fbd:FirebaseData = FirebaseData()
     let key = fbd.postToFirebaseWithKey("QUESTIONSCREEN", child: "QID", children: QID) as QuestionID
@@ -37,7 +37,7 @@ extension ModelInterface: QuestionModelProtocol {
       }
       
     }) { (error) in
-      print(error.localizedDescription)
+      Log.error(error.localizedDescription)
     }
   }
   
@@ -49,7 +49,6 @@ extension ModelInterface: QuestionModelProtocol {
       let tempQuestion = self.parseQuestionNodeInformation(information, QID:QID as! QuestionID)
       sendQuestion.append(tempQuestion);
     }
-    
     return sendQuestion
   }
   
@@ -86,8 +85,22 @@ extension ModelInterface: QuestionModelProtocol {
   }
   
   
-  func getListOfQuestionsUserCreated() -> [QuestionID] {
-    return ["Q1", "Q2", "Q3"]
+  func getListOfQuestionsUserAnswered(completionHandler: (listOfAnsweredQIDs: [QuestionID]) -> ()) {
+    let ref =  FIRDatabase.database().reference();
+    ref.child("Users/\(currentID)/QuestionsAnswered").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+      if (snapshot.value as? [String : AnyObject]) != nil  {
+        let answeredQuestions = snapshot.value as? [String : AnyObject]
+        var listOfAnsweredQIDs = [QuestionID]()
+        for (key, _) in answeredQuestions! {
+            listOfAnsweredQIDs.append(key)
+        }
+        completionHandler(listOfAnsweredQIDs: listOfAnsweredQIDs)
+      } else {
+        completionHandler(listOfAnsweredQIDs: [QuestionID]())
+      }
+    }) { (error) in
+      Log.error(error.localizedDescription)
+    }
   }
   
   func isQuestionAnswered(questionId: QuestionID) -> Bool {

@@ -17,7 +17,7 @@ protocol QuestionModelProtocol {
   
   func processQuestionData(completionHandler: (listofAllQuestions: [Question]) -> ())
 
-  func getListOfQuestionsUserCreated() -> [QuestionID]
+  func getListOfQuestionsUserAnswered(completionHandler: (listOfAnsweredQIDs: [QuestionID]) -> ())
   func isQuestionAnswered(questionId: QuestionID) -> Bool
   
   //MARK: - Remove Question Information -

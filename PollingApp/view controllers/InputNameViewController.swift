@@ -46,14 +46,18 @@ class InputNameViewController: UIViewController {
         NSUserDefaults.standardUserDefaults().setObject("\(name)", forKey: "username")
         NSUserDefaults.standardUserDefaults().setObject("\(udid)", forKey: "password")
         userID = user?.uid
+        currentID = (user?.uid)!
+        print(currentID)
+        NSUserDefaults.standardUserDefaults().setObject("\(userID!)", forKey: "userID")
         ModelInterface.sharedInstance.setUserName(name, userID: userID!)
+        currentUser = name
+        self.performSegueWithIdentifier(Segues.toMainApp, sender: self)
       } else {
-        print("User name is taken")
+        let alert = UIAlertController(title: alertMessages.usernameIsTaken, message:"", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: alertMessages.confirm, style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
       }
     }
-    currentUser = name
-    
-    performSegueWithIdentifier(Segues.toMainApp, sender: self)
   }
   
   // MARK: - Helper methods
@@ -66,6 +70,11 @@ class InputNameViewController: UIViewController {
   }
   
   func addContainerToVC() {
+    Log.debug("this is debug")
+    Log.info("this is info")
+    Log.warn("this is warn")
+    Log.error("this is error")
+    Log.test("this is test")
     container = InputNameView.instanceFromNib(
       CGRectMake(0, 0, view.bounds.width, view.bounds.height))
     container?.delegate = self
