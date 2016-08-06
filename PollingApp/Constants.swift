@@ -147,3 +147,20 @@ enum LogLevelChoices {
   static let ERROR = 4
   static let TEST = 5
 }
+
+enum CampaginSection {
+  static let sectionNames =
+        ["Questions You Created",
+         "Questions You Answered",
+         "Unanswered Questions",
+         "Expired Questions"]
+  
+  static let yourQuestionsSectionIndex = 0 
+  static let answeredQuestionsSectionIndex = 1
+  static let unansweredQuestionsSectionIndex = 2
+  static let expiredQuestionsSectionIndex = 3
+  
+  
+}
+
+

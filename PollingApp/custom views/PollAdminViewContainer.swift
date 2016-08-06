@@ -138,10 +138,4 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
     return 2
   }
   
-  
-  
-  
-  
-  
-  
 }
