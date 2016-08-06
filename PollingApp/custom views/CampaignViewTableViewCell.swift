@@ -9,8 +9,8 @@
 import UIKit
 
 protocol CampaignViewTableViewCellDelegate {
-  func questionSelected(question: QuestionText)
-  func resultsButtonSelected(question: QuestionText)
+  func resultsButtonSelected(question: Question)
+  func questionSelected(question:Question)
 }
 
 class CampaignViewTableViewCell: UITableViewCell {
@@ -22,16 +22,18 @@ class CampaignViewTableViewCell: UITableViewCell {
   @IBOutlet weak var resultsButton: UIButton!
   @IBOutlet weak var expiry: UILabel!
   
-  private var isExpired:Bool?
-  
+  private var question:Question?
   
   @IBAction func buttonPressed(sender: AnyObject) {
-    if isExpired == false {
+    guard question != nil else {
+      return
+    }
+    if question!.isExpired == false {
       if let senderTitle = sender.currentTitle {
-        delegate?.questionSelected(senderTitle!)
+        delegate?.questionSelected(question!)
       }
     } else {
-      delegate?.resultsButtonSelected((button.titleLabel?.text)!)
+      delegate?.resultsButtonSelected(question!)
     }
   }
   
@@ -40,11 +42,21 @@ class CampaignViewTableViewCell: UITableViewCell {
     // Initialization code
   }
   @IBAction func resultsButtonPressed(sender: AnyObject) {
-    delegate?.resultsButtonSelected((button.titleLabel?.text)!)
+    if question != nil {
+      delegate?.resultsButtonSelected(question!)
+    }
   }
   
-  func hideResultsLabel(){
-    resultsButton.alpha = 0;
+  func hideResultsLabel(expired: Bool){
+    if (expired) {
+      resultsButton.alpha = 1;
+    } else {
+      resultsButton.alpha = 0;
+    }
+  }
+  
+  func setFieldQuestion (question: Question) {
+    self.question = question
   }
   
   func setQuestionText(questionName: QuestionText) {
@@ -53,17 +65,21 @@ class CampaignViewTableViewCell: UITableViewCell {
   
   func setAuthorText(author:Author) {
     self.author.text = author;
+    self.author.adjustsFontSizeToFitWidth = false
+    self.author.lineBreakMode = NSLineBreakMode.ByClipping
   }
+  
   func setExpiryMessage(expiry: String) {
     self.expiry.text = expiry
-  }
-  func setIsExpired(expired: Bool) {
-    isExpired = expired
+    self.expiry.adjustsFontSizeToFitWidth = false
+    self.expiry.lineBreakMode = NSLineBreakMode.ByClipping
   }
   
   func setAnsweredBackground(isAnswered: Bool) {
     if isAnswered {
       self.backgroundColor = UIColor.lightGrayColor()
+    } else {
+      self.backgroundColor = UIColor.clearColor()
     }
   }
   
