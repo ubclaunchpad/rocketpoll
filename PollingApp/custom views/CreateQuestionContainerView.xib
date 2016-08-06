@@ -21,7 +21,7 @@
                         <action selector="backButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="KSO-e3-fJQ"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="kSR-OB-ORh">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="kSR-OB-ORh">
                     <rect key="frame" x="40" y="523" width="392" height="30"/>
                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                     <state key="normal" title="Set timer"/>
@@ -30,7 +30,7 @@
                     </connections>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Fd7-4U-zpA">
-                    <rect key="frame" x="36" y="238.5" width="401" height="250"/>
+                    <rect key="frame" x="36" y="239" width="401" height="250"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="250" id="DMS-C5-PSy"/>
@@ -47,7 +47,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="55o-To-BHJ">
-                    <rect key="frame" x="0.0" y="568.5" width="472" height="250"/>
+                    <rect key="frame" x="0.0" y="569" width="472" height="250"/>
                     <subviews>
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l8h-Nd-aKU">
                             <rect key="frame" x="86" y="0.0" width="300" height="150"/>
