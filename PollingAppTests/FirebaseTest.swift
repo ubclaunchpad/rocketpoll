@@ -22,10 +22,10 @@ class WriteReadFirebase:XCTestCase  {
   override func setUp() {
     super.setUp()
     //number of Answers
-    createAnswerText(10);
+    createAnswerText(2);
     
     // Create the question as the user on the simulator
-    createQuestionAnswersToFirebase(questionString, answerTexts: testAnswerText, time: 120)
+    createQuestionAnswersToFirebase(questionString, answerTexts: testAnswerText, time: 10)
   }
   
   override func tearDown() {
@@ -47,12 +47,6 @@ class WriteReadFirebase:XCTestCase  {
     
     ModelInterface.sharedInstance.processAnswerData(testAnswerIDs) { (listofAllAnswers) in
       done = true
-  
-      for i in 1...listofAllAnswers.count {
-        ModelInterface.sharedInstance
-      }
-      
-      
     }
     
     waitUntil(6) { done }
