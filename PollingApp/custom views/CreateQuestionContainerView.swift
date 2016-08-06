@@ -12,7 +12,7 @@ protocol CreateQuestionViewContainerDelegate {
   
   func submitButtonPressed(question: QuestionText, answerArray: [AnswerID], correctAnswer: Int, questionDuration: Int)
   func backButtonPressed()
-  func checksInput (question:QuestionText?, A1:AnswerText?, A2:AnswerText?,  A3:AnswerText?, A4:AnswerText?, correctAnswer:Int) -> Bool
+  func checksInput (question:QuestionText?, answerStrings:[AnswerText?], correctAnswer:Int) -> Bool
   func shiftView()
   func checkDuplicateAnswer(answers: [String]) -> Bool
   func stringFromQuestionDuration(currentTimeAway: Int, endTime: NSDate, setButtonTitle: (String) -> ())
@@ -36,9 +36,14 @@ class CreateQuestionContainerView: UIView {
   
   var time: Int = 0;
   
+  var answerIdentifierIndex = 4
+  
   var answerIdentifier:[Int] = [1, 2, 3, 4]
   var answers = [Int: String]()
   var correctAnswer:Int = 0
+  
+  var answerStrings = [AnswerText?]()
+  var unwrappedAnswerStrings = [AnswerText]()
   
   var currentTimeAway:Int = 1
   var endTime:NSDate?
@@ -54,25 +59,46 @@ class CreateQuestionContainerView: UIView {
     delegate?.stringFromQuestionDuration(currentTimeAway, endTime: endTime!, setButtonTitle: setEndTimerButtonTitle)
   }
   
+  @IBAction func addAnswerButtonPressed(sender: UIButton) {
+    answerIdentifierIndex += 1
+    answerIdentifier.append(answerIdentifierIndex)
+    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+      self.tableView.reloadData()
+    })
+  }
+  
+  @IBAction func deleteAnswerButtonPressed(sender: UIButton) {
+    if answerIdentifierIndex > 2 {
+      answerIdentifier.removeLast()
+      
+      answerIdentifierIndex -= 1
+      dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        self.tableView.reloadData()
+      })
+    }
+  }
+  
   @IBAction func SubmitPress(sender: AnyObject) {
-    let question = questionInputText.text;
-    let A1 = answers[1]
-    let A2 = answers[2]
-    let A3 = answers[3]
-    let A4 = answers[4]
+    let question = questionInputText.text
+    var answerStrings = [AnswerText?]()
+    var unwrappedAnswerStrings = [AnswerText]()
     
-    if ((delegate?.checksInput(question, A1: A1, A2: A2, A3: A3, A4: A4, correctAnswer: correctAnswer)) == true) {
-      return
-    } else if ((delegate?.checkDuplicateAnswer([A1!, A2!, A3!, A4!])) == true) {
-      return
+    if answers.count > 1{
+      for index in 1...answerIdentifierIndex {
+        answerStrings.append(answers[index])
+        if answers[index] != nil {
+          unwrappedAnswerStrings.append(answers[index]!)
+        }
+      }
     }
     
-    let Answers = [A1!, A2!, A3!, A4!];
+    if (delegate?.checksInput(question, answerStrings:answerStrings, correctAnswer: correctAnswer) == true) {
+    return
+    }
+    
     time = currentTimeAway
     
-    delegate?.submitButtonPressed(question!,answerArray: Answers, correctAnswer: correctAnswer, questionDuration: time);
-    
-    
+    delegate?.submitButtonPressed(question!,answerArray: unwrappedAnswerStrings, correctAnswer: correctAnswer, questionDuration: time)
   }
   
   @IBAction func changeTime(sender: UIButton) {
@@ -88,8 +114,6 @@ class CreateQuestionContainerView: UIView {
   @IBAction func backButtonPressed(sender: AnyObject) {
     delegate?.backButtonPressed()
   }
-  
-  
   
   func setEndTimerButtonTitle(message: String) {
     endTimerLabel.setTitle(message, forState: .Normal)
@@ -146,7 +170,7 @@ extension CreateQuestionContainerView: UITableViewDelegate, UITableViewDataSourc
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 4
+    return answerIdentifier.count
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
