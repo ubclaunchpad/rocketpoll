@@ -25,6 +25,9 @@ class CreateQuestionViewController: UIViewController{
       action: #selector(CreateQuestionViewController.dismissKeyboards))
     view.addGestureRecognizer(tap)
     
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+    
     addContainerToVC()
     
     stringFromQuestionDuration(1, endTime: NSDate(), setButtonTitle: (container?.setEndTimerButtonTitle)!)
@@ -50,6 +53,22 @@ class CreateQuestionViewController: UIViewController{
   
   func dismissKeyboards() {
     view.endEditing(true)
+  }
+  
+  func keyboardWillShow(notification: NSNotification) {
+    let cells = container?.tableView.visibleCells as! [AnswerTableViewCell]!
+    for i in 0...cells.count - 1 {
+      if i >= 2 && cells[i].answerField.editing {
+        if self.view.window?.frame.origin.y > -100 {
+          self.view.window?.frame.origin.y -= 100
+        }
+      }
+    }
+  }
+  func keyboardWillHide(notification: NSNotification) {
+    if self.view.window?.frame.origin.y != 0 {
+      self.view.window?.frame.origin.y = 0
+    }
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -91,7 +110,7 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
   func checksInput (question:QuestionText?, A1:AnswerText?, A2:AnswerText?,  A3:AnswerText?, A4:AnswerText?, correctAnswer:Int) -> Bool {
     if((question == nil) || (A1 == nil) || (A2 == nil) || (A3 == nil) || (A4 == nil)) || correctAnswer == 0 {
       let alert = UIAlertController(title: "\(alertMessages.emptyQuestions)", message:"",
-
+                                    
                                     preferredStyle: UIAlertControllerStyle.Alert)
       alert.addAction(UIAlertAction(title: "\(alertMessages.confirm)",
         style: UIAlertActionStyle.Default, handler: nil))
