@@ -114,6 +114,20 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     return cell
   }
   
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    let sections = [yourQuestions, answeredQuestions, unansweredQuestions, expiredQuestions]
+    guard let question = secctions[indexPath.section][indexPath.row] else {
+      return
+    }
+    if question!.isExpired == false {
+      if let senderTitle = sender.currentTitle {
+        delegate?.questionSelected(question!)
+      }
+    } else {
+      delegate?.resultsButtonSelected(question!)
+    }
+  }
+  
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     return 90
   }
