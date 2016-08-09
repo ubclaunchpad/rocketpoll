@@ -66,4 +66,13 @@ class StringUtil {
     }
     return texts.count == uniqueStrings.count
   }
+  
+  static func containsBadCharacters(text: String) -> Bool {
+    for char in text.characters {
+      if (charactersToAvoid.contains(char)) {
+        return true
+      }
+    }
+    return false
+  }
 }
