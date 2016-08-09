@@ -86,38 +86,21 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
     performSegueWithIdentifier(nextRoom, sender: self)
   }
   
-  //TODO: IPA-120
-  
-  func checksInput (question:QuestionText?, A1:AnswerText?, A2:AnswerText?,  A3:AnswerText?, A4:AnswerText?, correctAnswer:Int) -> Bool {
-    if((question == nil) || (A1 == nil) || (A2 == nil) || (A3 == nil) || (A4 == nil)) || correctAnswer == 0 {
-      let alert = UIAlertController(title: "\(alertMessages.emptyQuestions)", message:"",
-
-                                    preferredStyle: UIAlertControllerStyle.Alert)
-      alert.addAction(UIAlertAction(title: "\(alertMessages.confirm)",
-        style: UIAlertActionStyle.Default, handler: nil))
-      self.presentViewController(alert, animated: true, completion: nil)
-      return true
-    }
-    return false
+  func showAlertController(title: String) {
+    let alert = UIAlertController(title: "\(title)", message:"",
+                                  
+                                  preferredStyle: UIAlertControllerStyle.Alert)
+    alert.addAction(UIAlertAction(title: "\(alertMessages.confirm)",
+      style: UIAlertActionStyle.Default, handler: nil))
+    self.presentViewController(alert, animated: true, completion: nil)
   }
+  
+  //TODO: IPA-120
   
   func shiftView() {
     UIView.animateWithDuration(0.2, animations: {
       self.view.window?.frame.origin.y = -90
     })
-  }
-  
-  func checkDuplicateAnswer(answers: [String]) -> Bool {
-    if !StringUtil.uniqueString(answers) {
-      let alert = UIAlertController(title: "\(alertMessages.duplicateAnswer)", message:"",
-                                    
-                                    preferredStyle: UIAlertControllerStyle.Alert)
-      alert.addAction(UIAlertAction(title: "\(alertMessages.confirm)",
-        style: UIAlertActionStyle.Default, handler: nil))
-      self.presentViewController(alert, animated: true, completion: nil)
-      return true
-    }
-    return false
   }
   
   func stringFromQuestionDuration(currentTimeAway: Int, endTime: NSDate, setButtonTitle: (String) -> ()) {

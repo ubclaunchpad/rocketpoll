@@ -12,10 +12,9 @@ protocol CreateQuestionViewContainerDelegate {
   
   func submitButtonPressed(question: QuestionText, answerArray: [AnswerID], correctAnswer: Int, questionDuration: Int)
   func backButtonPressed()
-  func checksInput (question:QuestionText?, A1:AnswerText?, A2:AnswerText?,  A3:AnswerText?, A4:AnswerText?, correctAnswer:Int) -> Bool
   func shiftView()
-  func checkDuplicateAnswer(answers: [String]) -> Bool
   func stringFromQuestionDuration(currentTimeAway: Int, endTime: NSDate, setButtonTitle: (String) -> ())
+  func showAlertController(title: String)
 }
 
 class CreateQuestionContainerView: UIView {
@@ -61,16 +60,28 @@ class CreateQuestionContainerView: UIView {
     let A3 = answers[3]
     let A4 = answers[4]
     
-    if ((delegate?.checksInput(question, A1: A1, A2: A2, A3: A3, A4: A4, correctAnswer: correctAnswer)) == true) {
+    
+    guard question != "" else {
+      delegate?.showAlertController(alertMessages.emptyQuestions)
       return
-    } else if ((delegate?.checkDuplicateAnswer([A1!, A2!, A3!, A4!])) == true) {
+    }
+    guard A1 != nil && A2 != nil && A3 != nil && A4 != nil else {
+      delegate?.showAlertController(alertMessages.emptyAnswer)
+      return
+    }
+    guard correctAnswer != 0 else {
+      delegate?.showAlertController(alertMessages.noCorrectAnswer)
+      return
+    }
+    let tempAnswers = [A1!, A2!, A3!, A4!]
+    guard StringUtil.uniqueString(tempAnswers) == true else {
+      delegate?.showAlertController(alertMessages.duplicateAnswer)
       return
     }
     
-    let Answers = [A1!, A2!, A3!, A4!];
     time = currentTimeAway
     
-    delegate?.submitButtonPressed(question!,answerArray: Answers, correctAnswer: correctAnswer, questionDuration: time);
+    delegate?.submitButtonPressed(question!,answerArray: tempAnswers, correctAnswer: correctAnswer, questionDuration: time);
     
     
   }
