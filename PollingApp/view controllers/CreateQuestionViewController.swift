@@ -87,9 +87,7 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
   }
   
   func showAlertController(title: String) {
-    let alert = UIAlertController(title: "\(title)", message:"",
-                                  
-                                  preferredStyle: UIAlertControllerStyle.Alert)
+    let alert = UIAlertController(title: "\(title)", message:"", preferredStyle: UIAlertControllerStyle.Alert)
     alert.addAction(UIAlertAction(title: "\(alertMessages.confirm)",
       style: UIAlertActionStyle.Default, handler: nil))
     self.presentViewController(alert, animated: true, completion: nil)

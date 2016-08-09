@@ -65,9 +65,20 @@ class CreateQuestionContainerView: UIView {
       delegate?.showAlertController(alertMessages.emptyQuestions)
       return
     }
+    guard !StringUtil.containsBadCharacters(question!) else {
+      delegate?.showAlertController(alertMessages.symbolQuestion)
+      return
+    }
     guard A1 != nil && A2 != nil && A3 != nil && A4 != nil else {
       delegate?.showAlertController(alertMessages.emptyAnswer)
       return
+    }
+    guard !StringUtil.containsBadCharacters(A1!) &&
+          !StringUtil.containsBadCharacters(A2!) &&
+          !StringUtil.containsBadCharacters(A3!) &&
+          !StringUtil.containsBadCharacters(A4!) else {
+            delegate?.showAlertController(alertMessages.symbolAnswer)
+            return
     }
     guard correctAnswer != 0 else {
       delegate?.showAlertController(alertMessages.noCorrectAnswer)
@@ -82,8 +93,6 @@ class CreateQuestionContainerView: UIView {
     time = currentTimeAway
     
     delegate?.submitButtonPressed(question!,answerArray: tempAnswers, correctAnswer: correctAnswer, questionDuration: time);
-    
-    
   }
   
   @IBAction func changeTime(sender: UIButton) {
@@ -99,8 +108,6 @@ class CreateQuestionContainerView: UIView {
   @IBAction func backButtonPressed(sender: AnyObject) {
     delegate?.backButtonPressed()
   }
-  
-  
   
   func setEndTimerButtonTitle(message: String) {
     endTimerLabel.setTitle(message, forState: .Normal)
@@ -126,7 +133,6 @@ extension CreateQuestionContainerView: AnswerTableViewCellDelegate {
   
   func updateAnswer(identifier: Int, answer: String) {
     answers[identifier] = answer
-    print(answer)
   }
   
   func updateCorrectAnswer(identifier: Int) {
