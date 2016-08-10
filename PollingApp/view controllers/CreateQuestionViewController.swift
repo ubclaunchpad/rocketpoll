@@ -56,11 +56,25 @@ class CreateQuestionViewController: UIViewController{
   }
   
   func keyboardWillShow(notification: NSNotification) {
+    if container?.questionInputText.editing == true {
+      if self.view.window?.frame.origin.y != 0 {
+        UIView.animateWithDuration(0.2, animations: {
+          self.view.window?.frame.origin.y = 0
+        })
+      }
+    }
     let cells = container?.tableView.visibleCells as! [AnswerTableViewCell]!
     for i in 0...cells.count - 1 {
       if i >= 2 && cells[i].answerField.editing {
         if self.view.window?.frame.origin.y > -100 {
           self.view.window?.frame.origin.y -= 100
+          return
+        }
+      } else {
+        if self.view.window?.frame.origin.y != 0 {
+          UIView.animateWithDuration(0.2, animations: {
+            self.view.window?.frame.origin.y = 0
+          })
         }
       }
     }
