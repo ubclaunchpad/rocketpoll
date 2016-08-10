@@ -116,15 +116,13 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let sections = [yourQuestions, answeredQuestions, unansweredQuestions, expiredQuestions]
-    guard let question = secctions[indexPath.section][indexPath.row] else {
+    guard let question = sections[indexPath.section][indexPath.row] as? Question else {
       return
     }
-    if question!.isExpired == false {
-      if let senderTitle = sender.currentTitle {
-        delegate?.questionSelected(question!)
-      }
+    if question.isExpired == false {
+        delegate?.questionSelected(question)
     } else {
-      delegate?.resultsButtonSelected(question!)
+      delegate?.resultsButtonSelected(question)
     }
   }
   
