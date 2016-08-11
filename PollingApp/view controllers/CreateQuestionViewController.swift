@@ -71,7 +71,7 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
     let answerIDs =  ModelInterface.sharedInstance.createAnswerIDs(
       questionObject.QID, answerText: answerArray)
     questionObject.AIDS = answerIDs
-    ModelInterface.sharedInstance.setCorrectAnswer(answerIDs[correctAnswer - 1], isCorrectAnswer: true);
+    ModelInterface.sharedInstance.setCorrectAnswer(answerIDs[correctAnswer], isCorrectAnswer: true);
     
     self.sendAIDS = answerIDs
     self.sendQuestionText = question
@@ -88,10 +88,10 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
   
   //TODO: IPA-120
   
-  func checksInput (question:QuestionText?, answerStrings:[AnswerText?], correctAnswer:Int) -> Bool {
+  func checksInput (question:QuestionText?, answerStrings:[AnswerText], correctAnswer:Int) -> Bool {
     if((question == nil) ||
       checkIfNil(answerStrings) ||
-      correctAnswer == 0) {
+      correctAnswer == -1) {
       let alert = UIAlertController(title: "\(alertMessages.emptyQuestions)", message:"",
 
                                     preferredStyle: UIAlertControllerStyle.Alert)
@@ -122,10 +122,10 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
     return false
   }
   
-  func checkIfNil(answers:[AnswerText?]) -> Bool{
+  func checkIfNil(answers:[AnswerText]) -> Bool{
     if answers.count > 0{
       for index in 0...answers.count-1 {
-        if answers[index] == nil {
+        if answers[index] == "" {
           return true;
         }
       }

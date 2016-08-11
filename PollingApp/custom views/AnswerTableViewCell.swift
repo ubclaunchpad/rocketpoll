@@ -12,7 +12,7 @@ import UIKit
 protocol AnswerTableViewCellDelegate {
   func updateAnswer(identifier: Int, answer: String)
   func updateCorrectAnswer(identifier: Int)
-  func deselectAnswer(identifier: Int)
+  func deselectAnswer()
 }
 
 class AnswerTableViewCell: UITableViewCell {
@@ -34,7 +34,7 @@ class AnswerTableViewCell: UITableViewCell {
         
       } else {
         correctButton.setImage(UIImage(named: "SetIncorrect")!, forState: .Normal)
-        delegate?.deselectAnswer(identifier!)
+        delegate?.deselectAnswer()
       }
     }
   }

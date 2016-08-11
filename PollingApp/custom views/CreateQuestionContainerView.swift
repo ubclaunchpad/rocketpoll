@@ -12,7 +12,7 @@ protocol CreateQuestionViewContainerDelegate {
   
   func submitButtonPressed(question: QuestionText, answerArray: [AnswerID], correctAnswer: Int, questionDuration: Int)
   func backButtonPressed()
-  func checksInput (question:QuestionText?, answerStrings:[AnswerText?], correctAnswer:Int) -> Bool
+  func checksInput (question:QuestionText?, answerStrings:[AnswerText], correctAnswer:Int) -> Bool
   func shiftView()
   func checkDuplicateAnswer(answers: [String]) -> Bool
   func stringFromQuestionDuration(currentTimeAway: Int, endTime: NSDate, setButtonTitle: (String) -> ())
@@ -35,14 +35,11 @@ class CreateQuestionContainerView: UIView {
   @IBOutlet weak var setTimerView: UIView!
   
   var time: Int = 0;
+
+  var answers:[AnswerText] = ["",""]
+  var correctAnswer:Int = -1
   
-  var answerIdentifierIndex = 3
-  
-  var answerIdentifier:[Int] = [0, 1, 2, 3]
-  var answers:[String] = ["","","",""]
-  var correctAnswer:Int = 0
-  
-  var answerStrings = [AnswerText?]()
+  var answerStrings = [AnswerText]()
   var unwrappedAnswerStrings = [AnswerText]()
   
   var currentTimeAway:Int = 1
@@ -60,8 +57,6 @@ class CreateQuestionContainerView: UIView {
   }
   
   @IBAction func addAnswerButtonPressed(sender: UIButton) {
-    answerIdentifierIndex += 1
-    answerIdentifier.append(answerIdentifierIndex)
     answers.append("")
     dispatch_async(dispatch_get_main_queue(), { () -> Void in
       self.tableView.reloadData()
@@ -69,11 +64,8 @@ class CreateQuestionContainerView: UIView {
   }
   
   @IBAction func deleteAnswerButtonPressed(sender: UIButton) {
-    if answerIdentifierIndex > 1 {
-      answers[answerIdentifierIndex] = ""
-      answers.removeAtIndex(answerIdentifierIndex)
-      answerIdentifier.removeAtIndex(answerIdentifierIndex)
-      answerIdentifierIndex -= 1
+    if answers.count > 2 {
+      answers.removeLast()
       dispatch_async(dispatch_get_main_queue(), { () -> Void in
         self.tableView.reloadData()
       })
@@ -82,20 +74,22 @@ class CreateQuestionContainerView: UIView {
   
   @IBAction func SubmitPress(sender: AnyObject) {
     let question = questionInputText.text
-    var answerStrings = [AnswerText?]()
+    var answerStrings = [AnswerText]()
     var unwrappedAnswerStrings = [AnswerText]()
     
     if answers.count > 1{
-      for index in 0...answerIdentifierIndex {
+      for index in 0...answers.count-1 {
         answerStrings.append(answers[index])
-//        if answers[index] != nil {
+        if answers[index] != "" {
           unwrappedAnswerStrings.append(answers[index])
-//        }
+        }
       }
     }
     
     if (delegate?.checksInput(question, answerStrings:answerStrings, correctAnswer: correctAnswer) == true) {
     return
+    } else if ((delegate?.checkDuplicateAnswer(answerStrings)) == true) {
+      return
     }
     
     time = currentTimeAway
@@ -154,18 +148,19 @@ extension CreateQuestionContainerView: AnswerTableViewCellDelegate {
     correctAnswer = identifier
   }
   
-  func deselectAnswer(identifier: Int) {
-    correctAnswer = 0
+  func deselectAnswer() {
+    correctAnswer = -1
   }
 }
 
 extension CreateQuestionContainerView: UITableViewDelegate, UITableViewDataSource {
+  
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let pollResultsCell = UINib(nibName: "AnswerTableViewCell", bundle: nil)
     tableView.registerNib(pollResultsCell, forCellReuseIdentifier: "answerCell")
     
     let cell = self.tableView.dequeueReusableCellWithIdentifier("answerCell", forIndexPath: indexPath) as! AnswerTableViewCell
-    cell.identifier = answerIdentifier[indexPath.item]
+    cell.identifier = indexPath.item
     cell.delegate = self
     cell.isCorrect = false
     cell.answerField.addTarget(cell, action: #selector(AnswerTableViewCell.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
@@ -174,7 +169,7 @@ extension CreateQuestionContainerView: UITableViewDelegate, UITableViewDataSourc
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return answerIdentifier.count
+    return answers.count
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
