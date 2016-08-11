@@ -21,7 +21,7 @@ protocol CreateQuestionViewContainerDelegate {
 class CreateQuestionContainerView: UIView {
   
   @IBOutlet weak var setTimerButton: UIButton!
-
+  
   @IBOutlet weak var backButton: UIButton!
   
   @IBOutlet weak var Submit: UIButton!
@@ -35,7 +35,7 @@ class CreateQuestionContainerView: UIView {
   @IBOutlet weak var setTimerView: UIView!
   
   var time: Int = 0;
-
+  
   var answers:[AnswerText] = ["",""]
   var correctAnswer:Int = -1
   
@@ -48,7 +48,7 @@ class CreateQuestionContainerView: UIView {
   @IBOutlet weak var endTimerLabel: UIButton!
   
   @IBAction func setTimerButtonPressed(sender: AnyObject) {
-
+    
     setTimerView.hidden = false
     
     delegate?.shiftView()
@@ -74,27 +74,13 @@ class CreateQuestionContainerView: UIView {
   
   @IBAction func SubmitPress(sender: AnyObject) {
     let question = questionInputText.text
-    var answerStrings = [AnswerText]()
-    var unwrappedAnswerStrings = [AnswerText]()
-    
-    if answers.count > 1{
-      for index in 0...answers.count-1 {
-        answerStrings.append(answers[index])
-        if answers[index] != "" {
-          unwrappedAnswerStrings.append(answers[index])
-        }
-      }
-    }
-    
-    if (delegate?.checksInput(question, answerStrings:answerStrings, correctAnswer: correctAnswer) == true) {
-    return
-    } else if ((delegate?.checkDuplicateAnswer(answerStrings)) == true) {
+    if (delegate?.checksInput(question, answerStrings:answers, correctAnswer: correctAnswer) == true) {
+      return
+    } else if ((delegate?.checkDuplicateAnswer(answers)) == true) {
       return
     }
-    
     time = currentTimeAway
-    
-    delegate?.submitButtonPressed(question!,answerArray: unwrappedAnswerStrings, correctAnswer: correctAnswer, questionDuration: time)
+    delegate?.submitButtonPressed(question!,answerArray: answers, correctAnswer: correctAnswer, questionDuration: time)
   }
   
   @IBAction func changeTime(sender: UIButton) {
