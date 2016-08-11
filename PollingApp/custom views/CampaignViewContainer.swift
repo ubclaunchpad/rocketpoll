@@ -42,9 +42,9 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     return view
   }
   
-  func setRoomNameTitle(name: String) {
-    roomName.text = name;
-  }
+//  func setRoomNameTitle(name: String) {
+//    roomName.text = name;
+//  }
   
   func setUnansweredQuestions(unansweredQuestions: [Question]) {
     self.unansweredQuestions = unansweredQuestions

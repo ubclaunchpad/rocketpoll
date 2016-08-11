@@ -18,6 +18,8 @@ protocol AnswerTableViewCellDelegate {
 class AnswerTableViewCell: UITableViewCell {
   @IBOutlet weak var answerField: UITextField!
   @IBOutlet weak var correctButton: UIButton!
+  var identifier:Int?
+  var delegate:AnswerTableViewCellDelegate?
   @IBAction func correct(sender: UIButton) {
     if isCorrect! {
       isCorrect = false
@@ -39,9 +41,8 @@ class AnswerTableViewCell: UITableViewCell {
     }
   }
   
-  var identifier:Int?
-  var delegate:AnswerTableViewCellDelegate?
-
+  
+  
   
   func textFieldDidChange(textField: UITextField) {
     let answer = StringUtil.trimString(textField.text!)
