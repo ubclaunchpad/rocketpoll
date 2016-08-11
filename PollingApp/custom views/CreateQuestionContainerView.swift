@@ -36,10 +36,10 @@ class CreateQuestionContainerView: UIView {
   
   var time: Int = 0;
   
-  var answerIdentifierIndex = 4
+  var answerIdentifierIndex = 3
   
-  var answerIdentifier:[Int] = [1, 2, 3, 4]
-  var answers = [Int: String]()
+  var answerIdentifier:[Int] = [0, 1, 2, 3]
+  var answers:[String] = ["","","",""]
   var correctAnswer:Int = 0
   
   var answerStrings = [AnswerText?]()
@@ -62,17 +62,18 @@ class CreateQuestionContainerView: UIView {
   @IBAction func addAnswerButtonPressed(sender: UIButton) {
     answerIdentifierIndex += 1
     answerIdentifier.append(answerIdentifierIndex)
+    answers.append("")
     dispatch_async(dispatch_get_main_queue(), { () -> Void in
       self.tableView.reloadData()
     })
   }
   
   @IBAction func deleteAnswerButtonPressed(sender: UIButton) {
-    if answerIdentifierIndex > 2 {
-      
-      answerIdentifierIndex -= 1
+    if answerIdentifierIndex > 1 {
       answers[answerIdentifierIndex] = ""
+      answers.removeAtIndex(answerIdentifierIndex)
       answerIdentifier.removeAtIndex(answerIdentifierIndex)
+      answerIdentifierIndex -= 1
       dispatch_async(dispatch_get_main_queue(), { () -> Void in
         self.tableView.reloadData()
       })
@@ -85,11 +86,11 @@ class CreateQuestionContainerView: UIView {
     var unwrappedAnswerStrings = [AnswerText]()
     
     if answers.count > 1{
-      for index in 1...answerIdentifierIndex {
+      for index in 0...answerIdentifierIndex {
         answerStrings.append(answers[index])
-        if answers[index] != nil {
-          unwrappedAnswerStrings.append(answers[index]!)
-        }
+//        if answers[index] != nil {
+          unwrappedAnswerStrings.append(answers[index])
+//        }
       }
     }
     
