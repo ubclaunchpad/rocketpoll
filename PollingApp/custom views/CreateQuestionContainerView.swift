@@ -69,9 +69,10 @@ class CreateQuestionContainerView: UIView {
   
   @IBAction func deleteAnswerButtonPressed(sender: UIButton) {
     if answerIdentifierIndex > 2 {
-      answerIdentifier.removeLast()
       
       answerIdentifierIndex -= 1
+      answers[answerIdentifierIndex] = ""
+      answerIdentifier.removeAtIndex(answerIdentifierIndex)
       dispatch_async(dispatch_get_main_queue(), { () -> Void in
         self.tableView.reloadData()
       })
@@ -161,11 +162,13 @@ extension CreateQuestionContainerView: UITableViewDelegate, UITableViewDataSourc
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let pollResultsCell = UINib(nibName: "AnswerTableViewCell", bundle: nil)
     tableView.registerNib(pollResultsCell, forCellReuseIdentifier: "answerCell")
+    
     let cell = self.tableView.dequeueReusableCellWithIdentifier("answerCell", forIndexPath: indexPath) as! AnswerTableViewCell
     cell.identifier = answerIdentifier[indexPath.item]
     cell.delegate = self
     cell.isCorrect = false
     cell.answerField.addTarget(cell, action: #selector(AnswerTableViewCell.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
+    cell.answerField.text = answers[indexPath.row]
     return cell
   }
   
