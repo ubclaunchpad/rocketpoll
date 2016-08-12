@@ -34,6 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       self.window?.makeKeyAndVisible()
     }
     
+    UINavigationBar.appearance().backgroundColor = UIColor(red: 253/255.0, green: 253/255.0, blue: 253/255.0, alpha: 1)
+    UINavigationBar.appearance().tintColor = UIColor(red: 82/255.0, green: 82/255.0, blue: 82/255.0, alpha: 1)
+
     return true
   }
   

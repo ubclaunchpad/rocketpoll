@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Foundation
 
 class CampaignsViewController: UIViewController {
   
@@ -116,8 +117,18 @@ class CampaignsViewController: UIViewController {
       viewController.questionText = sendQuestionText
       viewController.answerIDs = sendAIDS
       break
-    default: break
+    default:
+//      navigationItem.leftBarButtonItem?.title = ""
+      break
     }
+    let backItem = UIBarButtonItem()
+    backItem.title = ""
+    let bottomInset: CGFloat = 24.0
+    let leftInset: CGFloat = 10.0
+    
+    backItem.imageInsets = UIEdgeInsetsMake(-bottomInset, -leftInset, bottomInset, leftInset)
+    navigationItem.backBarButtonItem = backItem
+
   }
 }
 extension CampaignsViewController: CampaignViewContainerDelegate {

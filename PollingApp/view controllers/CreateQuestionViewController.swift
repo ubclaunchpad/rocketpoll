@@ -29,9 +29,14 @@ class CreateQuestionViewController: UIViewController{
     NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CreateQuestionViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
     
     addContainerToVC()
+    setNavigationBar()
     
     stringFromQuestionDuration(1, endTime: NSDate(), setButtonTitle: (container?.setEndTimerButtonTitle)!)
     container?.endTimerLabel.titleLabel?.textAlignment = NSTextAlignment.Center
+  }
+  
+  func setNavigationBar() {
+//    self.navigationController?.navigationBar.
   }
   
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
