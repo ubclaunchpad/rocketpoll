@@ -25,6 +25,9 @@ class CreateQuestionViewController: UIViewController{
       action: #selector(CreateQuestionViewController.dismissKeyboards))
     view.addGestureRecognizer(tap)
     
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CreateQuestionViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CreateQuestionViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
+    
     addContainerToVC()
     
     stringFromQuestionDuration(1, endTime: NSDate(), setButtonTitle: (container?.setEndTimerButtonTitle)!)
@@ -50,6 +53,36 @@ class CreateQuestionViewController: UIViewController{
   
   func dismissKeyboards() {
     view.endEditing(true)
+  }
+  
+  func keyboardWillShow(notification: NSNotification) {
+    if container?.questionInputText.editing == true {
+      if self.view.window?.frame.origin.y != 0 {
+        UIView.animateWithDuration(0.2, animations: {
+          self.view.window?.frame.origin.y = 0
+        })
+      }
+    }
+    let cells = container?.tableView.visibleCells as! [AnswerTableViewCell]!
+    for i in 0...cells.count - 1 {
+      if i >= 2 && cells[i].answerField.editing {
+        if self.view.window?.frame.origin.y > -100 {
+          self.view.window?.frame.origin.y -= 100
+          return
+        }
+      } else {
+        if self.view.window?.frame.origin.y != 0 {
+          UIView.animateWithDuration(0.2, animations: {
+            self.view.window?.frame.origin.y = 0
+          })
+        }
+      }
+    }
+  }
+  func keyboardWillHide(notification: NSNotification) {
+    if self.view.window?.frame.origin.y != 0 {
+      self.view.window?.frame.origin.y = 0
+    }
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -93,7 +126,7 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
       checkIfNil(answerStrings) ||
       correctAnswer == -1) {
       let alert = UIAlertController(title: "\(alertMessages.emptyQuestions)", message:"",
-
+                                    
                                     preferredStyle: UIAlertControllerStyle.Alert)
       alert.addAction(UIAlertAction(title: "\(alertMessages.confirm)",
         style: UIAlertActionStyle.Default, handler: nil))
