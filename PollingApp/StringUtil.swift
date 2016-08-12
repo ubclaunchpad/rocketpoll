@@ -59,8 +59,8 @@ class StringUtil {
     return trimmedString
   }
   
-  static func uniqueString(texts: [String]) -> Bool {
-    var uniqueStrings = Set<String>()
+  static func uniqueString(texts: [AnswerText]) -> Bool {
+    var uniqueStrings = Set<AnswerText>()
     for text in texts {
       uniqueStrings.insert(text)
     }

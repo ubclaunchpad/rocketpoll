@@ -20,7 +20,7 @@ protocol CreateQuestionViewContainerDelegate {
 class CreateQuestionContainerView: UIView {
   
   @IBOutlet weak var setTimerButton: UIButton!
-
+  
   @IBOutlet weak var backButton: UIButton!
   
   @IBOutlet weak var Submit: UIButton!
@@ -35,9 +35,10 @@ class CreateQuestionContainerView: UIView {
   
   var time: Int = 0;
   
-  var answerIdentifier:[Int] = [1, 2, 3, 4]
-  var answers = [Int: String]()
-  var correctAnswer:Int = 0
+  var answers:[AnswerText] = ["",""]
+  var correctAnswer:Int = -1
+  
+  var answerStrings = [AnswerText]()
   
   var currentTimeAway:Int = 1
   var endTime:NSDate?
@@ -45,7 +46,7 @@ class CreateQuestionContainerView: UIView {
   @IBOutlet weak var endTimerLabel: UIButton!
   
   @IBAction func setTimerButtonPressed(sender: AnyObject) {
-
+    
     setTimerView.hidden = false
     
     delegate?.shiftView()
@@ -53,13 +54,21 @@ class CreateQuestionContainerView: UIView {
     delegate?.stringFromQuestionDuration(currentTimeAway, endTime: endTime!, setButtonTitle: setEndTimerButtonTitle)
   }
   
-  @IBAction func SubmitPress(sender: AnyObject) {
-    let question = questionInputText.text;
-    let A1 = answers[1]
-    let A2 = answers[2]
-    let A3 = answers[3]
-    let A4 = answers[4]
+  @IBAction func addAnswerButtonPressed(sender: UIButton) {
+    answers.append("")
+    self.tableView.reloadData()
     
+  }
+  
+  @IBAction func deleteAnswerButtonPressed(sender: UIButton) {
+    if answers.count > 2 {
+      answers.removeLast()
+      self.tableView.reloadData()
+    }
+  }
+  
+  @IBAction func SubmitPress(sender: AnyObject) {
+    let question = questionInputText.text
     
     guard question != "" else {
       delegate?.showAlertController(alertMessages.emptyQuestions)
@@ -69,30 +78,30 @@ class CreateQuestionContainerView: UIView {
       delegate?.showAlertController(alertMessages.symbolQuestion)
       return
     }
-    guard A1 != nil && A2 != nil && A3 != nil && A4 != nil else {
-      delegate?.showAlertController(alertMessages.emptyAnswer)
-      return
+    for answer in answers {
+      guard answer != "" else {
+        delegate?.showAlertController(alertMessages.emptyAnswer)
+        return
+      }
     }
-    guard !StringUtil.containsBadCharacters(A1!) &&
-          !StringUtil.containsBadCharacters(A2!) &&
-          !StringUtil.containsBadCharacters(A3!) &&
-          !StringUtil.containsBadCharacters(A4!) else {
-            delegate?.showAlertController(alertMessages.symbolAnswer)
-            return
+    for answer in answers {
+      guard !StringUtil.containsBadCharacters(answer) else {
+          delegate?.showAlertController(alertMessages.symbolAnswer)
+          return
+      }
     }
-    guard correctAnswer != 0 else {
+    guard correctAnswer != -1 else {
       delegate?.showAlertController(alertMessages.noCorrectAnswer)
       return
     }
-    let tempAnswers = [A1!, A2!, A3!, A4!]
-    guard StringUtil.uniqueString(tempAnswers) == true else {
+    guard StringUtil.uniqueString(answers) == true else {
       delegate?.showAlertController(alertMessages.duplicateAnswer)
       return
     }
     
     time = currentTimeAway
     
-    delegate?.submitButtonPressed(question!,answerArray: tempAnswers, correctAnswer: correctAnswer, questionDuration: time);
+    delegate?.submitButtonPressed(question!,answerArray: answers, correctAnswer: correctAnswer, questionDuration: time)
   }
   
   @IBAction func changeTime(sender: UIButton) {
@@ -145,25 +154,28 @@ extension CreateQuestionContainerView: AnswerTableViewCellDelegate {
     correctAnswer = identifier
   }
   
-  func deselectAnswer(identifier: Int) {
-    correctAnswer = 0
+  func deselectAnswer() {
+    correctAnswer = -1
   }
 }
 
 extension CreateQuestionContainerView: UITableViewDelegate, UITableViewDataSource {
+  
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let pollResultsCell = UINib(nibName: "AnswerTableViewCell", bundle: nil)
     tableView.registerNib(pollResultsCell, forCellReuseIdentifier: "answerCell")
+    
     let cell = self.tableView.dequeueReusableCellWithIdentifier("answerCell", forIndexPath: indexPath) as! AnswerTableViewCell
-    cell.identifier = answerIdentifier[indexPath.item]
+    cell.identifier = indexPath.item
     cell.delegate = self
     cell.isCorrect = false
     cell.answerField.addTarget(cell, action: #selector(AnswerTableViewCell.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
+    cell.answerField.text = answers[indexPath.row]
     return cell
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 4
+    return answers.count
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
