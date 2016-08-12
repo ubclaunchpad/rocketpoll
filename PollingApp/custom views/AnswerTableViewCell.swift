@@ -43,7 +43,7 @@ class AnswerTableViewCell: UITableViewCell {
   
   func textFieldDidChange(textField: UITextField) {
     let answer = StringUtil.trimString(textField.text!)
-    if answer != "" && ModelInterface.sharedInstance.isValidName(answer){
+    if answer != "" {
       delegate?.updateAnswer(identifier!, answer: answer)
     }
   }

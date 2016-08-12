@@ -40,5 +40,12 @@ class StringUtilTest: XCTestCase {
     XCTAssertEqual("hello", StringUtil.cleanNameText("hello?"))
     XCTAssertEqual("hello", StringUtil.cleanNameText(" hello!!!"))
   }
+  
+  func testBadStrings() {
+    XCTAssertEqual(false, StringUtil.containsBadCharacters("hello?"))
+    XCTAssertEqual(false, StringUtil.containsBadCharacters("hello my name is?"))
+    XCTAssertEqual(true, StringUtil.containsBadCharacters("hello[]"))
+
+  }
 
 }

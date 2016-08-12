@@ -12,10 +12,9 @@ protocol CreateQuestionViewContainerDelegate {
   
   func submitButtonPressed(question: QuestionText, answerArray: [AnswerID], correctAnswer: Int, questionDuration: Int)
   func backButtonPressed()
-  func checksInput (question:QuestionText?, answerStrings:[AnswerText], correctAnswer:Int) -> Bool
   func shiftView()
-  func checkDuplicateAnswer(answers: [String]) -> Bool
   func stringFromQuestionDuration(currentTimeAway: Int, endTime: NSDate, setButtonTitle: (String) -> ())
+  func showAlertController(title: String)
 }
 
 class CreateQuestionContainerView: UIView {
@@ -70,12 +69,38 @@ class CreateQuestionContainerView: UIView {
   
   @IBAction func SubmitPress(sender: AnyObject) {
     let question = questionInputText.text
-    if (delegate?.checksInput(question, answerStrings:answers, correctAnswer: correctAnswer) == true) {
-      return
-    } else if ((delegate?.checkDuplicateAnswer(answers)) == true) {
+    
+    guard question != "" else {
+      delegate?.showAlertController(alertMessages.emptyQuestions)
       return
     }
+    guard !StringUtil.containsBadCharacters(question!) else {
+      delegate?.showAlertController(alertMessages.symbolQuestion)
+      return
+    }
+    for answer in answers {
+      guard answer != "" else {
+        delegate?.showAlertController(alertMessages.emptyAnswer)
+        return
+      }
+    }
+    for answer in answers {
+      guard !StringUtil.containsBadCharacters(answer) else {
+          delegate?.showAlertController(alertMessages.symbolAnswer)
+          return
+      }
+    }
+    guard correctAnswer != -1 else {
+      delegate?.showAlertController(alertMessages.noCorrectAnswer)
+      return
+    }
+    guard StringUtil.uniqueString(answers) == true else {
+      delegate?.showAlertController(alertMessages.duplicateAnswer)
+      return
+    }
+    
     time = currentTimeAway
+    
     delegate?.submitButtonPressed(question!,answerArray: answers, correctAnswer: correctAnswer, questionDuration: time)
   }
   
@@ -117,7 +142,6 @@ extension CreateQuestionContainerView: AnswerTableViewCellDelegate {
   
   func updateAnswer(identifier: Int, answer: String) {
     answers[identifier] = answer
-    print(answer)
   }
   
   func updateCorrectAnswer(identifier: Int) {
