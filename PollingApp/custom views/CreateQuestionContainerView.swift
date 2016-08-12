@@ -15,6 +15,7 @@ protocol CreateQuestionViewContainerDelegate {
   func shiftView()
   func stringFromQuestionDuration(currentTimeAway: Int, endTime: NSDate, setButtonTitle: (String) -> ())
   func showAlertController(title: String)
+  func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool
 }
 
 class CreateQuestionContainerView: UIView {
@@ -27,7 +28,10 @@ class CreateQuestionContainerView: UIView {
   
   var delegate: CreateQuestionViewContainerDelegate?
   
-  @IBOutlet weak var questionInputText: UITextField!
+  @IBOutlet weak var questionInputText: UITextView!
+
+  
+  //@IBOutlet weak var questionInputText: UITextField!
   
   @IBOutlet weak var tableView: UITableView!
   
@@ -135,7 +139,6 @@ class CreateQuestionContainerView: UIView {
     
     return view
   }
-  
 }
 
 extension CreateQuestionContainerView: AnswerTableViewCellDelegate {
@@ -157,6 +160,7 @@ extension CreateQuestionContainerView: AnswerTableViewCellDelegate {
   func deselectAnswer() {
     correctAnswer = -1
   }
+  
 }
 
 extension CreateQuestionContainerView: UITableViewDelegate, UITableViewDataSource {
@@ -182,5 +186,7 @@ extension CreateQuestionContainerView: UITableViewDelegate, UITableViewDataSourc
     return 60
   }
 }
+
+
 
 

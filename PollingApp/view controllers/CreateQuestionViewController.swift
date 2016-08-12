@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateQuestionViewController: UIViewController{
+class CreateQuestionViewController: UIViewController, UITextViewDelegate {
   
   
   private var sendAIDS = [AnswerID]()
@@ -32,6 +32,11 @@ class CreateQuestionViewController: UIViewController{
     
     stringFromQuestionDuration(1, endTime: NSDate(), setButtonTitle: (container?.setEndTimerButtonTitle)!)
     container?.endTimerLabel.titleLabel?.textAlignment = NSTextAlignment.Center
+    
+      container?.questionInputText.layer.cornerRadius = 5
+      container?.questionInputText.layer.borderColor = UIColor.lightGrayColor().CGColor
+      container?.questionInputText.layer.borderWidth = 1
+    container?.questionInputText.delegate = self
   }
   
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -41,6 +46,16 @@ class CreateQuestionViewController: UIViewController{
       })
       self.container!.hideTimerView()
     }
+  }
+  
+  func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange,
+                 replacementString string: String) -> Bool
+  {
+    let maxLength = 4
+    let currentString: NSString = textField.text!
+    let newString: NSString =
+      currentString.stringByReplacingCharactersInRange(range, withString: string)
+    return newString.length <= maxLength
   }
   
   //MARK: - Helper Functions
@@ -56,7 +71,7 @@ class CreateQuestionViewController: UIViewController{
   }
   
   func keyboardWillShow(notification: NSNotification) {
-    if container?.questionInputText.editing == true {
+    if container?.questionInputText.isFirstResponder() == true {
       if self.view.window?.frame.origin.y != 0 {
         UIView.animateWithDuration(0.2, animations: {
           self.view.window?.frame.origin.y = 0
