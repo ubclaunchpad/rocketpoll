@@ -72,13 +72,7 @@ final class PollAdminViewController: UIViewController {
   
   func setNavigationBar() {
     let backItem = UIBarButtonItem(image: UIImage(named: "Back"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PollAdminViewController.popSegue))
-//    navigationItem.backBarButtonItem?.action = segueToCampaign()
     navigationItem.leftBarButtonItem = backItem
-//    let backItem = UIBarButtonItem()
-//    backItem.title = ""
-//    backItem.target = self
-//    backItem.action = #selector(CreateQuestionViewController.backButtonPressed)
-//    navigationItem.leftBarButtonItem = backItem
   }
   
   func fillInTheFields(listofAllAnswers: [Answer]) {

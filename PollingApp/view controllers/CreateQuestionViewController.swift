@@ -36,10 +36,8 @@ class CreateQuestionViewController: UIViewController{
   }
   
   func setNavigationBar() {
-//    self.navigationController?.navigationBar
     self.title = "ASK"
     let submitButton = UIBarButtonItem(title: "Submit", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CreateQuestionViewController.submitQuestion))
-    submitButton.title = "Submit"
     self.navigationItem.rightBarButtonItem = submitButton
   }
   
@@ -170,11 +168,6 @@ class CreateQuestionViewController: UIViewController{
       viewController.questionID = sendQID
       viewController.timerQuestion = sendTime
       viewController.fromCreate = true
-//      let backItem = UIBarButtonItem()
-//      backItem.title = ""
-//      backItem.target = self
-//      backItem.action = #selector(CreateQuestionViewController.backButtonPressed)
-//      navigationItem.leftBarButtonItem = backItem
     }
   }
 }

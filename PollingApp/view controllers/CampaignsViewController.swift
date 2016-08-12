@@ -59,10 +59,11 @@ class CampaignsViewController: UIViewController {
   }
   
   func setNavigationBar() {
-    
+      self.title = "QUESTIONS"
+      let submitButton = UIBarButtonItem(title: "Add", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CampaignsViewController.newQuestionSelected))
+      self.navigationItem.rightBarButtonItem = submitButton
   }
-  
-  
+
   func fillInTheFields (listofAllQuestions:[Question], listOfAnsweredQIDs: [QuestionID] ) {
     
     listOfYourQuestions.removeAll()
