@@ -207,7 +207,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Back" width="18" height="16"/>
+        <image name="Back" width="25" height="18"/>
         <image name="first" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>

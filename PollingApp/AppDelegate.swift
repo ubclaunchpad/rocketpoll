@@ -34,8 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       self.window?.makeKeyAndVisible()
     }
     
-    UINavigationBar.appearance().backgroundColor = navigationBarAttributes.backgroundColor
-    UINavigationBar.appearance().tintColor = navigationBarAttributes.textColor
+    UINavigationBar.appearance().barTintColor = navigationBarAttributes.backgroundColor
     UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: navigationBarAttributes.textColor, NSFontAttributeName: navigationBarAttributes.titleFont!]
     UIBarButtonItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: navigationBarAttributes.textColor, NSFontAttributeName: navigationBarAttributes.buttonFont!], forState: UIControlState.Normal)
     

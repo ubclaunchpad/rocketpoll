@@ -29,6 +29,7 @@ class PollResultsViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     addContainerToVC()
+    setNavigationBar()
   }
   
   func addContainerToVC() {
@@ -64,6 +65,10 @@ class PollResultsViewController: UIViewController {
       }
       
     }
+  }
+  
+  func setNavigationBar() {
+    self.title = "RESULTS"
   }
   
   func fillInTheFields (listofAllAnswers: [Answer]) {
