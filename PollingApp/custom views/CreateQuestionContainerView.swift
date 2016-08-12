@@ -40,7 +40,6 @@ class CreateQuestionContainerView: UIView {
   var correctAnswer:Int = -1
   
   var answerStrings = [AnswerText]()
-  var unwrappedAnswerStrings = [AnswerText]()
   
   var currentTimeAway:Int = 1
   var endTime:NSDate?
@@ -58,17 +57,14 @@ class CreateQuestionContainerView: UIView {
   
   @IBAction func addAnswerButtonPressed(sender: UIButton) {
     answers.append("")
-    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-      self.tableView.reloadData()
-    })
+    self.tableView.reloadData()
+    
   }
   
   @IBAction func deleteAnswerButtonPressed(sender: UIButton) {
     if answers.count > 2 {
       answers.removeLast()
-      dispatch_async(dispatch_get_main_queue(), { () -> Void in
-        self.tableView.reloadData()
-      })
+      self.tableView.reloadData()
     }
   }
   
