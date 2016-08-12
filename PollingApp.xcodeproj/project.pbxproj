@@ -23,6 +23,9 @@
 		52C2C65F1C9A7700001779F5 /* RoomsNearbyViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52C2C65E1C9A7700001779F5 /* RoomsNearbyViewContainer.xib */; };
 		52D0395C1C989D8000367271 /* RoomsNearbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D0395B1C989D8000367271 /* RoomsNearbyViewController.swift */; };
 		52EB17B71CB21CC300C40DBC /* CampaignViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52EB17B61CB21CC300C40DBC /* CampaignViewTableViewCell.xib */; };
+		52F864811D5E5BFA00F5515D /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5274D2B31D5E594C0004DD5F /* Roboto-Light.ttf */; };
+		52F864821D5E5BFE00F5515D /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5274D2B51D5E594C0004DD5F /* Roboto-Regular.ttf */; };
+		52F864831D5E5C0000F5515D /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5274D2B41D5E594C0004DD5F /* Roboto-Medium.ttf */; };
 		6E04B3DE1CDEB4FA003408AB /* PollResultsViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E04B3DD1CDEB4FA003408AB /* PollResultsViewContainer.xib */; };
 		6E23109A1D3AD880008BEADC /* InputNameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E2310991D3AD880008BEADC /* InputNameView.xib */; };
 		6E23109C1D3AD8BF008BEADC /* InputNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E23109B1D3AD8BF008BEADC /* InputNameView.swift */; };
@@ -110,6 +113,9 @@
 		523FCD061C9BE1F3007EA5E1 /* RoomViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomViewTableViewCell.xib; sourceTree = "<group>"; };
 		52478AA91D3AF64A00379745 /* AnswerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerTableViewCell.xib; sourceTree = "<group>"; };
 		52478AAF1D3B1DE400379745 /* AnswerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerTableViewCell.swift; sourceTree = "<group>"; };
+		5274D2B31D5E594C0004DD5F /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		5274D2B41D5E594C0004DD5F /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		5274D2B51D5E594C0004DD5F /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		52979A421D375C000066FCF2 /* StringUtilTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtilTest.swift; sourceTree = "<group>"; };
 		52A1795B1CB079E500BADA2A /* CampaignViewContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CampaignViewContainer.xib; sourceTree = "<group>"; };
 		52C2C65E1C9A7700001779F5 /* RoomsNearbyViewContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomsNearbyViewContainer.xib; sourceTree = "<group>"; };
@@ -239,6 +245,16 @@
 			name = poll_user_views;
 			sourceTree = "<group>";
 		};
+		5274D2B61D5E59560004DD5F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				5274D2B31D5E594C0004DD5F /* Roboto-Light.ttf */,
+				5274D2B41D5E594C0004DD5F /* Roboto-Medium.ttf */,
+				5274D2B51D5E594C0004DD5F /* Roboto-Regular.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		52C2C65B1C9A7395001779F5 /* room_nearby_views */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,6 +309,7 @@
 				76B28C4A1C66CAB3008407EE /* view_controllers */,
 				76B28C4D1C66CF66008407EE /* custom_views */,
 				76B28C1E1C66C84A008407EE /* Main.storyboard */,
+				5274D2B61D5E59560004DD5F /* Fonts */,
 				76B28C211C66C84A008407EE /* Assets.xcassets */,
 				76B28C231C66C84A008407EE /* LaunchScreen.storyboard */,
 				76B28C261C66C84A008407EE /* Info.plist */,
@@ -621,6 +638,7 @@
 				D3D4593D1C6FE646000ABD57 /* CreateQuestionContainerView.xib in Resources */,
 				6E3D7BEE1CA4A243001E685B /* PollResultsTableViewCell.xib in Resources */,
 				52EB17B71CB21CC300C40DBC /* CampaignViewTableViewCell.xib in Resources */,
+				52F864821D5E5BFE00F5515D /* Roboto-Regular.ttf in Resources */,
 				521E4FFA1C8B9D48004A8F52 /* PollUserViewContainer.xib in Resources */,
 				D0E32CE91D3F374800E2CE71 /* QuestionViewCell.xib in Resources */,
 				6E705D4F1C9925160096AD36 /* AnswerViewTableViewCell.xib in Resources */,
@@ -637,6 +655,8 @@
 				6E705D4F1C9925160096AD36 /* AnswerViewTableViewCell.xib in Resources */,
 				6E04B3DE1CDEB4FA003408AB /* PollResultsViewContainer.xib in Resources */,
 				76C150111C6FE15F0066C0FE /* RoomViewContainer.xib in Resources */,
+				52F864811D5E5BFA00F5515D /* Roboto-Light.ttf in Resources */,
+				52F864831D5E5C0000F5515D /* Roboto-Medium.ttf in Resources */,
 				76B28C221C66C84A008407EE /* Assets.xcassets in Resources */,
 				76B28C201C66C84A008407EE /* Main.storyboard in Resources */,
 				6ECA03751CFA510100FF7B4C /* GoogleService-Info.plist in Resources */,

@@ -33,6 +33,7 @@ class CampaignsViewController: UIViewController {
     super.viewDidLoad()
     addContainerToVC()
     Log.debug("loaded campaign view")
+    setNavigationBar()
   }
   
   override func didReceiveMemoryWarning() {
@@ -55,6 +56,10 @@ class CampaignsViewController: UIViewController {
     
     container?.delegate = self
     //self.container?.setRoomNameTitle(roomName)
+  }
+  
+  func setNavigationBar() {
+    
   }
   
   
@@ -117,16 +122,10 @@ class CampaignsViewController: UIViewController {
       viewController.questionText = sendQuestionText
       viewController.answerIDs = sendAIDS
       break
-    default:
-//      navigationItem.leftBarButtonItem?.title = ""
-      break
+    default: break
     }
     let backItem = UIBarButtonItem()
     backItem.title = ""
-    let bottomInset: CGFloat = 24.0
-    let leftInset: CGFloat = 10.0
-    
-    backItem.imageInsets = UIEdgeInsetsMake(-bottomInset, -leftInset, bottomInset, leftInset)
     navigationItem.backBarButtonItem = backItem
 
   }

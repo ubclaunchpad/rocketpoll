@@ -35,11 +35,15 @@ final class PollAdminViewController: UIViewController {
   var timerQuestion = 0.0
   var answerIDs:[AnswerID] = []
   var answers:[AnswerText] = []
+  var fromCreate:Bool = false
   
   
   override func viewDidLoad() {
     super.viewDidLoad()
     addContainerToVC()
+    if fromCreate {
+      setNavigationBar()
+    }
   }
   
   func addContainerToVC() {
@@ -64,6 +68,17 @@ final class PollAdminViewController: UIViewController {
       self.container?.AnswerTable.reloadData()
     })
     setCountDown();
+  }
+  
+  func setNavigationBar() {
+    let backItem = UIBarButtonItem(image: UIImage(named: "Back"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PollAdminViewController.popSegue))
+//    navigationItem.backBarButtonItem?.action = segueToCampaign()
+    navigationItem.leftBarButtonItem = backItem
+//    let backItem = UIBarButtonItem()
+//    backItem.title = ""
+//    backItem.target = self
+//    backItem.action = #selector(CreateQuestionViewController.backButtonPressed)
+//    navigationItem.leftBarButtonItem = backItem
   }
   
   func fillInTheFields(listofAllAnswers: [Answer]) {
@@ -152,5 +167,8 @@ extension PollAdminViewController: PollAdminViewContainerDelegate {
   func segueToCampaign() {
     let nextRoom =  ModelInterface.sharedInstance.segueToQuestionsScreen()
     performSegueWithIdentifier(nextRoom, sender: self)
+  }
+  func popSegue() {
+    self.navigationController?.popToViewController((self.navigationController?.viewControllers.first)!, animated: true)
   }
 }
