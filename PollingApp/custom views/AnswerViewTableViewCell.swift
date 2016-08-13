@@ -9,18 +9,28 @@
 import UIKit
 
 protocol AnswerViewTableViewCellDelegate{
-  func answerSelected(answer: AnswerText)
-  func changeCellBackgroundColor(identifier: Int)
 }
 
 class AnswerViewTableViewCell: UITableViewCell {
-  @IBOutlet var answerButton: UIButton!
+  @IBOutlet weak var backgroundImage: UIImageView!
+  @IBOutlet weak var answer: UILabel!
   var delegate: AnswerViewTableViewCellDelegate?
   
-  @IBAction func cellAnswerButtonPressed(sender: AnyObject) {
-    if let selectedAnswer = sender.currentTitle {
-      delegate?.answerSelected(selectedAnswer!)
-      delegate?.changeCellBackgroundColor(self.tag)
+  override var selected: Bool {
+    get {
+      return super.selected
+    }
+    set {
+      if !newValue {
+        super.selected = newValue
+        backgroundImage.image = UIImage(named: "AnswerCell")!
+        answer.textColor = colors.textColor
+      } else {
+        super.selected = newValue
+        backgroundImage.image = UIImage(named: "AnswerCellSelected")!
+        answer.textColor = UIColor.whiteColor()
+
+      }
     }
   }
   
@@ -29,12 +39,20 @@ class AnswerViewTableViewCell: UITableViewCell {
     // Initialization code
   }
   
-  func setAnswerText(answer: String) {
-    answerButton.setTitle(answer, forState:UIControlState.Normal )
+  func setAnswerText(setAnswer: String) {
+    answer.text = setAnswer
   }
   
   override func setSelected(selected: Bool, animated: Bool) {
-    super.setSelected(selected, animated: animated)
+    if !selected {
+      backgroundImage.image = UIImage(named: "AnswerCell")!
+      answer.textColor = colors.textColor
+    } else {
+      backgroundImage.image = UIImage(named: "AnswerCellSelected")!
+      answer.textColor = UIColor.whiteColor()
+      
+    }
+    
   }
 }
 

@@ -192,7 +192,7 @@
                 <navigationController storyboardIdentifier="Campaigns" automaticallyAdjustsScrollViewInsets="NO" id="LhR-Tj-MfX" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Campaigns" image="first" id="acW-dT-cKf"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" backIndicatorImage="Back" backIndicatorTransitionMaskImage="Back" id="aYk-Ir-kEs">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" backIndicatorImage="Back" backIndicatorTransitionMaskImage="Back" id="aYk-Ir-kEs">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

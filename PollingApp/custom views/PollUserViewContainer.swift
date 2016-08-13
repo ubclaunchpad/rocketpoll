@@ -35,6 +35,7 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     view.frame = frame
     view.tableView.delegate = view
     view.tableView.dataSource = view
+    view.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
     return view
   }
   func setTotal(tally: Int) {
@@ -64,34 +65,31 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     let nib_name = UINib(nibName: "AnswerViewTableViewCell", bundle:nil)
     tableView.registerNib(nib_name, forCellReuseIdentifier: "answerCell\(indexPath.row)")
     let cell = self.tableView.dequeueReusableCellWithIdentifier("answerCell\(indexPath.row)", forIndexPath: indexPath) as! AnswerViewTableViewCell
+    cell.backgroundImage.image = UIImage(named: "AnswerCell")!
     cell.setAnswerText(answers[indexPath.row])
     cell.delegate = self
     cell.tag = 1000 + indexPath.row
-    self.tableView.separatorColor = UIColor.grayColor()
-    self.tableView.allowsSelection = false
+//    self.tableView.allowsSelection = false
+    cell.selectionStyle = UITableViewCellSelectionStyle.None
     return cell
   }
+  
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    
+    delegate?.answerSelected(answers[indexPath.row])
+  }
+  
   @IBAction func backButtonPressed(sender: AnyObject) {
     delegate?.backButtonPushed()
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return 75
+    return 68
     //TODO: set tableView Cell size based on content size
   }
 }
 
 extension PollUserViewContainer: AnswerViewTableViewCellDelegate {
-  func answerSelected(answer: AnswerText) {
-    delegate?.answerSelected(answer)
-  }
-  func changeCellBackgroundColor(identifier: Int) {
-    if (previousCellID != 0){
-      let previousCell = self.tableView.viewWithTag(previousCellID)
-      previousCell?.backgroundColor = UIColor.whiteColor()
-    }
-    previousCellID = identifier
-    let cell = self.tableView.viewWithTag(identifier)
-    cell?.backgroundColor = colors.lightGreen
-  }
+
+  
 }
