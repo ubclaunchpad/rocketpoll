@@ -36,6 +36,8 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     view.tableView.delegate = view
     view.tableView.dataSource = view
     view.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+    view.tableView.backgroundColor = UIColor.clearColor()
+    view.tableView.opaque = false
     return view
   }
   func setTotal(tally: Int) {
@@ -65,6 +67,7 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     let nib_name = UINib(nibName: "AnswerViewTableViewCell", bundle:nil)
     tableView.registerNib(nib_name, forCellReuseIdentifier: "answerCell\(indexPath.row)")
     let cell = self.tableView.dequeueReusableCellWithIdentifier("answerCell\(indexPath.row)", forIndexPath: indexPath) as! AnswerViewTableViewCell
+    cell.backgroundColor = UIColor.clearColor()
     cell.backgroundImage.image = UIImage(named: "AnswerCell")!
     cell.setAnswerText(answers[indexPath.row])
     cell.delegate = self
