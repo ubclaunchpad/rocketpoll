@@ -25,6 +25,7 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
   private var question:QuestionText = ""
   @IBOutlet weak var timer: UILabel!
   @IBOutlet weak var AnswerTable: UITableView!
+  @IBOutlet weak var questionTextView: UITextView!
   
   var delegate: PollAdminViewContainerDelegate?
   
@@ -69,6 +70,7 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
   
   func setQuestionText(questionText: String) {
     question = questionText
+    questionTextView.text = questionText
   }
   
   func updateTimerLabel(timerString: String) {
@@ -88,15 +90,15 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
   }
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
-    if (indexPath.section == 0) {
-      let nib_name = UINib(nibName: "QuestionViewCell", bundle:nil)
-      tableView.registerNib(nib_name, forCellReuseIdentifier: "question")
-      
-      let cell = self.AnswerTable.dequeueReusableCellWithIdentifier("question", forIndexPath: indexPath) as! QuestionViewCell
-      cell.setQuestionLabel(question)
-      return cell
-      
-    }
+//    if (indexPath.section == 0) {
+//      let nib_name = UINib(nibName: "QuestionViewCell", bundle:nil)
+//      tableView.registerNib(nib_name, forCellReuseIdentifier: "question")
+//      
+//      let cell = self.AnswerTable.dequeueReusableCellWithIdentifier("question", forIndexPath: indexPath) as! QuestionViewCell
+//      cell.setQuestionLabel(question)
+//      return cell
+//      
+//    }
     
     let nib_name = UINib(nibName: "AnswerAdminTableViewCell", bundle:nil)
     tableView.registerNib(nib_name, forCellReuseIdentifier: "answeradminCell")
@@ -127,15 +129,15 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
   }
   
   func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    if (section == 0) {
-      return "Question"
-    }
+//    if (section == 0) {
+//      return "Question"
+//    }
     return "Answers"
   }
   
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return 2
+    return 1
   }
   
 }
