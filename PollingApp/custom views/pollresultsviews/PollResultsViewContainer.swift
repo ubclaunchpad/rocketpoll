@@ -15,7 +15,6 @@ protocol PollResultsViewContainerDelegate {
 }
 class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
   
-  @IBOutlet weak var deleteButton: UIButton!
   @IBOutlet weak var backButton: UIButton!
   @IBOutlet weak var resultsTableView: UITableView!
   @IBOutlet weak var totalAnswersLabel: UILabel!
@@ -153,18 +152,6 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
   
   func setNumberOfResponsesForAnswer (NumResponses:[Int]){
     numberOfResponsesPerAnswer = NumResponses
-  }
-  
-  @IBAction func deleteButtonPressed(sender: AnyObject) {
-    delegate?.presentConfirmationVaraible()
-  }
-  
-  func makeDeleteButtonVisisble(){
-    deleteButton.alpha = 1
-  }
-  
-  func hideDeleteButton(){
-    deleteButton.alpha = 0
   }
   
   func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?{

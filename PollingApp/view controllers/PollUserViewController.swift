@@ -36,6 +36,7 @@ final class PollUserViewController: UIViewController {
     super.viewDidLoad()
     setup()
     setNavigationBar()
+    self.title = "VOTE"
   }
   
   func setup() {
