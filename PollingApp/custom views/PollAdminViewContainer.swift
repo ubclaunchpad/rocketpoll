@@ -29,10 +29,6 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
   
   var delegate: PollAdminViewContainerDelegate?
   
-  @IBAction func backButton(sender: AnyObject) {
-    delegate?.segueToCampaign();
-  }
-  
   @IBAction func goToResult(sender: AnyObject) {
     delegate?.segueToResult();
   }
@@ -82,23 +78,10 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
   
   // returns an approiate number of rows depending on the section
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if (section == 0 ) {
-      return 1
-    }
     return  answers.count
     
   }
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    
-//    if (indexPath.section == 0) {
-//      let nib_name = UINib(nibName: "QuestionViewCell", bundle:nil)
-//      tableView.registerNib(nib_name, forCellReuseIdentifier: "question")
-//      
-//      let cell = self.AnswerTable.dequeueReusableCellWithIdentifier("question", forIndexPath: indexPath) as! QuestionViewCell
-//      cell.setQuestionLabel(question)
-//      return cell
-//      
-//    }
     
     let nib_name = UINib(nibName: "AnswerAdminTableViewCell", bundle:nil)
     tableView.registerNib(nib_name, forCellReuseIdentifier: "answeradminCell")
@@ -129,9 +112,7 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
   }
   
   func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//    if (section == 0) {
-//      return "Question"
-//    }
+
     return "Answers"
   }
   
