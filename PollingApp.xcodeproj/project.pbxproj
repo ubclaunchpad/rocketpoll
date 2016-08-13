@@ -76,6 +76,9 @@
 		D07A88F11D319E360071FB6A /* MathUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07A88F01D319E360071FB6A /* MathUtil.swift */; };
 		D0B241C81D10EF29006DD380 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B241C71D10EF29006DD380 /* Question.swift */; };
 		D0B241CA1D10F9E8006DD380 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B241C91D10F9E8006DD380 /* Answer.swift */; };
+		D0BF325D1D5FD75500EFF17A /* WhoVotedForViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BF325C1D5FD75500EFF17A /* WhoVotedForViewController.swift */; };
+		D0BF32601D5FD93F00EFF17A /* WhoVotedForContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BF325F1D5FD93F00EFF17A /* WhoVotedForContainer.swift */; };
+		D0BF32621D5FDBA000EFF17A /* WhoVotedForContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0BF32611D5FDBA000EFF17A /* WhoVotedForContainer.xib */; };
 		D0E32CE91D3F374800E2CE71 /* QuestionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0E32CE81D3F374800E2CE71 /* QuestionViewCell.xib */; };
 		D0E32CEB1D3F37AD00E2CE71 /* QuestionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E32CEA1D3F37AD00E2CE71 /* QuestionViewCell.swift */; };
 		D34296211C792F9C00C33920 /* PollResultsViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D342961E1C792F9C00C33920 /* PollResultsViewContainer.swift */; };
@@ -185,6 +188,9 @@
 		D07A88F01D319E360071FB6A /* MathUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathUtil.swift; sourceTree = "<group>"; };
 		D0B241C71D10EF29006DD380 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		D0B241C91D10F9E8006DD380 /* Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
+		D0BF325C1D5FD75500EFF17A /* WhoVotedForViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhoVotedForViewController.swift; sourceTree = "<group>"; };
+		D0BF325F1D5FD93F00EFF17A /* WhoVotedForContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhoVotedForContainer.swift; sourceTree = "<group>"; };
+		D0BF32611D5FDBA000EFF17A /* WhoVotedForContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhoVotedForContainer.xib; sourceTree = "<group>"; };
 		D0E32CE81D3F374800E2CE71 /* QuestionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionViewCell.xib; sourceTree = "<group>"; };
 		D0E32CEA1D3F37AD00E2CE71 /* QuestionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewCell.swift; sourceTree = "<group>"; };
 		D342961E1C792F9C00C33920 /* PollResultsViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PollResultsViewContainer.swift; path = pollresultsviews/PollResultsViewContainer.swift; sourceTree = "<group>"; };
@@ -349,6 +355,7 @@
 				76C1500C1C6FE0550066C0FE /* PollResultsViewController.swift */,
 				76C150061C6FDF8E0066C0FE /* PollUserViewController.swift */,
 				76B28C1A1C66C84A008407EE /* CampaignsViewController.swift */,
+				D0BF325C1D5FD75500EFF17A /* WhoVotedForViewController.swift */,
 			);
 			name = view_controllers;
 			path = "view controllers";
@@ -357,6 +364,7 @@
 		76B28C4D1C66CF66008407EE /* custom_views */ = {
 			isa = PBXGroup;
 			children = (
+				D0BF325E1D5FD81E00EFF17A /* Who_Voted_For_views */,
 				6E2310981D3AD858008BEADC /* Input_Name_view */,
 				52C2C65B1C9A7395001779F5 /* room_nearby_views */,
 				D0659D201CB0681C00D98EED /* PollAdminView */,
@@ -485,6 +493,15 @@
 				D0E32CEA1D3F37AD00E2CE71 /* QuestionViewCell.swift */,
 			);
 			name = PollAdminView;
+			sourceTree = "<group>";
+		};
+		D0BF325E1D5FD81E00EFF17A /* Who_Voted_For_views */ = {
+			isa = PBXGroup;
+			children = (
+				D0BF325F1D5FD93F00EFF17A /* WhoVotedForContainer.swift */,
+				D0BF32611D5FDBA000EFF17A /* WhoVotedForContainer.xib */,
+			);
+			name = Who_Voted_For_views;
 			sourceTree = "<group>";
 		};
 		D342961C1C792F7900C33920 /* pollresultsviews */ = {
@@ -659,6 +676,7 @@
 				52F864831D5E5C0000F5515D /* Roboto-Medium.ttf in Resources */,
 				76B28C221C66C84A008407EE /* Assets.xcassets in Resources */,
 				76B28C201C66C84A008407EE /* Main.storyboard in Resources */,
+				D0BF32621D5FDBA000EFF17A /* WhoVotedForContainer.xib in Resources */,
 				6ECA03751CFA510100FF7B4C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -829,6 +847,7 @@
 				D0B241C81D10EF29006DD380 /* Question.swift in Sources */,
 				D0E32CEB1D3F37AD00E2CE71 /* QuestionViewCell.swift in Sources */,
 				C803961B1C8CE6D0007C276F /* AnswerModelExtension.swift in Sources */,
+				D0BF32601D5FD93F00EFF17A /* WhoVotedForContainer.swift in Sources */,
 				76C1500D1C6FE0550066C0FE /* PollResultsViewController.swift in Sources */,
 				D3D4593B1C6FE626000ABD57 /* CreateQuestionContainerView.swift in Sources */,
 				D0659D241CB06AAD00D98EED /* PollAdminViewContainer.swift in Sources */,
@@ -839,6 +858,7 @@
 				6E705D4E1C9925160096AD36 /* AnswerViewTableViewCell.swift in Sources */,
 				76C1500B1C6FE0220066C0FE /* PollAdminViewController.swift in Sources */,
 				521E4FF91C8B9D48004A8F52 /* PollUserViewContainer.swift in Sources */,
+				D0BF325D1D5FD75500EFF17A /* WhoVotedForViewController.swift in Sources */,
 				C803960F1C8CC995007C276F /* RoomModelExtentsion.swift in Sources */,
 				D34296261C79308900C33920 /* FirebaseData.swift in Sources */,
 				76B28C191C66C84A008407EE /* AppDelegate.swift in Sources */,
