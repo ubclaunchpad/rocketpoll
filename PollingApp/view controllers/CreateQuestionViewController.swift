@@ -25,6 +25,9 @@ class CreateQuestionViewController: UIViewController{
       action: #selector(CreateQuestionViewController.dismissKeyboards))
     view.addGestureRecognizer(tap)
     
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CreateQuestionViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CreateQuestionViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
+    
     addContainerToVC()
     
     stringFromQuestionDuration(1, endTime: NSDate(), setButtonTitle: (container?.setEndTimerButtonTitle)!)
@@ -52,6 +55,36 @@ class CreateQuestionViewController: UIViewController{
     view.endEditing(true)
   }
   
+  func keyboardWillShow(notification: NSNotification) {
+    if container?.questionInputText.editing == true {
+      if self.view.window?.frame.origin.y != 0 {
+        UIView.animateWithDuration(0.2, animations: {
+          self.view.window?.frame.origin.y = 0
+        })
+      }
+    }
+    let cells = container?.tableView.visibleCells as! [AnswerTableViewCell]!
+    for i in 0...cells.count - 1 {
+      if i >= 2 && cells[i].answerField.editing {
+        if self.view.window?.frame.origin.y > -100 {
+          self.view.window?.frame.origin.y -= 100
+          return
+        }
+      } else {
+        if self.view.window?.frame.origin.y != 0 {
+          UIView.animateWithDuration(0.2, animations: {
+            self.view.window?.frame.origin.y = 0
+          })
+        }
+      }
+    }
+  }
+  func keyboardWillHide(notification: NSNotification) {
+    if self.view.window?.frame.origin.y != 0 {
+      self.view.window?.frame.origin.y = 0
+    }
+  }
+  
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if (segue.identifier == ModelInterface.sharedInstance.segueToAdminScreen()) {
       let viewController:PollAdminViewController = segue.destinationViewController as! PollAdminViewController
@@ -71,7 +104,7 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
     let answerIDs =  ModelInterface.sharedInstance.createAnswerIDs(
       questionObject.QID, answerText: answerArray)
     questionObject.AIDS = answerIDs
-    ModelInterface.sharedInstance.setCorrectAnswer(answerIDs[correctAnswer - 1], isCorrectAnswer: true);
+    ModelInterface.sharedInstance.setCorrectAnswer(answerIDs[correctAnswer], isCorrectAnswer: true);
     
     self.sendAIDS = answerIDs
     self.sendQuestionText = question
@@ -86,38 +119,19 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
     performSegueWithIdentifier(nextRoom, sender: self)
   }
   
-  //TODO: IPA-120
-  
-  func checksInput (question:QuestionText?, A1:AnswerText?, A2:AnswerText?,  A3:AnswerText?, A4:AnswerText?, correctAnswer:Int) -> Bool {
-    if((question == nil) || (A1 == nil) || (A2 == nil) || (A3 == nil) || (A4 == nil)) || correctAnswer == 0 {
-      let alert = UIAlertController(title: "\(alertMessages.emptyQuestions)", message:"",
-
-                                    preferredStyle: UIAlertControllerStyle.Alert)
-      alert.addAction(UIAlertAction(title: "\(alertMessages.confirm)",
-        style: UIAlertActionStyle.Default, handler: nil))
-      self.presentViewController(alert, animated: true, completion: nil)
-      return true
-    }
-    return false
+  func showAlertController(title: String) {
+    let alert = UIAlertController(title: "\(title)", message:"", preferredStyle: UIAlertControllerStyle.Alert)
+    alert.addAction(UIAlertAction(title: "\(alertMessages.confirm)",
+      style: UIAlertActionStyle.Default, handler: nil))
+    self.presentViewController(alert, animated: true, completion: nil)
   }
+  
+  //TODO: IPA-120
   
   func shiftView() {
     UIView.animateWithDuration(0.2, animations: {
       self.view.window?.frame.origin.y = -90
     })
-  }
-  
-  func checkDuplicateAnswer(answers: [String]) -> Bool {
-    if !StringUtil.uniqueString(answers) {
-      let alert = UIAlertController(title: "\(alertMessages.duplicateAnswer)", message:"",
-                                    
-                                    preferredStyle: UIAlertControllerStyle.Alert)
-      alert.addAction(UIAlertAction(title: "\(alertMessages.confirm)",
-        style: UIAlertActionStyle.Default, handler: nil))
-      self.presentViewController(alert, animated: true, completion: nil)
-      return true
-    }
-    return false
   }
   
   func stringFromQuestionDuration(currentTimeAway: Int, endTime: NSDate, setButtonTitle: (String) -> ()) {

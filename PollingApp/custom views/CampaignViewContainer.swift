@@ -42,9 +42,9 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     return view
   }
   
-  func setRoomNameTitle(name: String) {
-    roomName.text = name;
-  }
+//  func setRoomNameTitle(name: String) {
+//    roomName.text = name;
+//  }
   
   func setUnansweredQuestions(unansweredQuestions: [Question]) {
     self.unansweredQuestions = unansweredQuestions
@@ -100,11 +100,7 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     cell.setQuestionText( templistQuestions[indexPath.row].questionText)
     cell.setAnsweredBackground(templistQuestions[indexPath.row].isExpired)
     
-    if (templistQuestions[indexPath.row].author == currentUser) {
-      cell.setAuthorText("Yours")
-    } else {
-      cell.setAuthorText( templistQuestions[indexPath.row].author)
-    }
+    cell.setAuthorText( templistQuestions[indexPath.row].author)
     
     cell.setExpiryMessage( templistQuestions[indexPath.row].expireMessage)
     cell.setFieldQuestion(templistQuestions[indexPath.row])
@@ -112,6 +108,18 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     cell.hideResultsLabel(templistQuestions[indexPath.row].isExpired)
   
     return cell
+  }
+  
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    let sections = [yourQuestions, answeredQuestions, unansweredQuestions, expiredQuestions]
+    guard let question = sections[indexPath.section][indexPath.row] as? Question else {
+      return
+    }
+    if question.isExpired == false {
+        delegate?.questionSelected(question)
+    } else {
+      delegate?.resultsButtonSelected(question)
+    }
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

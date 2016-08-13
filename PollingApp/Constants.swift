@@ -105,17 +105,21 @@ enum UITimeRemaining {
 enum alertMessages {
   static let invalid = "Invalid Name"
   static let empty = "Please enter your name"
-  static let emptyQuestions = "Please fill in all fields and set timer"
-  static let confirm = "Ok"
+  static let emptyQuestions = "Please enter a question"
+  static let confirm = "OK"
   static let yes = "YES"
   static let no = "NO"
   static let confirmName = "Pleaes confirm that your name is "
   static let nameMessage = "You will not be able to change your name at a later time"
   static let confirmation = "Confirmation"
   static let confirmationMessage = "Are you sure you want to delete your quesiton?"
-  static let duplicateAnswer = "One or more of your answers are the same"
+  static let duplicateAnswer = "One or more of the answers are the same"
+  static let emptyAnswer = "Please fill in all answer fields"
+  static let noCorrectAnswer = "Please select a correct answer"
   static let noRevoting = "You have already selected this answer. Choose a different answer"
   static let usernameIsTaken = "Please choose another name. This name is already taken."
+  static let symbolAnswer = "One of more of the answers contain a symbol"
+  static let symbolQuestion = "The question you have submitted contains a symbol"
 }
 
 enum correct {

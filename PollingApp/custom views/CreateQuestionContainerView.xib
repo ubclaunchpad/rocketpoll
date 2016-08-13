@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -21,16 +21,8 @@
                         <action selector="backButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="KSO-e3-fJQ"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="kSR-OB-ORh">
-                    <rect key="frame" x="40" y="523" width="392" height="30"/>
-                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                    <state key="normal" title="Set timer"/>
-                    <connections>
-                        <action selector="setTimerButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="Xhl-Fu-xL9"/>
-                    </connections>
-                </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Fd7-4U-zpA">
-                    <rect key="frame" x="36" y="238.5" width="401" height="250"/>
+                    <rect key="frame" x="36" y="239" width="401" height="250"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="250" id="DMS-C5-PSy"/>
@@ -47,7 +39,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="55o-To-BHJ">
-                    <rect key="frame" x="0.0" y="568.5" width="472" height="250"/>
+                    <rect key="frame" x="0.0" y="569" width="472" height="250"/>
                     <subviews>
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l8h-Nd-aKU">
                             <rect key="frame" x="86" y="0.0" width="300" height="150"/>
@@ -180,25 +172,51 @@
                         <action selector="SubmitPress:" destination="iN0-l3-epB" eventType="touchUpInside" id="dqq-Bl-BL7"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYp-RJ-7b7">
+                    <rect key="frame" x="186" y="497" width="100" height="30"/>
+                    <state key="normal" title="Delete Answer"/>
+                    <connections>
+                        <action selector="deleteAnswerButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="GQH-Cv-DIs"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hzl-CF-6B0">
+                    <rect key="frame" x="195" y="467" width="83" height="30"/>
+                    <state key="normal" title="Add Answer"/>
+                    <connections>
+                        <action selector="addAnswerButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="rD2-8Z-v10"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="kSR-OB-ORh">
+                    <rect key="frame" x="40" y="531" width="392" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="Set timer"/>
+                    <connections>
+                        <action selector="setTimerButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="Xhl-Fu-xL9"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="ZYp-RJ-7b7" firstAttribute="centerX" secondItem="Hzl-CF-6B0" secondAttribute="centerX" id="142-Cw-IId"/>
                 <constraint firstAttribute="trailing" secondItem="v3B-Rw-fEn" secondAttribute="trailing" constant="8" id="7Ay-QR-dYy"/>
+                <constraint firstItem="ZYp-RJ-7b7" firstAttribute="top" secondItem="Fd7-4U-zpA" secondAttribute="bottom" constant="8" symbolic="YES" id="82F-kb-VS8"/>
                 <constraint firstItem="jVL-e3-Jmb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="22" id="At3-S5-VJb"/>
                 <constraint firstItem="Fd7-4U-zpA" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="DK7-z1-TiE"/>
                 <constraint firstItem="kSR-OB-ORh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="EQk-eU-NJ2"/>
-                <constraint firstItem="55o-To-BHJ" firstAttribute="top" secondItem="kSR-OB-ORh" secondAttribute="bottom" constant="15" id="JAX-Mh-FtQ"/>
+                <constraint firstItem="55o-To-BHJ" firstAttribute="top" secondItem="kSR-OB-ORh" secondAttribute="bottom" constant="8" id="JAX-Mh-FtQ"/>
                 <constraint firstItem="55o-To-BHJ" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="M9e-VK-07Y"/>
                 <constraint firstItem="cZY-ZI-fNH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="100" id="Pbj-53-9HP"/>
                 <constraint firstItem="v3B-Rw-fEn" firstAttribute="top" secondItem="jVL-e3-Jmb" secondAttribute="top" id="Ruf-a1-Twg"/>
+                <constraint firstItem="ZYp-RJ-7b7" firstAttribute="centerX" secondItem="kSR-OB-ORh" secondAttribute="centerX" id="ZJF-Ch-cSv"/>
                 <constraint firstItem="Fd7-4U-zpA" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.85" id="c8w-Qj-Q0x"/>
                 <constraint firstItem="kSR-OB-ORh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="cYH-in-a6a"/>
                 <constraint firstItem="cZY-ZI-fNH" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="cmw-ek-fqy"/>
+                <constraint firstItem="ZYp-RJ-7b7" firstAttribute="top" secondItem="Hzl-CF-6B0" secondAttribute="bottom" id="djv-UI-8iO"/>
                 <constraint firstItem="Fd7-4U-zpA" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="eUN-7Y-dv9"/>
                 <constraint firstItem="v3B-Rw-fEn" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="g1b-fi-1DY"/>
                 <constraint firstItem="kSR-OB-ORh" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.83" id="hTH-Ij-Bih"/>
                 <constraint firstItem="55o-To-BHJ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="kEH-JN-zrY"/>
-                <constraint firstItem="kSR-OB-ORh" firstAttribute="top" secondItem="Fd7-4U-zpA" secondAttribute="bottom" constant="35" id="kpE-5S-fSR"/>
+                <constraint firstItem="kSR-OB-ORh" firstAttribute="top" secondItem="Fd7-4U-zpA" secondAttribute="bottom" constant="42" id="kpE-5S-fSR"/>
                 <constraint firstItem="jVL-e3-Jmb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="lLg-Wu-iZy"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
