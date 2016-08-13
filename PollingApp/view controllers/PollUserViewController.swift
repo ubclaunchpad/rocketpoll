@@ -119,6 +119,7 @@ final class PollUserViewController: UIViewController {
       viewController.questionID = sendQID
       viewController.questionText = sendQuestionText
       viewController.answerIDs = sendAIDS
+      viewController.fromPollUser = true
     }
   }
   override func didReceiveMemoryWarning() {

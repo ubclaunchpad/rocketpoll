@@ -44,6 +44,7 @@ final class PollAdminViewController: UIViewController {
     if fromCreate {
       setNavigationBar()
     }
+    self.title = "ADMIN"
   }
   
   func addContainerToVC() {

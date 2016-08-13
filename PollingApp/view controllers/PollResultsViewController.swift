@@ -22,6 +22,7 @@ class PollResultsViewController: UIViewController {
   var questionText = ""
   var questionID:QuestionID = ""
   var answerIDs: [AnswerID] = []
+  var fromPollUser: Bool = false
   
   
   var container: PollResultsViewContainer?
@@ -29,7 +30,10 @@ class PollResultsViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     addContainerToVC()
-    setNavigationBar()
+    if fromPollUser {
+      setNavigationBar()
+    }
+    self.title = "RESULTS"
   }
   
   func addContainerToVC() {
@@ -68,7 +72,12 @@ class PollResultsViewController: UIViewController {
   }
   
   func setNavigationBar() {
-    self.title = "RESULTS"
+    let backItem = UIBarButtonItem(image: UIImage(named: "Back"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PollResultsViewController.popSegue))
+    navigationItem.leftBarButtonItem = backItem
+  }
+  
+  func popSegue() {
+    self.navigationController?.popToViewController((self.navigationController?.viewControllers.first)!, animated: true)
   }
   
   func fillInTheFields (listofAllAnswers: [Answer]) {
