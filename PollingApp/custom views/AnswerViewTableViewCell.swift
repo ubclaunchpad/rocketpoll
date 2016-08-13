@@ -16,24 +16,6 @@ class AnswerViewTableViewCell: UITableViewCell {
   @IBOutlet weak var answer: UILabel!
   var delegate: AnswerViewTableViewCellDelegate?
   
-  override var selected: Bool {
-    get {
-      return super.selected
-    }
-    set {
-      if !newValue {
-        super.selected = newValue
-        backgroundImage.image = UIImage(named: "AnswerCell")!
-        answer.textColor = colors.textColor
-      } else {
-        super.selected = newValue
-        backgroundImage.image = UIImage(named: "AnswerCellSelected")!
-        answer.textColor = UIColor.whiteColor()
-
-      }
-    }
-  }
-  
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
