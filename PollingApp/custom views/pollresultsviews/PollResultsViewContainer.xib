@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -18,19 +18,6 @@
                         <constraint firstAttribute="height" constant="500" id="enw-yJ-5gm"/>
                     </constraints>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="URp-5x-pE6">
-                    <rect key="frame" x="20" y="20" width="13" height="22"/>
-                    <color key="backgroundColor" white="1" alpha="0.25702069256756754" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="22" id="CWW-rN-gTB"/>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="13" id="NIA-mQ-qVX"/>
-                        <constraint firstAttribute="width" constant="13" id="hDc-II-KP4"/>
-                    </constraints>
-                    <state key="normal" image="ChevronLeft"/>
-                    <connections>
-                        <action selector="backButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="5UT-7L-2O1"/>
-                    </connections>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EXa-dg-5Z1">
                     <rect key="frame" x="279" y="76" width="42" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -40,8 +27,6 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="URp-5x-pE6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="6is-W4-Sqa"/>
-                <constraint firstItem="URp-5x-pE6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="GRI-6A-Y3S"/>
                 <constraint firstAttribute="bottom" secondItem="ZFL-iT-IRe" secondAttribute="bottom" id="Ign-p8-07x"/>
                 <constraint firstItem="EXa-dg-5Z1" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="8" id="iLQ-g4-DUw"/>
                 <constraint firstItem="ZFL-iT-IRe" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="m0I-RQ-fzP"/>
@@ -50,13 +35,9 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <connections>
-                <outlet property="backButton" destination="URp-5x-pE6" id="Hkd-WO-HNL"/>
                 <outlet property="resultsTableView" destination="ZFL-iT-IRe" id="l06-xn-iKf"/>
                 <outlet property="totalAnswersLabel" destination="EXa-dg-5Z1" id="N0L-cZ-oJd"/>
             </connections>
         </view>
     </objects>
-    <resources>
-        <image name="ChevronLeft" width="13" height="22"/>
-    </resources>
 </document>
