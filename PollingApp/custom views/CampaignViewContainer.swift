@@ -100,11 +100,7 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     cell.setQuestionText( templistQuestions[indexPath.row].questionText)
     cell.setAnsweredBackground(templistQuestions[indexPath.row].isExpired)
     
-    if (templistQuestions[indexPath.row].author == currentUser) {
-      cell.setAuthorText("Yours")
-    } else {
-      cell.setAuthorText( templistQuestions[indexPath.row].author)
-    }
+    cell.setAuthorText( templistQuestions[indexPath.row].author)
     
     cell.setExpiryMessage( templistQuestions[indexPath.row].expireMessage)
     cell.setFieldQuestion(templistQuestions[indexPath.row])
