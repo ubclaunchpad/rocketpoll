@@ -55,19 +55,19 @@ class CampaignsViewController: UIViewController {
       })
       
     }
-//   let roomID = ModelInterface.sharedInstance.getCurrentRoomID()
-//    let roomName = ModelInterface.sharedInstance.getRoomName(roomID)
+    //let roomID = ModelInterface.sharedInstance.getCurrentRoomID()
+    //let roomName = ModelInterface.sharedInstance.getRoomName(roomID)
     
     container?.delegate = self
     //self.container?.setRoomNameTitle(roomName)
   }
   
   func setNavigationBar() {
-      self.title = "QUESTIONS"
-      let submitButton = UIBarButtonItem(title: "Add", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CampaignsViewController.newQuestionSelected))
-      self.navigationItem.rightBarButtonItem = submitButton
+    self.title = "QUESTIONS"
+    let submitButton = UIBarButtonItem(title: "Add", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CampaignsViewController.newQuestionSelected))
+    self.navigationItem.rightBarButtonItem = submitButton
   }
-
+  
   func fillInTheFields (listofAllQuestions:[Question], listOfAnsweredQIDs: [QuestionID] ) {
     
     listOfYourQuestions.removeAll()
@@ -132,7 +132,7 @@ class CampaignsViewController: UIViewController {
     let backItem = UIBarButtonItem()
     backItem.title = ""
     navigationItem.backBarButtonItem = backItem
-
+    
   }
 }
 extension CampaignsViewController: CampaignViewContainerDelegate {
