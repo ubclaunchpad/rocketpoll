@@ -15,7 +15,7 @@ protocol CreateQuestionViewContainerDelegate {
   func shiftView()
   func stringFromQuestionDuration(currentTimeAway: Int, endTime: NSDate, setButtonTitle: (String) -> ())
   func showAlertController(title: String)
-  func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool
+  func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
 }
 
 class CreateQuestionContainerView: UIView {
@@ -29,9 +29,6 @@ class CreateQuestionContainerView: UIView {
   var delegate: CreateQuestionViewContainerDelegate?
   
   @IBOutlet weak var questionInputText: UITextView!
-
-  
-  //@IBOutlet weak var questionInputText: UITextField!
   
   @IBOutlet weak var tableView: UITableView!
   

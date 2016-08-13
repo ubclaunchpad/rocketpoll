@@ -112,7 +112,7 @@ enum alertMessages {
   static let confirmName = "Pleaes confirm that your name is "
   static let nameMessage = "You will not be able to change your name at a later time"
   static let confirmation = "Confirmation"
-  static let confirmationMessage = "Are you sure you want to delete your quesiton?"
+  static let confirmationMessage = "Are you sure you want to delete your question?"
   static let duplicateAnswer = "One or more of the answers are the same"
   static let emptyAnswer = "Please fill in all answer fields"
   static let noCorrectAnswer = "Please select a correct answer"
