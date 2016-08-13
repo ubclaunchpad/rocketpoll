@@ -136,6 +136,13 @@ enum cellDimensions {
   static let pollAdminCellHeight:CGFloat = 58
 }
 
+enum navigationBarAttributes {
+  static let textColor = UIColor(red: 82/255.0, green: 82/255.0, blue: 82/255.0, alpha: 1)
+  static let backgroundColor = UIColor(red: 253/255.0, green: 253/255.0, blue: 253/255.0, alpha: 1)
+  static let titleFont = UIFont(name: "Roboto-Medium", size: 14)
+  static let buttonFont = UIFont(name: "Roboto-Medium", size: 15)
+}
+
 /**
  A log level of debug will print out all levels above it.
  So a log level of WARN will print out WARN, ERROR, and TEST

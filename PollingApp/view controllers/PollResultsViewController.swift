@@ -22,6 +22,7 @@ class PollResultsViewController: UIViewController {
   var questionText = ""
   var questionID:QuestionID = ""
   var answerIDs: [AnswerID] = []
+  var fromPollUser: Bool = false
   
   
   var container: PollResultsViewContainer?
@@ -29,17 +30,15 @@ class PollResultsViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     addContainerToVC()
+    if fromPollUser {
+      setNavigationBar()
+    }
+    self.title = "RESULTS"
   }
   
   func addContainerToVC() {
     container = PollResultsViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
     view.addSubview(container!)
-    
-    if (currentUser == author){
-      container?.makeDeleteButtonVisisble()
-    }else{
-      container?.hideDeleteButton()
-    }
     
     //TODO:IPA-125
     ModelInterface.sharedInstance.processAnswerData(answerIDs) { (listofAllAnswers) in
@@ -64,6 +63,15 @@ class PollResultsViewController: UIViewController {
       }
       
     }
+  }
+  
+  func setNavigationBar() {
+    let backItem = UIBarButtonItem(image: UIImage(named: "Back"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PollResultsViewController.popSegue))
+    navigationItem.leftBarButtonItem = backItem
+  }
+  
+  func popSegue() {
+    self.navigationController?.popToViewController((self.navigationController?.viewControllers.first)!, animated: true)
   }
   
   func fillInTheFields (listofAllAnswers: [Answer]) {

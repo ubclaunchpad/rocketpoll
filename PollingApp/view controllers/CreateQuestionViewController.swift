@@ -29,9 +29,16 @@ class CreateQuestionViewController: UIViewController{
     NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CreateQuestionViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
     
     addContainerToVC()
+    setNavigationBar()
     
     stringFromQuestionDuration(1, endTime: NSDate(), setButtonTitle: (container?.setEndTimerButtonTitle)!)
     container?.endTimerLabel.titleLabel?.textAlignment = NSTextAlignment.Center
+  }
+  
+  func setNavigationBar() {
+    self.title = "ASK"
+    let submitButton = UIBarButtonItem(title: "Submit", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CreateQuestionViewController.submitQuestion))
+    self.navigationItem.rightBarButtonItem = submitButton
   }
   
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -41,6 +48,74 @@ class CreateQuestionViewController: UIViewController{
       })
       self.container!.hideTimerView()
     }
+  }
+  
+  func submitQuestion() {
+    let question = container?.questionInputText.text
+    
+    
+    guard question != "" else {
+      showAlertController(alertMessages.emptyQuestions)
+      return
+    }
+    guard !StringUtil.containsBadCharacters(question!) else {
+      showAlertController(alertMessages.symbolQuestion)
+      return
+    }
+    
+    let answers: [AnswerText] = (container?.answers)!
+    for answer in answers {
+      guard answer != "" else {
+        showAlertController(alertMessages.emptyAnswer)
+        return
+      }
+    }
+    for answer in answers {
+      guard !StringUtil.containsBadCharacters(answer) else {
+        showAlertController(alertMessages.symbolAnswer)
+        return
+      }
+    }
+    guard StringUtil.uniqueString(answers) == true else {
+      showAlertController(alertMessages.duplicateAnswer)
+      return
+    }
+    guard container?.correctAnswer != -1 else {
+      showAlertController(alertMessages.noCorrectAnswer)
+      return
+    }
+    
+    container?.time = (container?.currentTimeAway)!
+    
+    submitButtonPressed(question!,answerArray: answers, correctAnswer: (container?.correctAnswer)!, questionDuration: (container?.time)!)
+  }
+  
+  func submitButtonPressed(question: QuestionText, answerArray: [AnswerID], correctAnswer: Int, questionDuration: Int){
+    //TODO: move answerID generation in createNewQuestion(_)
+    let questionObject = ModelInterface.sharedInstance.createNewQuestion(question, questionDuration: questionDuration)
+    let answerIDs =  ModelInterface.sharedInstance.createAnswerIDs(
+      questionObject.QID, answerText: answerArray)
+    questionObject.AIDS = answerIDs
+    ModelInterface.sharedInstance.setCorrectAnswer(answerIDs[correctAnswer], isCorrectAnswer: true);
+    
+    self.sendAIDS = answerIDs
+    self.sendQuestionText = question
+    self.sendQID = questionObject.QID
+    self.sendTime = questionObject.endTimestamp
+    let nextRoom = ModelInterface.sharedInstance.segueToAdminScreen()
+    performSegueWithIdentifier(nextRoom, sender: self)
+  }
+  
+  func backButtonPressed() {
+    let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
+    performSegueWithIdentifier(nextRoom, sender: self)
+  }
+  
+  func showAlertController(title: String) {
+    let alert = UIAlertController(title: "\(title)", message:"", preferredStyle: UIAlertControllerStyle.Alert)
+    alert.addAction(UIAlertAction(title: "\(alertMessages.confirm)",
+      style: UIAlertActionStyle.Default, handler: nil))
+    self.presentViewController(alert, animated: true, completion: nil)
   }
   
   //MARK: - Helper Functions
@@ -92,39 +167,12 @@ class CreateQuestionViewController: UIViewController{
       viewController.questionText = sendQuestionText
       viewController.questionID = sendQID
       viewController.timerQuestion = sendTime
+      viewController.fromCreate = true
     }
   }
 }
 
 extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
-  
-  func submitButtonPressed(question: QuestionText, answerArray: [AnswerID], correctAnswer: Int, questionDuration: Int){
-    //TODO: move answerID generation in createNewQuestion(_)
-    let questionObject = ModelInterface.sharedInstance.createNewQuestion(question, questionDuration: questionDuration)
-    let answerIDs =  ModelInterface.sharedInstance.createAnswerIDs(
-      questionObject.QID, answerText: answerArray)
-    questionObject.AIDS = answerIDs
-    ModelInterface.sharedInstance.setCorrectAnswer(answerIDs[correctAnswer], isCorrectAnswer: true);
-    
-    self.sendAIDS = answerIDs
-    self.sendQuestionText = question
-    self.sendQID = questionObject.QID
-    self.sendTime = questionObject.endTimestamp
-    let nextRoom = ModelInterface.sharedInstance.segueToAdminScreen()
-    performSegueWithIdentifier(nextRoom, sender: self)
-  }
-  
-  func backButtonPressed() {
-    let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
-    performSegueWithIdentifier(nextRoom, sender: self)
-  }
-  
-  func showAlertController(title: String) {
-    let alert = UIAlertController(title: "\(title)", message:"", preferredStyle: UIAlertControllerStyle.Alert)
-    alert.addAction(UIAlertAction(title: "\(alertMessages.confirm)",
-      style: UIAlertActionStyle.Default, handler: nil))
-    self.presentViewController(alert, animated: true, completion: nil)
-  }
   
   //TODO: IPA-120
   
