@@ -35,6 +35,7 @@ final class PollUserViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setup()
+    self.title = "VOTE"
   }
   
   func setup() {
