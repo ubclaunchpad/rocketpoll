@@ -21,8 +21,7 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
   private var answers:[AnswerText] = []
   private var correctAnswers:[AnswerText] = []
   private var tallyIDDictionary = [AnswerText:String]()
-  private var totalNumberOfAnswers: Int = 0;
-  private var question:QuestionText = ""
+  private var totalNumberOfAnswers: Int = 0
   @IBOutlet weak var timer: UILabel!
   @IBOutlet weak var AnswerTable: UITableView!
   @IBOutlet weak var questionTextView: UITextView!
@@ -65,7 +64,6 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
   }
   
   func setQuestionText(questionText: String) {
-    question = questionText
     questionTextView.text = questionText
   }
   
