@@ -35,6 +35,7 @@ final class PollUserViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setup()
+    setNavigationBar()
     self.title = "VOTE"
   }
   
@@ -57,6 +58,13 @@ final class PollUserViewController: UIViewController {
     }
     self.setCountdown(self.questionID)
     
+  }
+  
+  func setNavigationBar() {
+    let backItem = UIBarButtonItem(image: UIImage(named: "Back"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PollAdminViewController.popSegue))
+    navigationItem.leftBarButtonItem?.target = self
+    navigationItem.leftBarButtonItem?.action = #selector(PollUserViewController.backButtonPushed)
+//    navigationItem.leftBarButtonItem = backItem
   }
   
   func fillInTheFields (listofAllAnswers:[Answer]) {
@@ -126,6 +134,11 @@ final class PollUserViewController: UIViewController {
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
+  }
+  override func didMoveToParentViewController(parent: UIViewController?) {
+    if parent == nil {
+      backButtonPushed()
+    }
   }
 }
 
