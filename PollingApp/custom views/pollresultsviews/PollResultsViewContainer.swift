@@ -15,7 +15,6 @@ protocol PollResultsViewContainerDelegate {
 }
 class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
   
-  @IBOutlet weak var backButton: UIButton!
   @IBOutlet weak var resultsTableView: UITableView!
   @IBOutlet weak var totalAnswersLabel: UILabel!
   
@@ -35,11 +34,6 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     view.resultsTableView.dataSource = view
     view.resultsTableView.allowsSelection = false
     return view
-  }
-  
-  
-  @IBAction func backButtonPressed(sender: AnyObject) {
-    delegate?.goBackToCampaign()
   }
   
   //TODO:IPA-132 Move this logic to VC or model
