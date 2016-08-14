@@ -72,9 +72,9 @@ class PollResultsTableViewCell: UITableViewCell{
     if isYourAnswer {
       barGraph.backgroundColor = colors.graphBackgroundRed
       selectedCorrectly()
-      if frame.size.width > self.bounds.width - 26 - 34 {
+//      if frame.size.width > self.bounds.width - 26 - 34 {
         setCorrectAnswerSelected()
-      }
+//      }
     } else {
       barGraph.backgroundColor = colors.graphBackgroundGrey
     }
