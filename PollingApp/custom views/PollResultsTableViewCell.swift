@@ -39,25 +39,36 @@ class PollResultsTableViewCell: UITableViewCell{
   func setResults (result:Double){
     resultsLabel.text = ("\(result)%")
   }
-  func SetTallyLabel (tally: String) {
-    self.tallyNum.text = tally
+  func SetTallyLabel (tally: Int) {
+    self.tallyNum.text = StringUtil.fillInString(tallyString, time: tally)
   }
-  func setBarGraph (result:Double) {
+  func setBarGraph (result:Double, isYourAnswer: Bool) {
     
     for view in self.subviews{
-      if (view.backgroundColor == colors.barGraphColour) {
+      if (view.backgroundColor == colors.graphBackgroundRed || view.backgroundColor == colors.graphBackgroundGrey) {
         view.removeFromSuperview()
       }
+    }
+    
+    guard result > 0 else {
+      return
     }
     
     let percentage = CGFloat(result/100);
     var frame: CGRect = self.frame
     
-    frame.size.width = frame.size.width * percentage
+    frame.size.width = frame.size.width * percentage - 20
+    frame.origin.x = 10
     frame.origin.y = self.frame.size.height - frame.size.height
     let barGraph: UIView = UIView(frame: frame)
-    barGraph.backgroundColor = colors.barGraphColour
-    self.addSubview(barGraph)
-    
+    barGraph.layer.cornerRadius = 12
+    if isYourAnswer {
+      barGraph.backgroundColor = colors.graphBackgroundRed
+    } else {
+      barGraph.backgroundColor = colors.graphBackgroundGrey
+    }
+    print(self.subviews)
+    self.insertSubview(barGraph, atIndex: 0)
+//      self.addSubview(barGraph)
   }
 }
