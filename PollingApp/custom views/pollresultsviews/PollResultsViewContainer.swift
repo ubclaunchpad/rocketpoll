@@ -57,21 +57,18 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     
     cell.setAnswerText(answer)
     
-    if yourAnswer == "" {
-      if(answer == correctAnswer){
-        cell.changeCorrectAnswerColor()
-      }
-    } else {
-      if yourAnswer == correctAnswer {
-        cell.changeCorrectAnswerColor()
-      }
+    if answer == correctAnswer {
+      cell.setCorrectAnswer()
     }
+    
     
     if(totalNumberOfAnswers != 0){
       let results:Double = MathUtil.convertTallyResultsToPercentage(Double(numberOfResponsesPerAnswer[indexPath.row]), denominator: Double(totalNumberOfAnswers))
-      cell.setResults(results)
       cell.setBarGraph(results, isYourAnswer: yourAnswer == answer)
-      cell.SetTallyLabel(numberOfResponsesPerAnswer[indexPath.row])
+      cell.SetTallyLabel(numberOfResponsesPerAnswer[indexPath.row], result: results)
+    } else {
+      cell.setBarGraph(0, isYourAnswer: yourAnswer == answer)
+      cell.SetTallyLabel(0, result: 0)
     }
     
     

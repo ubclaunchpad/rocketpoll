@@ -14,7 +14,7 @@ class PollResultsTableViewCell: UITableViewCell{
   @IBOutlet weak var incorrectImage: UIImageView!
   
   @IBOutlet weak var resultsLabel: UILabel!
-  let CorrectImage: UIImage? = UIImage(named: imageNames.setCorrect)
+  
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
@@ -31,16 +31,22 @@ class PollResultsTableViewCell: UITableViewCell{
     answerLabel.text = answer
   }
   
-  func changeCorrectAnswerColor (){
-    self.incorrectImage.image = CorrectImage
+  func setCorrectAnswer(){
+    self.incorrectImage.image = images.correct
+  }
+  
+  func setCorrectAnswerSelected() {
+    self.incorrectImage.image = images.correctSelected
+  }
+  
+  func selectedCorrectly() {
+    answerLabel.textColor = UIColor.whiteColor()
+    tallyNum.textColor = UIColor.whiteColor()
   }
   
   //IPA-132
-  func setResults (result:Double){
-    resultsLabel.text = ("\(result)%")
-  }
-  func SetTallyLabel (tally: Int) {
-    self.tallyNum.text = StringUtil.fillInString(tallyString, time: tally)
+  func SetTallyLabel (tally: Int, result: Double) {
+    self.tallyNum.text = "\(StringUtil.fillInString(tallyString, time: tally))  |  \(result)%"
   }
   func setBarGraph (result:Double, isYourAnswer: Bool) {
     
@@ -58,17 +64,20 @@ class PollResultsTableViewCell: UITableViewCell{
     var frame: CGRect = self.frame
     
     frame.size.width = frame.size.width * percentage - 20
+    frame.size.height = frame.size.height - 6
     frame.origin.x = 10
-    frame.origin.y = self.frame.size.height - frame.size.height
+    frame.origin.y = 1
     let barGraph: UIView = UIView(frame: frame)
     barGraph.layer.cornerRadius = 12
     if isYourAnswer {
       barGraph.backgroundColor = colors.graphBackgroundRed
+      selectedCorrectly()
+      if frame.size.width > self.bounds.width - 26 - 34 {
+        setCorrectAnswerSelected()
+      }
     } else {
       barGraph.backgroundColor = colors.graphBackgroundGrey
     }
-    print(self.subviews)
-    self.insertSubview(barGraph, atIndex: 0)
-//      self.addSubview(barGraph)
+    self.subviews.first?.insertSubview(barGraph, atIndex: 2)
   }
 }

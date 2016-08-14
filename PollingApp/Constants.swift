@@ -34,6 +34,11 @@ let setTimerValues:[Int] = [1, -1, 5, -5, 15, -15, 60, -60]
 
 let calendar = NSCalendar.currentCalendar()
 
+enum images {
+  static let correct = UIImage(named: imageNames.setCorrect)
+  static let correctSelected = UIImage(named: imageNames.setCorrectSelected)
+}
+
 enum colors {
   static let green = UIColor(red: 28/255.0, green: 165/255.0, blue: 122/255.0, alpha: 1)
   static let lightGreen = UIColor(red: 226/255.0, green: 250/255.0, blue: 218/255.0, alpha: 1)
@@ -134,6 +139,7 @@ enum correct {
 enum imageNames {
   static let setIncorrect = "SetIncorrect"
   static let setCorrect = "SetCorrect"
+  static let setCorrectSelected = "SetCorrectSelected"
 }
 
 enum cellDimensions {
