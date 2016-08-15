@@ -8,11 +8,15 @@
 
 import UIKit
 
-class WhoVotedForContainerView: UIView {
+protocol WhoVotedForViewContainerDelegate {
 
+}
+class WhoVotedForContainer: UIView {
 
-  class func instancefromNib(frame: CGRect) -> WhoVotedForContainerView {
-    let view = UINib(nibName: "WhoVotedForContainerView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! WhoVotedForContainerView
+  var delegate: WhoVotedForViewContainerDelegate?
+
+  class func instanceFromNib(frame: CGRect) -> WhoVotedForContainer {
+    let view = UINib(nibName: "WhoVotedForContainerView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! WhoVotedForContainer
     view.frame = frame
     return view
   }

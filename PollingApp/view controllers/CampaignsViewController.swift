@@ -169,6 +169,7 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
     let nextRoom = ModelInterface.sharedInstance.segueToResultsScreen()
     performSegueWithIdentifier(nextRoom, sender: self)
   }
+  
   func refreshQuestions() {
     listOfYourQuestions.removeAll()
     listOfAnsweredQuestions.removeAll()

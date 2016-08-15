@@ -78,9 +78,9 @@
 		D0B241CA1D10F9E8006DD380 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B241C91D10F9E8006DD380 /* Answer.swift */; };
 		D0BF325D1D5FD75500EFF17A /* WhoVotedForViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BF325C1D5FD75500EFF17A /* WhoVotedForViewController.swift */; };
 		D0BF32601D5FD93F00EFF17A /* WhoVotedForContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BF325F1D5FD93F00EFF17A /* WhoVotedForContainer.swift */; };
-		D0BF32621D5FDBA000EFF17A /* WhoVotedForContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0BF32611D5FDBA000EFF17A /* WhoVotedForContainer.xib */; };
 		D0E32CE91D3F374800E2CE71 /* QuestionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0E32CE81D3F374800E2CE71 /* QuestionViewCell.xib */; };
 		D0E32CEB1D3F37AD00E2CE71 /* QuestionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E32CEA1D3F37AD00E2CE71 /* QuestionViewCell.swift */; };
+		D0F764C01D61838400755D50 /* WhoVotedForContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F764BF1D61838400755D50 /* WhoVotedForContainer.xib */; };
 		D34296211C792F9C00C33920 /* PollResultsViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D342961E1C792F9C00C33920 /* PollResultsViewContainer.swift */; };
 		D34296261C79308900C33920 /* FirebaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34296251C79308900C33920 /* FirebaseData.swift */; };
 		D3D4593B1C6FE626000ABD57 /* CreateQuestionContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D4593A1C6FE626000ABD57 /* CreateQuestionContainerView.swift */; };
@@ -190,9 +190,9 @@
 		D0B241C91D10F9E8006DD380 /* Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
 		D0BF325C1D5FD75500EFF17A /* WhoVotedForViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhoVotedForViewController.swift; sourceTree = "<group>"; };
 		D0BF325F1D5FD93F00EFF17A /* WhoVotedForContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhoVotedForContainer.swift; sourceTree = "<group>"; };
-		D0BF32611D5FDBA000EFF17A /* WhoVotedForContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhoVotedForContainer.xib; sourceTree = "<group>"; };
 		D0E32CE81D3F374800E2CE71 /* QuestionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionViewCell.xib; sourceTree = "<group>"; };
 		D0E32CEA1D3F37AD00E2CE71 /* QuestionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewCell.swift; sourceTree = "<group>"; };
+		D0F764BF1D61838400755D50 /* WhoVotedForContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhoVotedForContainer.xib; sourceTree = "<group>"; };
 		D342961E1C792F9C00C33920 /* PollResultsViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PollResultsViewContainer.swift; path = pollresultsviews/PollResultsViewContainer.swift; sourceTree = "<group>"; };
 		D34296251C79308900C33920 /* FirebaseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseData.swift; sourceTree = "<group>"; };
 		D3D4593A1C6FE626000ABD57 /* CreateQuestionContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateQuestionContainerView.swift; sourceTree = "<group>"; };
@@ -499,7 +499,7 @@
 			isa = PBXGroup;
 			children = (
 				D0BF325F1D5FD93F00EFF17A /* WhoVotedForContainer.swift */,
-				D0BF32611D5FDBA000EFF17A /* WhoVotedForContainer.xib */,
+				D0F764BF1D61838400755D50 /* WhoVotedForContainer.xib */,
 			);
 			name = Who_Voted_For_views;
 			sourceTree = "<group>";
@@ -676,7 +676,7 @@
 				52F864831D5E5C0000F5515D /* Roboto-Medium.ttf in Resources */,
 				76B28C221C66C84A008407EE /* Assets.xcassets in Resources */,
 				76B28C201C66C84A008407EE /* Main.storyboard in Resources */,
-				D0BF32621D5FDBA000EFF17A /* WhoVotedForContainer.xib in Resources */,
+				D0F764C01D61838400755D50 /* WhoVotedForContainer.xib in Resources */,
 				6ECA03751CFA510100FF7B4C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
