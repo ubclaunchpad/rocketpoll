@@ -64,10 +64,10 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     
     if(totalNumberOfAnswers != 0){
       let results:Double = MathUtil.convertTallyResultsToPercentage(Double(numberOfResponsesPerAnswer[indexPath.row]), denominator: Double(totalNumberOfAnswers))
-      cell.setBarGraph(results, isYourAnswer: yourAnswer == answer)
+      cell.setBarGraph(results, isYourAnswer: yourAnswer == answer, isCorrect: correctAnswer == answer)
       cell.SetTallyLabel(numberOfResponsesPerAnswer[indexPath.row], result: results)
     } else {
-      cell.setBarGraph(0, isYourAnswer: yourAnswer == answer)
+      cell.setBarGraph(0, isYourAnswer: yourAnswer == answer, isCorrect: correctAnswer == answer)
       cell.SetTallyLabel(0, result: 0)
     }
     

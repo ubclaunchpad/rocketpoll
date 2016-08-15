@@ -48,7 +48,7 @@ class PollResultsTableViewCell: UITableViewCell{
   func SetTallyLabel (tally: Int, result: Double) {
     self.tallyNum.text = "\(StringUtil.fillInString(tallyString, time: tally))  |  \(result)%"
   }
-  func setBarGraph (result:Double, isYourAnswer: Bool) {
+  func setBarGraph (result:Double, isYourAnswer: Bool, isCorrect: Bool) {
     
     for view in self.subviews{
       if (view.backgroundColor == colors.graphBackgroundRed || view.backgroundColor == colors.graphBackgroundGrey) {
@@ -73,8 +73,9 @@ class PollResultsTableViewCell: UITableViewCell{
       barGraph.backgroundColor = colors.graphBackgroundRed
       selectedCorrectly()
 //      if frame.size.width > self.bounds.width - 26 - 34 {
+      if isYourAnswer && isCorrect {
         setCorrectAnswerSelected()
-//      }
+      }
     } else {
       barGraph.backgroundColor = colors.graphBackgroundGrey
     }
