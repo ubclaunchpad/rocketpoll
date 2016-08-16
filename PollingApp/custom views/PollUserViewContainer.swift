@@ -41,7 +41,7 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     return view
   }
   func setTotal(tally: Int) {
-    totalLabel.text = ("\(StringUtil.fillInString(tallyString, time: tally))")
+    totalLabel.text = ("\(StringUtil.fillInString(totalVotes, time: tally))")
   }
   
   func setAnswers(Answers: [AnswerText]) {
