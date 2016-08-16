@@ -69,6 +69,9 @@ class CampaignsViewController: UIViewController {
     let submitButton = UIBarButtonItem(title: "Ask", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CampaignsViewController.newQuestionSelected))
     self.navigationItem.rightBarButtonItem = submitButton
     
+    let refreshButton = UIBarButtonItem(image: UIImage(named: "Refresh"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CampaignsViewController.refreshQuestions))
+    self.navigationItem.leftBarButtonItem = refreshButton
+    
     let segment: UISegmentedControl = UISegmentedControl(items: ["Mine", "New", "Expired"])
     segment.sizeToFit()
     segment.addTarget(self, action: #selector(CampaignsViewController.segmentedControlValueChanged(_:)), forControlEvents:.ValueChanged)
