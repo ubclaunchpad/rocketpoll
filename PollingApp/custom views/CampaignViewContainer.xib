@@ -14,6 +14,7 @@
             <subviews>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXY-Pk-q1j">
                     <rect key="frame" x="214" y="234.5" width="172.5" height="41.5"/>
+                    <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                     <attributedString key="attributedText">
                         <fragment>
                             <string key="content">Oops no questions here.
@@ -32,7 +33,7 @@ But you can be the first!</string>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="moM-HW-6Dw" secondAttribute="trailing" id="BR4-9A-0MB"/>
                 <constraint firstItem="moM-HW-6Dw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="Jea-5v-Sz7"/>
