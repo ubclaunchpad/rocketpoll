@@ -24,8 +24,8 @@ var okayNameCharacters : Set<Character> =
 
 
 var launchpadEmail: String = "@ubclaunchpad.com"
-var numberOfAnswers: String = "Number of users that answered: %1%"
-var tallyString: String = "%1% total votes"
+var totalVotes: String = "%1% total votes"
+var tallyString: String = "%1% votes"
 
 var charactersToAvoid : [Character] =
   Array("#[]*".characters)
@@ -34,12 +34,19 @@ let setTimerValues:[Int] = [1, -1, 5, -5, 15, -15, 60, -60]
 
 let calendar = NSCalendar.currentCalendar()
 
+enum images {
+  static let correct = UIImage(named: imageNames.setCorrect)
+  static let correctSelected = UIImage(named: imageNames.setCorrectSelected)
+}
+
 enum colors {
   static let green = UIColor(red: 28/255.0, green: 165/255.0, blue: 122/255.0, alpha: 1)
   static let lightGreen = UIColor(red: 226/255.0, green: 250/255.0, blue: 218/255.0, alpha: 1)
   static let barGraphColour = UIColor(red: 0, green: 0, blue: 1, alpha: 0.5)
   static let textColor = UIColor(red: 98/255.0, green: 98/255.0, blue: 98/255.0, alpha: 1)
   static let backgroundColor = UIColor(red: 245/255.0, green: 245/255.0, blue: 245/255.0, alpha: 1)
+  static let graphBackgroundGrey = UIColor(red: 230/255.0, green: 230/255.0, blue: 230/255.0, alpha: 1)
+  static let graphBackgroundRed = UIColor(red: 255/255.0, green: 130/255.0, blue: 130/255.0, alpha: 1)
 }
 
 enum Segues {
@@ -134,6 +141,7 @@ enum correct {
 enum imageNames {
   static let setIncorrect = "SetIncorrect"
   static let setCorrect = "SetCorrect"
+  static let setCorrectSelected = "SetCorrectSelected"
 }
 
 enum cellDimensions {
