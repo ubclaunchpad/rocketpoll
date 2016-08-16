@@ -39,6 +39,9 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     view.frame = frame
     view.tableView.delegate = view
     view.tableView.dataSource = view
+    view.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+    view.tableView.backgroundColor = UIColor.clearColor()
+    view.tableView.opaque = false
     return view
   }
   
@@ -98,15 +101,12 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     }
     
     cell.setQuestionText( templistQuestions[indexPath.row].questionText)
-    cell.setAnsweredBackground(templistQuestions[indexPath.row].isExpired)
     
     cell.setAuthorText( templistQuestions[indexPath.row].author)
     
     cell.setExpiryMessage( templistQuestions[indexPath.row].expireMessage)
     cell.setFieldQuestion(templistQuestions[indexPath.row])
     
-    cell.hideResultsLabel(templistQuestions[indexPath.row].isExpired)
-  
     cell.backgroundColor = UIColor.clearColor()
     cell.backgroundImage.image = UIImage(named: "QuestionCell")!
     cell.selectionStyle = UITableViewCellSelectionStyle.None
@@ -140,9 +140,7 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
 }
 
 extension CampaignViewContainer: CampaignViewTableViewCellDelegate {
-  func resultsButtonSelected(question: Question) {
-    delegate?.resultsButtonSelected(question)
-  }
+  
   func questionSelected(question: Question) {
     delegate?.questionSelected(question)
   }

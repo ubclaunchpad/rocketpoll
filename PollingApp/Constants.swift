@@ -26,6 +26,7 @@ var okayNameCharacters : Set<Character> =
 var launchpadEmail: String = "@ubclaunchpad.com"
 var totalVotes: String = "%1% total votes"
 var tallyString: String = "%1% votes"
+var authorString: String = "asks %1%"
 
 var charactersToAvoid : [Character] =
   Array("#[]*".characters)
@@ -44,6 +45,8 @@ enum colors {
   static let lightGreen = UIColor(red: 226/255.0, green: 250/255.0, blue: 218/255.0, alpha: 1)
   static let barGraphColour = UIColor(red: 0, green: 0, blue: 1, alpha: 0.5)
   static let textColor = UIColor(red: 98/255.0, green: 98/255.0, blue: 98/255.0, alpha: 1)
+  static let authorColor = UIColor(red: 151/255.0, green: 151/255.0, blue: 151/255.0, alpha: 1)
+  static let lightAuthorColor = UIColor(red: 249/255.0, green: 249/255.0, blue: 249/255.0, alpha: 1)
   static let backgroundColor = UIColor(red: 245/255.0, green: 245/255.0, blue: 245/255.0, alpha: 1)
   static let graphBackgroundGrey = UIColor(red: 230/255.0, green: 230/255.0, blue: 230/255.0, alpha: 1)
   static let graphBackgroundRed = UIColor(red: 255/255.0, green: 130/255.0, blue: 130/255.0, alpha: 1)
@@ -79,16 +82,16 @@ enum UIDaysRemaining {
 }
 
 enum UITimeRemaining {
-  static let endedMoments = "Ended a couple moments ago"
-  static let endsMoments = "Ends in a couple moments"
-  static let endedMinutes = "Ended %1% minutes ago"
-  static let endsMinutes = "%1% minutes"
-  static let endedHour = "Ended %1% hour ago"
-  static let endsHour = "%1% hour"
-  static let endedHours = "Ended %1% hours ago"
-  static let endsHours = "%1% hours"
-  static let endsDays = "%1% days"
-  static let endsDay = "%1% day"
+  static let endedMoments = "ended moments ago"
+  static let endsMoments = "moments left"
+  static let endedMinutes = "ended %1% minutes ago"
+  static let endsMinutes = "%1% minutes left"
+  static let endedHour = "ended %1% hour ago"
+  static let endsHour = "%1% hour left"
+  static let endedHours = "ended %1% hours ago"
+  static let endsHours = "%1% hours left"
+  static let endsDays = "%1% days left"
+  static let endsDay = "%1% day left"
   static let timerMinutes = "Minutes: %1%"
   static let timerMinute = "Minute: %1%"
   static let timerHours = "Hours: %1%"
