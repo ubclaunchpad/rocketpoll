@@ -50,6 +50,7 @@ enum colors {
   static let backgroundColor = UIColor(red: 245/255.0, green: 245/255.0, blue: 245/255.0, alpha: 1)
   static let graphBackgroundGrey = UIColor(red: 230/255.0, green: 230/255.0, blue: 230/255.0, alpha: 1)
   static let graphBackgroundRed = UIColor(red: 255/255.0, green: 130/255.0, blue: 130/255.0, alpha: 1)
+  static let segmentedTint = UIColor(red: 116/255.0, green: 116/255.0, blue: 116/255.0, alpha: 1)
 }
 
 enum Segues {

@@ -29,6 +29,8 @@ class CampaignsViewController: UIViewController {
   
   var container: CampaignViewContainer?
   
+  var segmentedControlIndex: Int?
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     addContainerToVC()
@@ -66,6 +68,29 @@ class CampaignsViewController: UIViewController {
     self.title = "QUESTIONS"
     let submitButton = UIBarButtonItem(title: "Ask", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CampaignsViewController.newQuestionSelected))
     self.navigationItem.rightBarButtonItem = submitButton
+    
+    let segment: UISegmentedControl = UISegmentedControl(items: ["Mine", "New", "Expired"])
+    segment.sizeToFit()
+    segment.addTarget(self, action: #selector(CampaignsViewController.segmentedControlValueChanged(_:)), forControlEvents:.ValueChanged)
+    segment.tintColor = colors.segmentedTint
+    segment.selectedSegmentIndex = 0;
+    segmentedControlIndex = segment.selectedSegmentIndex
+    segment.setTitleTextAttributes([NSFontAttributeName: UIFont(name:"Roboto-Regular", size: 13)!],
+                                   forState: UIControlState.Normal)
+    self.navigationItem.titleView = segment
+  }
+  
+  func segmentedControlValueChanged(segment: UISegmentedControl) {
+    switch segment.selectedSegmentIndex {
+    case 0:
+      container?.setTableCells(listOfYourQuestions)
+    case 1:
+      container?.setTableCells(listOfUnansweredQuestions + listOfUnansweredQuestions)
+    case 2:
+      container?.setTableCells(listOfExpiredQuestions)
+    default: break
+    }
+    container?.tableView.reloadData()
   }
   
   func fillInTheFields (listofAllQuestions:[Question], listOfAnsweredQIDs: [QuestionID] ) {
@@ -99,10 +124,16 @@ class CampaignsViewController: UIViewController {
     }
     
     self.container?.delegate = self
-    self.container?.setYourQuestions(listOfYourQuestions)
-    self.container?.setAnsweredQuestion(listOfAnsweredQuestions)
-    self.container?.setUnansweredQuestions(listOfUnansweredQuestions)
-    self.container?.setExpiredQuestions(listOfExpiredQuestions)
+    
+    switch segmentedControlIndex! {
+    case 0:
+      container?.setTableCells(listOfYourQuestions)
+    case 1:
+      container?.setTableCells(listOfUnansweredQuestions + listOfUnansweredQuestions)
+    case 2:
+      container?.setTableCells(listOfExpiredQuestions)
+    default: break
+    }
     self.container?.tableView.reloadData()
   }
   
