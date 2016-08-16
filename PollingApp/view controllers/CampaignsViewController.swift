@@ -132,6 +132,7 @@ class CampaignsViewController: UIViewController {
       container?.setTableCells(listOfExpiredQuestions)
     default: break
     }
+    container?.answeredQuestions = listOfAnsweredQIDs
     self.container?.tableView.reloadData()
   }
   

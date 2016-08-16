@@ -20,6 +20,8 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var emptyLabel: UILabel!
   
+  var answeredQuestions: [QuestionID]?
+  
   @IBAction func refresh(sender: AnyObject) {
     delegate?.refreshQuestions()
   }
@@ -71,7 +73,7 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     
     cell.backgroundColor = UIColor.clearColor()
     cell.backgroundImage.image = UIImage(named: "QuestionCell")!
-    cell.setAnsweredBackground(questionCells[indexPath.row].isExpired)
+    cell.setAnsweredBackground(answeredQuestions!.contains(questionCells[indexPath.row].QID))
 
     cell.selectionStyle = UITableViewCellSelectionStyle.None
     
