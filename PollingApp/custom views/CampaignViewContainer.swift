@@ -66,12 +66,13 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     cell.setQuestionText( questionCells[indexPath.row].questionText)
     
     cell.setAuthorText( questionCells[indexPath.row].author)
-    
     cell.setExpiryMessage( questionCells[indexPath.row].expireMessage)
     cell.setFieldQuestion(questionCells[indexPath.row])
     
     cell.backgroundColor = UIColor.clearColor()
     cell.backgroundImage.image = UIImage(named: "QuestionCell")!
+    cell.setAnsweredBackground(questionCells[indexPath.row].isExpired)
+
     cell.selectionStyle = UITableViewCellSelectionStyle.None
     
     return cell

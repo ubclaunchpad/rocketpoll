@@ -63,4 +63,12 @@ class CampaignViewTableViewCell: UITableViewCell {
     
   }
   
+  func setAnsweredBackground(isAnswered: Bool) {
+    if isAnswered {
+      backgroundImage.image = UIImage(named: "QuestionCellSelected")!
+    } else {
+      backgroundImage.image = UIImage(named: "QuestionCell")!
+    }
+  }
+  
 }
