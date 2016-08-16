@@ -132,7 +132,7 @@ class CampaignsViewController: UIViewController {
     case 0:
       container?.setTableCells(listOfYourQuestions)
     case 1:
-      container?.setTableCells(listOfUnansweredQuestions + listOfUnansweredQuestions)
+      container?.setTableCells(listOfUnansweredQuestions + listOfAnsweredQuestions)
     case 2:
       container?.setTableCells(listOfExpiredQuestions)
     default: break
