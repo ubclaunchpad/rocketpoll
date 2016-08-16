@@ -64,7 +64,7 @@ class CampaignsViewController: UIViewController {
   
   func setNavigationBar() {
     self.title = "QUESTIONS"
-    let submitButton = UIBarButtonItem(title: "Add", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CampaignsViewController.newQuestionSelected))
+    let submitButton = UIBarButtonItem(title: "Ask", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CampaignsViewController.newQuestionSelected))
     self.navigationItem.rightBarButtonItem = submitButton
   }
   

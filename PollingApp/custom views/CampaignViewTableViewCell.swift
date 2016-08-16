@@ -21,6 +21,7 @@ class CampaignViewTableViewCell: UITableViewCell {
   @IBOutlet weak var button: UIButton!
   @IBOutlet weak var resultsButton: UIButton!
   @IBOutlet weak var expiry: UILabel!
+  @IBOutlet weak var backgroundImage: UIImageView!
   
   private var question:Question?
   

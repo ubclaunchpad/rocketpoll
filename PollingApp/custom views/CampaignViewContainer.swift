@@ -107,6 +107,10 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     
     cell.hideResultsLabel(templistQuestions[indexPath.row].isExpired)
   
+    cell.backgroundColor = UIColor.clearColor()
+    cell.backgroundImage.image = UIImage(named: "QuestionCell")!
+    cell.selectionStyle = UITableViewCellSelectionStyle.None
+    
     return cell
   }
   
@@ -123,7 +127,7 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return 90
+    return 84
   }
   
   func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
