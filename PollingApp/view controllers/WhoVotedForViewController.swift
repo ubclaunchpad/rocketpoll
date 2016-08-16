@@ -14,7 +14,8 @@ import Foundation
 class WhoVotedForViewController: UIViewController {
   
   private var container: WhoVotedForContainer?
-  
+  private var selectedAnswer:Answer?
+  private var questionText:QuestionText?
   override func viewDidLoad() {
     super.viewDidLoad()
     addContainerToVC()

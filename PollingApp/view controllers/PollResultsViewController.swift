@@ -96,12 +96,20 @@ class PollResultsViewController: UIViewController {
     }
     
   }
-  
   func deleteQuestion(){
     ModelInterface.sharedInstance.stopTimer(questionID)
     ModelInterface.sharedInstance.removeQuestion(questionID)
     let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
     performSegueWithIdentifier(nextRoom, sender: self)
+  }
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if (segue.identifier ==  ModelInterface.sharedInstance.segueToWhoVotedForVCFromResult()) {
+      
+      let viewController:WhoVotedForViewController = segue.destinationViewController as! WhoVotedForViewController
+      
+        
+    }
   }
 }
 
