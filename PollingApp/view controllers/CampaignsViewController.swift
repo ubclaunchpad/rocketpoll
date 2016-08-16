@@ -105,24 +105,19 @@ class CampaignsViewController: UIViewController {
     
     let size = listofAllQuestions.count
     for i in 0 ..< size  {
-      if (listofAllQuestions[i].author == currentUser) {
-        listOfYourQuestions.append(listofAllQuestions[i])
-      }
-      if (listOfAnsweredQIDs.contains(listofAllQuestions[i].QID)) {
-        listOfAnsweredQuestions.append(listofAllQuestions[i])
-      }
       let tempQuestion = DateUtil.setExpirationDate(listofAllQuestions[i])
       
-      if (!tempQuestion.isExpired &&
-        !listOfYourQuestions.contains(tempQuestion) &&
-        !listOfAnsweredQuestions.contains(tempQuestion)) {
-        listOfUnansweredQuestions.append(tempQuestion)
-      }
-      
-      if (tempQuestion.isExpired &&
-        !listOfYourQuestions.contains(tempQuestion) &&
-        !listOfAnsweredQuestions.contains(tempQuestion)) {
+      if (listofAllQuestions[i].author == currentUser) {
+        listOfYourQuestions.append(listofAllQuestions[i])
+      } else if tempQuestion.isExpired {
         listOfExpiredQuestions.append(tempQuestion)
+      } else {
+        if (listOfAnsweredQIDs.contains(listofAllQuestions[i].QID)) {
+          listOfAnsweredQuestions.append(listofAllQuestions[i])
+        } else if (!listOfYourQuestions.contains(tempQuestion) &&
+          !listOfAnsweredQuestions.contains(tempQuestion)) {
+          listOfUnansweredQuestions.append(tempQuestion)
+        }
       }
     }
     
