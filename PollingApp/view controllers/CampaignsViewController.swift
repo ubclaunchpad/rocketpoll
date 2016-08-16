@@ -29,7 +29,7 @@ class CampaignsViewController: UIViewController {
   
   var container: CampaignViewContainer?
   
-  var segmentedControlIndex: Int?
+  var segmentedControlIndex: Int = 0
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -73,8 +73,7 @@ class CampaignsViewController: UIViewController {
     segment.sizeToFit()
     segment.addTarget(self, action: #selector(CampaignsViewController.segmentedControlValueChanged(_:)), forControlEvents:.ValueChanged)
     segment.tintColor = colors.segmentedTint
-    segment.selectedSegmentIndex = 0;
-    segmentedControlIndex = segment.selectedSegmentIndex
+    segment.selectedSegmentIndex = segmentedControlIndex
     segment.setTitleTextAttributes([NSFontAttributeName: UIFont(name:"Roboto-Regular", size: 13)!],
                                    forState: UIControlState.Normal)
     self.navigationItem.titleView = segment
@@ -90,6 +89,7 @@ class CampaignsViewController: UIViewController {
       container?.setTableCells(listOfExpiredQuestions)
     default: break
     }
+    segmentedControlIndex = segment.selectedSegmentIndex
     container?.tableView.reloadData()
   }
   
@@ -125,7 +125,7 @@ class CampaignsViewController: UIViewController {
     
     self.container?.delegate = self
     
-    switch segmentedControlIndex! {
+    switch segmentedControlIndex {
     case 0:
       container?.setTableCells(listOfYourQuestions)
     case 1:

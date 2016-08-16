@@ -18,15 +18,11 @@ protocol CampaignViewContainerDelegate {
 class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
   
   @IBOutlet weak var tableView: UITableView!
-  @IBOutlet weak var roomName: UILabel!
+  @IBOutlet weak var emptyLabel: UILabel!
   
   @IBAction func refresh(sender: AnyObject) {
     delegate?.refreshQuestions()
   }
-  private var unansweredQuestions:[Question] = []
-  private var expiredQuestions:[Question] = []
-  private var yourQuestions:[Question] = []
-  private var answeredQuestions:[Question] = []
   
   var delegate: CampaignViewContainerDelegate?
   
@@ -44,9 +40,14 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     view.tableView.opaque = false
     return view
   }
-
+  
   func setTableCells(questions: [Question]) {
     self.questionCells = questions
+    if questions.isEmpty {
+      emptyLabel.hidden = false
+    } else {
+      emptyLabel.hidden = true
+    }
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

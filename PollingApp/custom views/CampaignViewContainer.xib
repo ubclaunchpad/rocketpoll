@@ -3,7 +3,13 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CampaignViewContainer" customModule="PollingApp" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -11,6 +17,14 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXY-Pk-q1j">
+                    <rect key="frame" x="214" y="236.5" width="172.5" height="37.5"/>
+                    <string key="text">Oops no questions here.
+But you can be the first!</string>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                    <color key="textColor" red="0.38431372549019605" green="0.38431372549019605" blue="0.38431372549019605" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="moM-HW-6Dw">
                     <rect key="frame" x="0.0" y="17" width="600" height="583"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -31,11 +45,14 @@
                 <constraint firstItem="oMa-om-J6Z" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="4wg-dZ-oL4"/>
                 <constraint firstAttribute="trailing" secondItem="moM-HW-6Dw" secondAttribute="trailing" id="BR4-9A-0MB"/>
                 <constraint firstItem="moM-HW-6Dw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="Jea-5v-Sz7"/>
+                <constraint firstItem="bXY-Pk-q1j" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Oy3-E4-Nhg"/>
+                <constraint firstItem="bXY-Pk-q1j" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" multiplier="0.85" id="iX7-ln-Qfa"/>
                 <constraint firstItem="oMa-om-J6Z" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="k3R-bZ-Sqh"/>
                 <constraint firstItem="moM-HW-6Dw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qyD-WL-Glv"/>
                 <constraint firstAttribute="bottom" secondItem="moM-HW-6Dw" secondAttribute="bottom" id="v3s-3j-RC5"/>
             </constraints>
             <connections>
+                <outlet property="emptyLabel" destination="bXY-Pk-q1j" id="0lw-Px-P3E"/>
                 <outlet property="tableView" destination="moM-HW-6Dw" id="n6Z-3d-EuQ"/>
             </connections>
             <point key="canvasLocation" x="201" y="613"/>
