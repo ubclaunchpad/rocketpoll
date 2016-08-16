@@ -204,7 +204,12 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
     listOfAnsweredQuestions.removeAll()
     listOfUnansweredQuestions.removeAll()
     listOfExpiredQuestions.removeAll()
-    addContainerToVC()
+    ModelInterface.sharedInstance.processQuestionData { (listofAllQuestions) in
+      ModelInterface.sharedInstance.getListOfQuestionsUserAnswered({ (listOfAnsweredQIDs) in
+        self.fillInTheFields(listofAllQuestions, listOfAnsweredQIDs:listOfAnsweredQIDs)
+      })
+      
+    }
   }
   
   

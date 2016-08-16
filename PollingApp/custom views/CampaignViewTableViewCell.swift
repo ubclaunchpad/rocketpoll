@@ -21,6 +21,7 @@ class CampaignViewTableViewCell: UITableViewCell {
   @IBOutlet weak var expiry: UILabel!
   @IBOutlet weak var backgroundImage: UIImageView!
   
+  var isAnswered: Bool = false
   private var question:Question?
   
   override func awakeFromNib() {
@@ -49,26 +50,19 @@ class CampaignViewTableViewCell: UITableViewCell {
   }
   
   override func setSelected(selected: Bool, animated: Bool) {
-    if !selected {
-      backgroundImage.image = UIImage(named: "QuestionCell")!
-      questionLabel.textColor = colors.textColor
-      author.textColor = colors.authorColor
-      expiry.textColor = colors.authorColor
-    } else {
+    if selected || isAnswered {
       backgroundImage.image = UIImage(named: "QuestionCellSelected")!
       questionLabel.textColor = UIColor.whiteColor()
       author.textColor = colors.lightAuthorColor
       expiry.textColor = colors.lightAuthorColor
+    } else {
+      backgroundImage.image = UIImage(named: "QuestionCell")!
+      questionLabel.textColor = colors.textColor
+      author.textColor = colors.authorColor
+      expiry.textColor = colors.authorColor
     }
     
   }
   
-  func setAnsweredBackground(isAnswered: Bool) {
-    if isAnswered {
-      backgroundImage.image = UIImage(named: "QuestionCellSelected")!
-    } else {
-      backgroundImage.image = UIImage(named: "QuestionCell")!
-    }
-  }
   
 }

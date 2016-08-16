@@ -73,7 +73,7 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     
     cell.backgroundColor = UIColor.clearColor()
     cell.backgroundImage.image = UIImage(named: "QuestionCell")!
-    cell.setAnsweredBackground(answeredQuestions!.contains(questionCells[indexPath.row].QID))
+    cell.isAnswered = answeredQuestions!.contains(questionCells[indexPath.row].QID)
 
     cell.selectionStyle = UITableViewCellSelectionStyle.None
     
