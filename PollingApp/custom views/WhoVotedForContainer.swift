@@ -16,7 +16,7 @@ class WhoVotedForContainer: UIView {
   var delegate: WhoVotedForViewContainerDelegate?
 
   class func instanceFromNib(frame: CGRect) -> WhoVotedForContainer {
-    let view = UINib(nibName: "WhoVotedForContainerView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! WhoVotedForContainer
+    let view = UINib(nibName: "WhoVotedForContainer", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! WhoVotedForContainer
     view.frame = frame
     return view
   }

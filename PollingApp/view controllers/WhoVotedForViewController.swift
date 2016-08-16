@@ -16,6 +16,7 @@ class WhoVotedForViewController: UIViewController {
   private var container: WhoVotedForContainer?
   
   override func viewDidLoad() {
+    super.viewDidLoad()
     addContainerToVC()
     Log.debug("loaded WhoVotedForCampaignViewController")
     

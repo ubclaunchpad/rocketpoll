@@ -57,6 +57,7 @@ class PollResultsViewController: UIViewController {
         self.container?.setCorrectAnswer(self.correctAnswer)
         self.container?.setNumberOfResponsesForAnswer(self.NumResponsesPerAnswer)
          self.container?.setYourAnswer(self.yourAnswerText)
+        self.container?.resultsTableView.allowsSelection = true
         self.container?.resultsTableView.reloadData()
         self.container?.setTotalNumberOfAnswers(self.totalNumberOfUserAnswers)
         
@@ -118,6 +119,12 @@ extension PollResultsViewController: PollResultsViewContainerDelegate {
       self.deleteQuestion()
     }))
     presentViewController(deleteAlert, animated: true, completion: nil)
+  }
+  
+  func segueToWhoVotedFor() {
+    let nextRoom = ModelInterface.sharedInstance.segueToWhoVotedForVCFromResult()
+    performSegueWithIdentifier(nextRoom, sender: self)
+
   }
 }
 

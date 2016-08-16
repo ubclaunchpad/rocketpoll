@@ -68,7 +68,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qdz-jp-vsx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1247" y="1056"/>
+            <point key="canvasLocation" x="739" y="908"/>
         </scene>
         <!--Created Questions View Controller-->
         <scene sceneID="ANJ-eQ-IZ3">
@@ -103,6 +103,7 @@
                     </view>
                     <connections>
                         <segue destination="LhR-Tj-MfX" kind="show" identifier="toQuestionsScreen" id="yYD-iH-uUR"/>
+                        <segue destination="WLG-Nj-Li8" kind="show" identifier="toWhoVotedForFromResults" id="ZV1-Rm-wkX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tjk-8g-2Nb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -145,6 +146,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="view" destination="sqT-LM-Uyr" id="qjK-pJ-1n0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7ga-Nu-JAI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -232,6 +236,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="z6b-mB-HqA"/>
         <segue reference="maC-cO-7EO"/>
+        <segue reference="7aD-oo-gWH"/>
         <segue reference="2ct-sD-9ap"/>
     </inferredMetricsTieBreakers>
 </document>

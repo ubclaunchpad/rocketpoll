@@ -12,6 +12,7 @@ import UIKit
 protocol PollResultsViewContainerDelegate {
   func goBackToCampaign()
   func presentConfirmationVaraible()
+  func segueToWhoVotedFor()
 }
 class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
   
@@ -107,4 +108,9 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
   func setNumberOfResponsesForAnswer (NumResponses:[Int]){
     numberOfResponsesPerAnswer = NumResponses
   }
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    print(answers[indexPath.row])
+    delegate?.segueToWhoVotedFor()
+  }
+  
 }
