@@ -40,11 +40,6 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     return view
   }
   
-  
-  //  @IBAction func backButtonPressed(sender: AnyObject) {
-  //    delegate?.goBackToCampaign()
-  //  }
-  
   //TODO:IPA-132 Move this logic to VC or model
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
