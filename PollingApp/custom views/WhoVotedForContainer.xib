@@ -24,9 +24,9 @@
                     <rect key="frame" x="8" y="57" width="580" height="68"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mWp-fj-vWo">
-                    <rect key="frame" x="28" y="81" width="30" height="19"/>
+                    <rect key="frame" x="28" y="81" width="550" height="19"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="30" id="V6V-gX-oTG"/>
+                        <constraint firstAttribute="width" constant="550" id="V6V-gX-oTG"/>
                         <constraint firstAttribute="height" constant="19" id="lhJ-Lo-jIp"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
@@ -60,15 +60,6 @@
                     <color key="textColor" red="0.40741573952879584" green="0.40741573952879584" blue="0.40741573952879584" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Users" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="maN-az-2n9">
-                    <rect key="frame" x="16" y="276" width="41" height="17"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="41" id="lg6-2q-P9R"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                    <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dDs-Zc-GHP">
                     <rect key="frame" x="16" y="293" width="562" height="299"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -76,6 +67,15 @@
                         <constraint firstAttribute="height" constant="299" id="Cbr-Qe-1Ah"/>
                     </constraints>
                 </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Users" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="maN-az-2n9">
+                    <rect key="frame" x="16" y="268" width="41" height="17"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="41" id="lg6-2q-P9R"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                    <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
@@ -101,13 +101,18 @@
                 <constraint firstItem="pbn-wz-Aoh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="nRk-cg-rQK"/>
                 <constraint firstItem="dDs-Zc-GHP" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-3" id="spF-jc-qNz"/>
                 <constraint firstItem="pbn-wz-Aoh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="tgA-6p-GaW"/>
-                <constraint firstItem="dDs-Zc-GHP" firstAttribute="top" secondItem="maN-az-2n9" secondAttribute="bottom" id="wOC-Ra-zp2"/>
+                <constraint firstItem="dDs-Zc-GHP" firstAttribute="top" secondItem="maN-az-2n9" secondAttribute="bottom" constant="8" id="wOC-Ra-zp2"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="ci7-hA-vEq"/>
                 </mask>
             </variation>
+            <connections>
+                <outlet property="TableOfUsers" destination="dDs-Zc-GHP" id="btK-PD-mZ2"/>
+                <outlet property="answerText" destination="caz-Ff-K4f" id="fIc-1L-AuX"/>
+                <outlet property="questionText" destination="mWp-fj-vWo" id="p1E-1g-6D0"/>
+            </connections>
         </view>
     </objects>
     <resources>

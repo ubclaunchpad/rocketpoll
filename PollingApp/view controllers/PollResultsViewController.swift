@@ -25,6 +25,11 @@ class PollResultsViewController: UIViewController {
   var fromPollUser: Bool = false
   
   
+  // Information to send
+  
+  var sendAnswer:Answer?
+  var sendQuestionText:QuestionText = ""
+  
   
   var container: PollResultsViewContainer?
   
@@ -101,8 +106,10 @@ class PollResultsViewController: UIViewController {
     if (segue.identifier ==  ModelInterface.sharedInstance.segueToWhoVotedForVCFromResult()) {
       
       let viewController:WhoVotedForViewController = segue.destinationViewController as! WhoVotedForViewController
-        
-        
+      
+      viewController.selectedAnswer = sendAnswer
+      viewController.questionText = questionText
+      
     }
   }
 }
@@ -124,9 +131,11 @@ extension PollResultsViewController: PollResultsViewContainerDelegate {
   }
   
   func segueToWhoVotedFor(selectedAnswer:Answer) {
+    sendAnswer = selectedAnswer
+    
     let nextRoom = ModelInterface.sharedInstance.segueToWhoVotedForVCFromResult()
     performSegueWithIdentifier(nextRoom, sender: self)
-
+    
   }
 }
 

@@ -14,8 +14,9 @@ import Foundation
 class WhoVotedForViewController: UIViewController {
   
   private var container: WhoVotedForContainer?
-  private var selectedAnswer:Answer?
-  private var questionText:QuestionText?
+  private var listOfUsers = [Author]()
+  var selectedAnswer:Answer?
+  var questionText:QuestionText?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -25,11 +26,19 @@ class WhoVotedForViewController: UIViewController {
   }
   
   func addContainerToVC() {
+    let answerText = selectedAnswer?.answerText
+    let AID = selectedAnswer?.AID
+    
     container = WhoVotedForContainer.instanceFromNib(
       CGRectMake(0, 0, view.bounds.width, view.bounds.height))
+    view.addSubview(self.container!)
     
-    container?.delegate = self
-    view.addSubview(container!)
+    ModelInterface.sharedInstance.getListOfUsersWhoVoteForGivenAnswer(AID!) { (listOfUsers) in
+      self.listOfUsers = listOfUsers
+      self.container?.delegate = self
+      self.container?.setTextForAnswerLabel(answerText!)
+      self.container?.setTextForQuestionLabel(self.questionText!)
+    }
   }
   
   override func didReceiveMemoryWarning() {

@@ -36,9 +36,9 @@ extension ModelInterface: AnswerModelProtocol {
     return answerIDS
   }
   
-  func processAnswerData(selectedAnswerIDs:[AnswerID],completionHandler: (listofAllAnswers: [Answer]) -> ()) {
+  func processAnswerData(selectedAnswerIDs:[AnswerID], completionHandler: (listofAllAnswers: [Answer]) -> ()) {
     
-    let ref =  FIRDatabase.database().reference();
+    let ref =  FIRDatabase.database().reference()
     ref.child("ANSWERS").child("AIDS").observeEventType(.Value, withBlock: { (snapshot) in
       let answerNodes = snapshot.value as! [String : AnyObject]
       let  sendAnswerData = self.parseAIDNodeAndItsChildren(answerNodes, selectedAnswerIDs: selectedAnswerIDs)
@@ -47,8 +47,32 @@ extension ModelInterface: AnswerModelProtocol {
     }) { (error) in
       Log.error(error.localizedDescription)
     }
-    
   }
+  
+  func getListOfUsersWhoVoteForGivenAnswer (answerID:AnswerID, completionHandler: (listOfUsers: [Author]) -> () ){
+    let ref = FIRDatabase.database().reference()
+    ref.child("ANSWERS/AIDS/\(answerID)/LISTOFUSERS").observeEventType(.Value, withBlock: { (snapshot) in
+      if (snapshot.value as? String) != nil {
+        let userNodes = snapshot.value as! [String : String]
+        let listOfUsers = self.parseUsers(userNodes)
+        completionHandler(listOfUsers: listOfUsers)
+      } else {
+        completionHandler(listOfUsers: [])
+      }
+      
+    }) { (error) in
+      Log.error(error.localizedDescription)
+    }
+  }
+  
+  func parseUsers(data:NSDictionary) -> [Author] {
+    var sendUsers = [Author]()
+    for (_, user) in data {
+      sendUsers.append(user as! Author)
+    }
+    return sendUsers
+  }
+  
   
   func findYourAnswer(questionID:QuestionID,completionHandler: (yourAnswer:AnswerID) -> ()) {
     let ref =  FIRDatabase.database().reference();
@@ -58,7 +82,6 @@ extension ModelInterface: AnswerModelProtocol {
         completionHandler(yourAnswer: answerNode)
       } else {
         completionHandler(yourAnswer:"")
-        
       }
       
     }) { (error) in
@@ -132,6 +155,18 @@ extension ModelInterface: AnswerModelProtocol {
     return true
   }
   
+  
+  func rememberUser(answerID: AnswerID) {
+    let child = [currentID: currentUser]
+    let ref = FIRDatabase.database().reference()
+    ref.child ("ANSWERS/AIDS/\(answerID)/LISTOFUSERS").updateChildValues(child)
+  }
+  
+  func deleteUserFromAnswerNode (answerID: AnswerID){
+    let ref = FIRDatabase.database().reference()
+    ref.child ("ANSWERS/AIDS/\(answerID)/LISTOFUSERS/\(currentID)").removeValue()
+  }
+  
   func  rememberAnswer (questionID:QuestionID, answerID:AnswerID, completionHandler: (DontAllowRevoting: Bool) -> ()) {
     let ref = FIRDatabase.database().reference()
     let child = [questionID :  answerID]
@@ -139,14 +174,17 @@ extension ModelInterface: AnswerModelProtocol {
       if !(snapshot.childSnapshotForPath(questionID).exists()) {
         ref.child("Users").child("\(currentID)/QuestionsAnswered").updateChildValues(child)
         self.setUserAnswer(answerID, increase: true)
+        self.rememberUser(answerID)
         completionHandler(DontAllowRevoting: false )
         return
         
       } else if (snapshot.childSnapshotForPath(questionID).value as! String != answerID) {
         
         let oldAnswerID = snapshot.childSnapshotForPath(questionID).value as! String
+        self.deleteUserFromAnswerNode(oldAnswerID)
         self.setUserAnswer(oldAnswerID, increase: false)
         ref.child("Users").child("\(currentID)/QuestionsAnswered").updateChildValues(child)
+        self.rememberUser(answerID)
         self.setUserAnswer(answerID, increase: true)
         completionHandler(DontAllowRevoting: false )
         return

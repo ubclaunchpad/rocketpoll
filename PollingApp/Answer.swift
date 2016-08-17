@@ -14,7 +14,7 @@ class Answer {
   var answerText:AnswerText = ""
   var isCorrect = false
   var tally = 0
-  
+  var listOfUsers:[Author] = []
   
   init (AID:AnswerID, isCorrect:Bool, tally:Int, answerText:AnswerText) {
     self.AID = AID
