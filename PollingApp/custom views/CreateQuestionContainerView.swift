@@ -66,9 +66,9 @@ class CreateQuestionContainerView: UIView {
     delegate?.stringFromQuestionDuration(currentTimeAway, endTime: endTime!, setButtonTitle: setEndTimerButtonTitle)
   }
   
-  
-  @IBAction func backButtonPressed(sender: AnyObject) {
-    //    delegate?.backButtonPressed()
+  func setPlaceholderText() {
+    questionInputText.text = placeholders.question
+    questionInputText.textColor = colors.placeholderTextColor
   }
   
   func setEndTimerButtonTitle(message: String) {
@@ -128,6 +128,13 @@ extension CreateQuestionContainerView: UITableViewDelegate, UITableViewDataSourc
     cell.backgroundColor = UIColor.clearColor()
     cell.backgroundImage.image = UIImage(named: "AnswerCell")!
     cell.selectionStyle = UITableViewCellSelectionStyle.None
+    
+    switch indexPath.row {
+    case 0: cell.answerField.placeholder = placeholders.answer0
+    case 1: cell.answerField.placeholder = placeholders.answer1
+    default: cell.answerField.placeholder = placeholders.answerDefault
+    }
+    
     return cell
   }
   

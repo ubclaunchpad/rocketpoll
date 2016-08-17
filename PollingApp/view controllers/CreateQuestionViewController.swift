@@ -34,6 +34,8 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
     stringFromQuestionDuration(1, endTime: NSDate(), setButtonTitle: (container?.setEndTimerButtonTitle)!)
     container?.endTimerLabel.titleLabel?.textAlignment = NSTextAlignment.Center
     
+    container?.setPlaceholderText()
+    
     container?.questionInputText.layer.cornerRadius = 5
     container?.questionInputText.layer.borderColor = UIColor(red:0.86, green:0.87, blue:0.87, alpha:1.0).CGColor
     container?.questionInputText.layer.borderWidth = 1
@@ -67,6 +69,31 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
     
     let changedText = currentText.stringByReplacingCharactersInRange(stringRange, withString: text)
     
+    let newText:NSString = textView.text
+    let updatedText = newText.stringByReplacingCharactersInRange(range, withString:text)
+    
+    // If updated text view will be empty, add the placeholder
+    // and set the cursor to the beginning of the text view
+    if updatedText.isEmpty {
+      
+      textView.text = placeholders.question
+      textView.textColor = colors.placeholderTextColor
+      
+      textView.selectedTextRange = textView.textRangeFromPosition(textView.beginningOfDocument, toPosition: textView.beginningOfDocument)
+      
+      return false
+    }
+      
+      // Else if the text view's placeholder is showing and the
+      // length of the replacement string is greater than 0, clear
+      // the text view and set its color to black to prepare for
+      // the user's entry
+    else if textView.textColor == UIColor.lightGrayColor() && !text.isEmpty {
+      textView.text = nil
+      textView.textColor = colors.textColor
+    }
+
+    
     return changedText.characters.count <= 140
   }
   
@@ -76,6 +103,14 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
     let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
     if newSize.height > 35 {
       container?.questionHeight.constant = newSize.height
+    }
+  }
+  
+  func textViewDidChangeSelection(textView: UITextView) {
+    if self.view.window != nil {
+      if textView.textColor == UIColor.lightGrayColor() {
+        textView.selectedTextRange = textView.textRangeFromPosition(textView.beginningOfDocument, toPosition: textView.beginningOfDocument)
+      }
     }
   }
   

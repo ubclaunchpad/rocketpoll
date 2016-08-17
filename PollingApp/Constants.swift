@@ -40,11 +40,19 @@ enum images {
   static let correctSelected = UIImage(named: imageNames.setCorrectSelected)
 }
 
+enum placeholders {
+  static let question = "What is the best bear?"
+  static let answer0 = "That's a ridiculous question"
+  static let answer1 = "Black bear"
+  static let answerDefault = "Enter an answer"
+}
+
 enum colors {
   static let green = UIColor(red: 28/255.0, green: 165/255.0, blue: 122/255.0, alpha: 1)
   static let lightGreen = UIColor(red: 226/255.0, green: 250/255.0, blue: 218/255.0, alpha: 1)
   static let barGraphColour = UIColor(red: 0, green: 0, blue: 1, alpha: 0.5)
   static let textColor = UIColor(red: 98/255.0, green: 98/255.0, blue: 98/255.0, alpha: 1)
+  static let placeholderTextColor = UIColor(red: 199/255.0, green: 199/255.0, blue: 205/255.0, alpha: 1)
   static let authorColor = UIColor(red: 151/255.0, green: 151/255.0, blue: 151/255.0, alpha: 1)
   static let lightAuthorColor = UIColor(red: 249/255.0, green: 249/255.0, blue: 249/255.0, alpha: 1)
   static let backgroundColor = UIColor(red: 245/255.0, green: 245/255.0, blue: 245/255.0, alpha: 1)
