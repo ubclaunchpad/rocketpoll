@@ -43,8 +43,6 @@ class AnswerTableViewCell: UITableViewCell {
   
   func textFieldDidChange(textField: UITextField) {
     let answer = StringUtil.trimString(textField.text!)
-    if answer != "" {
-      delegate?.updateAnswer(identifier!, answer: answer)
-    }
+    delegate?.updateAnswer(identifier!, answer: answer)
   }
 }

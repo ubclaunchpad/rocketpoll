@@ -9,13 +9,8 @@
 import UIKit
 
 protocol CreateQuestionViewContainerDelegate {
-  
-  func submitButtonPressed(question: QuestionText, answerArray: [AnswerID], correctAnswer: Int, questionDuration: Int)
-  func backButtonPressed()
   func shiftView()
   func stringFromQuestionDuration(currentTimeAway: Int, endTime: NSDate, setButtonTitle: (String) -> ())
-  func showAlertController(title: String)
-  func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
 }
 
 class CreateQuestionContainerView: UIView {
@@ -68,43 +63,6 @@ class CreateQuestionContainerView: UIView {
     }
   }
   
-  @IBAction func SubmitPress(sender: AnyObject) {
-    let question = questionInputText.text
-    
-    guard question != "" else {
-      delegate?.showAlertController(alertMessages.emptyQuestions)
-      return
-    }
-    guard !StringUtil.containsBadCharacters(question!) else {
-      delegate?.showAlertController(alertMessages.symbolQuestion)
-      return
-    }
-    for answer in answers {
-      guard answer != "" else {
-        delegate?.showAlertController(alertMessages.emptyAnswer)
-        return
-      }
-    }
-    for answer in answers {
-      guard !StringUtil.containsBadCharacters(answer) else {
-          delegate?.showAlertController(alertMessages.symbolAnswer)
-          return
-      }
-    }
-    guard correctAnswer != -1 else {
-      delegate?.showAlertController(alertMessages.noCorrectAnswer)
-      return
-    }
-    guard StringUtil.uniqueString(answers) == true else {
-      delegate?.showAlertController(alertMessages.duplicateAnswer)
-      return
-    }
-    
-    time = currentTimeAway
-    
-    delegate?.submitButtonPressed(question!,answerArray: answers, correctAnswer: correctAnswer, questionDuration: time)
-  }
-  
   @IBAction func changeTime(sender: UIButton) {
     currentTimeAway += setTimerValues[sender.tag]
     if currentTimeAway <= 0 {
@@ -116,7 +74,7 @@ class CreateQuestionContainerView: UIView {
   
   
   @IBAction func backButtonPressed(sender: AnyObject) {
-    delegate?.backButtonPressed()
+//    delegate?.backButtonPressed()
   }
   
   func setEndTimerButtonTitle(message: String) {
