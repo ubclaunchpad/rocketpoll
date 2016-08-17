@@ -152,15 +152,8 @@
                         <constraint firstItem="l8h-Nd-aKU" firstAttribute="centerX" secondItem="55o-To-BHJ" secondAttribute="centerX" id="XPG-dO-sWb"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYp-RJ-7b7">
-                    <rect key="frame" x="247" y="497" width="100" height="30"/>
-                    <state key="normal" title="Delete Answer"/>
-                    <connections>
-                        <action selector="deleteAnswerButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="GQH-Cv-DIs"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="kSR-OB-ORh">
-                    <rect key="frame" x="532" y="136" width="52" height="28"/>
+                    <rect key="frame" x="532" y="131" width="52" height="28"/>
                     <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="13"/>
                     <state key="normal" title="Set timer">
                         <color key="titleColor" red="0.32156862745098036" green="0.32156862745098036" blue="0.32156862745098036" alpha="1" colorSpace="calibratedRGB"/>
@@ -199,7 +192,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KuQ-U5-pjz">
-                    <rect key="frame" x="554" y="173.5" width="30" height="29"/>
+                    <rect key="frame" x="554" y="173" width="30" height="29"/>
                     <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
                     <state key="normal" title="Add">
                         <color key="titleColor" red="0.070588235294117646" green="0.64313725490196072" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -226,7 +219,7 @@
                 <constraint firstAttribute="trailing" secondItem="Fd7-4U-zpA" secondAttribute="trailing" id="RmI-Fi-1Kk"/>
                 <constraint firstItem="7Db-bb-cr6" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="TXx-KN-wjU"/>
                 <constraint firstItem="lQs-nS-HJd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="aE8-62-IXP"/>
-                <constraint firstItem="kSR-OB-ORh" firstAttribute="top" secondItem="lQs-nS-HJd" secondAttribute="bottom" constant="12" id="bzp-3h-ctX"/>
+                <constraint firstItem="kSR-OB-ORh" firstAttribute="top" secondItem="lQs-nS-HJd" secondAttribute="bottom" constant="7" id="bzp-3h-ctX"/>
                 <constraint firstItem="Fd7-4U-zpA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eTW-aX-Wvf"/>
                 <constraint firstItem="Fd7-4U-zpA" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="eUN-7Y-dv9"/>
                 <constraint firstItem="wHW-Oj-QVv" firstAttribute="top" secondItem="lQs-nS-HJd" secondAttribute="bottom" constant="55" id="fLf-Db-BWc"/>

@@ -57,13 +57,6 @@ class CreateQuestionContainerView: UIView {
     
   }
   
-  @IBAction func deleteAnswerButtonPressed(sender: UIButton) {
-    if answers.count > 2 {
-      answers.removeLast()
-      self.tableView.reloadData()
-    }
-  }
-  
   @IBAction func changeTime(sender: UIButton) {
     currentTimeAway += setTimerValues[sender.tag]
     if currentTimeAway <= 0 {
@@ -75,7 +68,7 @@ class CreateQuestionContainerView: UIView {
   
   
   @IBAction func backButtonPressed(sender: AnyObject) {
-//    delegate?.backButtonPressed()
+    //    delegate?.backButtonPressed()
   }
   
   func setEndTimerButtonTitle(message: String) {
@@ -145,6 +138,28 @@ extension CreateQuestionContainerView: UITableViewDelegate, UITableViewDataSourc
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     return 68
   }
+  
+  func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    let delete = UITableViewRowAction(style: .Normal, title: "        ") { action, index in
+      if self.answers.count > 2 {
+        self.tableView.beginUpdates()
+        self.answers.removeAtIndex(indexPath.row)
+        self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        self.tableView.endUpdates()
+      }
+    }
+    delete.backgroundColor = UIColor(patternImage: UIImage(named: "Delete")!)
+    
+    return [delete]
+  }
+  
+  func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    return true
+  }
+  
+  func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+  }
+  
 }
 
 
