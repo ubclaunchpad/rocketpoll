@@ -42,6 +42,10 @@ class PollResultsViewController: UIViewController {
     self.title = "RESULTS"
   }
   
+  override func viewDidAppear(animated: Bool) {
+    self.title = "RESULTS"
+  }
+  
   func addContainerToVC() {
     container = PollResultsViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
     view.addSubview(container!)
