@@ -39,6 +39,7 @@ class CreateQuestionContainerView: UIView {
   var currentTimeAway:Int = 1
   var endTime:NSDate?
   
+  @IBOutlet weak var questionHeight: NSLayoutConstraint!
   @IBOutlet weak var endTimerLabel: UIButton!
   
   @IBAction func setTimerButtonPressed(sender: AnyObject) {
