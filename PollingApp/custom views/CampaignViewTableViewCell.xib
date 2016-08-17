@@ -32,7 +32,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eyq-9N-naC">
-                        <rect key="frame" x="28" y="28" width="39" height="19"/>
+                        <rect key="frame" x="28" y="28" width="544" height="19"/>
                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                         <color key="textColor" red="0.38431372549019605" green="0.38431372549019605" blue="0.38431372549019605" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -51,6 +51,7 @@
                     <constraint firstItem="Eyq-9N-naC" firstAttribute="top" secondItem="R8E-hd-k7b" secondAttribute="topMargin" constant="20" id="YHA-cc-Ik9"/>
                     <constraint firstItem="Yex-pJ-v2Z" firstAttribute="top" secondItem="Eyq-9N-naC" secondAttribute="bottom" constant="2" id="YnM-zo-et1"/>
                     <constraint firstItem="bhO-Zc-C3n" firstAttribute="leading" secondItem="R8E-hd-k7b" secondAttribute="leadingMargin" constant="2" id="eWq-y0-aif"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Eyq-9N-naC" secondAttribute="trailing" constant="20" id="kV7-1G-LUa"/>
                     <constraint firstAttribute="trailingMargin" secondItem="f0s-dH-4Su" secondAttribute="trailing" constant="13" id="oaT-7i-Uu2"/>
                     <constraint firstItem="bhO-Zc-C3n" firstAttribute="height" secondItem="R8E-hd-k7b" secondAttribute="height" id="pmG-PT-kYj"/>
                     <constraint firstAttribute="trailingMargin" secondItem="bhO-Zc-C3n" secondAttribute="trailing" constant="2" id="sMF-yF-PqT"/>
