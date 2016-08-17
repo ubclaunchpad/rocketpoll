@@ -18,6 +18,8 @@ protocol AnswerTableViewCellDelegate {
 class AnswerTableViewCell: UITableViewCell {
   @IBOutlet weak var answerField: UITextField!
   @IBOutlet weak var correctButton: UIButton!
+  @IBOutlet weak var backgroundImage: UIImageView!
+  
   var identifier:Int?
   var delegate:AnswerTableViewCellDelegate?
   @IBAction func correct(sender: UIButton) {

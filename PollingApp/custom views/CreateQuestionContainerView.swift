@@ -91,8 +91,9 @@ class CreateQuestionContainerView: UIView {
     view.frame = frame
     view.tableView.delegate = view
     view.tableView.dataSource = view
-    view.tableView.separatorColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2 )
-    
+    view.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+    view.tableView.backgroundColor = UIColor.clearColor()
+    view.tableView.opaque = false
     return view
   }
 }
@@ -131,6 +132,9 @@ extension CreateQuestionContainerView: UITableViewDelegate, UITableViewDataSourc
     cell.isCorrect = false
     cell.answerField.addTarget(cell, action: #selector(AnswerTableViewCell.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
     cell.answerField.text = answers[indexPath.row]
+    cell.backgroundColor = UIColor.clearColor()
+    cell.backgroundImage.image = UIImage(named: "AnswerCell")!
+    cell.selectionStyle = UITableViewCellSelectionStyle.None
     return cell
   }
   
@@ -139,7 +143,7 @@ extension CreateQuestionContainerView: UITableViewDelegate, UITableViewDataSourc
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return 60
+    return 68
   }
 }
 
