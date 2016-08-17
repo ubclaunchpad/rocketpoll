@@ -10,18 +10,15 @@ import UIKit
 protocol UserViewTableViewCellDelegate {
 }
 class UserViewTableViewCell: UITableViewCell {
-
+  
   @IBOutlet weak var userName: UILabel!
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+  override func awakeFromNib() {
+    super.awakeFromNib()
+  }
+  
+  override func setSelected(selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
+  }
   
   func setUserNameLabel (userName: Author) {
     self.userName.text = userName
