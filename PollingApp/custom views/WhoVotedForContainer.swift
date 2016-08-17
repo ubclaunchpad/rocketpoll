@@ -45,12 +45,11 @@ class WhoVotedForContainer: UIView, UITableViewDelegate, UITableViewDataSource {
     self.listOfUsers = listOfUsers
   }
   
-  
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if (listOfUsers.isEmpty) {
       return 1
     }
-    
+
     return listOfUsers.count
   }
   
