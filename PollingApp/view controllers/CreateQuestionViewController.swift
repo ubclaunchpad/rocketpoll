@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateQuestionViewController: UIViewController{
+class CreateQuestionViewController: UIViewController, UITextViewDelegate {
   
   
   private var sendAIDS = [AnswerID]()
@@ -33,6 +33,11 @@ class CreateQuestionViewController: UIViewController{
     
     stringFromQuestionDuration(1, endTime: NSDate(), setButtonTitle: (container?.setEndTimerButtonTitle)!)
     container?.endTimerLabel.titleLabel?.textAlignment = NSTextAlignment.Center
+    
+    container?.questionInputText.layer.cornerRadius = 5
+    container?.questionInputText.layer.borderColor = UIColor(red:0.86, green:0.87, blue:0.87, alpha:1.0).CGColor
+    container?.questionInputText.layer.borderWidth = 1
+    container?.questionInputText.delegate = self
   }
   
   func setNavigationBar() {
@@ -48,6 +53,15 @@ class CreateQuestionViewController: UIViewController{
       })
       self.container!.hideTimerView()
     }
+  }
+
+  func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    let currentText = textView.text ?? ""
+    guard let stringRange = range.rangeForString(currentText) else { return false }
+    
+    let changedText = currentText.stringByReplacingCharactersInRange(stringRange, withString: text)
+    
+    return changedText.characters.count <= 140
   }
   
   func submitQuestion() {
@@ -131,7 +145,7 @@ class CreateQuestionViewController: UIViewController{
   }
   
   func keyboardWillShow(notification: NSNotification) {
-    if container?.questionInputText.editing == true {
+    if container?.questionInputText.isFirstResponder() == true {
       if self.view.window?.frame.origin.y != 0 {
         UIView.animateWithDuration(0.2, animations: {
           self.view.window?.frame.origin.y = 0
@@ -249,5 +263,12 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
       setButtonTitle(StringUtil.fillInString(labelString!, time: minute, date: date))
     }
     
+  }
+}
+
+extension NSRange {
+  func rangeForString(str: String) -> Range<String.Index>? {
+    guard location != NSNotFound else { return nil }
+    return str.startIndex.advancedBy(location) ..< str.startIndex.advancedBy(location + length)
   }
 }
