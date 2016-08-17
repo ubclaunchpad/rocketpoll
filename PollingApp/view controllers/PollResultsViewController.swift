@@ -43,8 +43,6 @@ class PollResultsViewController: UIViewController {
   }
   
   func addContainerToVC() {
-    
-    
     container = PollResultsViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
     view.addSubview(container!)
     
@@ -102,7 +100,7 @@ class PollResultsViewController: UIViewController {
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if (segue.identifier ==  ModelInterface.sharedInstance.segueToWhoVotedForVCFromResult()) {
-      
+    
       let viewController:WhoVotedForViewController = segue.destinationViewController as! WhoVotedForViewController
       
       viewController.selectedAnswer = sendAnswer

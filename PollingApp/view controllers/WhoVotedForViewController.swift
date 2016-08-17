@@ -20,9 +20,15 @@ class WhoVotedForViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    setNavigationBar()
     addContainerToVC()
     Log.debug("loaded WhoVotedForCampaignViewController")
     
+  }
+  
+  
+  func setNavigationBar() {
+     self.title = "Who Voted?" 
   }
   
   func addContainerToVC() {
