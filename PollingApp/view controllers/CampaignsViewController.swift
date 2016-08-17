@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Foundation
 
 class CampaignsViewController: UIViewController {
   
@@ -28,10 +29,13 @@ class CampaignsViewController: UIViewController {
   
   var container: CampaignViewContainer?
   
+  var segmentedControlIndex: Int = 0
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     addContainerToVC()
     Log.debug("loaded campaign view")
+    setNavigationBar()
   }
   
   override func didReceiveMemoryWarning() {
@@ -49,13 +53,44 @@ class CampaignsViewController: UIViewController {
       })
       
     }
-    let roomID = ModelInterface.sharedInstance.getCurrentRoomID()
-    let roomName = ModelInterface.sharedInstance.getRoomName(roomID)
+    //let roomID = ModelInterface.sharedInstance.getCurrentRoomID()
+    //let roomName = ModelInterface.sharedInstance.getRoomName(roomID)
     
     container?.delegate = self
-    self.container?.setRoomNameTitle(roomName)
+    //self.container?.setRoomNameTitle(roomName)
   }
   
+  func setNavigationBar() {
+    self.title = "QUESTIONS"
+    let submitButton = UIBarButtonItem(title: "Ask ", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CampaignsViewController.newQuestionSelected))
+    self.navigationItem.rightBarButtonItem = submitButton
+    
+    let refreshButton = UIBarButtonItem(image: UIImage(named: "Refresh"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CampaignsViewController.refreshQuestions))
+    self.navigationItem.leftBarButtonItem = refreshButton
+    
+    let segment: UISegmentedControl = UISegmentedControl(items: ["Mine", "New", "Expired"])
+    segment.sizeToFit()
+    segment.addTarget(self, action: #selector(CampaignsViewController.segmentedControlValueChanged(_:)), forControlEvents:.ValueChanged)
+    segment.tintColor = colors.segmentedTint
+    segment.selectedSegmentIndex = segmentedControlIndex
+    segment.setTitleTextAttributes([NSFontAttributeName: UIFont(name:"Roboto-Regular", size: 13)!],
+                                   forState: UIControlState.Normal)
+    self.navigationItem.titleView = segment
+  }
+  
+  func segmentedControlValueChanged(segment: UISegmentedControl) {
+    switch segment.selectedSegmentIndex {
+    case 0:
+      container?.setTableCells(listOfYourQuestions)
+    case 1:
+      container?.setTableCells(listOfUnansweredQuestions + listOfAnsweredQuestions)
+    case 2:
+      container?.setTableCells(listOfExpiredQuestions)
+    default: break
+    }
+    segmentedControlIndex = segment.selectedSegmentIndex
+    container?.tableView.reloadData()
+  }
   
   func fillInTheFields (listofAllQuestions:[Question], listOfAnsweredQIDs: [QuestionID] ) {
     
@@ -66,32 +101,34 @@ class CampaignsViewController: UIViewController {
     
     let size = listofAllQuestions.count
     for i in 0 ..< size  {
-      if (listofAllQuestions[i].author == currentUser) {
-        listOfYourQuestions.append(listofAllQuestions[i])
-      }
-      if (listOfAnsweredQIDs.contains(listofAllQuestions[i].QID)) {
-        listOfAnsweredQuestions.append(listofAllQuestions[i])
-      }
       let tempQuestion = DateUtil.setExpirationDate(listofAllQuestions[i])
       
-      if (!tempQuestion.isExpired &&
-        !listOfYourQuestions.contains(tempQuestion) &&
-        !listOfAnsweredQuestions.contains(tempQuestion)) {
-        listOfUnansweredQuestions.append(tempQuestion)
-      }
-      
-      if (tempQuestion.isExpired &&
-        !listOfYourQuestions.contains(tempQuestion) &&
-        !listOfAnsweredQuestions.contains(tempQuestion)) {
+      if (listofAllQuestions[i].author == currentUser) {
+        listOfYourQuestions.append(listofAllQuestions[i])
+      } else if tempQuestion.isExpired {
         listOfExpiredQuestions.append(tempQuestion)
+      } else {
+        if (listOfAnsweredQIDs.contains(listofAllQuestions[i].QID)) {
+          listOfAnsweredQuestions.append(listofAllQuestions[i])
+        } else if (!listOfYourQuestions.contains(tempQuestion) &&
+          !listOfAnsweredQuestions.contains(tempQuestion)) {
+          listOfUnansweredQuestions.append(tempQuestion)
+        }
       }
     }
     
     self.container?.delegate = self
-    self.container?.setYourQuestions(listOfYourQuestions)
-    self.container?.setAnsweredQuestion(listOfAnsweredQuestions)
-    self.container?.setUnansweredQuestions(listOfUnansweredQuestions)
-    self.container?.setExpiredQuestions(listOfExpiredQuestions)
+    
+    switch segmentedControlIndex {
+    case 0:
+      container?.setTableCells(listOfYourQuestions)
+    case 1:
+      container?.setTableCells(listOfUnansweredQuestions + listOfAnsweredQuestions)
+    case 2:
+      container?.setTableCells(listOfExpiredQuestions)
+    default: break
+    }
+    container?.answeredQuestions = listOfAnsweredQIDs
     self.container?.tableView.reloadData()
   }
   
@@ -118,6 +155,10 @@ class CampaignsViewController: UIViewController {
       break
     default: break
     }
+    let backItem = UIBarButtonItem()
+    backItem.title = ""
+    navigationItem.backBarButtonItem = backItem
+    
   }
 }
 extension CampaignsViewController: CampaignViewContainerDelegate {
@@ -159,7 +200,12 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
     listOfAnsweredQuestions.removeAll()
     listOfUnansweredQuestions.removeAll()
     listOfExpiredQuestions.removeAll()
-    addContainerToVC()
+    ModelInterface.sharedInstance.processQuestionData { (listofAllQuestions) in
+      ModelInterface.sharedInstance.getListOfQuestionsUserAnswered({ (listOfAnsweredQIDs) in
+        self.fillInTheFields(listofAllQuestions, listOfAnsweredQIDs:listOfAnsweredQIDs)
+      })
+      
+    }
   }
   
   

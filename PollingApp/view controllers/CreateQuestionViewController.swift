@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateQuestionViewController: UIViewController{
+class CreateQuestionViewController: UIViewController, UITextViewDelegate {
   
   
   private var sendAIDS = [AnswerID]()
@@ -25,45 +25,138 @@ class CreateQuestionViewController: UIViewController{
       action: #selector(CreateQuestionViewController.dismissKeyboards))
     view.addGestureRecognizer(tap)
     
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CreateQuestionViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CreateQuestionViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
+    
     addContainerToVC()
+    setNavigationBar()
     
     stringFromQuestionDuration(1, endTime: NSDate(), setButtonTitle: (container?.setEndTimerButtonTitle)!)
     container?.endTimerLabel.titleLabel?.textAlignment = NSTextAlignment.Center
+    
+    container?.setPlaceholderText()
+    
+    container?.questionInputText.layer.cornerRadius = 5
+    container?.questionInputText.layer.borderColor = UIColor(red:0.86, green:0.87, blue:0.87, alpha:1.0).CGColor
+    container?.questionInputText.layer.borderWidth = 1
+    container?.questionInputText.delegate = self
+    
+    container?.questionInputText.layer.borderWidth = 0
+    container?.questionInputText.layer.cornerRadius = 0
+    container?.questionInputText.textContainer.lineFragmentPadding = 0
+    container?.questionInputText.textContainerInset = UIEdgeInsetsZero;
+    
+  }
+  
+  func setNavigationBar() {
+    self.title = "ASK"
+    let submitButton = UIBarButtonItem(title: "Submit", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CreateQuestionViewController.submitQuestion))
+    self.navigationItem.rightBarButtonItem = submitButton
   }
   
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-    if self.view.window?.frame.origin.y != 0 {
+    if self.view.window?.frame.origin.y != 0 || self.container!.AnswersVerticalSpacing.constant != 55 {
+      self.container!.AnswersVerticalSpacing.constant = 55
+
       UIView.animateWithDuration(0.2, animations: {
         self.view.window?.frame.origin.y = 0
+        self.view.layoutIfNeeded()
+        self.container!.setTimerView.alpha = 0
       })
-      self.container!.hideTimerView()
+      
     }
   }
   
-  //MARK: - Helper Functions
-  func addContainerToVC() {
-    container = CreateQuestionContainerView.instanceFromNib(
-      CGRectMake(0, 0, view.bounds.width, view.bounds.height))
-    container?.delegate = self
-    view.addSubview(container!)
+  func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    let currentText = textView.text ?? ""
+    guard let stringRange = range.rangeForString(currentText) else { return false }
+    
+    let changedText = currentText.stringByReplacingCharactersInRange(stringRange, withString: text)
+    
+    let newText:NSString = textView.text
+    let updatedText = newText.stringByReplacingCharactersInRange(range, withString:text)
+    
+    // If updated text view will be empty, add the placeholder
+    // and set the cursor to the beginning of the text view
+    if updatedText.isEmpty {
+      
+      textView.text = placeholders.question
+      textView.textColor = colors.placeholderTextColor
+      
+      textView.selectedTextRange = textView.textRangeFromPosition(textView.beginningOfDocument, toPosition: textView.beginningOfDocument)
+      
+      return false
+    }
+      
+      // Else if the text view's placeholder is showing and the
+      // length of the replacement string is greater than 0, clear
+      // the text view and set its color to black to prepare for
+      // the user's entry
+    else if textView.textColor == colors.placeholderTextColor && !text.isEmpty {
+      textView.text = nil
+      textView.textColor = colors.textColor
+    }
+    
+    
+    return changedText.characters.count <= 140
   }
   
-  func dismissKeyboards() {
-    view.endEditing(true)
-  }
-  
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if (segue.identifier == ModelInterface.sharedInstance.segueToAdminScreen()) {
-      let viewController:PollAdminViewController = segue.destinationViewController as! PollAdminViewController
-      viewController.answerIDs = sendAIDS
-      viewController.questionText = sendQuestionText
-      viewController.questionID = sendQID
-      viewController.timerQuestion = sendTime
+  func textViewDidChange(textView: UITextView){
+    let fixedWidth = textView.frame.size.width
+    textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
+    let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
+    if newSize.height > 35 {
+      container?.questionHeight.constant = newSize.height
     }
   }
-}
-
-extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
+  
+  func textViewDidChangeSelection(textView: UITextView) {
+    if self.view.window != nil {
+      if textView.textColor == colors.placeholderTextColor {
+        textView.selectedTextRange = textView.textRangeFromPosition(textView.beginningOfDocument, toPosition: textView.beginningOfDocument)
+      }
+    }
+  }
+  
+  func submitQuestion() {
+    let question = container?.questionInputText.text
+    
+    
+    guard question != "" else {
+      showAlertController(alertMessages.emptyQuestions)
+      return
+    }
+    guard !StringUtil.containsBadCharacters(question!) else {
+      showAlertController(alertMessages.symbolQuestion)
+      return
+    }
+    
+    let answers: [AnswerText] = (container?.answers)!
+    for answer in answers {
+      guard answer != "" else {
+        showAlertController(alertMessages.emptyAnswer)
+        return
+      }
+    }
+    for answer in answers {
+      guard !StringUtil.containsBadCharacters(answer) else {
+        showAlertController(alertMessages.symbolAnswer)
+        return
+      }
+    }
+    guard StringUtil.uniqueString(answers) == true else {
+      showAlertController(alertMessages.duplicateAnswer)
+      return
+    }
+    guard container?.correctAnswer != -1 else {
+      showAlertController(alertMessages.noCorrectAnswer)
+      return
+    }
+    
+    container?.time = (container?.currentTimeAway)!
+    
+    submitButtonPressed(question!,answerArray: answers, correctAnswer: (container?.correctAnswer)!, questionDuration: (container?.time)!)
+  }
   
   func submitButtonPressed(question: QuestionText, answerArray: [AnswerID], correctAnswer: Int, questionDuration: Int){
     //TODO: move answerID generation in createNewQuestion(_)
@@ -71,7 +164,7 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
     let answerIDs =  ModelInterface.sharedInstance.createAnswerIDs(
       questionObject.QID, answerText: answerArray)
     questionObject.AIDS = answerIDs
-    ModelInterface.sharedInstance.setCorrectAnswer(answerIDs[correctAnswer - 1], isCorrectAnswer: true);
+    ModelInterface.sharedInstance.setCorrectAnswer(answerIDs[correctAnswer], isCorrectAnswer: true);
     
     self.sendAIDS = answerIDs
     self.sendQuestionText = question
@@ -86,38 +179,75 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
     performSegueWithIdentifier(nextRoom, sender: self)
   }
   
-  //TODO: IPA-120
-  
-  func checksInput (question:QuestionText?, A1:AnswerText?, A2:AnswerText?,  A3:AnswerText?, A4:AnswerText?, correctAnswer:Int) -> Bool {
-    if((question == nil) || (A1 == nil) || (A2 == nil) || (A3 == nil) || (A4 == nil)) || correctAnswer == 0 {
-      let alert = UIAlertController(title: "\(alertMessages.emptyQuestions)", message:"",
-
-                                    preferredStyle: UIAlertControllerStyle.Alert)
-      alert.addAction(UIAlertAction(title: "\(alertMessages.confirm)",
-        style: UIAlertActionStyle.Default, handler: nil))
-      self.presentViewController(alert, animated: true, completion: nil)
-      return true
-    }
-    return false
+  func showAlertController(title: String) {
+    let alert = UIAlertController(title: "\(title)", message:"", preferredStyle: UIAlertControllerStyle.Alert)
+    alert.addAction(UIAlertAction(title: "\(alertMessages.confirm)",
+      style: UIAlertActionStyle.Default, handler: nil))
+    self.presentViewController(alert, animated: true, completion: nil)
   }
+  
+  //MARK: - Helper Functions
+  func addContainerToVC() {
+    container = CreateQuestionContainerView.instanceFromNib(
+      CGRectMake(0, 0, view.bounds.width, view.bounds.height))
+    container?.delegate = self
+    view.addSubview(container!)
+  }
+  
+  func dismissKeyboards() {
+    view.endEditing(true)
+  }
+  
+  func keyboardWillShow(notification: NSNotification) {
+    if container?.questionInputText.isFirstResponder() == true {
+      if self.view.window?.frame.origin.y != 0 {
+        UIView.animateWithDuration(0.2, animations: {
+          self.view.window?.frame.origin.y = 0
+        })
+      }
+    }
+    let cells = container?.tableView.visibleCells as! [AnswerTableViewCell]!
+    for i in 0...cells.count - 1 {
+      if i >= 2 && cells[i].answerField.editing {
+        if self.view.window?.frame.origin.y > -100 {
+          self.view.window?.frame.origin.y -= 100
+          return
+        }
+      } else {
+        if self.view.window?.frame.origin.y != 0 {
+          UIView.animateWithDuration(0.2, animations: {
+            self.view.window?.frame.origin.y = 0
+          })
+        }
+      }
+    }
+  }
+  func keyboardWillHide(notification: NSNotification) {
+    if self.view.window?.frame.origin.y != 0 {
+      self.view.window?.frame.origin.y = 0
+    }
+  }
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if (segue.identifier == ModelInterface.sharedInstance.segueToAdminScreen()) {
+      let viewController:PollAdminViewController = segue.destinationViewController as! PollAdminViewController
+      viewController.answerIDs = sendAIDS
+      viewController.questionText = sendQuestionText
+      viewController.questionID = sendQID
+      viewController.timerQuestion = sendTime
+      viewController.fromCreate = true
+    }
+  }
+}
+
+extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
+  
+  //TODO: IPA-120
   
   func shiftView() {
     UIView.animateWithDuration(0.2, animations: {
       self.view.window?.frame.origin.y = -90
     })
-  }
-  
-  func checkDuplicateAnswer(answers: [String]) -> Bool {
-    if !StringUtil.uniqueString(answers) {
-      let alert = UIAlertController(title: "\(alertMessages.duplicateAnswer)", message:"",
-                                    
-                                    preferredStyle: UIAlertControllerStyle.Alert)
-      alert.addAction(UIAlertAction(title: "\(alertMessages.confirm)",
-        style: UIAlertActionStyle.Default, handler: nil))
-      self.presentViewController(alert, animated: true, completion: nil)
-      return true
-    }
-    return false
   }
   
   func stringFromQuestionDuration(currentTimeAway: Int, endTime: NSDate, setButtonTitle: (String) -> ()) {
@@ -187,5 +317,12 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
       setButtonTitle(StringUtil.fillInString(labelString!, time: minute, date: date))
     }
     
+  }
+}
+
+extension NSRange {
+  func rangeForString(str: String) -> Range<String.Index>? {
+    guard location != NSNotFound else { return nil }
+    return str.startIndex.advancedBy(location) ..< str.startIndex.advancedBy(location + length)
   }
 }

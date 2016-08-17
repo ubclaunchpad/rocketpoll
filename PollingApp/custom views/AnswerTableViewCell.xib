@@ -6,49 +6,67 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="answerCell" id="Elw-sH-RzM" customClass="AnswerTableViewCell" customModule="PollingApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="answerCell" rowHeight="77" id="Elw-sH-RzM" customClass="AnswerTableViewCell" customModule="PollingApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="387" height="77"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Elw-sH-RzM" id="WMb-Sz-Kjr">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="387" height="76.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter an answer" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lov-Ml-D0A">
-                        <rect key="frame" x="11" y="7" width="208" height="30"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
-                    </textField>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m4L-1j-h6c">
-                        <rect key="frame" x="284" y="8" width="28" height="28"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="AnswerCell" translatesAutoresizingMaskIntoConstraints="NO" id="Aau-AI-WCS">
+                        <rect key="frame" x="10" y="0.0" width="400" height="76.5"/>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m4L-1j-h6c">
+                        <rect key="frame" x="314" y="16" width="34" height="34"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="28" id="d0a-xA-m4U"/>
-                            <constraint firstAttribute="width" constant="28" id="hQF-we-nM6"/>
+                            <constraint firstAttribute="height" constant="34" id="d0a-xA-m4U"/>
+                            <constraint firstAttribute="width" constant="34" id="hQF-we-nM6"/>
                         </constraints>
                         <state key="normal" image="SetIncorrect"/>
                         <connections>
                             <action selector="correct:" destination="Elw-sH-RzM" eventType="touchUpInside" id="tj9-By-Ucf"/>
                         </connections>
                     </button>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter an answer" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lov-Ml-D0A">
+                        <rect key="frame" x="28" y="27.5" width="273" height="19"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="textColor" red="0.38431372549019605" green="0.38431372549019605" blue="0.38431372549019605" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                    </textField>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="m4L-1j-h6c" firstAttribute="top" secondItem="WMb-Sz-Kjr" secondAttribute="topMargin" constant="8" id="2Eg-1K-K62"/>
+                    <constraint firstItem="Aau-AI-WCS" firstAttribute="leading" secondItem="WMb-Sz-Kjr" secondAttribute="leadingMargin" constant="2" id="5hB-Vr-cvX"/>
                     <constraint firstItem="Lov-Ml-D0A" firstAttribute="width" secondItem="WMb-Sz-Kjr" secondAttribute="width" multiplier="0.65" id="71w-aA-4kU"/>
-                    <constraint firstItem="Lov-Ml-D0A" firstAttribute="leading" secondItem="WMb-Sz-Kjr" secondAttribute="leadingMargin" constant="3" id="VDI-tH-YUi"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="m4L-1j-h6c" secondAttribute="trailing" id="X7C-mE-jPm"/>
-                    <constraint firstItem="Lov-Ml-D0A" firstAttribute="centerY" secondItem="WMb-Sz-Kjr" secondAttribute="centerY" id="YqB-cM-mE6"/>
-                    <constraint firstItem="m4L-1j-h6c" firstAttribute="centerY" secondItem="WMb-Sz-Kjr" secondAttribute="centerY" id="iGk-Ok-IV0"/>
+                    <constraint firstItem="Aau-AI-WCS" firstAttribute="height" secondItem="WMb-Sz-Kjr" secondAttribute="height" id="9qD-6H-vnA"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Aau-AI-WCS" secondAttribute="trailing" constant="2" id="HDJ-bm-NFk"/>
+                    <constraint firstItem="Aau-AI-WCS" firstAttribute="centerX" secondItem="WMb-Sz-Kjr" secondAttribute="centerX" id="N7n-ds-tYt"/>
+                    <constraint firstItem="m4L-1j-h6c" firstAttribute="leading" secondItem="Lov-Ml-D0A" secondAttribute="trailing" constant="13" id="RP7-U6-ycU"/>
+                    <constraint firstItem="Lov-Ml-D0A" firstAttribute="leading" secondItem="WMb-Sz-Kjr" secondAttribute="leadingMargin" constant="20" id="VDI-tH-YUi"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="m4L-1j-h6c" secondAttribute="trailing" constant="16" id="X7C-mE-jPm"/>
+                    <constraint firstItem="Lov-Ml-D0A" firstAttribute="centerY" secondItem="WMb-Sz-Kjr" secondAttribute="centerY" multiplier="0.97" id="YqB-cM-mE6"/>
+                    <constraint firstItem="Aau-AI-WCS" firstAttribute="centerY" secondItem="WMb-Sz-Kjr" secondAttribute="centerY" id="sv4-tM-uGt"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="answerField" destination="Lov-Ml-D0A" id="vNB-BG-EaU"/>
+                <outlet property="backgroundImage" destination="Aau-AI-WCS" id="Xj5-hq-OT0"/>
                 <outlet property="correctButton" destination="m4L-1j-h6c" id="LPq-1b-QrC"/>
             </connections>
-            <point key="canvasLocation" x="395" y="256"/>
+            <point key="canvasLocation" x="428.5" y="272.5"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="SetIncorrect" width="156" height="156"/>
+        <image name="AnswerCell" width="400" height="68"/>
+        <image name="SetIncorrect" width="34" height="34"/>
     </resources>
 </document>

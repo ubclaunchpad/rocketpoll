@@ -9,26 +9,21 @@
 import UIKit
 
 protocol CreateQuestionViewContainerDelegate {
-  
-  func submitButtonPressed(question: QuestionText, answerArray: [AnswerID], correctAnswer: Int, questionDuration: Int)
-  func backButtonPressed()
-  func checksInput (question:QuestionText?, A1:AnswerText?, A2:AnswerText?,  A3:AnswerText?, A4:AnswerText?, correctAnswer:Int) -> Bool
   func shiftView()
-  func checkDuplicateAnswer(answers: [String]) -> Bool
   func stringFromQuestionDuration(currentTimeAway: Int, endTime: NSDate, setButtonTitle: (String) -> ())
 }
 
 class CreateQuestionContainerView: UIView {
   
   @IBOutlet weak var setTimerButton: UIButton!
-
+  
   @IBOutlet weak var backButton: UIButton!
   
   @IBOutlet weak var Submit: UIButton!
   
   var delegate: CreateQuestionViewContainerDelegate?
   
-  @IBOutlet weak var questionInputText: UITextField!
+  @IBOutlet weak var questionInputText: UITextView!
   
   @IBOutlet weak var tableView: UITableView!
   
@@ -36,42 +31,35 @@ class CreateQuestionContainerView: UIView {
   
   var time: Int = 0;
   
-  var answerIdentifier:[Int] = [1, 2, 3, 4]
-  var answers = [Int: String]()
-  var correctAnswer:Int = 0
+  var answers:[AnswerText] = ["",""]
+  var correctAnswer:Int = -1
+  
+  var answerStrings = [AnswerText]()
   
   var currentTimeAway:Int = 1
   var endTime:NSDate?
   
+  @IBOutlet weak var AnswersVerticalSpacing: NSLayoutConstraint!
+  @IBOutlet weak var questionHeight: NSLayoutConstraint!
   @IBOutlet weak var endTimerLabel: UIButton!
   
   @IBAction func setTimerButtonPressed(sender: AnyObject) {
-
+    
     setTimerView.hidden = false
     
-    delegate?.shiftView()
+    //    delegate?.shiftView()
+    self.AnswersVerticalSpacing.constant = 205
+    setTimerView.alpha = 1
+    UIView.animateWithDuration(0.2, animations: {
+      self.layoutIfNeeded()
+    })
     endTime = calendar.dateByAddingUnit(.Minute, value: currentTimeAway, toDate: NSDate(), options: [])!
     delegate?.stringFromQuestionDuration(currentTimeAway, endTime: endTime!, setButtonTitle: setEndTimerButtonTitle)
   }
   
-  @IBAction func SubmitPress(sender: AnyObject) {
-    let question = questionInputText.text;
-    let A1 = answers[1]
-    let A2 = answers[2]
-    let A3 = answers[3]
-    let A4 = answers[4]
-    
-    if ((delegate?.checksInput(question, A1: A1, A2: A2, A3: A3, A4: A4, correctAnswer: correctAnswer)) == true) {
-      return
-    } else if ((delegate?.checkDuplicateAnswer([A1!, A2!, A3!, A4!])) == true) {
-      return
-    }
-    
-    let Answers = [A1!, A2!, A3!, A4!];
-    time = currentTimeAway
-    
-    delegate?.submitButtonPressed(question!,answerArray: Answers, correctAnswer: correctAnswer, questionDuration: time);
-    
+  @IBAction func addAnswerButtonPressed(sender: UIButton) {
+    answers.append("")
+    self.tableView.reloadData()
     
   }
   
@@ -84,19 +72,19 @@ class CreateQuestionContainerView: UIView {
     delegate?.stringFromQuestionDuration(currentTimeAway, endTime: endTime!, setButtonTitle: setEndTimerButtonTitle)
   }
   
-  
-  @IBAction func backButtonPressed(sender: AnyObject) {
-    delegate?.backButtonPressed()
+  func setPlaceholderText() {
+    questionInputText.text = placeholders.question
+    questionInputText.textColor = colors.placeholderTextColor
+    questionInputText.selectedTextRange = questionInputText.textRangeFromPosition(questionInputText.beginningOfDocument, toPosition: questionInputText.beginningOfDocument)
+
   }
-  
-  
   
   func setEndTimerButtonTitle(message: String) {
     endTimerLabel.setTitle(message, forState: .Normal)
   }
   
   func hideTimerView() {
-    setTimerView.hidden = true
+    setTimerView.alpha = 0
   }
   
   class func instanceFromNib(frame: CGRect) -> CreateQuestionContainerView {
@@ -104,18 +92,17 @@ class CreateQuestionContainerView: UIView {
     view.frame = frame
     view.tableView.delegate = view
     view.tableView.dataSource = view
-    view.tableView.separatorColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2 )
-    
+    view.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+    view.tableView.backgroundColor = UIColor.clearColor()
+    view.tableView.opaque = false
     return view
   }
-  
 }
 
 extension CreateQuestionContainerView: AnswerTableViewCellDelegate {
   
   func updateAnswer(identifier: Int, answer: String) {
     answers[identifier] = answer
-    print(answer)
   }
   
   func updateCorrectAnswer(identifier: Int) {
@@ -128,30 +115,68 @@ extension CreateQuestionContainerView: AnswerTableViewCellDelegate {
     correctAnswer = identifier
   }
   
-  func deselectAnswer(identifier: Int) {
-    correctAnswer = 0
+  func deselectAnswer() {
+    correctAnswer = -1
   }
+  
 }
 
 extension CreateQuestionContainerView: UITableViewDelegate, UITableViewDataSource {
+  
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let pollResultsCell = UINib(nibName: "AnswerTableViewCell", bundle: nil)
     tableView.registerNib(pollResultsCell, forCellReuseIdentifier: "answerCell")
+    
     let cell = self.tableView.dequeueReusableCellWithIdentifier("answerCell", forIndexPath: indexPath) as! AnswerTableViewCell
-    cell.identifier = answerIdentifier[indexPath.item]
+    cell.identifier = indexPath.item
     cell.delegate = self
     cell.isCorrect = false
     cell.answerField.addTarget(cell, action: #selector(AnswerTableViewCell.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
+    cell.answerField.text = answers[indexPath.row]
+    cell.backgroundColor = UIColor.clearColor()
+    cell.backgroundImage.image = UIImage(named: "AnswerCell")!
+    cell.selectionStyle = UITableViewCellSelectionStyle.None
+    
+    switch indexPath.row {
+    case 0: cell.answerField.placeholder = placeholders.answer0
+    case 1: cell.answerField.placeholder = placeholders.answer1
+    default: cell.answerField.placeholder = placeholders.answerDefault
+    }
+    
     return cell
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 4
+    return answers.count
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return 60
+    return 68
   }
+  
+  func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    let delete = UITableViewRowAction(style: .Normal, title: "        ") { action, index in
+      if self.answers.count > 2 {
+        self.tableView.beginUpdates()
+        self.answers.removeAtIndex(indexPath.row)
+        self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        self.tableView.endUpdates()
+      }
+    }
+    delete.backgroundColor = UIColor(patternImage: UIImage(named: "Delete")!)
+    
+    return [delete]
+  }
+  
+  func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    return true
+  }
+  
+  func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+  }
+  
 }
+
+
 
 

@@ -9,7 +9,6 @@
 import UIKit
 
 protocol CampaignViewTableViewCellDelegate {
-  func resultsButtonSelected(question: Question)
   func questionSelected(question:Question)
 }
 
@@ -18,41 +17,16 @@ class CampaignViewTableViewCell: UITableViewCell {
   var delegate: CampaignViewTableViewCellDelegate?
   
   @IBOutlet weak var author: UILabel!
-  @IBOutlet weak var button: UIButton!
-  @IBOutlet weak var resultsButton: UIButton!
+  @IBOutlet weak var questionLabel: UILabel!
   @IBOutlet weak var expiry: UILabel!
+  @IBOutlet weak var backgroundImage: UIImageView!
   
+  var isAnswered: Bool = false
   private var question:Question?
-  
-  @IBAction func buttonPressed(sender: AnyObject) {
-    guard question != nil else {
-      return
-    }
-    if question!.isExpired == false {
-      if let senderTitle = sender.currentTitle {
-        delegate?.questionSelected(question!)
-      }
-    } else {
-      delegate?.resultsButtonSelected(question!)
-    }
-  }
   
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
-  }
-  @IBAction func resultsButtonPressed(sender: AnyObject) {
-    if question != nil {
-      delegate?.resultsButtonSelected(question!)
-    }
-  }
-  
-  func hideResultsLabel(expired: Bool){
-    if (expired) {
-      resultsButton.alpha = 1;
-    } else {
-      resultsButton.alpha = 0;
-    }
   }
   
   func setFieldQuestion (question: Question) {
@@ -60,11 +34,11 @@ class CampaignViewTableViewCell: UITableViewCell {
   }
   
   func setQuestionText(questionName: QuestionText) {
-    button.setTitle(questionName, forState: UIControlState.Normal)
+    questionLabel.text = questionName
   }
   
   func setAuthorText(author:Author) {
-    self.author.text = author;
+    self.author.text = "asks \(author)"
     self.author.adjustsFontSizeToFitWidth = false
     self.author.lineBreakMode = NSLineBreakMode.ByClipping
   }
@@ -75,12 +49,20 @@ class CampaignViewTableViewCell: UITableViewCell {
     self.expiry.lineBreakMode = NSLineBreakMode.ByClipping
   }
   
-  func setAnsweredBackground(isAnswered: Bool) {
-    if isAnswered {
-      self.backgroundColor = UIColor.lightGrayColor()
+  override func setSelected(selected: Bool, animated: Bool) {
+    if selected || isAnswered {
+      backgroundImage.image = UIImage(named: "QuestionCellSelected")!
+      questionLabel.textColor = UIColor.whiteColor()
+      author.textColor = colors.lightAuthorColor
+      expiry.textColor = colors.lightAuthorColor
     } else {
-      self.backgroundColor = UIColor.clearColor()
+      backgroundImage.image = UIImage(named: "QuestionCell")!
+      questionLabel.textColor = colors.textColor
+      author.textColor = colors.authorColor
+      expiry.textColor = colors.authorColor
     }
+    
   }
+  
   
 }
