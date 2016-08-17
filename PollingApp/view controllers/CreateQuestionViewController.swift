@@ -45,7 +45,7 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
     container?.questionInputText.layer.cornerRadius = 0
     container?.questionInputText.textContainer.lineFragmentPadding = 0
     container?.questionInputText.textContainerInset = UIEdgeInsetsZero;
-
+    
   }
   
   func setNavigationBar() {
@@ -55,14 +55,18 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
   }
   
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-    if self.view.window?.frame.origin.y != 0 {
+    if self.view.window?.frame.origin.y != 0 || self.container!.AnswersVerticalSpacing.constant != 55 {
+      self.container!.AnswersVerticalSpacing.constant = 55
+
       UIView.animateWithDuration(0.2, animations: {
         self.view.window?.frame.origin.y = 0
+        self.view.layoutIfNeeded()
+        self.container!.setTimerView.alpha = 0
       })
-      self.container!.hideTimerView()
+      
     }
   }
-
+  
   func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
     let currentText = textView.text ?? ""
     guard let stringRange = range.rangeForString(currentText) else { return false }
@@ -92,7 +96,7 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
       textView.text = nil
       textView.textColor = colors.textColor
     }
-
+    
     
     return changedText.characters.count <= 140
   }

@@ -39,6 +39,7 @@ class CreateQuestionContainerView: UIView {
   var currentTimeAway:Int = 1
   var endTime:NSDate?
   
+  @IBOutlet weak var AnswersVerticalSpacing: NSLayoutConstraint!
   @IBOutlet weak var questionHeight: NSLayoutConstraint!
   @IBOutlet weak var endTimerLabel: UIButton!
   
@@ -46,7 +47,12 @@ class CreateQuestionContainerView: UIView {
     
     setTimerView.hidden = false
     
-    delegate?.shiftView()
+    //    delegate?.shiftView()
+    self.AnswersVerticalSpacing.constant = 205
+    setTimerView.alpha = 1
+    UIView.animateWithDuration(0.2, animations: {
+      self.layoutIfNeeded()
+    })
     endTime = calendar.dateByAddingUnit(.Minute, value: currentTimeAway, toDate: NSDate(), options: [])!
     delegate?.stringFromQuestionDuration(currentTimeAway, endTime: endTime!, setButtonTitle: setEndTimerButtonTitle)
   }
@@ -76,7 +82,7 @@ class CreateQuestionContainerView: UIView {
   }
   
   func hideTimerView() {
-    setTimerView.hidden = true
+    setTimerView.alpha = 0
   }
   
   class func instanceFromNib(frame: CGRect) -> CreateQuestionContainerView {
