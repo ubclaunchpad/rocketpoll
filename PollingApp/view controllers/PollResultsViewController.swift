@@ -105,7 +105,7 @@ class PollResultsViewController: UIViewController {
       
       viewController.selectedAnswer = sendAnswer
       viewController.questionText = questionText
-      
+      self.title = ""
     }
   }
 }

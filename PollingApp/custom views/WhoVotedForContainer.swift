@@ -54,7 +54,7 @@ class WhoVotedForContainer: UIView, UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return 84
+    return 68
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
