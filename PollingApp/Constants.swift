@@ -62,6 +62,8 @@ enum Segues {
   static let toPollAdminScreen = "toPollAdminScreen"
   static let toPollResultsView = "toPollResultsView"
   static let toPollAdminVCFromCampaign = "toPollAdminVCFromCampaign"
+  static let toWhoVotedForVCFromAdmin = "toWhoVotedForVCFromAdmin"
+  static let toWhoVotedForFromResults = "toWhoVotedForFromResults"
 }
 
 enum UIStringConstants {

@@ -145,4 +145,13 @@ extension ModelInterface: QuestionModelProtocol {
     return Segues.toPollAdminVCFromCampaign
   }
   
+  func segueToWhoVotedForVCFromAdmin () -> SegueName {
+    return Segues.toWhoVotedForVCFromAdmin
+  }
+  
+  func segueToWhoVotedForVCFromResult () -> SegueName {
+    return Segues.toWhoVotedForFromResults
+  }
+
+  
 }

@@ -64,7 +64,6 @@ final class PollUserViewController: UIViewController {
     let backItem = UIBarButtonItem(image: UIImage(named: "Back"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PollAdminViewController.popSegue))
     navigationItem.leftBarButtonItem?.target = self
     navigationItem.leftBarButtonItem?.action = #selector(PollUserViewController.backButtonPushed)
-//    navigationItem.leftBarButtonItem = backItem
   }
   
   func fillInTheFields (listofAllAnswers:[Answer]) {

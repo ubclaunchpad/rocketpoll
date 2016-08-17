@@ -81,7 +81,6 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
   }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//    let sections = [yourQuestions, answeredQuestions, unansweredQuestions, expiredQuestions]
     guard let question = questionCells[indexPath.row] as? Question else {
       return
     }
