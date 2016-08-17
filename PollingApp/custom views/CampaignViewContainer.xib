@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CampaignViewContainer" customModule="PollingApp" customModuleProvider="target"/>
@@ -11,49 +12,38 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="moM-HW-6Dw">
-                    <rect key="frame" x="0.0" y="62" width="600" height="396"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30U-l7-6ZB">
-                    <rect key="frame" x="227" y="470" width="146" height="30"/>
-                    <state key="normal" title="Create New Question"/>
-                    <connections>
-                        <action selector="newQuestionPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="gbG-bA-m8o"/>
-                    </connections>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Questions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r41-pe-bbm">
-                    <rect key="frame" x="250" y="28" width="101" height="20"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXY-Pk-q1j">
+                    <rect key="frame" x="214" y="234.5" width="172.5" height="41.5"/>
+                    <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                    <attributedString key="attributedText">
+                        <fragment>
+                            <string key="content">Oops no questions here.
+But you can be the first!</string>
+                            <attributes>
+                                <color key="NSColor" red="0.38431372549019605" green="0.38431372549019605" blue="0.38431372549019605" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" metaFont="system" size="16"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oMa-om-J6Z">
-                    <rect key="frame" x="270" y="508" width="61" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="61" id="S0z-b0-fwv"/>
-                    </constraints>
-                    <state key="normal" title="Refresh"/>
-                    <connections>
-                        <action selector="refresh:" destination="iN0-l3-epB" eventType="touchUpInside" id="X4C-dI-lCU"/>
-                    </connections>
-                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="moM-HW-6Dw">
+                    <rect key="frame" x="0.0" y="17" width="600" height="583"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="oMa-om-J6Z" firstAttribute="leading" secondItem="30U-l7-6ZB" secondAttribute="trailing" constant="-103" id="6iH-Qh-akK"/>
                 <constraint firstAttribute="trailing" secondItem="moM-HW-6Dw" secondAttribute="trailing" id="BR4-9A-0MB"/>
-                <constraint firstItem="moM-HW-6Dw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="62" id="Jea-5v-Sz7"/>
-                <constraint firstAttribute="bottom" secondItem="30U-l7-6ZB" secondAttribute="bottom" constant="100" id="P5Z-M1-xiU"/>
-                <constraint firstItem="r41-pe-bbm" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="VDB-ie-Mf6"/>
-                <constraint firstItem="oMa-om-J6Z" firstAttribute="baseline" secondItem="30U-l7-6ZB" secondAttribute="baseline" constant="38" id="eVL-fO-3hb"/>
-                <constraint firstItem="30U-l7-6ZB" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="p0U-Br-u4Q"/>
+                <constraint firstItem="moM-HW-6Dw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="Jea-5v-Sz7"/>
+                <constraint firstItem="bXY-Pk-q1j" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Oy3-E4-Nhg"/>
+                <constraint firstItem="bXY-Pk-q1j" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" multiplier="0.85" id="iX7-ln-Qfa"/>
                 <constraint firstItem="moM-HW-6Dw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qyD-WL-Glv"/>
-                <constraint firstItem="r41-pe-bbm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="28" id="s3P-9C-D8S"/>
-                <constraint firstAttribute="bottom" secondItem="moM-HW-6Dw" secondAttribute="bottom" constant="142" id="v3s-3j-RC5"/>
+                <constraint firstAttribute="bottom" secondItem="moM-HW-6Dw" secondAttribute="bottom" id="v3s-3j-RC5"/>
             </constraints>
             <connections>
-                <outlet property="roomName" destination="r41-pe-bbm" id="FGN-QH-woa"/>
+                <outlet property="emptyLabel" destination="bXY-Pk-q1j" id="0lw-Px-P3E"/>
                 <outlet property="tableView" destination="moM-HW-6Dw" id="n6Z-3d-EuQ"/>
             </connections>
             <point key="canvasLocation" x="201" y="613"/>
