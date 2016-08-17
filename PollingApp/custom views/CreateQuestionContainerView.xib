@@ -19,16 +19,6 @@
                         <constraint firstAttribute="height" constant="250" id="DMS-C5-PSy"/>
                     </constraints>
                 </tableView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter the Question" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cZY-ZI-fNH">
-                    <rect key="frame" x="73" y="100" width="326" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="7Hg-cB-yyz"/>
-                        <constraint firstAttribute="width" constant="326" id="qsZ-wc-DGC"/>
-                    </constraints>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="55o-To-BHJ">
                     <rect key="frame" x="0.0" y="569" width="472" height="250"/>
                     <subviews>
@@ -177,31 +167,43 @@
                         <action selector="setTimerButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="Xhl-Fu-xL9"/>
                     </connections>
                 </button>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7Db-bb-cr6">
+                    <rect key="frame" x="40" y="90" width="392" height="128"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="ZYp-RJ-7b7" firstAttribute="centerX" secondItem="Hzl-CF-6B0" secondAttribute="centerX" id="142-Cw-IId"/>
+                <constraint firstItem="7Db-bb-cr6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="6V5-rU-E68"/>
+                <constraint firstAttribute="trailing" secondItem="v3B-Rw-fEn" secondAttribute="trailing" constant="8" id="7Ay-QR-dYy"/>
                 <constraint firstItem="ZYp-RJ-7b7" firstAttribute="top" secondItem="Fd7-4U-zpA" secondAttribute="bottom" constant="8" symbolic="YES" id="82F-kb-VS8"/>
                 <constraint firstItem="Fd7-4U-zpA" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="DK7-z1-TiE"/>
                 <constraint firstItem="kSR-OB-ORh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="EQk-eU-NJ2"/>
                 <constraint firstItem="55o-To-BHJ" firstAttribute="top" secondItem="kSR-OB-ORh" secondAttribute="bottom" constant="8" id="JAX-Mh-FtQ"/>
                 <constraint firstItem="55o-To-BHJ" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="M9e-VK-07Y"/>
+                <constraint firstItem="v3B-Rw-fEn" firstAttribute="top" secondItem="jVL-e3-Jmb" secondAttribute="top" id="Ruf-a1-Twg"/>
+                <constraint firstItem="7Db-bb-cr6" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="TXx-KN-wjU"/>
                 <constraint firstItem="cZY-ZI-fNH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="100" id="Pbj-53-9HP"/>
                 <constraint firstItem="ZYp-RJ-7b7" firstAttribute="centerX" secondItem="kSR-OB-ORh" secondAttribute="centerX" id="ZJF-Ch-cSv"/>
                 <constraint firstItem="Fd7-4U-zpA" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.85" id="c8w-Qj-Q0x"/>
                 <constraint firstItem="kSR-OB-ORh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="cYH-in-a6a"/>
-                <constraint firstItem="cZY-ZI-fNH" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="cmw-ek-fqy"/>
                 <constraint firstItem="ZYp-RJ-7b7" firstAttribute="top" secondItem="Hzl-CF-6B0" secondAttribute="bottom" id="djv-UI-8iO"/>
                 <constraint firstItem="Fd7-4U-zpA" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="eUN-7Y-dv9"/>
+                <constraint firstItem="v3B-Rw-fEn" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="g1b-fi-1DY"/>
+                <constraint firstItem="7Db-bb-cr6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="90" id="hJX-jK-COk"/>
                 <constraint firstItem="kSR-OB-ORh" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.83" id="hTH-Ij-Bih"/>
                 <constraint firstItem="55o-To-BHJ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="kEH-JN-zrY"/>
                 <constraint firstItem="kSR-OB-ORh" firstAttribute="top" secondItem="Fd7-4U-zpA" secondAttribute="bottom" constant="42" id="kpE-5S-fSR"/>
+                <constraint firstItem="jVL-e3-Jmb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="lLg-Wu-iZy"/>
+                <constraint firstItem="Fd7-4U-zpA" firstAttribute="top" secondItem="7Db-bb-cr6" secondAttribute="bottom" constant="21" id="v92-kF-by2"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="endTimerLabel" destination="kSR-OB-ORh" id="jdT-sZ-0tv"/>
-                <outlet property="questionInputText" destination="cZY-ZI-fNH" id="0mJ-Jv-kfA"/>
+                <outlet property="questionInputText" destination="7Db-bb-cr6" id="5WE-KR-mhb"/>
                 <outlet property="setTimerButton" destination="kSR-OB-ORh" id="RcJ-2V-lTK"/>
                 <outlet property="setTimerView" destination="l8h-Nd-aKU" id="Q2v-mm-5J8"/>
                 <outlet property="tableView" destination="Fd7-4U-zpA" id="Qxy-sx-vvY"/>

@@ -23,7 +23,7 @@ class CreateQuestionContainerView: UIView {
   
   var delegate: CreateQuestionViewContainerDelegate?
   
-  @IBOutlet weak var questionInputText: UITextField!
+  @IBOutlet weak var questionInputText: UITextView!
   
   @IBOutlet weak var tableView: UITableView!
   
@@ -94,7 +94,6 @@ class CreateQuestionContainerView: UIView {
     
     return view
   }
-  
 }
 
 extension CreateQuestionContainerView: AnswerTableViewCellDelegate {
@@ -116,6 +115,7 @@ extension CreateQuestionContainerView: AnswerTableViewCellDelegate {
   func deselectAnswer() {
     correctAnswer = -1
   }
+  
 }
 
 extension CreateQuestionContainerView: UITableViewDelegate, UITableViewDataSource {
@@ -141,5 +141,7 @@ extension CreateQuestionContainerView: UITableViewDelegate, UITableViewDataSourc
     return 60
   }
 }
+
+
 
 
