@@ -36,8 +36,10 @@ class WhoVotedForViewController: UIViewController {
     ModelInterface.sharedInstance.getListOfUsersWhoVoteForGivenAnswer(AID!) { (listOfUsers) in
       self.listOfUsers = listOfUsers
       self.container?.delegate = self
+      self.container?.setListUsers(listOfUsers)
       self.container?.setTextForAnswerLabel(answerText!)
       self.container?.setTextForQuestionLabel(self.questionText!)
+      self.container?.TableOfUsers.reloadData()
     }
   }
   

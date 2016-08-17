@@ -9,19 +9,26 @@
 import UIKit
 
 protocol WhoVotedForViewContainerDelegate {
-
+  
 }
 class WhoVotedForContainer: UIView, UITableViewDelegate, UITableViewDataSource {
-
+  
   @IBOutlet weak var questionText: UILabel!
   @IBOutlet weak var answerText: UILabel!
   
   @IBOutlet weak var TableOfUsers: UITableView!
   var delegate: WhoVotedForViewContainerDelegate?
-
+  var listOfUsers = [Author]()
+  
   class func instanceFromNib(frame: CGRect) -> WhoVotedForContainer {
     let view = UINib(nibName: "WhoVotedForContainer", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! WhoVotedForContainer
     view.frame = frame
+    view.TableOfUsers.delegate = view
+    view.TableOfUsers.dataSource = view
+    view.TableOfUsers.allowsSelection = false
+    view.TableOfUsers.separatorStyle = UITableViewCellSeparatorStyle.None
+    view.TableOfUsers.backgroundColor = UIColor.clearColor()
+    view.TableOfUsers.opaque = false
     return view
   }
   
@@ -33,6 +40,31 @@ class WhoVotedForContainer: UIView, UITableViewDelegate, UITableViewDataSource {
   func setTextForAnswerLabel (answerText:AnswerText) {
     self.answerText.text = answerText
   }
+  
+  func setListUsers (listOfUsers:[Author]) {
+    self.listOfUsers = listOfUsers
+  }
+  
+  
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return listOfUsers.count
+  }
+  
+  func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    return 84
+  }
+  
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let userCell = UINib(nibName: "UserViewTableViewCell", bundle: nil)
+    tableView.registerNib(userCell, forCellReuseIdentifier: "usercell")
+
+    let cell = tableView.dequeueReusableCellWithIdentifier("usercell", forIndexPath: indexPath) as! UserViewTableViewCell
+    cell.setUserNameLabel(listOfUsers[indexPath.row])
+    return cell
+  }
+}
+
+extension WhoVotedForContainer: UserViewTableViewCellDelegate {
   
   
 }

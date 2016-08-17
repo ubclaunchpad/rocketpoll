@@ -52,7 +52,7 @@ extension ModelInterface: AnswerModelProtocol {
   func getListOfUsersWhoVoteForGivenAnswer (answerID:AnswerID, completionHandler: (listOfUsers: [Author]) -> () ){
     let ref = FIRDatabase.database().reference()
     ref.child("ANSWERS/AIDS/\(answerID)/LISTOFUSERS").observeEventType(.Value, withBlock: { (snapshot) in
-      if (snapshot.value as? String) != nil {
+      if (snapshot.value as? [String : String]) != nil {
         let userNodes = snapshot.value as! [String : String]
         let listOfUsers = self.parseUsers(userNodes)
         completionHandler(listOfUsers: listOfUsers)

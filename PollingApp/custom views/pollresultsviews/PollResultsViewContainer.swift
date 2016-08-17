@@ -34,7 +34,7 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     view.frame = frame
     view.resultsTableView.delegate = view
     view.resultsTableView.dataSource = view
-    view.resultsTableView.allowsSelection = false
+    view.resultsTableView.allowsSelection = true
     view.resultsTableView.separatorStyle = UITableViewCellSeparatorStyle.None
     view.resultsTableView.backgroundColor = UIColor.clearColor()
     view.resultsTableView.opaque = false

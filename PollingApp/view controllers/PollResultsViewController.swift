@@ -64,9 +64,7 @@ class PollResultsViewController: UIViewController {
         self.container?.setCorrectAnswer(self.correctAnswer)
         self.container?.setYourAnswer(self.yourAnswerText)
         self.container?.setAnswers(self.answers)
-        
-        
-        self.container?.resultsTableView.allowsSelection = true
+    
         self.container?.resultsTableView.reloadData()
         
       }
