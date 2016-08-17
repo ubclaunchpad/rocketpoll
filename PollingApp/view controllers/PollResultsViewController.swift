@@ -12,12 +12,12 @@ import Firebase
 class PollResultsViewController: UIViewController {
   private var correctAnswer: AnswerText = ""
   var totalNumberOfUserAnswers: Int = 0
-  private var answerIDDictionary = [AnswerText: AnswerID]()
-  private var answers: [AnswerText] = []
-  private var NumResponsesPerAnswer: [Int] = []
+  
+  private var answers:[Answer] = []
   private var yourAnswerID = ""
   private var yourAnswerText = ""
   private var author = ""
+  
   // Recieved information
   var questionText = ""
   var questionID:QuestionID = ""
@@ -25,9 +25,6 @@ class PollResultsViewController: UIViewController {
   var fromPollUser: Bool = false
   
   
-  // Information to send
-  var sendAnswers:Answer
-  var sendQuestionText:QuestionText
   
   var container: PollResultsViewContainer?
   
@@ -41,29 +38,31 @@ class PollResultsViewController: UIViewController {
   }
   
   func addContainerToVC() {
+    
+    
     container = PollResultsViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
     view.addSubview(container!)
     
     //TODO:IPA-125
     ModelInterface.sharedInstance.processAnswerData(answerIDs) { (listofAllAnswers) in
       ModelInterface.sharedInstance.findYourAnswer(self.questionID) { (yourAnswer) in
-        self.answerIDDictionary = [AnswerText: AnswerID]()
         self.answers = []
-        self.NumResponsesPerAnswer = []
         self.totalNumberOfUserAnswers = 0
         self.correctAnswer = ""
         self.yourAnswerID = yourAnswer
+        
         self.fillInTheFields(listofAllAnswers)
         self.container?.delegate = self
+        
         self.container?.setTotalNumberOfAnswers(self.totalNumberOfUserAnswers)
         self.container?.setQuestionLabelText(self.questionText)
-        self.container?.setAnswers(self.answers)
         self.container?.setCorrectAnswer(self.correctAnswer)
-        self.container?.setNumberOfResponsesForAnswer(self.NumResponsesPerAnswer)
-         self.container?.setYourAnswer(self.yourAnswerText)
+        self.container?.setYourAnswer(self.yourAnswerText)
+        self.container?.setAnswers(self.answers)
+        
+        
         self.container?.resultsTableView.allowsSelection = true
         self.container?.resultsTableView.reloadData()
-        self.container?.setTotalNumberOfAnswers(self.totalNumberOfUserAnswers)
         
       }
       
@@ -80,23 +79,14 @@ class PollResultsViewController: UIViewController {
   }
   
   func fillInTheFields (listofAllAnswers: [Answer]) {
+    
+    answers = listofAllAnswers
     let size = listofAllAnswers.count
     for i in 0 ..< size  {
-      let tempAnswer = listofAllAnswers[i].answerText
-      if (listofAllAnswers[i].AID == yourAnswerID) {
-        yourAnswerText = listofAllAnswers[i].answerText
-      }
-      
-      self.answers.append(tempAnswer)
-      self.answerIDDictionary[tempAnswer] = self.answerIDs[i]
-      
       if (listofAllAnswers[i].isCorrect == true ) {
         self.correctAnswer = listofAllAnswers[i].answerText
       }
       self.totalNumberOfUserAnswers += listofAllAnswers[i].tally
-      
-      self.NumResponsesPerAnswer.append(listofAllAnswers[i].tally)
-      
     }
     
   }
@@ -111,7 +101,7 @@ class PollResultsViewController: UIViewController {
     if (segue.identifier ==  ModelInterface.sharedInstance.segueToWhoVotedForVCFromResult()) {
       
       let viewController:WhoVotedForViewController = segue.destinationViewController as! WhoVotedForViewController
-      let sendAnswer = Answer(AID: <#T##AnswerID#>, isCorrect: <#T##Bool#>, tally: <#T##Int#>, answerText: <#T##AnswerText#>)
+        
         
     }
   }
@@ -133,8 +123,7 @@ extension PollResultsViewController: PollResultsViewContainerDelegate {
     presentViewController(deleteAlert, animated: true, completion: nil)
   }
   
-  func segueToWhoVotedFor() {
-    sendQuestionText = ""
+  func segueToWhoVotedFor(selectedAnswer:Answer) {
     let nextRoom = ModelInterface.sharedInstance.segueToWhoVotedForVCFromResult()
     performSegueWithIdentifier(nextRoom, sender: self)
 

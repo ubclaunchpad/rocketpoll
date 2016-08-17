@@ -12,7 +12,7 @@ import UIKit
 protocol PollResultsViewContainerDelegate {
   func goBackToCampaign()
   func presentConfirmationVaraible()
-  func segueToWhoVotedFor()
+  func segueToWhoVotedFor(selectedAnswer:Answer)
 }
 class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
   
@@ -20,13 +20,13 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
   @IBOutlet weak var totalAnswersLabel: UILabel!
   @IBOutlet weak var question: UILabel!
   
-  private var answers: [AnswerText] = []
+  private var answers: [Answer] = []
   private var correctAnswer: AnswerText = ""
   private var totalNumberOfAnswers: Int = 0
-  private var numberOfResponsesPerAnswer: [Int] = []
+  
   private var questionText = ""
   private var yourAnswer = ""
-  private var yourAnswerNumOfRespones = 0
+  
   var delegate: PollResultsViewContainerDelegate?
   
   class func instanceFromNib(frame: CGRect) -> PollResultsViewContainer {
@@ -51,19 +51,19 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     
     let answer = answers[indexPath.row]
     
-    cell.setAnswerText(answer)
+    cell.setAnswerText(answer.answerText)
     
-    if answer == correctAnswer {
+    if answer.answerText == correctAnswer {
       cell.setCorrectAnswer()
     }
     
     
     if(totalNumberOfAnswers != 0){
-      let results:Double = MathUtil.convertTallyResultsToPercentage(Double(numberOfResponsesPerAnswer[indexPath.row]), denominator: Double(totalNumberOfAnswers))
-      cell.setBarGraph(results, isYourAnswer: yourAnswer == answer, isCorrect: correctAnswer == answer)
-      cell.SetTallyLabel(numberOfResponsesPerAnswer[indexPath.row], result: results)
+      let results:Double = MathUtil.convertTallyResultsToPercentage(Double(answer.tally), denominator: Double(totalNumberOfAnswers))
+      cell.setBarGraph(results, isYourAnswer: yourAnswer == answer.answerText, isCorrect: correctAnswer == answer.answerText)
+      cell.SetTallyLabel(answer.tally, result: results)
     } else {
-      cell.setBarGraph(0, isYourAnswer: yourAnswer == answer, isCorrect: correctAnswer == answer)
+      cell.setBarGraph(0, isYourAnswer: yourAnswer == answer.answerText, isCorrect: correctAnswer == answer.answerText)
       cell.SetTallyLabel(0, result: 0)
     }
     
@@ -87,7 +87,7 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     question.text = questionText
   }
   
-  func setAnswers (Answers: [AnswerText]){
+  func setAnswers (Answers: [Answer]){
     answers = Answers
     print(answers.count)
   }
@@ -105,12 +105,8 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     self.yourAnswer = yourAnswer
   }
   
-  func setNumberOfResponsesForAnswer (NumResponses:[Int]){
-    numberOfResponsesPerAnswer = NumResponses
-  }
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    print(answers[indexPath.row])
-    delegate?.segueToWhoVotedFor()
+    delegate?.segueToWhoVotedFor(answers[indexPath.row])
   }
   
 }
