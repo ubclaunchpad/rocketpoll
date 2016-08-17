@@ -75,6 +75,8 @@ class CreateQuestionContainerView: UIView {
   func setPlaceholderText() {
     questionInputText.text = placeholders.question
     questionInputText.textColor = colors.placeholderTextColor
+    questionInputText.selectedTextRange = questionInputText.textRangeFromPosition(questionInputText.beginningOfDocument, toPosition: questionInputText.beginningOfDocument)
+
   }
   
   func setEndTimerButtonTitle(message: String) {

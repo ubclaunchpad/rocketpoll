@@ -92,7 +92,7 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
       // length of the replacement string is greater than 0, clear
       // the text view and set its color to black to prepare for
       // the user's entry
-    else if textView.textColor == UIColor.lightGrayColor() && !text.isEmpty {
+    else if textView.textColor == colors.placeholderTextColor && !text.isEmpty {
       textView.text = nil
       textView.textColor = colors.textColor
     }
@@ -112,7 +112,7 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
   
   func textViewDidChangeSelection(textView: UITextView) {
     if self.view.window != nil {
-      if textView.textColor == UIColor.lightGrayColor() {
+      if textView.textColor == colors.placeholderTextColor {
         textView.selectedTextRange = textView.textRangeFromPosition(textView.beginningOfDocument, toPosition: textView.beginningOfDocument)
       }
     }
