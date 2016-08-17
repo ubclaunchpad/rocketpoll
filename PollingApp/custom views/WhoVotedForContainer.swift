@@ -47,6 +47,10 @@ class WhoVotedForContainer: UIView, UITableViewDelegate, UITableViewDataSource {
   
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    if (listOfUsers.isEmpty) {
+      return 1
+    }
+    
     return listOfUsers.count
   }
   
@@ -59,7 +63,12 @@ class WhoVotedForContainer: UIView, UITableViewDelegate, UITableViewDataSource {
     tableView.registerNib(userCell, forCellReuseIdentifier: "usercell")
 
     let cell = tableView.dequeueReusableCellWithIdentifier("usercell", forIndexPath: indexPath) as! UserViewTableViewCell
-    cell.setUserNameLabel(listOfUsers[indexPath.row])
+    
+    if (listOfUsers.isEmpty) {
+      cell.setUserNameLabel("No one has voted for this answer")
+    } else {
+      cell.setUserNameLabel(listOfUsers[indexPath.row])
+    }
     return cell
   }
 }
