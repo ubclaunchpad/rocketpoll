@@ -35,10 +35,11 @@ class PollResultsViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    addContainerToVC()
+    
     if fromPollUser {
       setNavigationBar()
     }
+    addContainerToVC()
     self.title = "RESULTS"
   }
   

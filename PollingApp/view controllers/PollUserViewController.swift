@@ -61,9 +61,12 @@ final class PollUserViewController: UIViewController {
   }
   
   func setNavigationBar() {
-    let backItem = UIBarButtonItem(image: UIImage(named: "Back"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PollAdminViewController.popSegue))
+//    _ = UIBarButtonItem(image: UIImage(named: "Back"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PollAdminViewController.popSegue))
     navigationItem.leftBarButtonItem?.target = self
     navigationItem.leftBarButtonItem?.action = #selector(PollUserViewController.backButtonPushed)
+  
+    let seeResults = UIBarButtonItem(title: "Result", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PollUserViewController.goToResults))
+     self.navigationItem.rightBarButtonItem = seeResults
   }
   
   func fillInTheFields (listofAllAnswers:[Answer]) {
@@ -166,6 +169,14 @@ extension PollUserViewController: PollUserViewContainerDelegate {
       let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
       self.performSegueWithIdentifier(nextRoom, sender: self)
     }
-  
   }
+
+  func goToResults() {
+    sendQID = questionID
+    sendQuestionText = questionText
+    sendAIDS = answerIDs
+    let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
+    performSegueWithIdentifier(nextRoom, sender: self)
+  }
+
 }
