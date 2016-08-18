@@ -82,9 +82,8 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
       
       textView.text = placeholders.question
       textView.textColor = colors.placeholderTextColor
-      
       textView.selectedTextRange = textView.textRangeFromPosition(textView.beginningOfDocument, toPosition: textView.beginningOfDocument)
-      
+      container?.setCharactersLeftLabel(140)
       return false
     }
       
@@ -97,7 +96,6 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
       textView.textColor = colors.textColor
     }
     
-    
     return changedText.characters.count <= 140
   }
   
@@ -107,6 +105,12 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
     let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
     if newSize.height > 35 {
       container?.questionHeight.constant = newSize.height
+    }
+    print(textView.text.characters.count)
+    if textView.textColor == colors.placeholderTextColor || textView.text.characters.count == 0 {
+      container?.setCharactersLeftLabel(140)
+    } else {
+      container?.setCharactersLeftLabel(140 - textView.text.characters.count)
     }
   }
   

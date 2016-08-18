@@ -43,6 +43,7 @@ class CreateQuestionContainerView: UIView {
   @IBOutlet weak var questionHeight: NSLayoutConstraint!
   @IBOutlet weak var endTimerLabel: UIButton!
   
+  @IBOutlet weak var charactersLeft: UILabel!
   @IBAction func setTimerButtonPressed(sender: AnyObject) {
     
     setTimerView.hidden = false
@@ -83,6 +84,10 @@ class CreateQuestionContainerView: UIView {
     endTimerLabel.setTitle(message, forState: .Normal)
   }
   
+  func setCharactersLeftLabel(count: Int) {
+        charactersLeft.text = "\(count)"
+  }
+    
   func hideTimerView() {
     setTimerView.alpha = 0
   }
