@@ -40,11 +40,19 @@ enum images {
   static let correctSelected = UIImage(named: imageNames.setCorrectSelected)
 }
 
+enum placeholders {
+  static let question = "What is the best bear?"
+  static let answer0 = "That's a ridiculous question"
+  static let answer1 = "Black bear"
+  static let answerDefault = "Enter an answer"
+}
+
 enum colors {
   static let green = UIColor(red: 28/255.0, green: 165/255.0, blue: 122/255.0, alpha: 1)
   static let lightGreen = UIColor(red: 226/255.0, green: 250/255.0, blue: 218/255.0, alpha: 1)
   static let barGraphColour = UIColor(red: 0, green: 0, blue: 1, alpha: 0.5)
   static let textColor = UIColor(red: 98/255.0, green: 98/255.0, blue: 98/255.0, alpha: 1)
+  static let placeholderTextColor = UIColor(red: 199/255.0, green: 199/255.0, blue: 205/255.0, alpha: 1)
   static let authorColor = UIColor(red: 151/255.0, green: 151/255.0, blue: 151/255.0, alpha: 1)
   static let lightAuthorColor = UIColor(red: 249/255.0, green: 249/255.0, blue: 249/255.0, alpha: 1)
   static let backgroundColor = UIColor(red: 245/255.0, green: 245/255.0, blue: 245/255.0, alpha: 1)
@@ -100,22 +108,22 @@ enum UITimeRemaining {
   static let timerMinute = "Minute: %1%"
   static let timerHours = "Hours: %1%"
   static let timerHour = "Hour: %1%"
-  static let timerTextDayHourMinute = "Question will end in %1% day, %2% hour and %3% minute, at %4%"
-  static let timerTextDayHoursMinutes = "Question will end in %1% day, %2% hours and %3% minutes, at %4%"
-  static let timerTextDayHoursMinute = "Question will end in %1% day, %2% hours and %3% minute, at %4%"
-  static let timerTextDayHourMinutes = "Question will end in %1% day, %2% hour and %3% minutes, at %4%"
+  static let timerTextDayHourMinute = "ends in %1% day, %2% hour and %3% minute, at %4%"
+  static let timerTextDayHoursMinutes = "ends in %1% day, %2% hours and %3% minutes, at %4%"
+  static let timerTextDayHoursMinute = "ends in %1% day, %2% hours and %3% minute, at %4%"
+  static let timerTextDayHourMinutes = "ends in %1% day, %2% hour and %3% minutes, at %4%"
   
-  static let timerTextDaysHourMinute = "Question will end in %1% days, %2% hour and %3% minute, at %4%"
-  static let timerTextDaysHoursMinutes = "Question will end in %1% days, %2% hours and %3% minutes, at %4%"
-  static let timerTextDaysHoursMinute = "Question will end in %1% days, %2% hours and %3% minute, at %4%"
-  static let timerTextDaysHourMinutes = "Question will end in %1% days, %2% hour and %3% minutes, at %4%"
+  static let timerTextDaysHourMinute = "ends in %1% days, %2% hour and %3% minute, at %4%"
+  static let timerTextDaysHoursMinutes = "ends in %1% days, %2% hours and %3% minutes, at %4%"
+  static let timerTextDaysHoursMinute = "ends in %1% days, %2% hours and %3% minute, at %4%"
+  static let timerTextDaysHourMinutes = "ends in %1% days, %2% hour and %3% minutes, at %4%"
   
-  static let timerTextHourMinute = "Question will end in %1% hour and %2% minute, at %3%"
-  static let timerTextHoursMinute = "Question will end in %1% hours and %2% minute, at %3%"
-  static let timerTextHourMinutes = "Question will end in %1% hour and %2% minutes, at %3%"
-  static let timerTextHoursMinutes = "Question will end in %1% hours and %2% minutes, at %3%"
-  static let timerTextMinutes = "Question will end in %1% minutes, at %2%"
-  static let timerTextMinute = "Question will end in %1% minute, at %2%"
+  static let timerTextHourMinute = "ends in %1% hour and %2% minute, at %3%"
+  static let timerTextHoursMinute = "ends in %1% hours and %2% minute, at %3%"
+  static let timerTextHourMinutes = "ends in %1% hour and %2% minutes, at %3%"
+  static let timerTextHoursMinutes = "ends in %1% hours and %2% minutes, at %3%"
+  static let timerTextMinutes = "ends in %1% minutes, at %2%"
+  static let timerTextMinute = "ends in %1% minute, at %2%"
 }
 
 enum alertMessages {

@@ -34,10 +34,18 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
     stringFromQuestionDuration(1, endTime: NSDate(), setButtonTitle: (container?.setEndTimerButtonTitle)!)
     container?.endTimerLabel.titleLabel?.textAlignment = NSTextAlignment.Center
     
+    container?.setPlaceholderText()
+    
     container?.questionInputText.layer.cornerRadius = 5
     container?.questionInputText.layer.borderColor = UIColor(red:0.86, green:0.87, blue:0.87, alpha:1.0).CGColor
     container?.questionInputText.layer.borderWidth = 1
     container?.questionInputText.delegate = self
+    
+    container?.questionInputText.layer.borderWidth = 0
+    container?.questionInputText.layer.cornerRadius = 0
+    container?.questionInputText.textContainer.lineFragmentPadding = 0
+    container?.questionInputText.textContainerInset = UIEdgeInsetsZero;
+    
   }
   
   func setNavigationBar() {
@@ -47,26 +55,74 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
   }
   
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-    if self.view.window?.frame.origin.y != 0 {
+    if self.view.window?.frame.origin.y != 0 || self.container!.AnswersVerticalSpacing.constant != 55 {
+      self.container!.AnswersVerticalSpacing.constant = 55
+
       UIView.animateWithDuration(0.2, animations: {
         self.view.window?.frame.origin.y = 0
+        self.view.layoutIfNeeded()
+        self.container!.setTimerView.alpha = 0
       })
-      self.container!.hideTimerView()
+      
     }
   }
-
+  
   func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
     let currentText = textView.text ?? ""
     guard let stringRange = range.rangeForString(currentText) else { return false }
     
     let changedText = currentText.stringByReplacingCharactersInRange(stringRange, withString: text)
     
+    let newText:NSString = textView.text
+    let updatedText = newText.stringByReplacingCharactersInRange(range, withString:text)
+    
+    // If updated text view will be empty, add the placeholder
+    // and set the cursor to the beginning of the text view
+    if updatedText.isEmpty {
+      
+      textView.text = placeholders.question
+      textView.textColor = colors.placeholderTextColor
+      textView.selectedTextRange = textView.textRangeFromPosition(textView.beginningOfDocument, toPosition: textView.beginningOfDocument)
+      container?.setCharactersLeftLabel(140)
+      return false
+    }
+      
+      // Else if the text view's placeholder is showing and the
+      // length of the replacement string is greater than 0, clear
+      // the text view and set its color to black to prepare for
+      // the user's entry
+    else if textView.textColor == colors.placeholderTextColor && !text.isEmpty {
+      textView.text = nil
+      textView.textColor = colors.textColor
+    }
+    
     return changedText.characters.count <= 140
+  }
+  
+  func textViewDidChange(textView: UITextView){
+    let fixedWidth = textView.frame.size.width
+    textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
+    let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
+    if newSize.height >= 35 {
+      container?.questionHeight.constant = newSize.height
+    }
+    if textView.textColor == colors.placeholderTextColor || textView.text.characters.count == 0 {
+      container?.setCharactersLeftLabel(140)
+    } else {
+      container?.setCharactersLeftLabel(140 - textView.text.characters.count)
+    }
+  }
+  
+  func textViewDidChangeSelection(textView: UITextView) {
+    if self.view.window != nil {
+      if textView.textColor == colors.placeholderTextColor {
+        textView.selectedTextRange = textView.textRangeFromPosition(textView.beginningOfDocument, toPosition: textView.beginningOfDocument)
+      }
+    }
   }
   
   func submitQuestion() {
     let question = container?.questionInputText.text
-    
     
     guard question != "" else {
       showAlertController(alertMessages.emptyQuestions)
