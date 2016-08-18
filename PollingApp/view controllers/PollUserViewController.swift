@@ -66,7 +66,7 @@ final class PollUserViewController: UIViewController {
     navigationItem.leftBarButtonItem?.action = #selector(PollUserViewController.backButtonPushed)
 
     if (self.liveResultsOn) {
-      let seeResults = UIBarButtonItem(title: "Result", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PollUserViewController.goToResults))
+      let seeResults = UIBarButtonItem(title: "Results", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PollUserViewController.goToResults))
       self.navigationItem.rightBarButtonItem = seeResults
 
     }
