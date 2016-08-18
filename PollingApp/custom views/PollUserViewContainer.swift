@@ -9,7 +9,7 @@
 import UIKit
 
 protocol PollUserViewContainerDelegate {
-  func answerSelected(answer: AnswerText)
+  func answerSelected(answer: Answer)
   func backButtonPushed()
 }
 
@@ -20,7 +20,7 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
   @IBOutlet weak var totalLabel: UILabel!
 
   
-  private var answers:[AnswerText] = []
+  private var answers:[Answer] = []
   var selectedAnswer: AnswerText = ""
   var delegate: PollUserViewContainerDelegate?
   var previousCellID:Int = 0
@@ -44,8 +44,8 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     totalLabel.text = ("\(StringUtil.fillInString(totalVotes, time: tally))")
   }
   
-  func setAnswers(Answers: [AnswerText]) {
-    answers = Answers
+  func setAnswers(answers: [Answer]) {
+    self.answers = answers
   }
   func setQuestionText(questionText: QuestionText) {
     question.text = questionText
@@ -60,7 +60,6 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return answers.count
-    
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -69,10 +68,9 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     let cell = self.tableView.dequeueReusableCellWithIdentifier("answerCell\(indexPath.row)", forIndexPath: indexPath) as! AnswerViewTableViewCell
     cell.backgroundColor = UIColor.clearColor()
     cell.backgroundImage.image = UIImage(named: "AnswerCell")!
-    cell.setAnswerText(answers[indexPath.row])
+    cell.setAnswerText(answers[indexPath.row].answerText)
     cell.delegate = self
     cell.tag = 1000 + indexPath.row
-//    self.tableView.allowsSelection = false
     cell.selectionStyle = UITableViewCellSelectionStyle.None
     return cell
   }

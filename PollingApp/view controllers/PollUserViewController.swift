@@ -16,9 +16,7 @@ final class PollUserViewController: UIViewController {
   private var seconds = 0
   private var totalSeconds = 0
   private var timer = NSTimer()
-  private var answerIDDictionary = [AnswerText: AnswerID]()
-  private var tallyDictionary = [AnswerID: Int]()
-  private var answers:[AnswerText] = []
+  private var answers = [Answer]()
   private var chosenAnswerID: AnswerID = "";
   var container: PollUserViewContainer?
   
@@ -45,23 +43,20 @@ final class PollUserViewController: UIViewController {
     container = PollUserViewContainer.instanceFromNib(viewSize)
     view.addSubview(container!)
     ModelInterface.sharedInstance.processAnswerData(self.answerIDs) { (listofAllAnswers) in
-      self.answerIDDictionary = [AnswerText: AnswerID]()
-      self.tallyDictionary = [AnswerID: Int]()
       self.answers = []
       self.totalTally = 0
       self.fillInTheFields(listofAllAnswers)
       self.container?.setQuestionText(self.questionText)
       self.container?.setAnswers(self.answers)
+      self.container?.setTotal(self.totalTally)
       self.container?.delegate = self
       self.container?.tableView.reloadData()
-      self.container?.setTotal(self.totalTally)
     }
     self.setCountdown(self.questionID)
     
   }
   
   func setNavigationBar() {
-//    _ = UIBarButtonItem(image: UIImage(named: "Back"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PollAdminViewController.popSegue))
     navigationItem.leftBarButtonItem?.target = self
     navigationItem.leftBarButtonItem?.action = #selector(PollUserViewController.backButtonPushed)
   
@@ -71,11 +66,8 @@ final class PollUserViewController: UIViewController {
   
   func fillInTheFields (listofAllAnswers:[Answer]) {
     let size = listofAllAnswers.count
+    self.answers = listofAllAnswers
     for i in 0 ..< size  {
-      let tempAnswer = listofAllAnswers[i].answerText
-      self.answerIDDictionary[tempAnswer] = listofAllAnswers[i].AID
-      self.answers.append(tempAnswer)
-      self.tallyDictionary[listofAllAnswers[i].AID] = listofAllAnswers[i].tally
       totalTally += listofAllAnswers[i].tally
     }
   }
@@ -145,10 +137,10 @@ final class PollUserViewController: UIViewController {
 }
 
 extension PollUserViewController: PollUserViewContainerDelegate {
-  func answerSelected(answer: AnswerText) {
-    if let selectedAnswerID = answerIDDictionary[answer] {
-      tally = tallyDictionary[selectedAnswerID]!
-      chosenAnswerID = selectedAnswerID
+  func answerSelected(answer: Answer) {
+    if answer.AID != "" {
+      tally = answer.tally
+      chosenAnswerID =  answer.AID
     }
   }
   func backButtonPushed() {
