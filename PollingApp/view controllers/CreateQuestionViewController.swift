@@ -106,7 +106,6 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
     if newSize.height > 35 {
       container?.questionHeight.constant = newSize.height
     }
-    print(textView.text.characters.count)
     if textView.textColor == colors.placeholderTextColor || textView.text.characters.count == 0 {
       container?.setCharactersLeftLabel(140)
     } else {
