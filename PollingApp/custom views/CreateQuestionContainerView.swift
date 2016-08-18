@@ -77,7 +77,7 @@ class CreateQuestionContainerView: UIView {
     questionInputText.text = placeholders.question
     questionInputText.textColor = colors.placeholderTextColor
     questionInputText.selectedTextRange = questionInputText.textRangeFromPosition(questionInputText.beginningOfDocument, toPosition: questionInputText.beginningOfDocument)
-
+    
   }
   
   func setEndTimerButtonTitle(message: String) {
@@ -133,7 +133,7 @@ extension CreateQuestionContainerView: UITableViewDelegate, UITableViewDataSourc
     tableView.registerNib(pollResultsCell, forCellReuseIdentifier: "answerCell")
     
     let cell = self.tableView.dequeueReusableCellWithIdentifier("answerCell", forIndexPath: indexPath) as! AnswerTableViewCell
-    cell.identifier = indexPath.item
+    cell.identifier = indexPath.row
     cell.delegate = self
     cell.isCorrect = false
     cell.answerField.addTarget(cell, action: #selector(AnswerTableViewCell.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
@@ -166,6 +166,8 @@ extension CreateQuestionContainerView: UITableViewDelegate, UITableViewDataSourc
         self.answers.removeAtIndex(indexPath.row)
         self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         self.tableView.endUpdates()
+        self.tableView.reloadData()
+        self.correctAnswer = -1;
       }
     }
     delete.backgroundColor = UIColor(patternImage: UIImage(named: "Delete")!)

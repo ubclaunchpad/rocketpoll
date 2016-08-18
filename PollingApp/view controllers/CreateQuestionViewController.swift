@@ -125,7 +125,6 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
   func submitQuestion() {
     let question = container?.questionInputText.text
     
-    
     guard question != "" else {
       showAlertController(alertMessages.emptyQuestions)
       return
