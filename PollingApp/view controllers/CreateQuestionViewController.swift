@@ -103,7 +103,7 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
     let fixedWidth = textView.frame.size.width
     textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
     let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
-    if newSize.height > 35 {
+    if newSize.height >= 35 {
       container?.questionHeight.constant = newSize.height
     }
     if textView.textColor == colors.placeholderTextColor || textView.text.characters.count == 0 {
