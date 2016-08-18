@@ -251,7 +251,6 @@
                 <outlet property="AnswersVerticalSpacing" destination="fLf-Db-BWc" id="Djm-Wu-awr"/>
                 <outlet property="charactersLeft" destination="g0a-0p-AEc" id="bET-0c-bEK"/>
                 <outlet property="endTimerLabel" destination="kSR-OB-ORh" id="jdT-sZ-0tv"/>
-                <outlet property="liveResultsLabel" destination="NdA-R4-Xt8" id="5Oc-73-VHI"/>
                 <outlet property="questionHeight" destination="0WS-be-NzW" id="fiM-EK-SlA"/>
                 <outlet property="questionInputText" destination="7Db-bb-cr6" id="5WE-KR-mhb"/>
                 <outlet property="setTimerButton" destination="kSR-OB-ORh" id="RcJ-2V-lTK"/>

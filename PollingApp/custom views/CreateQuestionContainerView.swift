@@ -17,10 +17,6 @@ class CreateQuestionContainerView: UIView {
   
   @IBOutlet weak var setTimerButton: UIButton!
   
-  @IBOutlet weak var backButton: UIButton!
-  
-  @IBOutlet weak var Submit: UIButton!
-  
   var delegate: CreateQuestionViewContainerDelegate?
   
   @IBOutlet weak var questionInputText: UITextView!
@@ -28,10 +24,7 @@ class CreateQuestionContainerView: UIView {
   @IBOutlet weak var tableView: UITableView!
   
   @IBOutlet weak var setTimerView: UIView!
-  
 
-  @IBOutlet weak var liveResultsLabel: UIButton!
-  
   func toggleLiveResults () {
     if (isLiveResults) {
       isLiveResults = false
@@ -43,21 +36,14 @@ class CreateQuestionContainerView: UIView {
   @IBAction func setLiveResults(sender: AnyObject) {
     
     if (!isLiveResults) {
-      print("It was \(isLiveResults)")
       sender.setTitle("live results on", forState: .Normal)
       sender.setTitleColor(UIColor.blueColor(), forState: .Normal)
       toggleLiveResults()
-      print("It is \(isLiveResults)")
-
-    
     } else {
-       print("It was \(isLiveResults)")
       sender.setTitle("live results off", forState: .Normal)
       sender.setTitleColor(UIColor.redColor(), forState: .Normal)
       toggleLiveResults()
-       print("It is \(isLiveResults)")
     }
-  
 
   }
   var isLiveResults = true
