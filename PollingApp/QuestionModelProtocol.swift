@@ -11,14 +11,14 @@ import Foundation
 protocol QuestionModelProtocol {
   
   //MARK: - Setting Question Information -
-  func createNewQuestion(question: QuestionText, questionDuration: Int) -> Question
+  func createNewQuestion(question: QuestionText, questionDuration: Int, liveResultsOn: Bool) -> Question
   
   //MARK: - Getting Question Information -
   
   func processQuestionData(completionHandler: (listofAllQuestions: [Question]) -> ())
 
   func getListOfQuestionsUserAnswered(completionHandler: (listOfAnsweredQIDs: [QuestionID]) -> ())
-  func isQuestionAnswered(questionId: QuestionID) -> Bool
+  func isItLiveResultsOn (questionId: QuestionID,completionHandler: (isLiveResultsOn: Bool) -> ())
   
   //MARK: - Remove Question Information -
   func removeQuestion(questionId: QuestionID) -> Bool

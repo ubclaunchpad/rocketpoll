@@ -13,11 +13,11 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
   
   private var sendAIDS = [AnswerID]()
   private var sendTime = 0.0
-  private var sendQuestionText = "";
-  private var sendQID = "";
+  private var sendQuestionText = ""
+  private var sendQID = ""
   
   var container: CreateQuestionContainerView?
-  override func viewDidLoad() {
+   override func viewDidLoad() {
     super.viewDidLoad()
     
     let tap: UITapGestureRecognizer = UITapGestureRecognizer(
@@ -157,12 +157,12 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
     
     container?.time = (container?.currentTimeAway)!
     
-    submitButtonPressed(question!,answerArray: answers, correctAnswer: (container?.correctAnswer)!, questionDuration: (container?.time)!)
+    submitButtonPressed(question!,answerArray: answers, correctAnswer: (container?.correctAnswer)!, questionDuration: (container?.time)!, isLiveResultsOn: (container?.isLiveResults)!)
   }
   
-  func submitButtonPressed(question: QuestionText, answerArray: [AnswerID], correctAnswer: Int, questionDuration: Int){
+  func submitButtonPressed(question: QuestionText, answerArray: [AnswerID], correctAnswer: Int, questionDuration: Int, isLiveResultsOn: Bool ){
     //TODO: move answerID generation in createNewQuestion(_)
-    let questionObject = ModelInterface.sharedInstance.createNewQuestion(question, questionDuration: questionDuration)
+    let questionObject = ModelInterface.sharedInstance.createNewQuestion(question, questionDuration: questionDuration, liveResultsOn: isLiveResultsOn)
     let answerIDs =  ModelInterface.sharedInstance.createAnswerIDs(
       questionObject.QID, answerText: answerArray)
     questionObject.AIDS = answerIDs
@@ -320,6 +320,7 @@ extension CreateQuestionViewController: CreateQuestionViewContainerDelegate {
     }
     
   }
+  
 }
 
 extension NSRange {

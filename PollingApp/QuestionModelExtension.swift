@@ -12,16 +12,20 @@ import Firebase
 extension ModelInterface: QuestionModelProtocol {
   
   //MARK: - Setting Question Information -
-  func createNewQuestion(question: QuestionText, questionDuration: Int) -> Question {
+  func createNewQuestion(question: QuestionText, questionDuration: Int, liveResultsOn: Bool) -> Question {
     
     let timeStamp = NSDate().timeIntervalSince1970
     let endStamp = NSDate().timeIntervalSince1970 + Double(questionDuration * UITimeConstants.oneMinuteinSeconds)
-    let QID = ["Author": "\(currentUser)","Question": question, "startTimeStamp": timeStamp, "endTimeStamp": endStamp]
+    let QID = ["Author": "\(currentUser)",
+               "Question": question,
+               "startTimeStamp": timeStamp,
+               "endTimeStamp": endStamp,
+               "isLiveResults": liveResultsOn]
     let fbd:FirebaseData = FirebaseData()
     let key = fbd.postToFirebaseWithKey("QUESTIONSCREEN", child: "QID", children: QID) as QuestionID
     
     let sendQuestion = Question(QID: key, AIDS: [AnswerID](), author: currentUser, questionText: question, endTimestamp: endStamp)
-    
+    sendQuestion.isResultsLive = liveResultsOn
     return sendQuestion
   }
   
@@ -86,7 +90,7 @@ extension ModelInterface: QuestionModelProtocol {
   
   
   func getListOfQuestionsUserAnswered(completionHandler: (listOfAnsweredQIDs: [QuestionID]) -> ()) {
-    let ref =  FIRDatabase.database().reference();
+    let ref =  FIRDatabase.database().reference()
     ref.child("Users/\(currentID)/QuestionsAnswered").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
       if (snapshot.value as? [String : AnyObject]) != nil  {
         let answeredQuestions = snapshot.value as? [String : AnyObject]
@@ -103,9 +107,21 @@ extension ModelInterface: QuestionModelProtocol {
     }
   }
   
-  func isQuestionAnswered(questionId: QuestionID) -> Bool {
-    return true
+  func isItLiveResultsOn (questionId: QuestionID,completionHandler: (isLiveResultsOn: Bool) -> ()){
+    let ref =  FIRDatabase.database().reference()
+    ref.child("QUESTIONSCREEN/\(questionId)/isLiveResults").observeEventType(.Value, withBlock: { (snapshot) in
+      if let isLiveResults = snapshot.value as? Bool {
+        completionHandler(isLiveResultsOn: isLiveResults)
+      }else {
+        completionHandler(isLiveResultsOn: false)
+      }
+      
+    }) { (error) in
+      Log.error(error.localizedDescription)
+    }
+
   }
+  
   
   //MARK: - Remove Question Information -
   func removeQuestion(questionId: QuestionID) -> Bool {
@@ -152,6 +168,4 @@ extension ModelInterface: QuestionModelProtocol {
   func segueToWhoVotedForVCFromResult () -> SegueName {
     return Segues.toWhoVotedForFromResults
   }
-
-  
 }

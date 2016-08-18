@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -191,6 +191,14 @@
                     <color key="textColor" white="0.58372844827586212" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NdA-R4-Xt8">
+                    <rect key="frame" x="454" y="23" width="115" height="28.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="live results on"/>
+                    <connections>
+                        <action selector="setLiveResults:" destination="iN0-l3-epB" eventType="touchUpInside" id="obY-hg-8lc"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
@@ -198,6 +206,7 @@
                 <constraint firstItem="Fd7-4U-zpA" firstAttribute="top" secondItem="wHW-Oj-QVv" secondAttribute="bottom" constant="10" id="5Nw-vl-zQS"/>
                 <constraint firstItem="KuQ-U5-pjz" firstAttribute="baseline" secondItem="wHW-Oj-QVv" secondAttribute="baseline" id="9A6-CV-HCD"/>
                 <constraint firstItem="lQs-nS-HJd" firstAttribute="top" secondItem="Kok-IO-Qeg" secondAttribute="bottom" constant="10" id="AON-JO-6QP"/>
+                <constraint firstAttribute="trailing" secondItem="NdA-R4-Xt8" secondAttribute="trailing" constant="25" id="Abg-Lf-2PK"/>
                 <constraint firstItem="Fd7-4U-zpA" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="DK7-z1-TiE"/>
                 <constraint firstItem="lQs-nS-HJd" firstAttribute="bottom" secondItem="7Db-bb-cr6" secondAttribute="bottom" constant="20" id="Dh2-pQ-Wvd"/>
                 <constraint firstItem="7Db-bb-cr6" firstAttribute="trailing" secondItem="lQs-nS-HJd" secondAttribute="trailing" constant="-15" id="KVE-sK-tXa"/>
@@ -221,6 +230,7 @@
                 <constraint firstAttribute="trailing" secondItem="lQs-nS-HJd" secondAttribute="trailing" constant="10" id="jGF-1h-osi"/>
                 <constraint firstItem="7Db-bb-cr6" firstAttribute="leading" secondItem="lQs-nS-HJd" secondAttribute="leading" constant="20" id="jz7-VP-ksc"/>
                 <constraint firstItem="KuQ-U5-pjz" firstAttribute="trailing" secondItem="lQs-nS-HJd" secondAttribute="trailing" id="k3A-Oe-5xw"/>
+                <constraint firstItem="lQs-nS-HJd" firstAttribute="top" secondItem="NdA-R4-Xt8" secondAttribute="bottom" constant="4.5" id="l62-OI-5cK"/>
                 <constraint firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="lLg-Wu-iZy"/>
                 <constraint firstItem="wHW-Oj-QVv" firstAttribute="leading" secondItem="Kok-IO-Qeg" secondAttribute="leading" id="sW7-Ad-UwJ"/>
                 <constraint firstItem="kSR-OB-ORh" firstAttribute="trailing" secondItem="lQs-nS-HJd" secondAttribute="trailing" constant="-3" id="tUP-dN-ybS"/>
@@ -241,6 +251,7 @@
                 <outlet property="AnswersVerticalSpacing" destination="fLf-Db-BWc" id="Djm-Wu-awr"/>
                 <outlet property="charactersLeft" destination="g0a-0p-AEc" id="bET-0c-bEK"/>
                 <outlet property="endTimerLabel" destination="kSR-OB-ORh" id="jdT-sZ-0tv"/>
+                <outlet property="liveResultsLabel" destination="NdA-R4-Xt8" id="5Oc-73-VHI"/>
                 <outlet property="questionHeight" destination="0WS-be-NzW" id="fiM-EK-SlA"/>
                 <outlet property="questionInputText" destination="7Db-bb-cr6" id="5WE-KR-mhb"/>
                 <outlet property="setTimerButton" destination="kSR-OB-ORh" id="RcJ-2V-lTK"/>

@@ -19,7 +19,6 @@ final class PollUserViewController: UIViewController {
   private var answers = [Answer]()
   private var chosenAnswerID: AnswerID = "";
   var container: PollUserViewContainer?
-  
   // Recieved infomration
   var questionText: QuestionText = ""
   var questionID: QuestionID = ""
@@ -30,10 +29,11 @@ final class PollUserViewController: UIViewController {
   private var sendQuestionText = ""
   private var sendQID = ""
   
+  
+  private var liveResultsOn = false
   override func viewDidLoad() {
     super.viewDidLoad()
     setup()
-    setNavigationBar()
     self.title = "VOTE"
   }
   
@@ -43,6 +43,9 @@ final class PollUserViewController: UIViewController {
     container = PollUserViewContainer.instanceFromNib(viewSize)
     view.addSubview(container!)
     ModelInterface.sharedInstance.processAnswerData(self.answerIDs) { (listofAllAnswers) in
+     ModelInterface.sharedInstance.isItLiveResultsOn(self.questionID, completionHandler: { (isLiveResultsOn) in
+      self.liveResultsOn = isLiveResultsOn
+      self.setNavigationBar()
       self.answers = []
       self.totalTally = 0
       self.fillInTheFields(listofAllAnswers)
@@ -51,6 +54,8 @@ final class PollUserViewController: UIViewController {
       self.container?.setTotal(self.totalTally)
       self.container?.delegate = self
       self.container?.tableView.reloadData()
+
+     })
     }
     self.setCountdown(self.questionID)
     
@@ -59,9 +64,13 @@ final class PollUserViewController: UIViewController {
   func setNavigationBar() {
     navigationItem.leftBarButtonItem?.target = self
     navigationItem.leftBarButtonItem?.action = #selector(PollUserViewController.backButtonPushed)
+
+    if (self.liveResultsOn) {
+      let seeResults = UIBarButtonItem(title: "Result", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PollUserViewController.goToResults))
+      self.navigationItem.rightBarButtonItem = seeResults
+
+    }
   
-    let seeResults = UIBarButtonItem(title: "Result", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PollUserViewController.goToResults))
-     self.navigationItem.rightBarButtonItem = seeResults
   }
   
   func fillInTheFields (listofAllAnswers:[Answer]) {

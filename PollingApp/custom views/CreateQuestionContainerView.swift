@@ -29,7 +29,39 @@ class CreateQuestionContainerView: UIView {
   
   @IBOutlet weak var setTimerView: UIView!
   
-  var time: Int = 0;
+
+  @IBOutlet weak var liveResultsLabel: UIButton!
+  
+  func toggleLiveResults () {
+    if (isLiveResults) {
+      isLiveResults = false
+    } else {
+      isLiveResults = true
+    }
+  }
+  
+  @IBAction func setLiveResults(sender: AnyObject) {
+    
+    if (!isLiveResults) {
+      print("It was \(isLiveResults)")
+      sender.setTitle("live results on", forState: .Normal)
+      sender.setTitleColor(UIColor.blueColor(), forState: .Normal)
+      toggleLiveResults()
+      print("It is \(isLiveResults)")
+
+    
+    } else {
+       print("It was \(isLiveResults)")
+      sender.setTitle("live results off", forState: .Normal)
+      sender.setTitleColor(UIColor.redColor(), forState: .Normal)
+      toggleLiveResults()
+       print("It is \(isLiveResults)")
+    }
+  
+
+  }
+  var isLiveResults = true
+  var time: Int = 0
   
   var answers:[AnswerText] = ["",""]
   var correctAnswer:Int = -1
@@ -48,7 +80,6 @@ class CreateQuestionContainerView: UIView {
     
     setTimerView.hidden = false
     
-    //    delegate?.shiftView()
     self.AnswersVerticalSpacing.constant = 205
     setTimerView.alpha = 1
     UIView.animateWithDuration(0.2, animations: {
@@ -87,7 +118,7 @@ class CreateQuestionContainerView: UIView {
   func setCharactersLeftLabel(count: Int) {
         charactersLeft.text = "\(count)"
   }
-    
+  
   func hideTimerView() {
     setTimerView.alpha = 0
   }

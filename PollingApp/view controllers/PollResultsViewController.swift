@@ -11,7 +11,7 @@ import Firebase
 
 class PollResultsViewController: UIViewController {
   private var correctAnswer: AnswerText = ""
-  var totalNumberOfUserAnswers: Int = 0
+  private var totalNumberOfUserAnswers: Int = 0
   
   private var answers:[Answer] = []
   private var yourAnswerID = ""
@@ -23,8 +23,7 @@ class PollResultsViewController: UIViewController {
   var questionID:QuestionID = ""
   var answerIDs: [AnswerID] = []
   var fromPollUser: Bool = false
-  
-  
+
   // Information to send
   
   var sendAnswer:Answer?
