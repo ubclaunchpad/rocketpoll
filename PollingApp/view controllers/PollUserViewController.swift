@@ -22,6 +22,8 @@ final class PollUserViewController: UIViewController {
   var container: PollUserViewContainer?
   var isTheQuestionExpired = true
   var recievedQuestion:Question?
+  
+  var timerEnd:Bool = true
 
   // Information to send to another view controller
   private var sendQuestion:Question?
@@ -30,6 +32,9 @@ final class PollUserViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setup()
+  }
+  
+  override func viewDidAppear(animated: Bool) {
     self.title = "VOTE"
   }
   
@@ -123,8 +128,9 @@ final class PollUserViewController: UIViewController {
     if (segue.identifier == ModelInterface.sharedInstance.segueToResultsScreen()) {
       let viewController:PollResultsViewController = segue.destinationViewController as! PollResultsViewController
       viewController.recievedQuestion = sendQuestion
-      viewController.fromPollUser = true
+      viewController.fromTimerEnd = timerEnd
       viewController.isTheQuestionExpired = self.isTheQuestionExpired
+      self.title = ""
     }
   }
   override func didReceiveMemoryWarning() {
@@ -168,6 +174,7 @@ extension PollUserViewController: PollUserViewContainerDelegate {
   func goToResults() {
     sendQuestion = recievedQuestion
     let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
+    timerEnd = false
     performSegueWithIdentifier(nextRoom, sender: self)
   }
 

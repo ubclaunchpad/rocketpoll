@@ -21,7 +21,7 @@ class PollResultsViewController: UIViewController {
   // Recieved information
   var recievedQuestion:Question?
   
-  var fromPollUser: Bool = false
+  var fromTimerEnd: Bool = false
   
   var isTheQuestionExpired:Bool = true 
   // Information to send
@@ -34,7 +34,7 @@ class PollResultsViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    if fromPollUser {
+    if fromTimerEnd {
       setNavigationBar()
     }
     addContainerToVC()
