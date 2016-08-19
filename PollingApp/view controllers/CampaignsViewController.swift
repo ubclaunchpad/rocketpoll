@@ -19,13 +19,8 @@ class CampaignsViewController: UIViewController {
   private var listOfAnsweredQuestions = [Question]()
   private var listOfUnansweredQuestions = [Question]()
   private var listOfExpiredQuestions = [Question]()
-  
-  
-  // Information to send other view controllers
-  private var sendAIDS = [AnswerID]()
-  private var sendTime = 0.0
-  private var sendQuestionText = ""
-  private var sendQID = ""
+
+  private var sendQuestion:Question?
   
   var container: CampaignViewContainer?
   
@@ -136,22 +131,15 @@ class CampaignsViewController: UIViewController {
     switch segue.identifier!  {
     case ModelInterface.sharedInstance.segueTotoPollAdminVCFromCampaign():
       let viewController:PollAdminViewController = segue.destinationViewController as! PollAdminViewController
-      viewController.answerIDs = sendAIDS
-      viewController.questionText = sendQuestionText
-      viewController.questionID = sendQID
-      viewController.timerQuestion = sendTime
+      viewController.recievedQuestion = (sendQuestion)!
       break
     case ModelInterface.sharedInstance.segueToQuestion():
       let viewController:PollUserViewController = segue.destinationViewController as! PollUserViewController
-      viewController.answerIDs = sendAIDS
-      viewController.questionID = sendQID
-      viewController.questionText = sendQuestionText
+      viewController.recievedQuestion = (sendQuestion)!
       break
     case ModelInterface.sharedInstance.segueToResultsScreen():
       let viewController:PollResultsViewController = segue.destinationViewController as! PollResultsViewController
-      viewController.questionID = sendQID
-      viewController.questionText = sendQuestionText
-      viewController.answerIDs = sendAIDS
+      viewController.recievedQuestion = (sendQuestion)!
       break
     default: break
     }
@@ -166,11 +154,7 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
   func questionSelected(question: Question) {
     
     let author = question.author
-    sendQuestionText = question.questionText
-    sendAIDS = question.AIDS
-    
-    sendTime = question.endTimestamp
-    sendQID = question.QID
+    sendQuestion = question
     if (author == currentUser) {
       let segueToPollAdmin = ModelInterface.sharedInstance.segueTotoPollAdminVCFromCampaign()
       performSegueWithIdentifier(segueToPollAdmin, sender: self)
@@ -188,10 +172,7 @@ extension CampaignsViewController: CampaignViewContainerDelegate {
   }
   
   func resultsButtonSelected(question: Question) {
-    sendQuestionText = question.questionText
-    sendAIDS = question.AIDS
-    sendTime = question.endTimestamp
-    sendQID = question.QID
+    sendQuestion = question
     let nextRoom = ModelInterface.sharedInstance.segueToResultsScreen()
     performSegueWithIdentifier(nextRoom, sender: self)
   }

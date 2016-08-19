@@ -11,10 +11,7 @@ import UIKit
 class CreateQuestionViewController: UIViewController, UITextViewDelegate {
   
   
-  private var sendAIDS = [AnswerID]()
-  private var sendTime = 0.0
-  private var sendQuestionText = ""
-  private var sendQID = ""
+  private var sendQuestion:Question?
   
   var container: CreateQuestionContainerView?
    override func viewDidLoad() {
@@ -168,10 +165,7 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
     questionObject.AIDS = answerIDs
     ModelInterface.sharedInstance.setCorrectAnswer(answerIDs[correctAnswer], isCorrectAnswer: true);
     
-    self.sendAIDS = answerIDs
-    self.sendQuestionText = question
-    self.sendQID = questionObject.QID
-    self.sendTime = questionObject.endTimestamp
+    self.sendQuestion = questionObject
     let nextRoom = ModelInterface.sharedInstance.segueToAdminScreen()
     performSegueWithIdentifier(nextRoom, sender: self)
   }
@@ -233,10 +227,7 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if (segue.identifier == ModelInterface.sharedInstance.segueToAdminScreen()) {
       let viewController:PollAdminViewController = segue.destinationViewController as! PollAdminViewController
-      viewController.answerIDs = sendAIDS
-      viewController.questionText = sendQuestionText
-      viewController.questionID = sendQID
-      viewController.timerQuestion = sendTime
+      viewController.recievedQuestion = sendQuestion
       viewController.fromCreate = true
     }
   }
