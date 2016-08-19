@@ -23,7 +23,8 @@ class PollResultsViewController: UIViewController {
   var questionID:QuestionID = ""
   var answerIDs: [AnswerID] = []
   var fromPollUser: Bool = false
-
+  
+  var isTheQuestionExpired:Bool = true 
   // Information to send
   
   var sendAnswer:Answer?
@@ -66,7 +67,7 @@ class PollResultsViewController: UIViewController {
         self.container?.setCorrectAnswer(self.correctAnswer)
         self.container?.setYourAnswer(self.yourAnswerText)
         self.container?.setAnswers(self.answers)
-    
+        self.container?.setIsQuestionExpired(self.isTheQuestionExpired)
         self.container?.resultsTableView.reloadData()
         
       }

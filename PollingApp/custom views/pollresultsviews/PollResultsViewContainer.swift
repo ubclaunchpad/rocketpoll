@@ -26,6 +26,7 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
   
   private var questionText = ""
   private var yourAnswer = ""
+  private var isTheQuestionExpired = true
   
   var delegate: PollResultsViewContainerDelegate?
   
@@ -44,7 +45,6 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
   //TODO:IPA-132 Move this logic to VC or model
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
-    
     let pollResultsCell = UINib(nibName: "PollResultsTableViewCell", bundle: nil)
     tableView.registerNib(pollResultsCell, forCellReuseIdentifier: "resultsCell")
     let cell = self.resultsTableView.dequeueReusableCellWithIdentifier("resultsCell", forIndexPath: indexPath) as! PollResultsTableViewCell
@@ -53,7 +53,7 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     
     cell.setAnswerText(answer.answerText)
     
-    if answer.answerText == correctAnswer {
+    if answer.answerText == correctAnswer && isTheQuestionExpired {
       cell.setCorrectAnswer()
     }
     
@@ -74,6 +74,10 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     return cell
     
   }
+  func setIsQuestionExpired (isTheQuestionExpired:Bool) {
+    self.isTheQuestionExpired = isTheQuestionExpired
+  }
+  
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return answers.count

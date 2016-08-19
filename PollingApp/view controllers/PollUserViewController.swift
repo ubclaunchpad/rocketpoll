@@ -17,8 +17,10 @@ final class PollUserViewController: UIViewController {
   private var totalSeconds = 0
   private var timer = NSTimer()
   private var answers = [Answer]()
-  private var chosenAnswerID: AnswerID = "";
+  private var chosenAnswerID: AnswerID = ""
   var container: PollUserViewContainer?
+  var isTheQuestionExpired = true
+  
   // Recieved infomration
   var questionText: QuestionText = ""
   var questionID: QuestionID = ""
@@ -70,7 +72,6 @@ final class PollUserViewController: UIViewController {
       self.navigationItem.rightBarButtonItem = seeResults
 
     }
-  
   }
   
   func fillInTheFields (listofAllAnswers:[Answer]) {
@@ -101,6 +102,7 @@ final class PollUserViewController: UIViewController {
       sendQID = questionID
       sendQuestionText = questionText
       sendAIDS = answerIDs
+      self.isTheQuestionExpired = true
       let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
       performSegueWithIdentifier(nextRoom, sender: self)
     }
@@ -118,8 +120,10 @@ final class PollUserViewController: UIViewController {
         self.sendQID = self.questionID
         self.sendQuestionText = self.questionText
         self.sendAIDS = self.answerIDs
+        self.isTheQuestionExpired = true
         self.performSegueWithIdentifier(nextRoom, sender: self)
       } else {
+        self.isTheQuestionExpired = false
         self.createTimer(Int(time) - currentTime)
       }
       
@@ -132,6 +136,7 @@ final class PollUserViewController: UIViewController {
       viewController.questionText = sendQuestionText
       viewController.answerIDs = sendAIDS
       viewController.fromPollUser = true
+      viewController.isTheQuestionExpired = self.isTheQuestionExpired
     }
   }
   override func didReceiveMemoryWarning() {
