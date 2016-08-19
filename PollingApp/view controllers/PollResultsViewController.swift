@@ -11,7 +11,7 @@ import Firebase
 
 class PollResultsViewController: UIViewController {
   private var correctAnswer: AnswerText = ""
-  var totalNumberOfUserAnswers: Int = 0
+  private var totalNumberOfUserAnswers: Int = 0
   
   private var answers:[Answer] = []
   private var yourAnswerID = ""
@@ -24,7 +24,7 @@ class PollResultsViewController: UIViewController {
   var answerIDs: [AnswerID] = []
   var fromPollUser: Bool = false
   
-  
+  var isTheQuestionExpired:Bool = true 
   // Information to send
   
   var sendAnswer:Answer?
@@ -35,10 +35,11 @@ class PollResultsViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    addContainerToVC()
+    
     if fromPollUser {
       setNavigationBar()
     }
+    addContainerToVC()
     self.title = "RESULTS"
   }
   
@@ -66,7 +67,7 @@ class PollResultsViewController: UIViewController {
         self.container?.setCorrectAnswer(self.correctAnswer)
         self.container?.setYourAnswer(self.yourAnswerText)
         self.container?.setAnswers(self.answers)
-    
+        self.container?.setIsQuestionExpired(self.isTheQuestionExpired)
         self.container?.resultsTableView.reloadData()
         
       }

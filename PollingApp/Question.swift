@@ -17,6 +17,7 @@ class Question: NSObject {
   var endTimestamp = 0.0
   var isExpired = false
   var expireMessage = ""
+  var isResultsLive = false 
   
   override init() {
   }
