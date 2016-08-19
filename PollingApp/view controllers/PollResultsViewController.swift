@@ -19,9 +19,8 @@ class PollResultsViewController: UIViewController {
   private var author = ""
   
   // Recieved information
-  var questionText = ""
-  var questionID:QuestionID = ""
-  var answerIDs: [AnswerID] = []
+  var recievedQuestion:Question?
+  
   var fromPollUser: Bool = false
   
   var isTheQuestionExpired:Bool = true 
@@ -51,8 +50,8 @@ class PollResultsViewController: UIViewController {
     view.addSubview(container!)
     
     //TODO:IPA-125
-    ModelInterface.sharedInstance.processAnswerData(answerIDs) { (listofAllAnswers) in
-      ModelInterface.sharedInstance.findYourAnswer(self.questionID) { (yourAnswer) in
+    ModelInterface.sharedInstance.processAnswerData((recievedQuestion?.AIDS)!) { (listofAllAnswers) in
+      ModelInterface.sharedInstance.findYourAnswer((self.recievedQuestion?.QID)!) { (yourAnswer) in
         self.answers = []
         self.totalNumberOfUserAnswers = 0
         self.correctAnswer = ""
@@ -62,7 +61,7 @@ class PollResultsViewController: UIViewController {
         self.container?.delegate = self
         
         self.container?.setTotalNumberOfAnswers(self.totalNumberOfUserAnswers)
-        self.container?.setQuestionLabelText(self.questionText)
+        self.container?.setQuestionLabelText((self.recievedQuestion?.questionText)!)
         self.container?.setCorrectAnswer(self.correctAnswer)
         self.container?.setYourAnswer(self.yourAnswerText)
         self.container?.setAnswers(self.answers)
@@ -96,8 +95,8 @@ class PollResultsViewController: UIViewController {
     
   }
   func deleteQuestion(){
-    ModelInterface.sharedInstance.stopTimer(questionID)
-    ModelInterface.sharedInstance.removeQuestion(questionID)
+    ModelInterface.sharedInstance.stopTimer((self.recievedQuestion?.QID)!)
+    ModelInterface.sharedInstance.removeQuestion((self.recievedQuestion?.QID)!)
     let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
     performSegueWithIdentifier(nextRoom, sender: self)
   }
@@ -108,7 +107,7 @@ class PollResultsViewController: UIViewController {
       let viewController:WhoVotedForViewController = segue.destinationViewController as! WhoVotedForViewController
       
       viewController.selectedAnswer = sendAnswer
-      viewController.questionText = questionText
+      viewController.questionText = self.recievedQuestion?.questionText
       self.title = ""
     }
   }

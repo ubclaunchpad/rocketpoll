@@ -23,16 +23,14 @@ final class PollAdminViewController: UIViewController {
   //Information to send to Poll Results View Controller
   private var sendQuestionText = "";
   private var sendAnswer:Answer?
-  
+   //Recieved information from a View Controller
   var recievedQuestion:Question?
+ 
   var correctAnswers:[AnswerText] = []
   var answers:[Answer] = []
-  //Recieved information from a View Controller
 
   var fromCreate:Bool = false
 
-
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     addContainerToVC()

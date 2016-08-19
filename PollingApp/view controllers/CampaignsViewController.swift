@@ -135,15 +135,11 @@ class CampaignsViewController: UIViewController {
       break
     case ModelInterface.sharedInstance.segueToQuestion():
       let viewController:PollUserViewController = segue.destinationViewController as! PollUserViewController
-      viewController.answerIDs = (sendQuestion?.AIDS)!
-      viewController.questionID = (sendQuestion?.QID)!
-      viewController.questionText = (sendQuestion?.questionText)!
+      viewController.recievedQuestion = (sendQuestion)!
       break
     case ModelInterface.sharedInstance.segueToResultsScreen():
       let viewController:PollResultsViewController = segue.destinationViewController as! PollResultsViewController
-      viewController.questionID = (sendQuestion?.QID)!
-      viewController.questionText = (sendQuestion?.questionText)!
-      viewController.answerIDs = (sendQuestion?.AIDS)!
+      viewController.recievedQuestion = (sendQuestion)!
       break
     default: break
     }
