@@ -30,7 +30,6 @@ class PollResultsViewController: UIViewController {
   var sendAnswer:Answer?
   var sendQuestionText:QuestionText = ""
   
-  
   var container: PollResultsViewContainer?
   
   override func viewDidLoad() {

@@ -42,7 +42,6 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     return view
   }
   
-  //TODO:IPA-132 Move this logic to VC or model
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
     let pollResultsCell = UINib(nibName: "PollResultsTableViewCell", bundle: nil)

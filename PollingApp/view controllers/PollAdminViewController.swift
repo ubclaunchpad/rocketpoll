@@ -16,26 +16,22 @@ final class PollAdminViewController: UIViewController {
   private var seconds = 0
   private var totalSeconds = 0
   private var timer = NSTimer()
-  private var answerIDDictionary = [AnswerText: AnswerID]()
-  private var correctAnswers:[AnswerText] = []
-  private var numsubmitforeachAns:[[NSString:Int]] = [[:]]
-  private var tallyIDDictioanry = [AnswerText:String]()
+  
   var totalNumberOfUserAnswers: Int = 0
   var container: PollAdminViewContainer?
   
   //Information to send to Poll Results View Controller
-  private var sendAIDS = [AnswerID]()
   private var sendQuestionText = "";
-  private var sendQID = "";
+  private var sendAnswer:Answer?
   
+  var recievedQuestion:Question?
+  var correctAnswers:[AnswerText] = []
+  var answers:[Answer] = []
   //Recieved information from a View Controller
-  var questionID:QuestionID = ""
-  var questionText:QuestionText = ""
-  var timerQuestion = 0.0
-  var answerIDs:[AnswerID] = []
-  var answers:[AnswerText] = []
+
   var fromCreate:Bool = false
-  
+
+
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -50,21 +46,17 @@ final class PollAdminViewController: UIViewController {
   
   container = PollAdminViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
     container?.AnswerTable.tableFooterView = UIView()
-    ModelInterface.sharedInstance.processAnswerData(answerIDs, completionHandler: { (listofAllAnswers) in
+    ModelInterface.sharedInstance.processAnswerData((recievedQuestion?.AIDS)!, completionHandler: { (listofAllAnswers) in
       self.view.addSubview(self.container!)
-      self.answerIDDictionary = [AnswerText: AnswerID]()
       self.answers = []
-      self.correctAnswers = []
       self.totalNumberOfUserAnswers = 0
       self.fillInTheFields(listofAllAnswers)
       
       self.container?.delegate = self
-      self.container?.setTally(self.tallyIDDictioanry)
-      self.container?.setTotalNumberOfAnswers(self.totalNumberOfUserAnswers)
-      self.container?.setQuestionText(self.questionText)
+      self.container?.setQuestion(self.recievedQuestion!)
       self.container?.setAnswers(self.answers)
       self.container?.setCorrectAnswers(self.correctAnswers)
-    
+    self.container?.setTotalNumberOfAnswers(self.totalNumberOfUserAnswers)
       self.container?.AnswerTable.reloadData()
     })
     setCountDown();
@@ -76,12 +68,10 @@ final class PollAdminViewController: UIViewController {
   }
   
   func fillInTheFields(listofAllAnswers: [Answer]) {
+    self.answers = listofAllAnswers
     let size = listofAllAnswers.count
     for i in 0 ..< size  {
       let tempAnswer = listofAllAnswers[i].answerText
-      self.answerIDDictionary[tempAnswer] = self.answerIDs[i]
-      self.answers.append(tempAnswer)
-      self.tallyIDDictioanry[tempAnswer] = String(listofAllAnswers[i].tally);
       self.totalNumberOfUserAnswers += listofAllAnswers[i].tally
       if (listofAllAnswers[i].isCorrect) {
         self.correctAnswers.append(tempAnswer)
@@ -93,7 +83,7 @@ final class PollAdminViewController: UIViewController {
   }
   
   func getTotalTally () {
-     ModelInterface.sharedInstance.processAnswerData(answerIDs, completionHandler: { (listofAllAnswers) in
+     ModelInterface.sharedInstance.processAnswerData((recievedQuestion?.AIDS)!, completionHandler: { (listofAllAnswers) in
       let size = listofAllAnswers.count
       var sum = 0
       for i in 0 ..< size  {
@@ -121,11 +111,12 @@ final class PollAdminViewController: UIViewController {
   }
   
   func setCountDown () {
-    if self.timerQuestion > 0 {
+   
+    if self.recievedQuestion?.endTimestamp > 0 {
       let currentTime = Int(NSDate().timeIntervalSince1970)
-      let difference = currentTime - Int(self.timerQuestion)
+      let difference = currentTime - Int((self.recievedQuestion?.endTimestamp)!)
       if difference <= 0 {
-        self.createTimer(Int(self.timerQuestion) - currentTime)
+        self.createTimer(Int((self.recievedQuestion?.endTimestamp)!) - currentTime)
       }else {
         getTotalTally()
       }
@@ -136,17 +127,16 @@ final class PollAdminViewController: UIViewController {
   }
   
   func deleteQuestion(){
-    ModelInterface.sharedInstance.stopTimer(questionID)
-    ModelInterface.sharedInstance.removeQuestion(questionID)
+    ModelInterface.sharedInstance.stopTimer((recievedQuestion?.QID)!)
+    ModelInterface.sharedInstance.removeQuestion((recievedQuestion?.QID)!)
     segueToCampaign()
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if (segue.identifier == ModelInterface.sharedInstance.segueToResultsScreen()) {
-      let viewController:PollResultsViewController = segue.destinationViewController as! PollResultsViewController
-//      viewController.questionID = sendQID
-//      viewController.questionText = sendQuestionText
-//      viewController.answerIDs = sendAIDS
+    if (segue.identifier == ModelInterface.sharedInstance.segueToWhoVotedForVCFromAdmin()) {
+      let viewController:WhoVotedForViewController = segue.destinationViewController as! WhoVotedForViewController
+      viewController.selectedAnswer = sendAnswer
+      viewController.questionText = sendQuestionText
     }
   }
 }
@@ -154,7 +144,7 @@ final class PollAdminViewController: UIViewController {
 extension PollAdminViewController: PollAdminViewContainerDelegate {
   func stopQuestion() {
     timer.invalidate()
-    ModelInterface.sharedInstance.stopTimer(questionID)
+    ModelInterface.sharedInstance.stopTimer((recievedQuestion?.QID)!)
     getTotalTally()
   }
 
@@ -174,4 +164,13 @@ extension PollAdminViewController: PollAdminViewContainerDelegate {
   func popSegue() {
     self.navigationController?.popToViewController((self.navigationController?.viewControllers.first)!, animated: true)
   }
+  
+  func segueToWhoVotedFor(selectedAnswer:Answer) {
+    sendAnswer = selectedAnswer
+    sendQuestionText = (recievedQuestion?.questionText)!
+    let nextRoom = ModelInterface.sharedInstance.segueToWhoVotedForVCFromAdmin()
+    performSegueWithIdentifier(nextRoom, sender: self)
+    
+  }
+
 }
