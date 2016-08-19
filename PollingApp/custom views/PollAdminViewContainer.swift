@@ -11,9 +11,9 @@ import UIKit
 
 
 protocol PollAdminViewContainerDelegate  {
-  func segueToResult()
-  func segueToCampaign()
+   func segueToCampaign()
   func displayConfirmationMessage()
+  func stopQuestion()
 }
 
 class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
@@ -29,7 +29,7 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
   var delegate: PollAdminViewContainerDelegate?
   
   @IBAction func goToResult(sender: AnyObject) {
-    delegate?.segueToResult();
+     delegate?.stopQuestion();
   }
   
   @IBAction func goToCampaign(sender: AnyObject) {
@@ -74,11 +74,15 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
     totalNumberOfAnswers = totalNumOfAnswers
   }
   
+  func showTotalTally (totalNumOfAnswers:Int) {
+    timer.text = "Tally:\(totalNumOfAnswers)"
+  }
+  
   // returns an approiate number of rows depending on the section
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return  answers.count
-    
   }
+  
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
     let nib_name = UINib(nibName: "AnswerAdminTableViewCell", bundle:nil)
@@ -110,7 +114,6 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
   }
   
   func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-
     return "Answers"
   }
   

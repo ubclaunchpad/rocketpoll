@@ -87,7 +87,12 @@ class CampaignViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
     if question.isExpired == false {
         delegate?.questionSelected(question)
     } else {
-      delegate?.resultsButtonSelected(question)
+      if (questionCells[indexPath.row].author != currentUser) {
+        delegate?.resultsButtonSelected(question)
+      } else {
+         delegate?.questionSelected(question)
+      }
+      
     }
   }
   
