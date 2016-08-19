@@ -37,6 +37,9 @@ final class PollAdminViewController: UIViewController {
     if fromCreate {
       setNavigationBar()
     }
+  }
+  
+  override func viewDidAppear(animated: Bool) {
     self.title = "ADMIN"
   }
   
@@ -135,6 +138,7 @@ final class PollAdminViewController: UIViewController {
       let viewController:WhoVotedForViewController = segue.destinationViewController as! WhoVotedForViewController
       viewController.selectedAnswer = sendAnswer
       viewController.questionText = sendQuestionText
+      self.title = ""
     }
   }
 }
