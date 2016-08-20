@@ -24,7 +24,7 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
   private var totalNumberOfAnswers: Int = 0
   @IBOutlet weak var timer: UILabel!
   @IBOutlet weak var AnswerTable: UITableView!
-  @IBOutlet weak var questionTextView: UITextView!
+  @IBOutlet weak var questionLabel: UILabel!
   
   var delegate: PollAdminViewContainerDelegate?
   
@@ -59,7 +59,7 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
   }
   
   func setQuestion (question: Question){
-    self.questionTextView.text = question.questionText
+    self.questionLabel.text = question.questionText
   }
   
   func updateTimerLabel(timerString: String) {
@@ -70,7 +70,7 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
   }
   
   func showTotalTally (totalNumOfAnswers:Int) {
-    timer.text = "Tally:\(totalNumOfAnswers)"
+    timer.text = "\(StringUtil.fillInString(totalVotes, time: totalNumOfAnswers))"
   }
   
   // returns an approiate number of rows depending on the section
