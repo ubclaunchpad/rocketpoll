@@ -42,7 +42,9 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
     view.AnswerTable.delegate = view
     view.AnswerTable.dataSource = view
     view.AnswerTable.allowsSelection = true
-    
+    view.AnswerTable.separatorStyle = UITableViewCellSeparatorStyle.None
+    view.AnswerTable.backgroundColor = UIColor.clearColor()
+    view.AnswerTable.opaque = false
     return view
   }
   
@@ -87,7 +89,7 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
     
     cell.setAnswerText(answers[indexPath.row].answerText)
     cell.setisCorrect(correctAnswers[indexPath.row])
-    cell.SetTallyLabel(String(answers[indexPath.row].tally))
+    cell.setTallyLabel(answers[indexPath.row].tally)
     
     if (totalNumberOfAnswers != 0) {
       let tally = answers[indexPath.row].tally
@@ -100,23 +102,20 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
     }else{
       cell.setBarGraph(0)
     }
+    cell.backgroundColor = UIColor.clearColor()
+    cell.backgroundImage.image = UIImage(named: "AnswerCell")!
+    cell.selectionStyle = UITableViewCellSelectionStyle.None
     return cell
     
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return cellDimensions.pollAdminCellHeight
-  }
-  
-  func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    return "Answers"
+    return cellDimensions.answerHeight
   }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     delegate?.segueToWhoVotedFor(answers[indexPath.row])
   }
-  func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return 1
-  }
+
   
 }

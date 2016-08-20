@@ -11,6 +11,7 @@ import UIKit
 class AnswerAdminTableViewCell: UITableViewCell {
   
   @IBOutlet weak var answerlabel: UILabel!
+    @IBOutlet weak var backgroundImage: UIImageView!
 
   @IBOutlet weak var isCorrectImage: UIImageView!
  
@@ -40,8 +41,8 @@ class AnswerAdminTableViewCell: UITableViewCell {
     }
   }
   
-  func SetTallyLabel (tally: String) {
-    self.Tally.text = tally
+  func setTallyLabel (tally: Int) {
+    self.Tally.text = StringUtil.fillInString(tallyString, time: tally)
   }
   
   func setBarGraph (result:Double) {
