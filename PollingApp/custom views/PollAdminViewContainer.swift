@@ -12,8 +12,6 @@ import UIKit
 
 protocol PollAdminViewContainerDelegate  {
   func segueToCampaign()
-  func displayConfirmationMessage()
-  func stopQuestion()
   func segueToWhoVotedFor(selectedAnswer:Answer)
 }
 
@@ -27,14 +25,6 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
   @IBOutlet weak var questionLabel: UILabel!
   
   var delegate: PollAdminViewContainerDelegate?
-  
-  @IBAction func goToResult(sender: AnyObject) {
-    delegate?.stopQuestion()
-  }
-  
-  @IBAction func goToCampaign(sender: AnyObject) {
-    delegate?.displayConfirmationMessage()
-  }
   
   class func instanceFromNib(frame: CGRect) -> PollAdminViewContainer {
     let view = UINib(nibName: "PollAdminViewContainer", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PollAdminViewContainer

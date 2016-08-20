@@ -20,24 +20,6 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tNw-BN-ATH">
-                    <rect key="frame" x="322" y="475" width="121" height="30"/>
-                    <state key="normal" title="Remove Question">
-                        <color key="titleColor" red="1" green="0.048449901727320777" blue="0.093230353525736498" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="goToCampaign:" destination="iN0-l3-epB" eventType="touchUpInside" id="8Gx-pL-DJy"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tzC-oO-o8H">
-                    <rect key="frame" x="154" y="475" width="121" height="30"/>
-                    <state key="normal" title="Stop Question">
-                        <color key="titleColor" red="1" green="0.77394489821575485" blue="0.052668668750236902" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="goToResult:" destination="iN0-l3-epB" eventType="touchUpInside" id="suU-DT-V8u"/>
-                    </connections>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total: 12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="461-Fw-rPU">
                     <rect key="frame" x="534" y="180" width="54" height="16"/>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
@@ -93,7 +75,6 @@
                 <constraint firstItem="YZ2-yJ-4Av" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="62B-tV-03t"/>
                 <constraint firstItem="N1e-ZK-uED" firstAttribute="bottom" secondItem="Uud-E9-Ze4" secondAttribute="bottom" constant="-2" id="ATR-eD-qM1"/>
                 <constraint firstAttribute="trailing" secondItem="CC0-A3-ZpL" secondAttribute="trailing" constant="10" id="DJV-n2-JMU"/>
-                <constraint firstItem="tNw-BN-ATH" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="82.5" id="Dth-0w-bPa"/>
                 <constraint firstItem="QJF-E2-cc2" firstAttribute="centerY" secondItem="CC0-A3-ZpL" secondAttribute="centerY" id="G0H-rG-Ht2"/>
                 <constraint firstItem="DxE-d9-QX1" firstAttribute="top" secondItem="lV1-2j-Ekl" secondAttribute="bottom" constant="10" id="GlB-Yp-LYJ"/>
                 <constraint firstItem="Uud-E9-Ze4" firstAttribute="baseline" secondItem="YZ2-yJ-4Av" secondAttribute="baseline" id="HiU-VD-rE2"/>
@@ -101,14 +82,10 @@
                 <constraint firstItem="lV1-2j-Ekl" firstAttribute="top" secondItem="CC0-A3-ZpL" secondAttribute="bottom" constant="55" id="Tup-gc-Irg"/>
                 <constraint firstItem="461-Fw-rPU" firstAttribute="trailing" secondItem="CC0-A3-ZpL" secondAttribute="trailing" constant="-2" id="YeU-pj-Fga"/>
                 <constraint firstItem="QJF-E2-cc2" firstAttribute="leading" secondItem="CC0-A3-ZpL" secondAttribute="leading" constant="20" id="adc-16-jyr"/>
-                <constraint firstItem="tzC-oO-o8H" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-85.5" id="bsI-Bw-EcS"/>
                 <constraint firstItem="Uud-E9-Ze4" firstAttribute="trailing" secondItem="461-Fw-rPU" secondAttribute="trailing" id="gk4-0o-iMY"/>
-                <constraint firstAttribute="bottom" secondItem="tzC-oO-o8H" secondAttribute="bottom" constant="95" id="hyh-iW-Nnn"/>
-                <constraint firstAttribute="bottom" secondItem="tNw-BN-ATH" secondAttribute="bottom" constant="95" id="jag-Tp-FvT"/>
                 <constraint firstItem="DxE-d9-QX1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="lJP-Cy-eyP"/>
                 <constraint firstItem="Uud-E9-Ze4" firstAttribute="leading" secondItem="N1e-ZK-uED" secondAttribute="trailing" constant="3" id="nUY-Hx-68U"/>
                 <constraint firstItem="461-Fw-rPU" firstAttribute="baseline" secondItem="lV1-2j-Ekl" secondAttribute="baseline" id="oZC-SY-gEs"/>
-                <constraint firstItem="tNw-BN-ATH" firstAttribute="trailing" secondItem="tzC-oO-o8H" secondAttribute="trailing" constant="168" id="ojo-ch-SDI"/>
                 <constraint firstItem="YZ2-yJ-4Av" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="tMf-gC-yty"/>
                 <constraint firstAttribute="trailing" secondItem="DxE-d9-QX1" secondAttribute="trailing" id="v40-jo-WXT"/>
                 <constraint firstItem="CC0-A3-ZpL" firstAttribute="top" secondItem="YZ2-yJ-4Av" secondAttribute="bottom" constant="10" id="y0a-tr-ro7"/>

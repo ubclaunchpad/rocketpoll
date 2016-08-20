@@ -23,20 +23,18 @@ final class PollAdminViewController: UIViewController {
   //Information to send to Poll Results View Controller
   private var sendQuestionText = "";
   private var sendAnswer:Answer?
-   //Recieved information from a View Controller
+  //Recieved information from a View Controller
   var recievedQuestion:Question?
- 
+  
   var correctAnswers:[AnswerText] = []
   var answers:[Answer] = []
-
+  
   var fromCreate:Bool = false
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     addContainerToVC()
-    if fromCreate {
-      setNavigationBar()
-    }
+    setNavigationBar()
   }
   
   override func viewDidAppear(animated: Bool) {
@@ -44,8 +42,8 @@ final class PollAdminViewController: UIViewController {
   }
   
   func addContainerToVC() {
-  
-  container = PollAdminViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
+    
+    container = PollAdminViewContainer.instanceFromNib(CGRectMake(0, 0, view.bounds.width, view.bounds.height))
     container?.AnswerTable.tableFooterView = UIView()
     ModelInterface.sharedInstance.processAnswerData((recievedQuestion?.AIDS)!, completionHandler: { (listofAllAnswers) in
       self.view.addSubview(self.container!)
@@ -57,15 +55,21 @@ final class PollAdminViewController: UIViewController {
       self.container?.setQuestion(self.recievedQuestion!)
       self.container?.setAnswers(self.answers)
       self.container?.setCorrectAnswers(self.correctAnswers)
-    self.container?.setTotalNumberOfAnswers(self.totalNumberOfUserAnswers)
+      self.container?.setTotalNumberOfAnswers(self.totalNumberOfUserAnswers)
       self.container?.AnswerTable.reloadData()
     })
     setCountDown();
   }
   
   func setNavigationBar() {
-    let backItem = UIBarButtonItem(image: UIImage(named: "Back"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PollAdminViewController.popSegue))
-    navigationItem.leftBarButtonItem = backItem
+    if fromCreate {
+      let backItem = UIBarButtonItem(image: UIImage(named: "Back"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PollAdminViewController.popSegue))
+      navigationItem.leftBarButtonItem = backItem
+    } else {
+      let stopItem = UIBarButtonItem(image: UIImage(named: "Stop"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PollAdminViewController.stopQuestion))
+      let removeItem = UIBarButtonItem(image: UIImage(named: "Remove"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PollAdminViewController.displayConfirmationMessage))
+      navigationItem.rightBarButtonItems = [removeItem, stopItem]
+    }
   }
   
   func fillInTheFields(listofAllAnswers: [Answer]) {
@@ -84,14 +88,14 @@ final class PollAdminViewController: UIViewController {
   }
   
   func getTotalTally () {
-     ModelInterface.sharedInstance.processAnswerData((recievedQuestion?.AIDS)!, completionHandler: { (listofAllAnswers) in
+    ModelInterface.sharedInstance.processAnswerData((recievedQuestion?.AIDS)!, completionHandler: { (listofAllAnswers) in
       let size = listofAllAnswers.count
       var sum = 0
       for i in 0 ..< size  {
-         sum += listofAllAnswers[i].tally
+        sum += listofAllAnswers[i].tally
       }
       self.container?.showTotalTally(sum)
-    
+      
     })
   }
   
@@ -112,7 +116,7 @@ final class PollAdminViewController: UIViewController {
   }
   
   func setCountDown () {
-   
+    
     if self.recievedQuestion?.endTimestamp > 0 {
       let currentTime = Int(NSDate().timeIntervalSince1970)
       let difference = currentTime - Int((self.recievedQuestion?.endTimestamp)!)
@@ -121,7 +125,7 @@ final class PollAdminViewController: UIViewController {
       }else {
         getTotalTally()
       }
-
+      
     } else {
       getTotalTally()
     }
@@ -131,6 +135,22 @@ final class PollAdminViewController: UIViewController {
     ModelInterface.sharedInstance.stopTimer((recievedQuestion?.QID)!)
     ModelInterface.sharedInstance.removeQuestion((recievedQuestion?.QID)!)
     segueToCampaign()
+  }
+  
+  func stopQuestion() {
+    timer.invalidate()
+    ModelInterface.sharedInstance.stopTimer((recievedQuestion?.QID)!)
+    getTotalTally()
+  }
+  
+  func displayConfirmationMessage() {
+    let deleteAlert = UIAlertController(title: "\(alertMessages.confirmation)", message: "\(alertMessages.confirmationMessage)", preferredStyle: UIAlertControllerStyle.Alert)
+    deleteAlert.addAction(UIAlertAction(title: "\(alertMessages.no)", style: .Default, handler: { (action: UIAlertAction!) in deleteAlert.dismissViewControllerAnimated(true, completion: nil)
+    }))
+    deleteAlert.addAction(UIAlertAction(title: "\(alertMessages.yes)", style: .Cancel, handler: { (action: UIAlertAction!) in
+      self.deleteQuestion()
+    }))
+    presentViewController(deleteAlert, animated: true, completion: nil)
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -144,21 +164,6 @@ final class PollAdminViewController: UIViewController {
 }
 
 extension PollAdminViewController: PollAdminViewContainerDelegate {
-  func stopQuestion() {
-    timer.invalidate()
-    ModelInterface.sharedInstance.stopTimer((recievedQuestion?.QID)!)
-    getTotalTally()
-  }
-
-  func displayConfirmationMessage() {
-    let deleteAlert = UIAlertController(title: "\(alertMessages.confirmation)", message: "\(alertMessages.confirmationMessage)", preferredStyle: UIAlertControllerStyle.Alert)
-    deleteAlert.addAction(UIAlertAction(title: "\(alertMessages.no)", style: .Default, handler: { (action: UIAlertAction!) in deleteAlert.dismissViewControllerAnimated(true, completion: nil)
-    }))
-    deleteAlert.addAction(UIAlertAction(title: "\(alertMessages.yes)", style: .Cancel, handler: { (action: UIAlertAction!) in
-      self.deleteQuestion()
-    }))
-    presentViewController(deleteAlert, animated: true, completion: nil)
-  }
   func segueToCampaign() {
     let nextRoom =  ModelInterface.sharedInstance.segueToQuestionsScreen()
     performSegueWithIdentifier(nextRoom, sender: self)
@@ -174,5 +179,5 @@ extension PollAdminViewController: PollAdminViewContainerDelegate {
     performSegueWithIdentifier(nextRoom, sender: self)
     
   }
-
+  
 }
