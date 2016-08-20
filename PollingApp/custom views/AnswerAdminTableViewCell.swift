@@ -30,14 +30,14 @@ class AnswerAdminTableViewCell: UITableViewCell {
   func setAnswerText(answer: AnswerText){
     answerlabel.text = answer
   }
-  func changeCorrectAnswerColor (){
-    self.backgroundColor = UIColor.redColor()
-  }
+  
   func setisCorrect(isCorrect: String) {
     //TODO: this should no be a magic string
     
     if isCorrect == UIStringConstants.notCorrect {
-        self.isCorrectImage.image = incorrectImage
+        self.isCorrectImage.hidden = true
+    } else {
+      self.isCorrectImage.hidden = false
     }
   }
   
@@ -48,9 +48,13 @@ class AnswerAdminTableViewCell: UITableViewCell {
   func setBarGraph (result:Double) {
     
     for view in self.subviews{
-      if (view.backgroundColor == colors.barGraphColour) {
+      if (view.backgroundColor == colors.graphBackgroundGrey) {
         view.removeFromSuperview()
       }
+    }
+    
+    guard result > 0 else {
+      return
     }
     
     let percentage = CGFloat(result/100);

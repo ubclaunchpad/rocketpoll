@@ -86,13 +86,14 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
       let results:Double = MathUtil.convertTallyResultsToPercentage(
         Double(tally),
         denominator: Double(totalNumberOfAnswers))
-      
+      cell.setTallyLabel(answers[indexPath.row].tally)
       cell.setBarGraph(results)
     }else{
       cell.setBarGraph(0)
+      cell.setTallyLabel(0)
+
     }
     cell.backgroundColor = UIColor.clearColor()
-    cell.backgroundImage.image = UIImage(named: "AnswerCell")!
     cell.selectionStyle = UITableViewCellSelectionStyle.None
     return cell
     
