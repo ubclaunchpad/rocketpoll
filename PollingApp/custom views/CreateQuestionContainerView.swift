@@ -25,6 +25,8 @@ class CreateQuestionContainerView: UIView {
   
   @IBOutlet weak var setTimerView: UIView!
 
+  @IBOutlet weak var liveDot: UIImageView!
+    
   func toggleLiveResults () {
     isLiveResults = !isLiveResults
   }
@@ -32,12 +34,12 @@ class CreateQuestionContainerView: UIView {
   @IBAction func setLiveResults(sender: AnyObject) {
     
     if (!isLiveResults) {
-      sender.setTitle("live results on", forState: .Normal)
       sender.setTitleColor(UIColor.redColor(), forState: .Normal)
+      liveDot.image = UIImage(named: "LiveOn")
       toggleLiveResults()
     } else {
-      sender.setTitle("live results off", forState: .Normal)
       sender.setTitleColor(colors.lightBlue, forState: .Normal)
+      liveDot.image = UIImage(named: "LiveOff")
       toggleLiveResults()
     }
 

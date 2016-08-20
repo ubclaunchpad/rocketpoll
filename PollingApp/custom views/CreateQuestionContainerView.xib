@@ -12,9 +12,9 @@
         </mutableArray>
         <mutableArray key="Roboto-Medium.ttf">
             <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
         </mutableArray>
         <mutableArray key="Roboto-Regular.ttf">
-            <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
@@ -69,7 +69,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KuQ-U5-pjz">
-                    <rect key="frame" x="554" y="180.5" width="30" height="29"/>
+                    <rect key="frame" x="554" y="180" width="30" height="29"/>
                     <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
                     <state key="normal" title="Add">
                         <color key="titleColor" red="0.17647058823529413" green="0.64313725490196083" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -192,16 +192,23 @@
                     <color key="textColor" white="0.58372844827586212" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NdA-R4-Xt8">
-                    <rect key="frame" x="498" y="23" width="86" height="29"/>
-                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                    <state key="normal" title="live results on">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NdA-R4-Xt8">
+                    <rect key="frame" x="513" y="23" width="68" height="29"/>
+                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
+                    <state key="normal" title="live results">
                         <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="setLiveResults:" destination="iN0-l3-epB" eventType="touchUpInside" id="obY-hg-8lc"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LiveOn" translatesAutoresizingMaskIntoConstraints="NO" id="b50-pp-TE6">
+                    <rect key="frame" x="501" y="34.5" width="7" height="7"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="7" id="2nm-FR-hee"/>
+                        <constraint firstAttribute="width" constant="7" id="4fD-9h-XYB"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
@@ -234,9 +241,11 @@
                 <constraint firstItem="KuQ-U5-pjz" firstAttribute="trailing" secondItem="lQs-nS-HJd" secondAttribute="trailing" id="k3A-Oe-5xw"/>
                 <constraint firstItem="lQs-nS-HJd" firstAttribute="top" secondItem="NdA-R4-Xt8" secondAttribute="bottom" constant="4.5" id="l62-OI-5cK"/>
                 <constraint firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="lLg-Wu-iZy"/>
+                <constraint firstItem="b50-pp-TE6" firstAttribute="centerY" secondItem="NdA-R4-Xt8" secondAttribute="centerY" id="rRR-GL-eLq"/>
                 <constraint firstItem="wHW-Oj-QVv" firstAttribute="leading" secondItem="Kok-IO-Qeg" secondAttribute="leading" id="sW7-Ad-UwJ"/>
                 <constraint firstItem="kSR-OB-ORh" firstAttribute="trailing" secondItem="lQs-nS-HJd" secondAttribute="trailing" constant="-3" id="tUP-dN-ybS"/>
                 <constraint firstItem="NdA-R4-Xt8" firstAttribute="trailing" secondItem="kSR-OB-ORh" secondAttribute="trailing" id="uVN-XD-5ke"/>
+                <constraint firstItem="NdA-R4-Xt8" firstAttribute="leading" secondItem="b50-pp-TE6" secondAttribute="trailing" constant="5" id="y5d-cK-RPF"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -254,6 +263,7 @@
                 <outlet property="AnswersVerticalSpacing" destination="fLf-Db-BWc" id="Djm-Wu-awr"/>
                 <outlet property="charactersLeft" destination="g0a-0p-AEc" id="bET-0c-bEK"/>
                 <outlet property="endTimerLabel" destination="kSR-OB-ORh" id="jdT-sZ-0tv"/>
+                <outlet property="liveDot" destination="b50-pp-TE6" id="j0J-0P-GDZ"/>
                 <outlet property="questionHeight" destination="0WS-be-NzW" id="fiM-EK-SlA"/>
                 <outlet property="questionInputText" destination="7Db-bb-cr6" id="5WE-KR-mhb"/>
                 <outlet property="setTimerButton" destination="kSR-OB-ORh" id="RcJ-2V-lTK"/>
@@ -281,5 +291,6 @@
         <image name="-5" width="75" height="75"/>
         <image name="-5Selected" width="75" height="75"/>
         <image name="AnswerCell" width="400" height="68"/>
+        <image name="LiveOn" width="6" height="6"/>
     </resources>
 </document>
