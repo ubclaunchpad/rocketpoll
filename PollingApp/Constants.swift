@@ -159,7 +159,7 @@ enum imageNames {
 }
 
 enum cellDimensions {
-  static let pollAdminCellHeight:CGFloat = 58
+  static let answerHeight:CGFloat = 68
 }
 
 enum navigationBarAttributes {
