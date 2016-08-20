@@ -29,8 +29,6 @@ final class PollAdminViewController: UIViewController {
   var correctAnswers:[AnswerText] = []
   var answers:[Answer] = []
   
-  var fromCreate:Bool = false
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     addContainerToVC()
@@ -62,14 +60,11 @@ final class PollAdminViewController: UIViewController {
   }
   
   func setNavigationBar() {
-    if fromCreate {
-      let backItem = UIBarButtonItem(image: UIImage(named: "Back"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PollAdminViewController.popSegue))
-      navigationItem.leftBarButtonItem = backItem
-    } else {
-      let stopItem = UIBarButtonItem(image: UIImage(named: "Stop"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PollAdminViewController.stopQuestion))
-      let removeItem = UIBarButtonItem(image: UIImage(named: "Remove"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PollAdminViewController.displayConfirmationMessage))
-      navigationItem.rightBarButtonItems = [removeItem, stopItem]
-    }
+    let backItem = UIBarButtonItem(image: UIImage(named: "Back"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PollAdminViewController.popSegue))
+    navigationItem.leftBarButtonItem = backItem
+    let stopItem = UIBarButtonItem(image: UIImage(named: "Stop"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PollAdminViewController.stopQuestion))
+    let removeItem = UIBarButtonItem(image: UIImage(named: "Remove"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PollAdminViewController.displayConfirmationMessage))
+    navigationItem.rightBarButtonItems = [removeItem, stopItem]
   }
   
   func fillInTheFields(listofAllAnswers: [Answer]) {

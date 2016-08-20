@@ -228,7 +228,6 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
     if (segue.identifier == ModelInterface.sharedInstance.segueToAdminScreen()) {
       let viewController:PollAdminViewController = segue.destinationViewController as! PollAdminViewController
       viewController.recievedQuestion = sendQuestion
-      viewController.fromCreate = true
     }
   }
 }
