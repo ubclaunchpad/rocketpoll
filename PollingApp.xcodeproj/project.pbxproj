@@ -606,7 +606,7 @@
 				TargetAttributes = {
 					76B28C141C66C84A008407EE = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = AX2D84BZ47;
+						DevelopmentTeam = M7P3NP3ST4;
 					};
 					76B28C2A1C66C84B008407EE = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -1013,7 +1013,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = PollingApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Gabriel.PollingApp.ssss;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ubclaunchpad.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1028,7 +1028,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = PollingApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Gabriel.PollingApp.ssss;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ubclaunchpad.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
