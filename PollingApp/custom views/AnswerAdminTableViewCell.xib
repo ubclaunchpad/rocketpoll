@@ -24,6 +24,10 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AnswerCell" translatesAutoresizingMaskIntoConstraints="NO" id="kvL-uh-Lmd">
                         <rect key="frame" x="10" y="0.0" width="498" height="67.5"/>
                     </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AnswerCellTransparentCover" translatesAutoresizingMaskIntoConstraints="NO" id="q1e-9p-6DM" userLabel="White">
+                        <rect key="frame" x="10" y="0.0" width="498" height="67.5"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SetCorrect" translatesAutoresizingMaskIntoConstraints="NO" id="DvS-eL-spJ">
                         <rect key="frame" x="458" y="16.5" width="34" height="34"/>
                         <constraints>
@@ -49,22 +53,26 @@
                     <constraint firstItem="kvL-uh-Lmd" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="7nS-Wr-ruF"/>
                     <constraint firstItem="DvS-eL-spJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="CPU-4i-RHG"/>
                     <constraint firstItem="hn6-wr-c86" firstAttribute="top" secondItem="u0a-an-CCo" secondAttribute="bottom" id="DUU-r3-OQt"/>
+                    <constraint firstItem="q1e-9p-6DM" firstAttribute="centerY" secondItem="kvL-uh-Lmd" secondAttribute="centerY" id="J2v-Sd-noF"/>
                     <constraint firstItem="kvL-uh-Lmd" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Khs-Zl-ryg"/>
                     <constraint firstItem="DvS-eL-spJ" firstAttribute="trailing" secondItem="kvL-uh-Lmd" secondAttribute="trailing" constant="-16" id="NUx-cm-ol6"/>
                     <constraint firstItem="kvL-uh-Lmd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="NkL-ms-19H"/>
                     <constraint firstItem="kvL-uh-Lmd" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" id="Qhb-YW-2pV"/>
                     <constraint firstItem="DvS-eL-spJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="T11-1Q-gWw"/>
+                    <constraint firstItem="q1e-9p-6DM" firstAttribute="width" secondItem="kvL-uh-Lmd" secondAttribute="width" id="WeC-aN-1Ft"/>
                     <constraint firstAttribute="bottomMargin" secondItem="hn6-wr-c86" secondAttribute="bottom" constant="5" id="dGq-cN-2Gv"/>
                     <constraint firstItem="DvS-eL-spJ" firstAttribute="leading" secondItem="u0a-an-CCo" secondAttribute="trailing" constant="8" id="dlc-UP-XEv"/>
+                    <constraint firstItem="q1e-9p-6DM" firstAttribute="centerX" secondItem="kvL-uh-Lmd" secondAttribute="centerX" id="dpo-4k-2Yh"/>
                     <constraint firstAttribute="trailingMargin" secondItem="kvL-uh-Lmd" secondAttribute="trailing" constant="2" id="f0t-KR-OX9"/>
                     <constraint firstItem="u0a-an-CCo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="20" id="hUy-4a-I0E"/>
+                    <constraint firstItem="q1e-9p-6DM" firstAttribute="height" secondItem="kvL-uh-Lmd" secondAttribute="height" id="mKW-CR-A40"/>
                     <constraint firstItem="hn6-wr-c86" firstAttribute="leading" secondItem="u0a-an-CCo" secondAttribute="leading" id="u1N-dV-9Ab"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="Tally" destination="hn6-wr-c86" id="E3i-yN-a1x"/>
                 <outlet property="answerlabel" destination="u0a-an-CCo" id="31o-pD-84b"/>
-                <outlet property="backgroundImage" destination="kvL-uh-Lmd" id="ec1-qY-WVH"/>
+                <outlet property="backgroundImage" destination="kvL-uh-Lmd" id="ko8-i6-O5U"/>
                 <outlet property="isCorrectImage" destination="DvS-eL-spJ" id="6rU-zv-Eyc"/>
             </connections>
             <point key="canvasLocation" x="-17" y="174"/>
@@ -72,6 +80,7 @@
     </objects>
     <resources>
         <image name="AnswerCell" width="400" height="68"/>
+        <image name="AnswerCellTransparentCover" width="400" height="68"/>
         <image name="SetCorrect" width="34" height="34"/>
     </resources>
 </document>

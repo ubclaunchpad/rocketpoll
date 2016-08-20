@@ -74,7 +74,6 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
     
     let nib_name = UINib(nibName: "AnswerAdminTableViewCell", bundle:nil)
     tableView.registerNib(nib_name, forCellReuseIdentifier: "answeradminCell")
-    
     let cell = self.AnswerTable.dequeueReusableCellWithIdentifier("answeradminCell", forIndexPath: indexPath) as! AnswerAdminTableViewCell
     
     cell.setAnswerText(answers[indexPath.row].answerText)

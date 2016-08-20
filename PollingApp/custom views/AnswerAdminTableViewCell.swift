@@ -11,8 +11,8 @@ import UIKit
 class AnswerAdminTableViewCell: UITableViewCell {
   
   @IBOutlet weak var answerlabel: UILabel!
-    @IBOutlet weak var backgroundImage: UIImageView!
 
+  @IBOutlet weak var backgroundImage: UIImageView!
   @IBOutlet weak var isCorrectImage: UIImageView!
  
   @IBOutlet weak var Tally: UILabel!
@@ -56,12 +56,14 @@ class AnswerAdminTableViewCell: UITableViewCell {
     let percentage = CGFloat(result/100);
     var frame: CGRect = self.frame
     
-    frame.size.width = frame.size.width * percentage
-    frame.origin.y = self.frame.size.height - frame.size.height
+    frame.size.width = frame.size.width * percentage - 20
+    frame.size.height = frame.size.height - 6
+    frame.origin.x = 10
+    frame.origin.y = 1
     let barGraph: UIView = UIView(frame: frame)
-    barGraph.backgroundColor = colors.barGraphColour
-    self.addSubview(barGraph)
-  
+    barGraph.layer.cornerRadius = 12
+    barGraph.backgroundColor = colors.graphBackgroundGrey
+    self.subviews.first?.insertSubview(barGraph, atIndex: 2)  
   }
   
   
