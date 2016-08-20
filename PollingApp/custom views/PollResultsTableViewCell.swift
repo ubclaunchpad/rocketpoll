@@ -63,12 +63,12 @@ class PollResultsTableViewCell: UITableViewCell{
     let percentage = CGFloat(result/100);
     var frame: CGRect = self.frame
     
-    frame.size.width = frame.size.width * percentage - 20
-    frame.size.height = frame.size.height - 6
+    frame.size.width = frame.size.width * percentage - 22
+    frame.size.height = frame.size.height - 5
     frame.origin.x = 10
     frame.origin.y = 1
     let barGraph: UIView = UIView(frame: frame)
-    barGraph.layer.cornerRadius = 12
+    barGraph.layer.cornerRadius = 8
     if isYourAnswer {
       barGraph.backgroundColor = colors.graphBackgroundRed
       selectedCorrectly()
