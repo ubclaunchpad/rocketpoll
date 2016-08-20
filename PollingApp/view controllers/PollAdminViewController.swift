@@ -90,6 +90,7 @@ final class PollAdminViewController: UIViewController {
         sum += listofAllAnswers[i].tally
       }
       self.container?.showTotalTally(sum)
+      self.container?.displayDone()
       
     })
   }

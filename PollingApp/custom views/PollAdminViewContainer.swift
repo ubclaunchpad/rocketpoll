@@ -24,6 +24,7 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
   @IBOutlet weak var AnswerTable: UITableView!
   @IBOutlet weak var questionLabel: UILabel!
   
+  @IBOutlet weak var totalTally: UILabel!
   var delegate: PollAdminViewContainerDelegate?
   
   class func instanceFromNib(frame: CGRect) -> PollAdminViewContainer {
@@ -62,7 +63,12 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
   }
   
   func showTotalTally (totalNumOfAnswers:Int) {
-    timer.text = "\(StringUtil.fillInString(totalVotes, time: totalNumOfAnswers))"
+    totalTally.hidden = false
+    totalTally.text = "\(StringUtil.fillInString(totalVotes, time: totalNumOfAnswers))"
+  }
+  
+  func displayDone () {
+    timer.text = "Done"
   }
   
   // returns an approiate number of rows depending on the section
