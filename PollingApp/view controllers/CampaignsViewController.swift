@@ -48,11 +48,7 @@ class CampaignsViewController: UIViewController {
       })
       
     }
-    //let roomID = ModelInterface.sharedInstance.getCurrentRoomID()
-    //let roomName = ModelInterface.sharedInstance.getRoomName(roomID)
-    
     container?.delegate = self
-    //self.container?.setRoomNameTitle(roomName)
   }
   
   func setNavigationBar() {

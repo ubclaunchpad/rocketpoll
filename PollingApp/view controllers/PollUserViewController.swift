@@ -19,6 +19,7 @@ final class PollUserViewController: UIViewController {
   
   private var answers = [Answer]()
   private var chosenAnswerID: AnswerID = ""
+  private var hasAdminEndedTheQuestion = false
   var container: PollUserViewContainer?
   var isTheQuestionExpired = true
   var recievedQuestion:Question?
@@ -36,6 +37,7 @@ final class PollUserViewController: UIViewController {
   
   override func viewDidAppear(animated: Bool) {
     self.title = "VOTE"
+    self.setCountdown((self.recievedQuestion?.QID)!)
   }
   
   func setup() {
@@ -58,8 +60,7 @@ final class PollUserViewController: UIViewController {
 
      })
     }
-    self.setCountdown((self.recievedQuestion?.QID)!)
-    
+        
   }
   
   func setNavigationBar() {
@@ -82,7 +83,7 @@ final class PollUserViewController: UIViewController {
   }
   
   func createTimer(startingTime: Int) {
-    totalSeconds = startingTime
+    totalSeconds = startingTime-offsetTimer
     updateTimer()
     timer = NSTimer.scheduledTimerWithTimeInterval(
       1,
@@ -100,8 +101,10 @@ final class PollUserViewController: UIViewController {
       timer.invalidate()
       sendQuestion = recievedQuestion
       self.isTheQuestionExpired = true
-      let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
-      performSegueWithIdentifier(nextRoom, sender: self)
+      if (!hasAdminEndedTheQuestion) {
+        let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
+        performSegueWithIdentifier(nextRoom, sender: self)
+      }
     }
   }
   func setCountdown(QID: String) {
@@ -116,6 +119,7 @@ final class PollUserViewController: UIViewController {
       if difference > 0 {
         self.sendQuestion = self.recievedQuestion
         self.isTheQuestionExpired = true
+        self.hasAdminEndedTheQuestion = true
         self.performSegueWithIdentifier(nextRoom, sender: self)
       } else {
         self.isTheQuestionExpired = false
@@ -124,6 +128,7 @@ final class PollUserViewController: UIViewController {
       
     })
   }
+  
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if (segue.identifier == ModelInterface.sharedInstance.segueToResultsScreen()) {
       let viewController:PollResultsViewController = segue.destinationViewController as! PollResultsViewController
