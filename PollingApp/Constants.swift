@@ -22,6 +22,7 @@ var currentID  = ""
 var okayNameCharacters : Set<Character> =
   Set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890".characters)
 
+let offsetTimer = 9;
 
 var launchpadEmail: String = "@ubclaunchpad.com"
 var totalVotes: String = "%1% total votes"

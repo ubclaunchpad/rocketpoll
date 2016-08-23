@@ -195,7 +195,12 @@ extension ModelInterface: AnswerModelProtocol {
       }
       
     })
-    
+  }
+  func removeAnswer (answerId: AnswerID) -> Bool{
+    let ref =  FIRDatabase.database().reference();
+    ref.child("ANSWERS/AIDS/\(answerId)").removeAllObservers()
+    ref.child("ANSWERS/AIDS/\(answerId)").removeValue()
+    return true
   }
   //MARK: - Get Answer Information -
   func isCorrectAnswer(answerId: AnswerID) -> Bool {
