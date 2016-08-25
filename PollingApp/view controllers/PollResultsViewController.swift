@@ -102,7 +102,7 @@ class PollResultsViewController: UIViewController {
   }
   func deleteQuestion(){
     ModelInterface.sharedInstance.stopTimer((self.recievedQuestion?.QID)!)
-    ModelInterface.sharedInstance.removeQuestion((self.recievedQuestion?.QID)!)
+    ModelInterface.sharedInstance.removeQuestionAndAnswer(recievedQuestion!)
     let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
     performSegueWithIdentifier(nextRoom, sender: self)
   }

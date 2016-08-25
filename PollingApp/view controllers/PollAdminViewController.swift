@@ -131,11 +131,8 @@ final class PollAdminViewController: UIViewController {
   
   func deleteQuestion(){
     ModelInterface.sharedInstance.stopTimer((recievedQuestion?.QID)!)
-    ModelInterface.sharedInstance.removeQuestion((recievedQuestion?.QID)!)
-    let AIDS = (recievedQuestion?.AIDS)!
-    for i in 0 ..< AIDS.count {
-      ModelInterface.sharedInstance.removeAnswer(AIDS[i])
-    }
+    ModelInterface.sharedInstance.removeQuestionAndAnswer(recievedQuestion!)
+    
     segueToCampaign()
   }
   

@@ -103,12 +103,7 @@ class DateUtil {
     else {
       let days = Int(absDifference/UITimeConstants.oneDayinSeconds)
       if difference > 0 {
-        ModelInterface.sharedInstance.removeQuestion(question.QID)
-        let AIDS = question.AIDS
-        for i in 0...AIDS.count {
-          ModelInterface.sharedInstance.removeAnswer(AIDS[i])
-        }
-        
+       ModelInterface.sharedInstance.removeQuestionAndAnswer(question)
       } else {
         question.isExpired = false
         if days > 1 {
