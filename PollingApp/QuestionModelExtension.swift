@@ -96,7 +96,7 @@ extension ModelInterface: QuestionModelProtocol {
         let answeredQuestions = snapshot.value as? [String : AnyObject]
         var listOfAnsweredQIDs = [QuestionID]()
         for (key, _) in answeredQuestions! {
-            listOfAnsweredQIDs.append(key)
+          listOfAnsweredQIDs.append(key)
         }
         completionHandler(listOfAnsweredQIDs: listOfAnsweredQIDs)
       } else {
@@ -119,7 +119,7 @@ extension ModelInterface: QuestionModelProtocol {
     }) { (error) in
       Log.error(error.localizedDescription)
     }
-
+    
   }
   
   
@@ -129,6 +129,16 @@ extension ModelInterface: QuestionModelProtocol {
     ref.child("QUESTIONSCREEN/\(questionId)").removeAllObservers()
     ref.child("QUESTIONSCREEN").child("\(questionId)").removeValue()
     return true
+  }
+  
+  func removeQuestionAndAnswer(question:Question) {
+    let AIDS = question.AIDS
+    if !AIDS.isEmpty {
+      for i in 0 ..< AIDS.count {
+        ModelInterface.sharedInstance.removeAnswer(AIDS[i])
+      }
+    }
+     ModelInterface.sharedInstance.removeQuestion(question.QID)
   }
   
   //MARK: - Segues -
