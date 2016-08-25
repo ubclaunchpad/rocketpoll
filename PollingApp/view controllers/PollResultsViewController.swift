@@ -34,7 +34,7 @@ class PollResultsViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    if fromTimerEnd {
+    if fromTimerEnd || isTheQuestionExpired {
       setNavigationBar()
     }
     addContainerToVC()
