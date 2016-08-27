@@ -12,21 +12,22 @@ import UIKit
 protocol PollResultsViewContainerDelegate {
   func goBackToCampaign()
   func presentConfirmationVaraible()
+  func segueToWhoVotedFor(selectedAnswer:Answer)
 }
 class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
   
-  @IBOutlet weak var deleteButton: UIButton!
-  @IBOutlet weak var backButton: UIButton!
   @IBOutlet weak var resultsTableView: UITableView!
   @IBOutlet weak var totalAnswersLabel: UILabel!
+  @IBOutlet weak var question: UILabel!
   
-  private var answers: [AnswerText] = []
+  private var answers: [Answer] = []
   private var correctAnswer: AnswerText = ""
   private var totalNumberOfAnswers: Int = 0
-  private var numberOfResponsesPerAnswer: [Int] = []
+  
   private var questionText = ""
   private var yourAnswer = ""
-  private var yourAnswerNumOfRespones = 0
+  private var isTheQuestionExpired = true
+  
   var delegate: PollResultsViewContainerDelegate?
   
   class func instanceFromNib(frame: CGRect) -> PollResultsViewContainer {
@@ -34,98 +35,62 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     view.frame = frame
     view.resultsTableView.delegate = view
     view.resultsTableView.dataSource = view
-    view.resultsTableView.allowsSelection = false
+    view.resultsTableView.allowsSelection = true
+    view.resultsTableView.separatorStyle = UITableViewCellSeparatorStyle.None
+    view.resultsTableView.backgroundColor = UIColor.clearColor()
+    view.resultsTableView.opaque = false
     return view
   }
   
-  
-  @IBAction func backButtonPressed(sender: AnyObject) {
-    delegate?.goBackToCampaign()
-  }
-  
-  //TODO:IPA-132 Move this logic to VC or model
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    
-    if indexPath.section == 0 {
-      let nib_name = UINib(nibName: "QuestionResultViewCell", bundle:nil)
-      tableView.registerNib(nib_name, forCellReuseIdentifier: "question")
-      
-      let cell = self.resultsTableView.dequeueReusableCellWithIdentifier("question", forIndexPath: indexPath) as! QuestionResultViewCell
-      cell.displayQuestion(questionText)
-      return cell
-      
-    } else if  indexPath.section == 1 && yourAnswer != "" {
-  
-      let pollResultsCell = UINib(nibName: "PollResultsTableViewCell", bundle: nil)
-      tableView.registerNib(pollResultsCell, forCellReuseIdentifier: "resultsCell")
-      let cell = self.resultsTableView.dequeueReusableCellWithIdentifier("resultsCell", forIndexPath: indexPath) as! PollResultsTableViewCell
-      
-      cell.setAnswerText(yourAnswer)
-      if(totalNumberOfAnswers != 0){
-        let results:Double = MathUtil.convertTallyResultsToPercentage(Double(yourAnswerNumOfRespones), denominator: Double(totalNumberOfAnswers))
-        cell.setResults(results)
-        cell.setBarGraph(results)
-        cell.SetTallyLabel(String(yourAnswerNumOfRespones))
-      }else{
-        cell.setResults(0)
-        cell.setBarGraph(0)
-        cell.SetTallyLabel(String(0))
-      }
-      if yourAnswer == correctAnswer {
-        cell.changeCorrectAnswerColor()
-      }
-      return cell
-    }
     
     let pollResultsCell = UINib(nibName: "PollResultsTableViewCell", bundle: nil)
     tableView.registerNib(pollResultsCell, forCellReuseIdentifier: "resultsCell")
     let cell = self.resultsTableView.dequeueReusableCellWithIdentifier("resultsCell", forIndexPath: indexPath) as! PollResultsTableViewCell
-    cell.setAnswerText(answers[indexPath.row])
-    print(answers[indexPath.row])
-    if(answers[indexPath.row] == correctAnswer){
-      cell.changeCorrectAnswerColor()
+    
+    let answer = answers[indexPath.row]
+    
+    cell.setAnswerText(answer.answerText)
+    
+    if answer.answerText == correctAnswer && isTheQuestionExpired {
+      cell.setCorrectAnswer()
     }
+    
     
     if(totalNumberOfAnswers != 0){
-      let results:Double = MathUtil.convertTallyResultsToPercentage(Double(numberOfResponsesPerAnswer[indexPath.row]), denominator: Double(totalNumberOfAnswers))
-      cell.setResults(results)
-      cell.setBarGraph(results)
-      cell.SetTallyLabel(String(numberOfResponsesPerAnswer[indexPath.row]))
-    }else{
-      cell.setResults(0)
-      cell.setBarGraph(0)
-      cell.SetTallyLabel(String(0))
+      let results:Double = MathUtil.convertTallyResultsToPercentage(Double(answer.tally), denominator: Double(totalNumberOfAnswers))
+      cell.setBarGraph(results, isYourAnswer: yourAnswer == answer.answerText, isCorrect: correctAnswer == answer.answerText)
+      cell.SetTallyLabel(answer.tally, result: results)
+    } else {
+      cell.setBarGraph(0, isYourAnswer: yourAnswer == answer.answerText, isCorrect: correctAnswer == answer.answerText)
+      cell.SetTallyLabel(0, result: 0)
     }
+    
+    
+    cell.backgroundColor = UIColor.clearColor()
+    cell.selectionStyle = UITableViewCellSelectionStyle.None
     
     return cell
+    
+  }
+  func setIsQuestionExpired (isTheQuestionExpired:Bool) {
+    self.isTheQuestionExpired = isTheQuestionExpired
   }
   
+  
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    var numberOfRows = 0;
-    if (section == 0) {
-      numberOfRows = 1
-    } else if (section == 1 ) {
-      if (yourAnswer != "") {
-        numberOfRows = 1;
-      } else  {
-        numberOfRows = 0;
-      }
-    } else {
-      numberOfRows  = answers.count
-    }
-    
-    return numberOfRows
+    return answers.count
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return 60
+    return 68
   }
   
   func setQuestionLabelText (questionText: QuestionText){
-    self.questionText = questionText
+    question.text = questionText
   }
   
-  func setAnswers (Answers: [AnswerText]){
+  func setAnswers (Answers: [Answer]){
     answers = Answers
     print(answers.count)
   }
@@ -136,64 +101,15 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
   
   func setTotalNumberOfAnswers (totalNumOfAnswers:Int){
     totalNumberOfAnswers = totalNumOfAnswers
-    totalAnswersLabel.text = ("\(StringUtil.fillInString(numberOfAnswers, time: totalNumberOfAnswers))")
+    totalAnswersLabel.text = ("\(StringUtil.fillInString(totalVotes, time: totalNumberOfAnswers))")
   }
   
   func setYourAnswer (yourAnswer:String) {
     self.yourAnswer = yourAnswer
-    for i in 0...answers.count-1  {
-      if (answers[i] == yourAnswer) {
-        yourAnswerNumOfRespones = numberOfResponsesPerAnswer[i]
-        answers.removeAtIndex(i)
-        numberOfResponsesPerAnswer.removeAtIndex(i)
-        break
-      }
-    }
   }
   
-  func setNumberOfResponsesForAnswer (NumResponses:[Int]){
-    numberOfResponsesPerAnswer = NumResponses
-  }
-  
-  @IBAction func deleteButtonPressed(sender: AnyObject) {
-    delegate?.presentConfirmationVaraible()
-  }
-  
-  func makeDeleteButtonVisisble(){
-    deleteButton.alpha = 1
-  }
-  
-  func hideDeleteButton(){
-    deleteButton.alpha = 0
-  }
-  
-  func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
-    var sectionName = ""
-    if section == 0 {
-      sectionName = "Question"
-    } else if section == 1 {
-  
-      if (yourAnswer != "") {
-        sectionName = "Your Answer"
-      } else {
-        sectionName = "You didn't answer"
-      }
-      
-    } else {
-      
-      if (yourAnswer != "") {
-        sectionName = "Other Answers"
-      } else {
-        sectionName = "Answers"
-      }
-    }
-    
-    return sectionName
-  }
-  
-  
-  func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return 3
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    delegate?.segueToWhoVotedFor(answers[indexPath.row])
   }
   
 }

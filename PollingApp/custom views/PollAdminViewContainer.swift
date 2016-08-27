@@ -11,64 +11,48 @@ import UIKit
 
 
 protocol PollAdminViewContainerDelegate  {
-  func segueToResult()
   func segueToCampaign()
-  func displayConfirmationMessage()
+  func segueToWhoVotedFor(selectedAnswer:Answer)
 }
 
 class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource {
-  
-  private var answers:[AnswerText] = []
+  private var answers:[Answer] = []
+  private var question:Question?
   private var correctAnswers:[AnswerText] = []
-  private var tallyIDDictionary = [AnswerText:String]()
-  private var totalNumberOfAnswers: Int = 0;
-  private var question:QuestionText = ""
+  private var totalNumberOfAnswers: Int = 0
   @IBOutlet weak var timer: UILabel!
   @IBOutlet weak var AnswerTable: UITableView!
+  @IBOutlet weak var questionLabel: UILabel!
   
+  @IBOutlet weak var totalTally: UILabel!
   var delegate: PollAdminViewContainerDelegate?
-  
-  @IBAction func backButton(sender: AnyObject) {
-    delegate?.segueToCampaign();
-  }
-  
-  @IBAction func goToResult(sender: AnyObject) {
-    delegate?.segueToResult();
-  }
-  
-  @IBAction func goToCampaign(sender: AnyObject) {
-    
-    delegate?.displayConfirmationMessage();
-  }
   
   class func instanceFromNib(frame: CGRect) -> PollAdminViewContainer {
     let view = UINib(nibName: "PollAdminViewContainer", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PollAdminViewContainer
     view.frame = frame
     view.AnswerTable.delegate = view
     view.AnswerTable.dataSource = view
+    view.AnswerTable.allowsSelection = true
+    view.AnswerTable.separatorStyle = UITableViewCellSeparatorStyle.None
+    view.AnswerTable.backgroundColor = UIColor.clearColor()
+    view.AnswerTable.opaque = false
     return view
-  }
-  
-  
-  func setAnswers(Answers: [String]){
-    answers = Answers
-    
   }
   
   func setCorrectAnswers(Answers: [String]){
     correctAnswers = Answers
   }
-  func setTally(tallyIDDictionary:[AnswerText:String]){
-    self.tallyIDDictionary = tallyIDDictionary
-  }
-  
   
   func doneTimerLabel(string: String) {
     timer.text = string
   }
   
-  func setQuestionText(questionText: String) {
-    question = questionText
+  func setAnswers (answers: [Answer]) {
+    self.answers = answers
+  }
+  
+  func setQuestion (question: Question){
+    self.questionLabel.text = question.questionText
   }
   
   func updateTimerLabel(timerString: String) {
@@ -78,64 +62,56 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
     totalNumberOfAnswers = totalNumOfAnswers
   }
   
+  func showTotalTally (totalNumOfAnswers:Int) {
+    totalTally.hidden = false
+    totalTally.text = "\(StringUtil.fillInString(totalVotes, time: totalNumOfAnswers))"
+  }
+  
+  func displayDone () {
+    timer.text = "Done"
+  }
+  
   // returns an approiate number of rows depending on the section
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if (section == 0 ) {
-      return 1
-    }
     return  answers.count
-    
   }
+  
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    
-    if (indexPath.section == 0) {
-      let nib_name = UINib(nibName: "QuestionViewCell", bundle:nil)
-      tableView.registerNib(nib_name, forCellReuseIdentifier: "question")
-      
-      let cell = self.AnswerTable.dequeueReusableCellWithIdentifier("question", forIndexPath: indexPath) as! QuestionViewCell
-      cell.setQuestionLabel(question)
-      return cell
-      
-    }
     
     let nib_name = UINib(nibName: "AnswerAdminTableViewCell", bundle:nil)
     tableView.registerNib(nib_name, forCellReuseIdentifier: "answeradminCell")
-    
     let cell = self.AnswerTable.dequeueReusableCellWithIdentifier("answeradminCell", forIndexPath: indexPath) as! AnswerAdminTableViewCell
     
-    cell.setAnswerText(answers[indexPath.row])
+    cell.setAnswerText(answers[indexPath.row].answerText)
     cell.setisCorrect(correctAnswers[indexPath.row])
-    cell.SetTallyLabel(tallyIDDictionary[answers[indexPath.row]]!)
+    cell.setTallyLabel(answers[indexPath.row].tally)
     
     if (totalNumberOfAnswers != 0) {
-      let tally = tallyIDDictionary[answers[indexPath.row]]!
+      let tally = answers[indexPath.row].tally
       
       let results:Double = MathUtil.convertTallyResultsToPercentage(
-        Double(tally)!,
+        Double(tally),
         denominator: Double(totalNumberOfAnswers))
-      
+      cell.setTallyLabel(answers[indexPath.row].tally)
       cell.setBarGraph(results)
     }else{
       cell.setBarGraph(0)
+      cell.setTallyLabel(0)
+
     }
+    cell.backgroundColor = UIColor.clearColor()
+    cell.selectionStyle = UITableViewCellSelectionStyle.None
     return cell
     
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return cellDimensions.pollAdminCellHeight
+    return cellDimensions.answerHeight
   }
   
-  func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    if (section == 0) {
-      return "Question"
-    }
-    return "Answers"
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    delegate?.segueToWhoVotedFor(answers[indexPath.row])
   }
-  
-  
-  func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return 2
-  }
+
   
 }

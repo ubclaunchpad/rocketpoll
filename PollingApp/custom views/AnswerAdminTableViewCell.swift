@@ -12,6 +12,7 @@ class AnswerAdminTableViewCell: UITableViewCell {
   
   @IBOutlet weak var answerlabel: UILabel!
 
+  @IBOutlet weak var backgroundImage: UIImageView!
   @IBOutlet weak var isCorrectImage: UIImageView!
  
   @IBOutlet weak var Tally: UILabel!
@@ -29,38 +30,44 @@ class AnswerAdminTableViewCell: UITableViewCell {
   func setAnswerText(answer: AnswerText){
     answerlabel.text = answer
   }
-  func changeCorrectAnswerColor (){
-    self.backgroundColor = UIColor.redColor()
-  }
+  
   func setisCorrect(isCorrect: String) {
     //TODO: this should no be a magic string
     
     if isCorrect == UIStringConstants.notCorrect {
-        self.isCorrectImage.image = incorrectImage
+        self.isCorrectImage.hidden = true
+    } else {
+      self.isCorrectImage.hidden = false
     }
   }
   
-  func SetTallyLabel (tally: String) {
-    self.Tally.text = tally
+  func setTallyLabel (tally: Int) {
+    self.Tally.text = StringUtil.fillInString(tallyString, time: tally)
   }
   
   func setBarGraph (result:Double) {
     
     for view in self.subviews{
-      if (view.backgroundColor == colors.barGraphColour) {
+      if (view.backgroundColor == colors.graphBackgroundGrey) {
         view.removeFromSuperview()
       }
+    }
+    
+    guard result > 0 else {
+      return
     }
     
     let percentage = CGFloat(result/100);
     var frame: CGRect = self.frame
     
-    frame.size.width = frame.size.width * percentage
-    frame.origin.y = self.frame.size.height - frame.size.height
+    frame.size.width = frame.size.width * percentage - 20
+    frame.size.height = frame.size.height - 6
+    frame.origin.x = 10
+    frame.origin.y = 1
     let barGraph: UIView = UIView(frame: frame)
-    barGraph.backgroundColor = colors.barGraphColour
-    self.addSubview(barGraph)
-  
+    barGraph.layer.cornerRadius = 12
+    barGraph.backgroundColor = colors.graphBackgroundGrey
+    self.subviews.first?.insertSubview(barGraph, atIndex: 2)  
   }
   
   

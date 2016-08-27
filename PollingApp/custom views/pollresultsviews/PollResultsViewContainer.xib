@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PollResultsViewContainer" customModule="PollingApp" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -12,67 +20,68 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZFL-iT-IRe">
-                    <rect key="frame" x="0.0" y="55" width="600" height="519"/>
+                    <rect key="frame" x="0.0" y="206" width="600" height="394"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="519" id="enw-yJ-5gm"/>
-                    </constraints>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="URp-5x-pE6">
-                    <rect key="frame" x="20" y="20" width="13" height="22"/>
-                    <color key="backgroundColor" white="1" alpha="0.25702069256756754" colorSpace="calibratedWhite"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Total: 12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRT-BJ-mWK">
+                    <rect key="frame" x="521" y="180" width="53" height="16"/>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                    <color key="textColor" red="0.68235294120000001" green="0.68235294120000001" blue="0.68235294120000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Answers:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7t-wb-Qve">
+                    <rect key="frame" x="16" y="180" width="58" height="16"/>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                    <color key="textColor" red="0.42352941179999998" green="0.42352941179999998" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Question:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMz-tk-Ewe">
+                    <rect key="frame" x="16" y="30" width="61" height="17"/>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                    <color key="textColor" red="0.42352941179999998" green="0.42352941179999998" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AnswerCell" translatesAutoresizingMaskIntoConstraints="NO" id="KUX-KH-CkR">
+                    <rect key="frame" x="8" y="57" width="580" height="68"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="22" id="CWW-rN-gTB"/>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="13" id="NIA-mQ-qVX"/>
-                        <constraint firstAttribute="width" constant="13" id="hDc-II-KP4"/>
+                        <constraint firstAttribute="height" constant="68" id="FLO-f1-xTi"/>
                     </constraints>
-                    <state key="normal" image="ChevronLeft"/>
-                    <connections>
-                        <action selector="backButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="5UT-7L-2O1"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vQW-j8-7ca">
-                    <rect key="frame" x="351" y="18" width="118" height="4"/>
-                    <color key="backgroundColor" red="0.88915304884848489" green="0.0" blue="0.057615777327698292" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="Delete">
-                        <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="deleteButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="2YV-t1-ejf"/>
-                    </connections>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EXa-dg-5Z1">
-                    <rect key="frame" x="287" y="21" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Test" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvx-A6-6Qx">
+                    <rect key="frame" x="28" y="81" width="30" height="19"/>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                    <color key="textColor" red="0.38431372549999998" green="0.38431372549999998" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="URp-5x-pE6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="6is-W4-Sqa"/>
-                <constraint firstItem="ZFL-iT-IRe" firstAttribute="top" secondItem="URp-5x-pE6" secondAttribute="bottom" constant="13" id="FFg-fG-axT"/>
-                <constraint firstItem="URp-5x-pE6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="GRI-6A-Y3S"/>
+                <constraint firstItem="tRT-BJ-mWK" firstAttribute="baseline" secondItem="W7t-wb-Qve" secondAttribute="baseline" id="2iV-3V-Omb"/>
+                <constraint firstItem="KUX-KH-CkR" firstAttribute="top" secondItem="cMz-tk-Ewe" secondAttribute="bottom" constant="10" id="BHv-E1-IgB"/>
+                <constraint firstItem="cMz-tk-Ewe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="DQp-Wu-4Ar"/>
                 <constraint firstAttribute="bottom" secondItem="ZFL-iT-IRe" secondAttribute="bottom" id="Ign-p8-07x"/>
-                <constraint firstItem="ZFL-iT-IRe" firstAttribute="top" secondItem="EXa-dg-5Z1" secondAttribute="bottom" constant="13" id="J37-Sr-jdG"/>
-                <constraint firstItem="ZFL-iT-IRe" firstAttribute="top" secondItem="vQW-j8-7ca" secondAttribute="bottom" constant="33" id="evl-oF-A7T"/>
-                <constraint firstItem="EXa-dg-5Z1" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="8" id="iLQ-g4-DUw"/>
-                <constraint firstAttribute="trailing" secondItem="vQW-j8-7ca" secondAttribute="trailing" constant="131" id="kG8-AV-hTY"/>
+                <constraint firstItem="cMz-tk-Ewe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="MrU-OG-PRd"/>
+                <constraint firstAttribute="trailing" secondItem="KUX-KH-CkR" secondAttribute="trailing" constant="12" id="R9g-0Q-BCx"/>
+                <constraint firstItem="W7t-wb-Qve" firstAttribute="leading" secondItem="cMz-tk-Ewe" secondAttribute="leading" id="aHs-NL-Eyl"/>
+                <constraint firstItem="ZFL-iT-IRe" firstAttribute="top" secondItem="W7t-wb-Qve" secondAttribute="bottom" constant="10" id="d22-Mv-MLB"/>
+                <constraint firstItem="zvx-A6-6Qx" firstAttribute="centerY" secondItem="KUX-KH-CkR" secondAttribute="centerY" id="ixf-ng-Rbd"/>
+                <constraint firstItem="W7t-wb-Qve" firstAttribute="top" secondItem="KUX-KH-CkR" secondAttribute="bottom" constant="55" id="lSi-jN-VYT"/>
                 <constraint firstItem="ZFL-iT-IRe" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="m0I-RQ-fzP"/>
                 <constraint firstItem="ZFL-iT-IRe" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="o1C-CT-TUH"/>
-                <constraint firstItem="vQW-j8-7ca" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="18" id="qgU-2C-6Gq"/>
-                <constraint firstItem="vQW-j8-7ca" firstAttribute="leading" secondItem="URp-5x-pE6" secondAttribute="trailing" constant="318" id="rOr-ib-Z5N"/>
+                <constraint firstItem="KUX-KH-CkR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="qDS-L9-Uyz"/>
+                <constraint firstItem="zvx-A6-6Qx" firstAttribute="leading" secondItem="KUX-KH-CkR" secondAttribute="leading" constant="20" id="u9v-ub-6nm"/>
+                <constraint firstAttribute="trailing" secondItem="tRT-BJ-mWK" secondAttribute="trailing" constant="26" id="vW6-Zv-ltg"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <connections>
-                <outlet property="backButton" destination="URp-5x-pE6" id="Hkd-WO-HNL"/>
-                <outlet property="deleteButton" destination="vQW-j8-7ca" id="h7z-gB-PHD"/>
+                <outlet property="question" destination="zvx-A6-6Qx" id="Pyl-Ha-Gnd"/>
                 <outlet property="resultsTableView" destination="ZFL-iT-IRe" id="l06-xn-iKf"/>
-                <outlet property="totalAnswersLabel" destination="EXa-dg-5Z1" id="N0L-cZ-oJd"/>
+                <outlet property="totalAnswersLabel" destination="tRT-BJ-mWK" id="co2-Z1-7Hi"/>
             </connections>
+            <point key="canvasLocation" x="389" y="439"/>
         </view>
     </objects>
     <resources>
-        <image name="ChevronLeft" width="13" height="22"/>
+        <image name="AnswerCell" width="400" height="68"/>
     </resources>
 </document>

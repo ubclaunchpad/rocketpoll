@@ -5,20 +5,20 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Campaigns-->
+        <!--Campaigns View Controller-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController storyboardIdentifier="Campaigns" id="9pv-A4-QxB" customClass="CampaignsViewController" customModule="PollingApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9pv-A4-QxB" customClass="CampaignsViewController" customModule="PollingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cdY-3H-JBS"/>
                         <viewControllerLayoutGuide type="bottom" id="6ho-2F-uIZ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="AwT-9i-4d9" customClass="CampaignViewContainer" customModule="PollingApp" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Campaigns" image="first" id="acW-dT-cKf"/>
+                    <navigationItem key="navigationItem" id="hOP-Xf-493"/>
                     <connections>
                         <segue destination="cR5-N0-mBp" kind="show" identifier="toPollUserViewController" id="4RF-x9-CbW"/>
                         <segue destination="AX5-EL-cxe" kind="show" identifier="toCreateQuestionView" id="cFD-QF-wgD"/>
@@ -28,7 +28,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="676" y="-394"/>
+            <point key="canvasLocation" x="1488" y="-394"/>
         </scene>
         <!--Join Room View Controller-->
         <scene sceneID="RXe-fr-KmB">
@@ -46,7 +46,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SBl-vP-IiK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1415" y="-411"/>
+            <point key="canvasLocation" x="2227" y="-411"/>
         </scene>
         <!--Poll User View Controller-->
         <scene sceneID="TjX-8p-7pz">
@@ -57,18 +57,18 @@
                         <viewControllerLayoutGuide type="bottom" id="LbJ-fd-Jzq"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="46c-q7-RAg" customClass="PollUserViewContainer" customModule="PollingApp" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="show" identifier="toQuestionsScreen" id="Dqi-TN-jQf"/>
+                        <segue destination="LhR-Tj-MfX" kind="show" identifier="toQuestionsScreen" id="Dqi-TN-jQf"/>
                         <segue destination="EKJ-zm-ZFh" kind="show" identifier="toPollResultsView" id="bkE-Lt-CRk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qdz-jp-vsx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1247" y="1056"/>
+            <point key="canvasLocation" x="739" y="908"/>
         </scene>
         <!--Created Questions View Controller-->
         <scene sceneID="ANJ-eQ-IZ3">
@@ -86,7 +86,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e8p-BX-m5I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2153" y="-433"/>
+            <point key="canvasLocation" x="3056" y="-448"/>
         </scene>
         <!--Poll Results View Controller-->
         <scene sceneID="GTH-3l-8PL">
@@ -102,12 +102,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="show" identifier="toQuestionsScreen" id="yYD-iH-uUR"/>
+                        <segue destination="LhR-Tj-MfX" kind="show" identifier="toQuestionsScreen" id="yYD-iH-uUR"/>
+                        <segue destination="WLG-Nj-Li8" kind="show" identifier="toWhoVotedForFromResults" id="ZV1-Rm-wkX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tjk-8g-2Nb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2995" y="-406"/>
+            <point key="canvasLocation" x="3807" y="-406"/>
         </scene>
         <!--Poll Admin View Controller-->
         <scene sceneID="kfV-4J-rIL">
@@ -118,18 +119,40 @@
                         <viewControllerLayoutGuide type="bottom" id="0aX-0C-THX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="WIE-z6-KSU">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <segue destination="EKJ-zm-ZFh" kind="show" identifier="toPollResultsView" id="2ct-sD-9ap"/>
-                        <segue destination="9pv-A4-QxB" kind="show" identifier="toQuestionsScreen" id="z6b-mB-HqA"/>
+                        <segue destination="LhR-Tj-MfX" kind="show" identifier="toQuestionsScreen" id="z6b-mB-HqA"/>
+                        <segue destination="WLG-Nj-Li8" kind="show" identifier="toWhoVotedForVCFromAdmin" id="7aD-oo-gWH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wta-HZ-a9E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2945" y="374"/>
+        </scene>
+        <!--WhoVotedForViewController-->
+        <scene sceneID="68M-aU-QCo">
+            <objects>
+                <viewController title="WhoVotedForViewController" id="WLG-Nj-Li8" customClass="WhoVotedForViewController" customModule="PollingApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="00k-je-2VO"/>
+                        <viewControllerLayoutGuide type="bottom" id="60c-EM-BKc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sqT-LM-Uyr">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="view" destination="sqT-LM-Uyr" id="qjK-pJ-1n0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7ga-Nu-JAI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3867" y="421"/>
         </scene>
         <!--Create Question View Controller-->
         <scene sceneID="M1E-94-OFn">
@@ -140,18 +163,18 @@
                         <viewControllerLayoutGuide type="bottom" id="X6G-tE-Vnd"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="nlt-He-tTp">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <segue destination="2o0-Nz-L7T" kind="show" identifier="toPollAdminScreen" id="TNB-cT-E5l"/>
-                        <segue destination="9pv-A4-QxB" kind="show" identifier="toQuestionsScreen" id="BHO-bG-YD8"/>
+                        <segue destination="LhR-Tj-MfX" kind="show" identifier="toQuestionsScreen" id="BHO-bG-YD8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rfj-tf-LcV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2206" y="197"/>
+            <point key="canvasLocation" x="1521" y="592"/>
         </scene>
         <!--Input Name View Controller-->
         <scene sceneID="Dvh-8U-Fgw">
@@ -167,7 +190,7 @@
                         <color key="backgroundColor" red="0.90283133140000005" green="1" blue="0.83708174599999996" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="show" identifier="showMainApp" id="r35-Ea-4Oc"/>
+                        <segue destination="LhR-Tj-MfX" kind="show" identifier="showMainApp" id="r35-Ea-4Oc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jZE-dT-07f" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -179,20 +202,41 @@
             <objects>
                 <viewController id="HGg-Fp-XXi" customClass="RoomsNearbyViewController" customModule="PollingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="show" identifier="showMainApp" id="ytE-4l-GZC"/>
+                        <segue destination="LhR-Tj-MfX" kind="show" identifier="showMainApp" id="ytE-4l-GZC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J6v-vv-Kdf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-319" y="624"/>
         </scene>
+        <!--Campaigns-->
+        <scene sceneID="LMq-62-qUQ">
+            <objects>
+                <navigationController storyboardIdentifier="Campaigns" automaticallyAdjustsScrollViewInsets="NO" id="LhR-Tj-MfX" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Campaigns" image="first" id="acW-dT-cKf"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" backIndicatorImage="Back" backIndicatorTransitionMaskImage="Back" id="aYk-Ir-kEs">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="7zr-X5-3Gz"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OgD-2Y-WVq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="676" y="-394"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="Back" width="25" height="18"/>
         <image name="first" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="r35-Ea-4Oc"/>
+        <segue reference="z6b-mB-HqA"/>
         <segue reference="maC-cO-7EO"/>
-        <segue reference="Abn-F0-8SY"/>
+        <segue reference="7aD-oo-gWH"/>
+        <segue reference="2ct-sD-9ap"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -24,8 +24,9 @@ var okayNameCharacters : Set<Character> =
 
 
 var launchpadEmail: String = "@ubclaunchpad.com"
-var numberOfAnswers: String = "Number of users that answered: %1%"
-var tallyString: String = "Tally: %1%"
+var totalVotes: String = "%1% total votes"
+var tallyString: String = "%1% votes"
+var authorString: String = "asks %1%"
 
 var charactersToAvoid : [Character] =
   Array("#[]*".characters)
@@ -34,10 +35,32 @@ let setTimerValues:[Int] = [1, -1, 5, -5, 15, -15, 60, -60]
 
 let calendar = NSCalendar.currentCalendar()
 
+enum images {
+  static let correct = UIImage(named: imageNames.setCorrect)
+  static let correctSelected = UIImage(named: imageNames.setCorrectSelected)
+}
+
+enum placeholders {
+  static let question = "What is the best bear?"
+  static let answer0 = "That's a ridiculous question"
+  static let answer1 = "Black bear"
+  static let answerDefault = "Enter an answer"
+}
+
 enum colors {
   static let green = UIColor(red: 28/255.0, green: 165/255.0, blue: 122/255.0, alpha: 1)
   static let lightGreen = UIColor(red: 226/255.0, green: 250/255.0, blue: 218/255.0, alpha: 1)
   static let barGraphColour = UIColor(red: 0, green: 0, blue: 1, alpha: 0.5)
+  static let textColor = UIColor(red: 98/255.0, green: 98/255.0, blue: 98/255.0, alpha: 1)
+  static let placeholderTextColor = UIColor(red: 199/255.0, green: 199/255.0, blue: 205/255.0, alpha: 1)
+  static let authorColor = UIColor(red: 151/255.0, green: 151/255.0, blue: 151/255.0, alpha: 1)
+  static let lightAuthorColor = UIColor(red: 249/255.0, green: 249/255.0, blue: 249/255.0, alpha: 1)
+  static let backgroundColor = UIColor(red: 245/255.0, green: 245/255.0, blue: 245/255.0, alpha: 1)
+  static let graphBackgroundGrey = UIColor(red: 230/255.0, green: 230/255.0, blue: 230/255.0, alpha: 1)
+  static let graphBackgroundRed = UIColor(red: 255/255.0, green: 130/255.0, blue: 130/255.0, alpha: 1)
+  static let segmentedTint = UIColor(red: 116/255.0, green: 116/255.0, blue: 116/255.0, alpha: 1)
+  static let offWhite = UIColor(red: 251/255.0, green: 251/255.0, blue: 251/255.0, alpha: 1)
+  static let lightBlue = UIColor(red: 45/255.0, green: 164/255.0, blue: 255/255.0, alpha: 1)
 }
 
 enum Segues {
@@ -48,6 +71,8 @@ enum Segues {
   static let toPollAdminScreen = "toPollAdminScreen"
   static let toPollResultsView = "toPollResultsView"
   static let toPollAdminVCFromCampaign = "toPollAdminVCFromCampaign"
+  static let toWhoVotedForVCFromAdmin = "toWhoVotedForVCFromAdmin"
+  static let toWhoVotedForFromResults = "toWhoVotedForFromResults"
 }
 
 enum UIStringConstants {
@@ -70,52 +95,56 @@ enum UIDaysRemaining {
 }
 
 enum UITimeRemaining {
-  static let endedMoments = "Ended a couple moments ago"
-  static let endsMoments = "Ends in a couple moments"
-  static let endedMinutes = "Ended %1% minutes ago"
-  static let endsMinutes = "%1% minutes"
-  static let endedHour = "Ended %1% hour ago"
-  static let endsHour = "%1% hour"
-  static let endedHours = "Ended %1% hours ago"
-  static let endsHours = "%1% hours"
-  static let endsDays = "%1% days"
-  static let endsDay = "%1% day"
+  static let endedMoments = "ended moments ago"
+  static let endsMoments = "moments left"
+  static let endedMinutes = "ended %1% minutes ago"
+  static let endsMinutes = "%1% minutes left"
+  static let endedHour = "ended %1% hour ago"
+  static let endsHour = "%1% hour left"
+  static let endedHours = "ended %1% hours ago"
+  static let endsHours = "%1% hours left"
+  static let endsDays = "%1% days left"
+  static let endsDay = "%1% day left"
   static let timerMinutes = "Minutes: %1%"
   static let timerMinute = "Minute: %1%"
   static let timerHours = "Hours: %1%"
   static let timerHour = "Hour: %1%"
-  static let timerTextDayHourMinute = "Question will end in %1% day, %2% hour and %3% minute, at %4%"
-  static let timerTextDayHoursMinutes = "Question will end in %1% day, %2% hours and %3% minutes, at %4%"
-  static let timerTextDayHoursMinute = "Question will end in %1% day, %2% hours and %3% minute, at %4%"
-  static let timerTextDayHourMinutes = "Question will end in %1% day, %2% hour and %3% minutes, at %4%"
+  static let timerTextDayHourMinute = "ends in %1% day, %2% hour and %3% minute, at %4%"
+  static let timerTextDayHoursMinutes = "ends in %1% day, %2% hours and %3% minutes, at %4%"
+  static let timerTextDayHoursMinute = "ends in %1% day, %2% hours and %3% minute, at %4%"
+  static let timerTextDayHourMinutes = "ends in %1% day, %2% hour and %3% minutes, at %4%"
   
-  static let timerTextDaysHourMinute = "Question will end in %1% days, %2% hour and %3% minute, at %4%"
-  static let timerTextDaysHoursMinutes = "Question will end in %1% days, %2% hours and %3% minutes, at %4%"
-  static let timerTextDaysHoursMinute = "Question will end in %1% days, %2% hours and %3% minute, at %4%"
-  static let timerTextDaysHourMinutes = "Question will end in %1% days, %2% hour and %3% minutes, at %4%"
+  static let timerTextDaysHourMinute = "ends in %1% days, %2% hour and %3% minute, at %4%"
+  static let timerTextDaysHoursMinutes = "ends in %1% days, %2% hours and %3% minutes, at %4%"
+  static let timerTextDaysHoursMinute = "ends in %1% days, %2% hours and %3% minute, at %4%"
+  static let timerTextDaysHourMinutes = "ends in %1% days, %2% hour and %3% minutes, at %4%"
   
-  static let timerTextHourMinute = "Question will end in %1% hour and %2% minute, at %3%"
-  static let timerTextHoursMinute = "Question will end in %1% hours and %2% minute, at %3%"
-  static let timerTextHourMinutes = "Question will end in %1% hour and %2% minutes, at %3%"
-  static let timerTextHoursMinutes = "Question will end in %1% hours and %2% minutes, at %3%"
-  static let timerTextMinutes = "Question will end in %1% minutes, at %2%"
-  static let timerTextMinute = "Question will end in %1% minute, at %2%"
+  static let timerTextHourMinute = "ends in %1% hour and %2% minute, at %3%"
+  static let timerTextHoursMinute = "ends in %1% hours and %2% minute, at %3%"
+  static let timerTextHourMinutes = "ends in %1% hour and %2% minutes, at %3%"
+  static let timerTextHoursMinutes = "ends in %1% hours and %2% minutes, at %3%"
+  static let timerTextMinutes = "ends in %1% minutes, at %2%"
+  static let timerTextMinute = "ends in %1% minute, at %2%"
 }
 
 enum alertMessages {
   static let invalid = "Invalid Name"
   static let empty = "Please enter your name"
-  static let emptyQuestions = "Please fill in all fields and set timer"
-  static let confirm = "Ok"
+  static let emptyQuestions = "Please enter a question"
+  static let confirm = "OK"
   static let yes = "YES"
   static let no = "NO"
   static let confirmName = "Pleaes confirm that your name is "
   static let nameMessage = "You will not be able to change your name at a later time"
   static let confirmation = "Confirmation"
-  static let confirmationMessage = "Are you sure you want to delete your quesiton?"
-  static let duplicateAnswer = "One or more of your answers are the same"
+  static let confirmationMessage = "Are you sure you want to delete your question?"
+  static let duplicateAnswer = "One or more of the answers are the same"
+  static let emptyAnswer = "Please fill in all answer fields"
+  static let noCorrectAnswer = "Please select a correct answer"
   static let noRevoting = "You have already selected this answer. Choose a different answer"
   static let usernameIsTaken = "Please choose another name. This name is already taken."
+  static let symbolAnswer = "One of more of the answers contain a symbol"
+  static let symbolQuestion = "The question you have submitted contains a symbol"
 }
 
 enum correct {
@@ -126,10 +155,18 @@ enum correct {
 enum imageNames {
   static let setIncorrect = "SetIncorrect"
   static let setCorrect = "SetCorrect"
+  static let setCorrectSelected = "SetCorrectSelected"
 }
 
 enum cellDimensions {
-  static let pollAdminCellHeight:CGFloat = 58
+  static let answerHeight:CGFloat = 68
+}
+
+enum navigationBarAttributes {
+  static let textColor = UIColor(red: 82/255.0, green: 82/255.0, blue: 82/255.0, alpha: 1)
+  static let backgroundColor = UIColor(red: 253/255.0, green: 253/255.0, blue: 253/255.0, alpha: 1)
+  static let titleFont = UIFont(name: "Roboto-Medium", size: 14)
+  static let buttonFont = UIFont(name: "Roboto-Medium", size: 15)
 }
 
 /**

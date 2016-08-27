@@ -14,7 +14,7 @@ class PollResultsTableViewCell: UITableViewCell{
   @IBOutlet weak var incorrectImage: UIImageView!
   
   @IBOutlet weak var resultsLabel: UILabel!
-  let CorrectImage: UIImage? = UIImage(named: imageNames.setCorrect)
+  
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
@@ -31,33 +31,53 @@ class PollResultsTableViewCell: UITableViewCell{
     answerLabel.text = answer
   }
   
-  func changeCorrectAnswerColor (){
-    self.incorrectImage.image = CorrectImage
+  func setCorrectAnswer(){
+    self.incorrectImage.image = images.correct
+  }
+  
+  func setCorrectAnswerSelected() {
+    self.incorrectImage.image = images.correctSelected
+  }
+  
+  func selectedCorrectly() {
+    answerLabel.textColor = UIColor.whiteColor()
+    tallyNum.textColor = UIColor.whiteColor()
   }
   
   //IPA-132
-  func setResults (result:Double){
-    resultsLabel.text = ("\(result)%")
+  func SetTallyLabel (tally: Int, result: Double) {
+    self.tallyNum.text = "\(StringUtil.fillInString(tallyString, time: tally))  |  \(result)%"
   }
-  func SetTallyLabel (tally: String) {
-    self.tallyNum.text = tally
-  }
-  func setBarGraph (result:Double) {
+  func setBarGraph (result:Double, isYourAnswer: Bool, isCorrect: Bool) {
     
     for view in self.subviews{
-      if (view.backgroundColor == colors.barGraphColour) {
+      if (view.backgroundColor == colors.graphBackgroundRed || view.backgroundColor == colors.graphBackgroundGrey) {
         view.removeFromSuperview()
       }
+    }
+    
+    guard result > 0 else {
+      return
     }
     
     let percentage = CGFloat(result/100);
     var frame: CGRect = self.frame
     
-    frame.size.width = frame.size.width * percentage
-    frame.origin.y = self.frame.size.height - frame.size.height
+    frame.size.width = frame.size.width * percentage - 22
+    frame.size.height = frame.size.height - 5
+    frame.origin.x = 10
+    frame.origin.y = 1
     let barGraph: UIView = UIView(frame: frame)
-    barGraph.backgroundColor = colors.barGraphColour
-    self.addSubview(barGraph)
-    
+    barGraph.layer.cornerRadius = 8
+    if isYourAnswer {
+      barGraph.backgroundColor = colors.graphBackgroundRed
+      selectedCorrectly()
+      if isYourAnswer && isCorrect {
+        setCorrectAnswerSelected()
+      }
+    } else {
+      barGraph.backgroundColor = colors.graphBackgroundGrey
+    }
+    self.subviews.first?.insertSubview(barGraph, atIndex: 2)
   }
 }

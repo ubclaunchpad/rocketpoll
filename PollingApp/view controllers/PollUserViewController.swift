@@ -16,25 +16,26 @@ final class PollUserViewController: UIViewController {
   private var seconds = 0
   private var totalSeconds = 0
   private var timer = NSTimer()
-  private var answerIDDictionary = [AnswerText: AnswerID]()
-  private var tallyDictionary = [AnswerID: Int]()
-  private var answers:[AnswerText] = []
-  private var chosenAnswerID: AnswerID = "";
+  
+  private var answers = [Answer]()
+  private var chosenAnswerID: AnswerID = ""
   var container: PollUserViewContainer?
+  var isTheQuestionExpired = true
+  var recievedQuestion:Question?
   
-  // Recieved infomration
-  var questionText: QuestionText = ""
-  var questionID: QuestionID = ""
-  var answerIDs: [AnswerID] = []
-  
+  var timerEnd:Bool = true
+
   // Information to send to another view controller
-  private var sendAIDS = [AnswerID]()
-  private var sendQuestionText = ""
-  private var sendQID = ""
+  private var sendQuestion:Question?
   
+  private var liveResultsOn = false
   override func viewDidLoad() {
     super.viewDidLoad()
     setup()
+  }
+  
+  override func viewDidAppear(animated: Bool) {
+    self.title = "VOTE"
   }
   
   func setup() {
@@ -42,29 +43,40 @@ final class PollUserViewController: UIViewController {
     let viewSize = CGRectMake(0, 0, view.bounds.width, view.bounds.height)
     container = PollUserViewContainer.instanceFromNib(viewSize)
     view.addSubview(container!)
-    ModelInterface.sharedInstance.processAnswerData(self.answerIDs) { (listofAllAnswers) in
-      self.answerIDDictionary = [AnswerText: AnswerID]()
-      self.tallyDictionary = [AnswerID: Int]()
+    ModelInterface.sharedInstance.processAnswerData((self.recievedQuestion?.AIDS)!) { (listofAllAnswers) in
+     ModelInterface.sharedInstance.isItLiveResultsOn((self.recievedQuestion?.QID)!, completionHandler: { (isLiveResultsOn) in
+      self.liveResultsOn = isLiveResultsOn
+      self.setNavigationBar()
       self.answers = []
       self.totalTally = 0
       self.fillInTheFields(listofAllAnswers)
-      self.container?.setQuestionText(self.questionText)
+      self.container?.setQuestionText((self.recievedQuestion?.questionText)!)
       self.container?.setAnswers(self.answers)
+      self.container?.setTotal(self.totalTally)
       self.container?.delegate = self
       self.container?.tableView.reloadData()
-      self.container?.setTotal(self.totalTally)
+
+     })
     }
-    self.setCountdown(self.questionID)
+    self.setCountdown((self.recievedQuestion?.QID)!)
     
+  }
+  
+  func setNavigationBar() {
+    navigationItem.leftBarButtonItem?.target = self
+    navigationItem.leftBarButtonItem?.action = #selector(PollUserViewController.backButtonPushed)
+
+    if (self.liveResultsOn) {
+      let seeResults = UIBarButtonItem(title: "Results", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PollUserViewController.goToResults))
+      self.navigationItem.rightBarButtonItem = seeResults
+
+    }
   }
   
   func fillInTheFields (listofAllAnswers:[Answer]) {
     let size = listofAllAnswers.count
+    self.answers = listofAllAnswers
     for i in 0 ..< size  {
-      let tempAnswer = listofAllAnswers[i].answerText
-      self.answerIDDictionary[tempAnswer] = listofAllAnswers[i].AID
-      self.answers.append(tempAnswer)
-      self.tallyDictionary[listofAllAnswers[i].AID] = listofAllAnswers[i].tally
       totalTally += listofAllAnswers[i].tally
     }
   }
@@ -86,9 +98,8 @@ final class PollUserViewController: UIViewController {
       container?.updateTimerLabel(TimerUtil.totalSecondsToString(totalSeconds))
     } else {
       timer.invalidate()
-      sendQID = questionID
-      sendQuestionText = questionText
-      sendAIDS = answerIDs
+      sendQuestion = recievedQuestion
+      self.isTheQuestionExpired = true
       let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
       performSegueWithIdentifier(nextRoom, sender: self)
     }
@@ -103,11 +114,11 @@ final class PollUserViewController: UIViewController {
       let currentTime = Int(NSDate().timeIntervalSince1970)
       let difference = currentTime - Int(time)
       if difference > 0 {
-        self.sendQID = self.questionID
-        self.sendQuestionText = self.questionText
-        self.sendAIDS = self.answerIDs
+        self.sendQuestion = self.recievedQuestion
+        self.isTheQuestionExpired = true
         self.performSegueWithIdentifier(nextRoom, sender: self)
       } else {
+        self.isTheQuestionExpired = false
         self.createTimer(Int(time) - currentTime)
       }
       
@@ -116,27 +127,33 @@ final class PollUserViewController: UIViewController {
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if (segue.identifier == ModelInterface.sharedInstance.segueToResultsScreen()) {
       let viewController:PollResultsViewController = segue.destinationViewController as! PollResultsViewController
-      viewController.questionID = sendQID
-      viewController.questionText = sendQuestionText
-      viewController.answerIDs = sendAIDS
+      viewController.recievedQuestion = sendQuestion
+      viewController.fromTimerEnd = timerEnd
+      viewController.isTheQuestionExpired = self.isTheQuestionExpired
+      self.title = ""
     }
   }
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
+  override func didMoveToParentViewController(parent: UIViewController?) {
+    if parent == nil {
+      backButtonPushed()
+    }
+  }
 }
 
 extension PollUserViewController: PollUserViewContainerDelegate {
-  func answerSelected(answer: AnswerText) {
-    if let selectedAnswerID = answerIDDictionary[answer] {
-      tally = tallyDictionary[selectedAnswerID]!
-      chosenAnswerID = selectedAnswerID
+  func answerSelected(answer: Answer) {
+    if answer.AID != "" {
+      tally = answer.tally
+      chosenAnswerID =  answer.AID
     }
   }
   func backButtonPushed() {
     if (chosenAnswerID != "") {
-      ModelInterface.sharedInstance.rememberAnswer(questionID, answerID: chosenAnswerID) { (DontAllowRevoting) in
+      ModelInterface.sharedInstance.rememberAnswer((self.recievedQuestion?.QID)!, answerID: chosenAnswerID) { (DontAllowRevoting) in
         if (DontAllowRevoting) {
           let confirmAlert = UIAlertController(title: alertMessages.noRevoting, message:"", preferredStyle: UIAlertControllerStyle.Alert)
           confirmAlert.addAction(UIAlertAction(title: alertMessages.confirm, style: .Default, handler: { (action: UIAlertAction!) in confirmAlert.dismissViewControllerAnimated(true, completion: nil)
@@ -152,6 +169,13 @@ extension PollUserViewController: PollUserViewContainerDelegate {
       let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
       self.performSegueWithIdentifier(nextRoom, sender: self)
     }
-  
   }
+
+  func goToResults() {
+    sendQuestion = recievedQuestion
+    let nextRoom =  ModelInterface.sharedInstance.segueToResultsScreen()
+    timerEnd = false
+    performSegueWithIdentifier(nextRoom, sender: self)
+  }
+
 }
