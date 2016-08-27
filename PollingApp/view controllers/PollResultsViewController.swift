@@ -23,7 +23,7 @@ class PollResultsViewController: UIViewController {
   
   var fromTimerEnd: Bool = false
   
-  var isTheQuestionExpired:Bool = true 
+  var isTheQuestionExpired:Bool = true
   // Information to send
   
   var sendAnswer:Answer?
@@ -34,7 +34,7 @@ class PollResultsViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    if fromTimerEnd {
+    if fromTimerEnd || isTheQuestionExpired {
       setNavigationBar()
     }
     addContainerToVC()
@@ -52,21 +52,27 @@ class PollResultsViewController: UIViewController {
     //TODO:IPA-125
     ModelInterface.sharedInstance.processAnswerData((recievedQuestion?.AIDS)!) { (listofAllAnswers) in
       ModelInterface.sharedInstance.findYourAnswer((self.recievedQuestion?.QID)!) { (yourAnswer) in
-        self.answers = []
-        self.totalNumberOfUserAnswers = 0
-        self.correctAnswer = ""
-        self.yourAnswerID = yourAnswer
-        
-        self.fillInTheFields(listofAllAnswers)
-        self.container?.delegate = self
-        
-        self.container?.setTotalNumberOfAnswers(self.totalNumberOfUserAnswers)
-        self.container?.setQuestionLabelText((self.recievedQuestion?.questionText)!)
-        self.container?.setCorrectAnswer(self.correctAnswer)
-        self.container?.setYourAnswer(self.yourAnswerText)
-        self.container?.setAnswers(self.answers)
-        self.container?.setIsQuestionExpired(self.isTheQuestionExpired)
-        self.container?.resultsTableView.reloadData()
+        if listofAllAnswers.isEmpty {
+          let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
+          self.performSegueWithIdentifier(nextRoom, sender: self)
+        } else {
+          
+          self.answers = []
+          self.totalNumberOfUserAnswers = 0
+          self.correctAnswer = ""
+          self.yourAnswerID = yourAnswer
+          
+          self.fillInTheFields(listofAllAnswers)
+          self.container?.delegate = self
+          
+          self.container?.setTotalNumberOfAnswers(self.totalNumberOfUserAnswers)
+          self.container?.setQuestionLabelText((self.recievedQuestion?.questionText)!)
+          self.container?.setCorrectAnswer(self.correctAnswer)
+          self.container?.setYourAnswer(self.yourAnswerText)
+          self.container?.setAnswers(self.answers)
+          self.container?.setIsQuestionExpired(self.isTheQuestionExpired)
+          self.container?.resultsTableView.reloadData()
+        }
         
       }
       
@@ -96,14 +102,14 @@ class PollResultsViewController: UIViewController {
   }
   func deleteQuestion(){
     ModelInterface.sharedInstance.stopTimer((self.recievedQuestion?.QID)!)
-    ModelInterface.sharedInstance.removeQuestion((self.recievedQuestion?.QID)!)
+    ModelInterface.sharedInstance.removeQuestionAndAnswer(recievedQuestion!)
     let nextRoom = ModelInterface.sharedInstance.segueToQuestionsScreen()
     performSegueWithIdentifier(nextRoom, sender: self)
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if (segue.identifier ==  ModelInterface.sharedInstance.segueToWhoVotedForVCFromResult()) {
-    
+      
       let viewController:WhoVotedForViewController = segue.destinationViewController as! WhoVotedForViewController
       
       viewController.selectedAnswer = sendAnswer

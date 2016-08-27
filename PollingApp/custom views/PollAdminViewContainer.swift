@@ -68,7 +68,7 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
   }
   
   func displayDone () {
-    timer.text = "Done"
+    timer.text = "done"
   }
   
   // returns an approiate number of rows depending on the section
