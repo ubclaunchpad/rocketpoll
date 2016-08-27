@@ -23,6 +23,9 @@ class AnswerViewTableViewCell: UITableViewCell {
   
   func setAnswerText(setAnswer: String) {
     answer.text = setAnswer
+    answer.numberOfLines = 0
+    answer.lineBreakMode = NSLineBreakMode.ByTruncatingTail
+    answer.sizeToFit()
   }
   
   override func setSelected(selected: Bool, animated: Bool) {
