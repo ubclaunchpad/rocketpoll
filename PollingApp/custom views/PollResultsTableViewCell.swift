@@ -71,7 +71,6 @@ class PollResultsTableViewCell: UITableViewCell{
     barGraph.layer.cornerRadius = 8
     if isYourAnswer {
       barGraph.backgroundColor = colors.graphBackgroundRed
-      //selectedCorrectly()
       if isYourAnswer && isCorrect {
         setCorrectAnswerSelected()
       }

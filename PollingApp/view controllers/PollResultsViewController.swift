@@ -17,7 +17,7 @@ class PollResultsViewController: UIViewController {
   private var yourAnswerID = ""
   private var yourAnswerText = ""
   private var author = ""
-  
+  private var firstTime = true
   // Recieved information
   var recievedQuestion:Question?
   
@@ -39,10 +39,15 @@ class PollResultsViewController: UIViewController {
     }
     addContainerToVC()
     self.title = "RESULTS"
+    self.container?.resultsTableView.hidden = false
+    self.container?.resultsTableView.reloadData()
+    
   }
   
   override func viewDidAppear(animated: Bool) {
     self.title = "RESULTS"
+    self.container?.resultsTableView.hidden = false
+    self.container?.resultsTableView.reloadData()
   }
   
   func addContainerToVC() {
@@ -71,7 +76,14 @@ class PollResultsViewController: UIViewController {
           self.container?.setYourAnswer(self.yourAnswerText)
           self.container?.setAnswers(self.answers)
           self.container?.setIsQuestionExpired(self.isTheQuestionExpired)
+          self.container?.resultsTableView.hidden = true
           self.container?.resultsTableView.reloadData()
+          self.container?.resultsTableView.reloadData()
+          if (self.firstTime) {
+            sleep(1)
+            self.firstTime = false
+          }
+          self.container?.resultsTableView.hidden = false
         }
         
       }
