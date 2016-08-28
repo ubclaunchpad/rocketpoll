@@ -63,7 +63,7 @@ class PollResultsTableViewCell: UITableViewCell{
     let percentage = CGFloat(result/100);
     var frame: CGRect = self.frame
     
-    frame.size.width = frame.size.width * percentage - 22
+    frame.size.width = abs(frame.size.width * percentage - 22)
     frame.size.height = frame.size.height - 5
     frame.origin.x = 10
     frame.origin.y = 1

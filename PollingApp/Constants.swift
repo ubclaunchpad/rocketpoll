@@ -159,10 +159,6 @@ enum imageNames {
   static let setCorrectSelected = "SetCorrectSelected"
 }
 
-enum cellDimensions {
-  static let answerHeight:CGFloat = 68
-}
-
 enum navigationBarAttributes {
   static let textColor = UIColor(red: 82/255.0, green: 82/255.0, blue: 82/255.0, alpha: 1)
   static let backgroundColor = UIColor(red: 253/255.0, green: 253/255.0, blue: 253/255.0, alpha: 1)

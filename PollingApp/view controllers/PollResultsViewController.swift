@@ -17,7 +17,6 @@ class PollResultsViewController: UIViewController {
   private var yourAnswerID = ""
   private var yourAnswerText = ""
   private var author = ""
-  private var firstTime = true
   // Recieved information
   var recievedQuestion:Question?
   
@@ -79,10 +78,6 @@ class PollResultsViewController: UIViewController {
           self.container?.resultsTableView.hidden = true
           self.container?.resultsTableView.reloadData()
           self.container?.resultsTableView.reloadData()
-          if (self.firstTime) {
-            sleep(1)
-            self.firstTime = false
-          }
           self.container?.resultsTableView.hidden = false
         }
         
