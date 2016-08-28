@@ -61,7 +61,7 @@ class PollResultsViewController: UIViewController {
           self.totalNumberOfUserAnswers = 0
           self.correctAnswer = ""
           self.yourAnswerID = yourAnswer
-          
+          self.yourAnswerText = ""
           self.fillInTheFields(listofAllAnswers)
           self.container?.delegate = self
           
@@ -95,6 +95,10 @@ class PollResultsViewController: UIViewController {
     for i in 0 ..< size  {
       if (listofAllAnswers[i].isCorrect == true ) {
         self.correctAnswer = listofAllAnswers[i].answerText
+      }
+      
+      if (listofAllAnswers[i].AID == yourAnswerID) {
+        yourAnswerText = listofAllAnswers[i].answerText
       }
       self.totalNumberOfUserAnswers += listofAllAnswers[i].tally
     }
