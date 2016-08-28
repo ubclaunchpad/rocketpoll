@@ -17,13 +17,13 @@
             <rect key="frame" x="0.0" y="0.0" width="491" height="68"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="491" height="68"/>
+                <rect key="frame" x="0.0" y="0.0" width="491" height="67.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hrP-Wg-ADa">
                         <rect key="frame" x="10" y="0.0" width="471" height="68"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAV-DN-S65">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAV-DN-S65">
                         <rect key="frame" x="32" y="24" width="435" height="19"/>
                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                         <color key="textColor" red="0.38431372549019605" green="0.38431372549019605" blue="0.38431372549019605" alpha="1" colorSpace="calibratedRGB"/>
@@ -32,9 +32,11 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="hrP-Wg-ADa" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" id="1qr-Ic-fUI"/>
+                    <constraint firstItem="cAV-DN-S65" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="16" id="7Vh-Sh-Bcg"/>
                     <constraint firstItem="hrP-Wg-ADa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="9nJ-3q-ThU"/>
                     <constraint firstItem="hrP-Wg-ADa" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="C4N-Q8-IQQ"/>
                     <constraint firstAttribute="trailingMargin" secondItem="hrP-Wg-ADa" secondAttribute="trailing" constant="2" id="dMR-9H-IKc"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="cAV-DN-S65" secondAttribute="bottom" constant="16.5" id="eAX-qo-wgZ"/>
                     <constraint firstItem="hrP-Wg-ADa" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" id="kWj-7b-pWO"/>
                     <constraint firstAttribute="trailingMargin" secondItem="cAV-DN-S65" secondAttribute="trailing" constant="16" id="mIe-Fl-WeK"/>
                     <constraint firstItem="hrP-Wg-ADa" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="t0B-hG-bag"/>

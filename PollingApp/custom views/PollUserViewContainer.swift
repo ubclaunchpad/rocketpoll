@@ -85,8 +85,13 @@ class PollUserViewContainer: UIView, UITableViewDelegate, UITableViewDataSource 
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return 68
+    return UITableViewAutomaticDimension
     //TODO: set tableView Cell size based on content size
+  }
+
+  
+  func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    return UITableViewAutomaticDimension
   }
 }
 
