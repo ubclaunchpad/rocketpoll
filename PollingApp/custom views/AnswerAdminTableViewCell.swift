@@ -67,7 +67,10 @@ class AnswerAdminTableViewCell: UITableViewCell {
     let barGraph: UIView = UIView(frame: frame)
     barGraph.layer.cornerRadius = 12
     barGraph.backgroundColor = colors.graphBackgroundGrey
-    self.subviews.first?.insertSubview(barGraph, atIndex: 2)  
+//    self.subviews.first?.insertSubview(barGraph, atIndex: 2)  
+    self.addSubview(barGraph)
+
+    
   }
   
   

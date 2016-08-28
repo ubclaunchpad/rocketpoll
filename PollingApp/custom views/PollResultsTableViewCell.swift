@@ -78,7 +78,6 @@ class PollResultsTableViewCell: UITableViewCell{
     } else {
       barGraph.backgroundColor = colors.graphBackgroundGrey
     }
-//    self.subviews.first?.insertSubview(barGraph, atIndex: 2)
     self.addSubview(barGraph)
   }
 }
