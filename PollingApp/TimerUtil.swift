@@ -27,9 +27,9 @@ class TimerUtil {
     }
     
     if numberOfDays <= 1 {
-      return "\(StringUtil.fillInString(UIDaysRemaining.singularDay, time: numberOfDays))"
+      return "\(StringUtil.fillInString(UITimeRemaining.endsDay, time: numberOfDays))"
     } else {
-      return "\(StringUtil.fillInString(UIDaysRemaining.pluralDay, time: numberOfDays))"
+      return "\(StringUtil.fillInString(UITimeRemaining.endsDays, time: numberOfDays))"
     }
   }
 

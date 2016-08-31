@@ -90,11 +90,6 @@ enum UITimeConstants {
   static let moment = 300
 }
 
-enum UIDaysRemaining {
-  static let singularDay = "Day Left"
-  static let pluralDay = "Days Left"
-}
-
 enum UITimeRemaining {
   static let endedMoments = "ended moments ago"
   static let endsMoments = "moments left"
