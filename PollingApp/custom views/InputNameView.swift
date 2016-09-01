@@ -18,6 +18,7 @@ class InputNameView: UIView {
   @IBOutlet weak var submitButton: UIButton!
   @IBOutlet weak var inputNameTextField: UITextField!
   
+  @IBOutlet weak var loadingView: UIActivityIndicatorView!
   var delegate: InputNameViewDelegate?
   
   class func instanceFromNib(frame: CGRect) -> InputNameView {

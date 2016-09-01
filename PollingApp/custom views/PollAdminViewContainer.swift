@@ -68,7 +68,7 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
   }
   
   func displayDone () {
-    timer.text = "Done"
+    timer.text = "done"
   }
   
   // returns an approiate number of rows depending on the section
@@ -106,7 +106,10 @@ class PollAdminViewContainer: UIView, UITableViewDelegate, UITableViewDataSource
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return cellDimensions.answerHeight
+    return UITableViewAutomaticDimension
+  }
+  func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    return UITableViewAutomaticDimension
   }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

@@ -33,6 +33,10 @@ class CampaignsViewController: UIViewController {
     setNavigationBar()
   }
   
+  override func viewDidAppear(animated: Bool) {
+    refreshQuestions()
+  }
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
@@ -48,11 +52,7 @@ class CampaignsViewController: UIViewController {
       })
       
     }
-    //let roomID = ModelInterface.sharedInstance.getCurrentRoomID()
-    //let roomName = ModelInterface.sharedInstance.getRoomName(roomID)
-    
     container?.delegate = self
-    //self.container?.setRoomNameTitle(roomName)
   }
   
   func setNavigationBar() {

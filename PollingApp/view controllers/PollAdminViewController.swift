@@ -33,10 +33,17 @@ final class PollAdminViewController: UIViewController {
     super.viewDidLoad()
     addContainerToVC()
     setNavigationBar()
+    self.container?.AnswerTable.hidden = false
+    self.container?.AnswerTable.reloadData()
   }
   
   override func viewDidAppear(animated: Bool) {
     self.title = "ADMIN"
+    self.container?.AnswerTable.hidden = false
+    self.container?.AnswerTable.reloadData()
+    setCountDown()
+
+    
   }
   
   func addContainerToVC() {
@@ -54,9 +61,11 @@ final class PollAdminViewController: UIViewController {
       self.container?.setAnswers(self.answers)
       self.container?.setCorrectAnswers(self.correctAnswers)
       self.container?.setTotalNumberOfAnswers(self.totalNumberOfUserAnswers)
+      self.container?.AnswerTable.hidden = true
       self.container?.AnswerTable.reloadData()
+      self.container?.AnswerTable.reloadData()
+      self.container?.AnswerTable.hidden = false
     })
-    setCountDown();
   }
   
   func setNavigationBar() {
@@ -129,7 +138,8 @@ final class PollAdminViewController: UIViewController {
   
   func deleteQuestion(){
     ModelInterface.sharedInstance.stopTimer((recievedQuestion?.QID)!)
-    ModelInterface.sharedInstance.removeQuestion((recievedQuestion?.QID)!)
+    ModelInterface.sharedInstance.removeQuestionAndAnswer(recievedQuestion!)
+    
     segueToCampaign()
   }
   

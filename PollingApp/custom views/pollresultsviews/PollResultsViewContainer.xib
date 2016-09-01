@@ -23,8 +23,8 @@
                     <rect key="frame" x="0.0" y="206" width="600" height="394"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Total: 12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRT-BJ-mWK">
-                    <rect key="frame" x="521" y="180" width="53" height="16"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total: 12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRT-BJ-mWK">
+                    <rect key="frame" x="531" y="180" width="54" height="16"/>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                     <color key="textColor" red="0.68235294120000001" green="0.68235294120000001" blue="0.68235294120000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -35,20 +35,17 @@
                     <color key="textColor" red="0.42352941179999998" green="0.42352941179999998" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Question:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMz-tk-Ewe">
-                    <rect key="frame" x="16" y="30" width="61" height="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMz-tk-Ewe">
+                    <rect key="frame" x="16" y="30" width="59.5" height="17"/>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                     <color key="textColor" red="0.42352941179999998" green="0.42352941179999998" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AnswerCell" translatesAutoresizingMaskIntoConstraints="NO" id="KUX-KH-CkR">
                     <rect key="frame" x="8" y="57" width="580" height="68"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="68" id="FLO-f1-xTi"/>
-                    </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Test" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvx-A6-6Qx">
-                    <rect key="frame" x="28" y="81" width="30" height="19"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvx-A6-6Qx">
+                    <rect key="frame" x="28" y="81" width="545" height="19"/>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                     <color key="textColor" red="0.38431372549999998" green="0.38431372549999998" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -57,20 +54,22 @@
             <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="tRT-BJ-mWK" firstAttribute="baseline" secondItem="W7t-wb-Qve" secondAttribute="baseline" id="2iV-3V-Omb"/>
+                <constraint firstItem="zvx-A6-6Qx" firstAttribute="bottom" secondItem="KUX-KH-CkR" secondAttribute="bottom" constant="-25" id="4Qw-sT-E36"/>
                 <constraint firstItem="KUX-KH-CkR" firstAttribute="top" secondItem="cMz-tk-Ewe" secondAttribute="bottom" constant="10" id="BHv-E1-IgB"/>
                 <constraint firstItem="cMz-tk-Ewe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="DQp-Wu-4Ar"/>
                 <constraint firstAttribute="bottom" secondItem="ZFL-iT-IRe" secondAttribute="bottom" id="Ign-p8-07x"/>
                 <constraint firstItem="cMz-tk-Ewe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="MrU-OG-PRd"/>
                 <constraint firstAttribute="trailing" secondItem="KUX-KH-CkR" secondAttribute="trailing" constant="12" id="R9g-0Q-BCx"/>
+                <constraint firstItem="zvx-A6-6Qx" firstAttribute="top" secondItem="cMz-tk-Ewe" secondAttribute="bottom" constant="34" id="VtP-5j-2wD"/>
                 <constraint firstItem="W7t-wb-Qve" firstAttribute="leading" secondItem="cMz-tk-Ewe" secondAttribute="leading" id="aHs-NL-Eyl"/>
                 <constraint firstItem="ZFL-iT-IRe" firstAttribute="top" secondItem="W7t-wb-Qve" secondAttribute="bottom" constant="10" id="d22-Mv-MLB"/>
-                <constraint firstItem="zvx-A6-6Qx" firstAttribute="centerY" secondItem="KUX-KH-CkR" secondAttribute="centerY" id="ixf-ng-Rbd"/>
                 <constraint firstItem="W7t-wb-Qve" firstAttribute="top" secondItem="KUX-KH-CkR" secondAttribute="bottom" constant="55" id="lSi-jN-VYT"/>
+                <constraint firstItem="zvx-A6-6Qx" firstAttribute="trailing" secondItem="KUX-KH-CkR" secondAttribute="trailing" constant="-15" id="lkc-mI-54f"/>
                 <constraint firstItem="ZFL-iT-IRe" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="m0I-RQ-fzP"/>
                 <constraint firstItem="ZFL-iT-IRe" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="o1C-CT-TUH"/>
                 <constraint firstItem="KUX-KH-CkR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="qDS-L9-Uyz"/>
+                <constraint firstItem="tRT-BJ-mWK" firstAttribute="trailing" secondItem="KUX-KH-CkR" secondAttribute="trailing" constant="-3" id="tXs-jY-WB1"/>
                 <constraint firstItem="zvx-A6-6Qx" firstAttribute="leading" secondItem="KUX-KH-CkR" secondAttribute="leading" constant="20" id="u9v-ub-6nm"/>
-                <constraint firstAttribute="trailing" secondItem="tRT-BJ-mWK" secondAttribute="trailing" constant="26" id="vW6-Zv-ltg"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <connections>

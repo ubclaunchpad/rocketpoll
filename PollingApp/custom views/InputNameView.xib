@@ -37,11 +37,17 @@
                         <action selector="submitButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="sdg-z6-fr1"/>
                     </connections>
                 </button>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="dcH-yi-pvU">
+                    <rect key="frame" x="289" y="357" width="20" height="20"/>
+                    <color key="color" red="0.99805566021158232" green="0.97632280769498825" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="dcH-yi-pvU" firstAttribute="centerX" secondItem="sPs-SP-rWv" secondAttribute="centerX" id="6xq-6f-PaD"/>
                 <constraint firstItem="Rv9-PH-lkK" firstAttribute="top" secondItem="sPs-SP-rWv" secondAttribute="bottom" constant="8" id="BVi-d4-sBo"/>
                 <constraint firstItem="Rv9-PH-lkK" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="MGD-sr-ufC"/>
+                <constraint firstItem="dcH-yi-pvU" firstAttribute="top" secondItem="sPs-SP-rWv" secondAttribute="bottom" constant="42" id="TWh-o6-acT"/>
                 <constraint firstItem="sPs-SP-rWv" firstAttribute="top" secondItem="YFn-r5-Qla" secondAttribute="bottom" multiplier="1.5" constant="-76.5" id="WTk-h7-mVv"/>
                 <constraint firstItem="YFn-r5-Qla" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-1" id="cU7-GV-3JI"/>
                 <constraint firstAttribute="bottom" secondItem="Rv9-PH-lkK" secondAttribute="bottom" constant="223" id="d4Z-j6-dti"/>
@@ -49,6 +55,7 @@
             </constraints>
             <connections>
                 <outlet property="inputNameTextField" destination="sPs-SP-rWv" id="zMM-eG-dc9"/>
+                <outlet property="loadingView" destination="dcH-yi-pvU" id="szH-mx-ynq"/>
                 <outlet property="submitButton" destination="Rv9-PH-lkK" id="Gkd-LV-7Co"/>
             </connections>
         </view>

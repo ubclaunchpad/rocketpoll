@@ -29,12 +29,15 @@ class InputNameViewController: UIViewController {
   func submit (name: String){
     
     checkChars(name)
-    
+    self.container!.submitButton.hidden = true
+    self.container!.loadingView.startAnimating()
     if ModelInterface.sharedInstance.isValidName(name) == false {
       let alert = UIAlertController(title: "\(alertMessages.invalid)", message:"",
                                     preferredStyle: UIAlertControllerStyle.Alert)
       alert.addAction(UIAlertAction(title: "\(alertMessages.confirm)",
         style: UIAlertActionStyle.Default, handler: nil))
+      self.container!.submitButton.hidden = false
+      self.container!.loadingView.stopAnimating()
       self.presentViewController(alert, animated: true, completion: nil)
       
     }
@@ -55,7 +58,10 @@ class InputNameViewController: UIViewController {
       } else {
         let alert = UIAlertController(title: alertMessages.usernameIsTaken, message:"", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: alertMessages.confirm, style: UIAlertActionStyle.Default, handler: nil))
+         self.container!.submitButton.hidden = false
+        self.container!.loadingView.stopAnimating()
         self.presentViewController(alert, animated: true, completion: nil)
+        
       }
     }
   }

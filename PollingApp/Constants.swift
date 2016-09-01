@@ -22,6 +22,7 @@ var currentID  = ""
 var okayNameCharacters : Set<Character> =
   Set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890".characters)
 
+let offsetTimer = 0;
 
 var launchpadEmail: String = "@ubclaunchpad.com"
 var totalVotes: String = "%1% total votes"
@@ -56,8 +57,8 @@ enum colors {
   static let authorColor = UIColor(red: 151/255.0, green: 151/255.0, blue: 151/255.0, alpha: 1)
   static let lightAuthorColor = UIColor(red: 249/255.0, green: 249/255.0, blue: 249/255.0, alpha: 1)
   static let backgroundColor = UIColor(red: 245/255.0, green: 245/255.0, blue: 245/255.0, alpha: 1)
-  static let graphBackgroundGrey = UIColor(red: 230/255.0, green: 230/255.0, blue: 230/255.0, alpha: 1)
-  static let graphBackgroundRed = UIColor(red: 255/255.0, green: 130/255.0, blue: 130/255.0, alpha: 1)
+  static let graphBackgroundGrey = UIColor(red: 230/255.0, green: 230/255.0, blue: 230/255.0, alpha: 0.5)
+  static let graphBackgroundRed = UIColor(red: 255/255.0, green: 130/255.0, blue: 130/255.0, alpha: 0.5)
   static let segmentedTint = UIColor(red: 116/255.0, green: 116/255.0, blue: 116/255.0, alpha: 1)
   static let offWhite = UIColor(red: 251/255.0, green: 251/255.0, blue: 251/255.0, alpha: 1)
   static let lightBlue = UIColor(red: 45/255.0, green: 164/255.0, blue: 255/255.0, alpha: 1)
@@ -87,11 +88,6 @@ enum UITimeConstants {
   static let oneHourinMinutes = 60
   static let oneDayinMinutes = 1440
   static let moment = 300
-}
-
-enum UIDaysRemaining {
-  static let singularDay = "Day Left"
-  static let pluralDay = "Days Left"
 }
 
 enum UITimeRemaining {
@@ -156,10 +152,6 @@ enum imageNames {
   static let setIncorrect = "SetIncorrect"
   static let setCorrect = "SetCorrect"
   static let setCorrectSelected = "SetCorrectSelected"
-}
-
-enum cellDimensions {
-  static let answerHeight:CGFloat = 68
 }
 
 enum navigationBarAttributes {

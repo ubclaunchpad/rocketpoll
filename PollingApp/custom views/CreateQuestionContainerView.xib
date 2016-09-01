@@ -29,7 +29,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="kSR-OB-ORh">
-                    <rect key="frame" x="529" y="136" width="52" height="28"/>
+                    <rect key="frame" x="13" y="136" width="568" height="28"/>
                     <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="13"/>
                     <state key="normal" title="Set timer">
                         <color key="titleColor" red="0.32156862745098036" green="0.32156862745098036" blue="0.32156862745098036" alpha="1" colorSpace="calibratedRGB"/>
@@ -227,6 +227,7 @@
                 <constraint firstItem="Kok-IO-Qeg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="Rfd-xM-Nm5"/>
                 <constraint firstAttribute="trailing" secondItem="Fd7-4U-zpA" secondAttribute="trailing" id="RmI-Fi-1Kk"/>
                 <constraint firstItem="7Db-bb-cr6" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="TXx-KN-wjU"/>
+                <constraint firstItem="kSR-OB-ORh" firstAttribute="leading" secondItem="lQs-nS-HJd" secondAttribute="leading" constant="3" id="YyW-EA-6ty"/>
                 <constraint firstItem="g0a-0p-AEc" firstAttribute="top" secondItem="lQs-nS-HJd" secondAttribute="bottom" constant="-25" id="aCR-Gj-apv"/>
                 <constraint firstItem="lQs-nS-HJd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="aE8-62-IXP"/>
                 <constraint firstItem="kSR-OB-ORh" firstAttribute="top" secondItem="lQs-nS-HJd" secondAttribute="bottom" constant="5" id="bzp-3h-ctX"/>

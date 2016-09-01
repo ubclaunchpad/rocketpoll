@@ -27,7 +27,7 @@ class WhoVotedForViewController: UIViewController {
   }
   
   func setNavigationBar() {
-     self.title = "Who Voted?" 
+     self.title = "WHO VOTED?"
   }
   
   func addContainerToVC() {
