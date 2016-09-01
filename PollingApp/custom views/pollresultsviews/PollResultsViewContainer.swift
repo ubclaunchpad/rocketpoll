@@ -52,17 +52,19 @@ class PollResultsViewContainer: UIView, UITableViewDelegate, UITableViewDataSour
     
     cell.setAnswerText(answer.answerText)
     
-    if answer.answerText == correctAnswer && isTheQuestionExpired {
+    if answer.answerText == correctAnswer && isTheQuestionExpired && (yourAnswer == answer.answerText) {
+      cell.setCorrectAnswerSelected()
+    } else if (answer.answerText == correctAnswer && isTheQuestionExpired && (yourAnswer != answer.answerText)) {
       cell.setCorrectAnswer()
     }
     
     
     if(totalNumberOfAnswers != 0){
       let results:Double = MathUtil.convertTallyResultsToPercentage(Double(answer.tally), denominator: Double(totalNumberOfAnswers))
-      cell.setBarGraph(results, isYourAnswer: yourAnswer == answer.answerText, isCorrect: correctAnswer == answer.answerText)
+      cell.setBarGraph(results, isYourAnswer: yourAnswer == answer.answerText)
       cell.SetTallyLabel(answer.tally, result: results)
     } else {
-      cell.setBarGraph(0, isYourAnswer: yourAnswer == answer.answerText, isCorrect: correctAnswer == answer.answerText)
+      cell.setBarGraph(0, isYourAnswer: yourAnswer == answer.answerText)
       cell.SetTallyLabel(0, result: 0)
     }
     
