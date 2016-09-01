@@ -115,6 +115,12 @@ class CreateQuestionContainerView: UIView {
     view.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
     view.tableView.backgroundColor = UIColor.clearColor()
     view.tableView.opaque = false
+    
+    view.setTimerButton.titleLabel?.numberOfLines = 0
+    view.setTimerButton.titleLabel?.lineBreakMode = .ByWordWrapping
+    view.setTimerButton.contentHorizontalAlignment = .Right
+    view.setTimerButton.titleLabel?.textAlignment = .Right
+    
     return view
   }
 }
