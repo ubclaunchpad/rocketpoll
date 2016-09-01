@@ -25,7 +25,7 @@
                         <rect key="frame" x="10" y="0.0" width="367" height="76.5"/>
                     </imageView>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter an answer" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lov-Ml-D0A">
-                        <rect key="frame" x="28" y="27.5" width="251.5" height="19"/>
+                        <rect key="frame" x="28" y="27.5" width="294" height="19"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="textColor" red="0.38431372549019605" green="0.38431372549019605" blue="0.38431372549019605" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
@@ -46,13 +46,13 @@
                 <constraints>
                     <constraint firstItem="m4L-1j-h6c" firstAttribute="top" secondItem="WMb-Sz-Kjr" secondAttribute="topMargin" constant="8" id="2Eg-1K-K62"/>
                     <constraint firstItem="Aau-AI-WCS" firstAttribute="leading" secondItem="WMb-Sz-Kjr" secondAttribute="leadingMargin" constant="2" id="5hB-Vr-cvX"/>
-                    <constraint firstItem="Lov-Ml-D0A" firstAttribute="width" secondItem="WMb-Sz-Kjr" secondAttribute="width" multiplier="0.65" id="71w-aA-4kU"/>
                     <constraint firstItem="Aau-AI-WCS" firstAttribute="height" secondItem="WMb-Sz-Kjr" secondAttribute="height" id="9qD-6H-vnA"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Aau-AI-WCS" secondAttribute="trailing" constant="2" id="HDJ-bm-NFk"/>
                     <constraint firstItem="m4L-1j-h6c" firstAttribute="trailing" secondItem="Aau-AI-WCS" secondAttribute="trailing" constant="-13" id="Hh7-y8-96c"/>
                     <constraint firstItem="Aau-AI-WCS" firstAttribute="centerX" secondItem="WMb-Sz-Kjr" secondAttribute="centerX" id="N7n-ds-tYt"/>
                     <constraint firstItem="Lov-Ml-D0A" firstAttribute="leading" secondItem="WMb-Sz-Kjr" secondAttribute="leadingMargin" constant="20" id="VDI-tH-YUi"/>
                     <constraint firstItem="Lov-Ml-D0A" firstAttribute="centerY" secondItem="WMb-Sz-Kjr" secondAttribute="centerY" multiplier="0.97" id="YqB-cM-mE6"/>
+                    <constraint firstItem="m4L-1j-h6c" firstAttribute="leading" secondItem="Lov-Ml-D0A" secondAttribute="trailing" constant="8" symbolic="YES" id="cvr-gX-Rvl"/>
                     <constraint firstItem="Aau-AI-WCS" firstAttribute="centerY" secondItem="WMb-Sz-Kjr" secondAttribute="centerY" id="sv4-tM-uGt"/>
                 </constraints>
             </tableViewCellContentView>
