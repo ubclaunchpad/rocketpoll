@@ -1016,6 +1016,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ubclaunchpad.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1030,7 +1031,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ubclaunchpad.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "039656c5-089d-47aa-9d70-1eeeeb8c7d5f";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
