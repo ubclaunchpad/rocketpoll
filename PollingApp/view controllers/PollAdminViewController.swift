@@ -41,9 +41,6 @@ final class PollAdminViewController: UIViewController {
     self.title = "ADMIN"
     self.container?.AnswerTable.hidden = false
     self.container?.AnswerTable.reloadData()
-    setCountDown()
-
-    
   }
   
   func addContainerToVC() {
@@ -66,6 +63,7 @@ final class PollAdminViewController: UIViewController {
       self.container?.AnswerTable.reloadData()
       self.container?.AnswerTable.hidden = false
     })
+     setCountDown()
   }
   
   func setNavigationBar() {
