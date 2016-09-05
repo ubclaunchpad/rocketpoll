@@ -212,16 +212,7 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
     let cells = container?.tableView.visibleCells as! [AnswerTableViewCell]!
     for i in 0...cells.count - 1 {
       if cells[i].identifier >= 2 && cells[i].answerField.editing {
-        
         container?.tableView.contentInset = UIEdgeInsetsMake(-60 * CGFloat(cells[i].identifier!), 0, 0, 0)
-        
-
-      } else {
-//        if self.view.window?.frame.origin.y != 0 {
-//          UIView.animateWithDuration(0.2, animations: {
-//            self.view.window?.frame.origin.y = 0
-//          })
-//        }
       }
     }
   }
