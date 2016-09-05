@@ -202,23 +202,22 @@ class CreateQuestionViewController: UIViewController, UITextViewDelegate {
         })
       }
     }
+    let screenSize: CGRect = UIScreen.mainScreen().bounds
+    let screenWidth = screenSize.width
+    if screenWidth < 375 {
+      if self.view.window?.frame.origin.y > -100 {
+        self.view.window?.frame.origin.y = -100
+      }
+    }
     let cells = container?.tableView.visibleCells as! [AnswerTableViewCell]!
     for i in 0...cells.count - 1 {
-      if i >= 2 && cells[i].answerField.editing {
-        if self.view.window?.frame.origin.y > -100 {
-          self.view.window?.frame.origin.y -= 100
-          return
-        }
-      } else {
-        if self.view.window?.frame.origin.y != 0 {
-          UIView.animateWithDuration(0.2, animations: {
-            self.view.window?.frame.origin.y = 0
-          })
-        }
+      if cells[i].identifier >= 2 && cells[i].answerField.editing {
+        container?.tableView.contentInset = UIEdgeInsetsMake(-60 * CGFloat(cells[i].identifier!), 0, 0, 0)
       }
     }
   }
   func keyboardWillHide(notification: NSNotification) {
+    container?.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
     if self.view.window?.frame.origin.y != 0 {
       self.view.window?.frame.origin.y = 0
     }
